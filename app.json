@@ -10,6 +10,17 @@
         "name": "Jeroen Aartse",
         "email": "jeroen@webdesigntilburg.nl"
     },
+    "category": [
+        "security"
+    ],
+    "description": {
+        "en": "Zipato motion sensor for Homey",
+        "nl": "Zipato motion sensor voor Homey"
+    },
+    "images": {
+        "large": "/assets/images/large.png",
+        "small": "/assets/images/small.png"
+    },
 	"drivers": [
 		{
 			"id": "ZP3102.EU",

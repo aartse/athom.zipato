@@ -1,8 +1,8 @@
 {
     "id": "nl.aartse.zipato",
     "name": {
-        "en": "Zipato",
-        "nl": "Zipato"
+        "en": "Zipato motion sensor",
+        "nl": "Zipato motion sensor"
     },
     "version": "1.0.0",
     "compatibility": "0.x || 1.x",

@@ -21,6 +21,16 @@
         "large": "/assets/images/large.jpg",
         "small": "/assets/images/small.jpg"
     },
+
+    "contributors": {
+        "developers": [
+            {
+                "name": "Jeroen Aartse",
+                "website": "http://www.webdesigntilburg.nl",
+                "email": "jeroen@webdesigntilburg.nl"
+            }
+        ]
+    },	
 	"drivers": [
 		{
 			"id": "ZP3102.EU",

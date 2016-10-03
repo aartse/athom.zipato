@@ -64,5 +64,39 @@
 				"large": "/drivers/ZP3102.EU/assets/images/large.jpg",
 				"small": "/drivers/ZP3102.EU/assets/images/small.jpg"
 			}
-		}]
+		},
+		{
+			"id": "RGBWE27ZW.EU",
+			"name": {
+				"en": "RGBW bulb",
+				"nl": "RGBW bulb"
+			},
+			"zwave": {
+				"manufacturerId": 305,
+				"productTypeId": 2,
+				"productId": 2,
+				"learnmode": {
+					"image": "/drivers/RGBWE27ZW.EU/assets/learnmode.svg",
+					"instruction": {
+						"en": "Tap on the bulb",
+						"nl": "Tik op de lamp"
+					}
+				},
+				"associationGroups": [
+					1
+				]
+			},
+			"class": "light",
+			"capabilities": [
+				"onoff",
+				"dim",
+				"light_hue",
+				"light_temperature"
+			],
+			"images": {
+				"large": "/drivers/RGBWE27ZW.EU/assets/images/large.jpg",
+				"small": "/drivers/RGBWE27ZW.EU/assets/images/small.jpg"
+			}
+		}
+	]
 }

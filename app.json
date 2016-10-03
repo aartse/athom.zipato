@@ -1,8 +1,8 @@
 {
     "id": "nl.aartse.zipato",
     "name": {
-        "en": "Zipato motion sensor",
-        "nl": "Zipato motion sensor"
+        "en": "Zipato",
+        "nl": "Zipato"
     },
     "version": "1.0.0",
     "compatibility": "0.x || 1.x",
@@ -14,8 +14,8 @@
         "security"
     ],
     "description": {
-        "en": "Zipato motion sensor for Homey",
-        "nl": "Zipato motion sensor voor Homey"
+        "en": "Zipato motion sensor and RGBW bulb for Homey",
+        "nl": "Zipato motion sensor en RGBW lamp voor Homey"
     },
     "images": {
         "large": "/assets/images/large.jpg",
@@ -69,33 +69,30 @@
 			"id": "RGBWE27ZW.EU",
 			"name": {
 				"en": "RGBW bulb",
-				"nl": "RGBW bulb"
+				"nl": "RGBW lamp"
 			},
 			"zwave": {
 				"manufacturerId": 305,
 				"productTypeId": 2,
 				"productId": 2,
 				"learnmode": {
-					"image": "/drivers/RGBWE27ZW.EU/assets/learnmode.svg",
 					"instruction": {
 						"en": "Tap on the bulb",
 						"nl": "Tik op de lamp"
 					}
 				},
 				"associationGroups": [
-					1
+					2
 				]
 			},
 			"class": "light",
 			"capabilities": [
 				"onoff",
-				"dim",
-				"light_hue",
-				"light_temperature"
+				"dim"
 			],
 			"images": {
-				"large": "/drivers/RGBWE27ZW.EU/assets/images/large.jpg",
-				"small": "/drivers/RGBWE27ZW.EU/assets/images/small.jpg"
+				"large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
+				"small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
 			}
 		}
 	]

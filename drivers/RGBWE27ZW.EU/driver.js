@@ -17,7 +17,6 @@ module.exports = new ZwaveDriver( path.basename(__dirname), {
 			'command_get'				: 'SWITCH_MULTILEVEL_GET',
 			'command_set'				: 'SWITCH_MULTILEVEL_SET',
 			'command_set_parser'		: value => {
-				console.log(value);
 				return {
 					'Value': (value) ? 'on/enable' : 'off/disable',
 					'Dimming Duration': 'Factory default'

@@ -4,13 +4,14 @@
         "en": "Zipato",
         "nl": "Zipato"
     },
-    "version": "1.1.0",
+    "version": "1.1.1",
     "compatibility": "0.x || 1.x",
     "author": {
         "name": "Jeroen Aartse",
         "email": "jeroen@webdesigntilburg.nl"
     },
     "category": [
+		"lights",
         "security"
     ],
     "description": {
@@ -82,13 +83,16 @@
 					}
 				},
 				"associationGroups": [
+					1,
 					2
 				]
 			},
 			"class": "light",
 			"capabilities": [
 				"onoff",
-				"dim"
+				"dim",
+				"light_hue",
+				"light_temperature"
 			],
 			"images": {
 				"large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",

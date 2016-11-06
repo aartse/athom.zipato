@@ -4,7 +4,7 @@
         "en": "Zipato",
         "nl": "Zipato"
     },
-    "version": "1.1.1",
+    "version": "1.1.2",
     "compatibility": "0.x || 1.x",
     "author": {
         "name": "Jeroen Aartse",
@@ -92,6 +92,7 @@
 				"onoff",
 				"dim",
 				"light_hue",
+				"light_saturation",
 				"light_temperature"
 			],
 			"images": {

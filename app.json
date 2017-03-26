@@ -4,7 +4,7 @@
         "en": "Zipato",
         "nl": "Zipato"
     },
-    "version": "1.1.3",
+    "version": "1.1.4",
     "compatibility": "0.x || 1.x",
     "author": {
         "name": "Jeroen Aartse",

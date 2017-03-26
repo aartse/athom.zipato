@@ -11,7 +11,7 @@
         "email": "jeroen@webdesigntilburg.nl"
     },
     "category": [
-		"lights",
+        "lights",
         "security"
     ],
     "description": {
@@ -31,74 +31,74 @@
                 "email": "jeroen@webdesigntilburg.nl"
             }
         ]
-    },	
-	"drivers": [
-		{
-			"id": "ZP3102.EU",
-			"name": {
-				"en": "ZP3102",
-				"nl": "ZP3102"
-			},
-			"zwave": {
-				"manufacturerId": [265,305],			
-"productTypeId": 8194,
-				"productId": [515, 517],
-				"learnmode": {
-					"image": "/drivers/ZP3102.EU/assets/learnmode.svg",
-					"instruction": {
-						"en": "Push the program switch on the back",
-						"nl": "Druk op de programma toets op de achterkant"
-					}
-				},
-				"associationGroups": [
-					1
-				]
-			},
-			"class": "sensor",
-			"capabilities": [
-				"alarm_motion",
-				"alarm_tamper",
-				"measure_temperature",
-				"measure_battery"
-			],
-			"images": {
-				"large": "/drivers/ZP3102.EU/assets/images/large.jpg",
-				"small": "/drivers/ZP3102.EU/assets/images/small.jpg"
-			}
-		},
-		{
-			"id": "RGBWE27ZW.EU",
-			"name": {
-				"en": "RGBW bulb",
-				"nl": "RGBW lamp"
-			},
-			"zwave": {
-				"manufacturerId": 305,
-				"productTypeId": 2,
-				"productId": 2,
-				"learnmode": {
-					"instruction": {
-						"en": "Tap on the bulb",
-						"nl": "Tik op de lamp"
-					}
-				},
-				"associationGroups": [
-					1,
-					2
-				]
-			},
-			"class": "light",
-			"capabilities": [
-				"onoff",
-				"dim",
-				"light_hue",
-				"light_saturation",
-				"light_temperature"
-			],
-			"images": {
-				"large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
-				"small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
-			}
-		}
-	]
+    },    
+    "drivers": [
+        {
+            "id": "ZP3102.EU",
+            "name": {
+                "en": "ZP3102",
+                "nl": "ZP3102"
+            },
+            "zwave": {
+                "manufacturerId": [265,305],
+                "productTypeId": 8194,
+                "productId": [515, 517],
+                "learnmode": {
+                    "image": "/drivers/ZP3102.EU/assets/learnmode.svg",
+                    "instruction": {
+                        "en": "Push the program switch on the back",
+                        "nl": "Druk op de programma toets op de achterkant"
+                    }
+                },
+                "associationGroups": [
+                    1
+                ]
+            },
+            "class": "sensor",
+            "capabilities": [
+                "alarm_motion",
+                "alarm_tamper",
+                "measure_temperature",
+                "measure_battery"
+            ],
+            "images": {
+                "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
+                "small": "/drivers/ZP3102.EU/assets/images/small.jpg"
+            }
+        },
+        {
+            "id": "RGBWE27ZW.EU",
+            "name": {
+                "en": "RGBW bulb",
+                "nl": "RGBW lamp"
+            },
+            "zwave": {
+                "manufacturerId": 305,
+                "productTypeId": 2,
+                "productId": 2,
+                "learnmode": {
+                    "instruction": {
+                        "en": "Tap on the bulb",
+                        "nl": "Tik op de lamp"
+                    }
+                },
+                "associationGroups": [
+                    1,
+                    2
+                ]
+            },
+            "class": "light",
+            "capabilities": [
+                "onoff",
+                "dim",
+                "light_hue",
+                "light_saturation",
+                "light_temperature"
+            ],
+            "images": {
+                "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
+                "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
+            }
+        }
+    ]
 }

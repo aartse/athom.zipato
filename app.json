@@ -40,8 +40,8 @@
 				"nl": "ZP3102"
 			},
 			"zwave": {
-				"manufacturerId": 265,
-				"productTypeId": 8194,
+				"manufacturerId": [265,305],			
+"productTypeId": 8194,
 				"productId": [515, 517],
 				"learnmode": {
 					"image": "/drivers/ZP3102.EU/assets/learnmode.svg",

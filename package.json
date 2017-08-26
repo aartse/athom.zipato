@@ -4,7 +4,8 @@
   "description": "This app adds support for Zipato Motion sensor in Homey",
   "main": "app.js",
   "dependencies": {
-    "homey-zwavedriver": "git+https://github.com/athombv/node-homey-zwavedriver.git"
+    "tinycolor2": "git+https://github.com/bgrins/TinyColor.git",
+    "homey-zwavedriver": "git+https://github.com/aartse/node-homey-zwavedriver.git"
   },
   "devDependencies": {},
   "scripts": {

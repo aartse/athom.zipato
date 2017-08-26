@@ -8,6 +8,7 @@ const tinycolor 	= require("tinycolor2");
 // http://www.smarthome.com.au/media/manuals/Aeotec_Z-Wave_LED_Bulb_Product_Manual.pdf
 // https://github.com/athombv/com.aeotec/blob/master/drivers/ZW098/driver.js
 
+// http://www.cd-jackson.com/index.php/zwave/zwave-device-database/zwave-device-list/devicesummary/619
 
 module.exports = new ZwaveDriver( path.basename(__dirname), {
 	debug: false,
@@ -17,7 +18,15 @@ module.exports = new ZwaveDriver( path.basename(__dirname), {
 			'command_class'				: 'COMMAND_CLASS_SWITCH_MULTILEVEL',
 			'command_get'				: 'SWITCH_MULTILEVEL_GET',
 			'command_set'				: 'SWITCH_MULTILEVEL_SET',
-			'command_set_parser'		: value => {
+            'before_command_set_parser' : (value, node) => {
+                // prevent sending double on commands
+                // Because otherwise setting a color in the flow will not work properly.
+                if (node.state.onoff && value) {
+                    return false;
+                }
+                return true;
+            },
+			'command_set_parser'		: (value, node) => {
 				return {
 					'Value': (value) ? 'on/enable' : 'off/disable',
 					'Dimming Duration': 'Factory default'

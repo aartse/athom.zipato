@@ -133,6 +133,75 @@
                 "large": "/drivers/RGBWE2.EU/assets/images/large.png",
                 "small": "/drivers/RGBWE2.EU/assets/images/small.png"
             }
+        },
+        {
+            "id": "PH-PAN04.EU",
+            "name": {
+                "en": "Switch double",
+                "nl": "Switch double"
+            },
+            "zwave": {
+                "manufacturerId": 316,
+                "productTypeId": 1,
+                "productId": 18,
+                "learnmode": {
+                    "instruction": {
+                        "en": "Pressing INCLUDE_BUTTON three times within 2 seconds will enter inclusion mode.",
+                        "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+                    }
+                },
+                "associationGroups": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "class": "light",
+            "capabilities": [
+                "onoff"
+            ],
+            "images": {
+                "large": "/drivers/RGBWE2.EU/assets/images/large.png",
+                "small": "/drivers/RGBWE2.EU/assets/images/small.png"
+            },
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "General settings"
+                    },
+                    "children": [
+                        {
+                            "id": "config_param_4",
+                            "type": "dropdown",
+                            "label": {
+                                "en": "Switch type"
+                            },
+                            "value": "1",
+                            "values": [
+                                {
+                                    "id": "1",
+                                    "label": {
+                                        "en": "Edge mode"
+                                    }
+                                },
+                                {
+                                    "id": "2",
+                                    "label": {
+                                        "en": "Pulse mode"
+                                    }
+                                },
+                                {
+                                    "id": "3",
+                                    "label": {
+                                        "en": "Edge-Toggle mode"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

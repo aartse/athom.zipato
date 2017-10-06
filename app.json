@@ -158,7 +158,9 @@
             },
             "class": "light",
             "capabilities": [
-                "onoff"
+                "onoff",
+                "measure_power",
+                "meter_power"
             ],
             "images": {
                 "large": "/drivers/RGBWE2.EU/assets/images/large.png",
@@ -166,38 +168,231 @@
             },
             "settings": [
                 {
-                    "type": "group",
+                    "id": "config_param_1",
+                    "type": "number",
                     "label": {
-                        "en": "General settings"
+                        "en": "Watt meter report period (in seconds)"
                     },
-                    "children": [
+                    "value": 3600,
+                    "attr": {
+                        "min": 5,
+                        "max": 163835,
+                        "step": 5
+                    },
+                    "hint": {
+                        "en": "If the setting is configured for 3600 seconds (default value), Micromodule will report its instant power consumption every 1 hour"
+                    }
+                },
+                {
+                    "id": "config_param_2",
+                    "type": "number",
+                    "label": {
+                        "en": "KWH meter report period (in minutes)"
+                    },
+                    "value": 60,
+                    "attr": {
+                        "min": 10,
+                        "max": 327670,
+                        "step": 10
+                    },
+                    "hint": {
+                        "en": "If the setting is configured for 60 minutes (default value), Micromodule will report its Accumulated Power Consumption (KW/h) every 1 hour"
+                    }
+                },
+                {
+                    "id": "config_param_3",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "Selected relay"
+                    },
+                    "value": "3",
+                    "values": [
                         {
-                            "id": "config_param_4",
-                            "type": "dropdown",
+                            "id": "1",
                             "label": {
-                                "en": "Switch type"
-                            },
-                            "value": "1",
-                            "values": [
-                                {
-                                    "id": "1",
-                                    "label": {
-                                        "en": "Edge mode"
-                                    }
-                                },
-                                {
-                                    "id": "2",
-                                    "label": {
-                                        "en": "Pulse mode"
-                                    }
-                                },
-                                {
-                                    "id": "3",
-                                    "label": {
-                                        "en": "Edge-Toggle mode"
-                                    }
-                                }
-                            ]
+                                "en": "Relay 1"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Relay 2"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "label": {
+                                "en": "Relay 1 & Relay 2"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Set which relay can be controlled and report. Default is relay 1 and 2"
+                    }
+                },
+                {
+                    "id": "config_param_4",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "Switch type"
+                    },
+                    "value": "1",
+                    "values": [
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Edge mode"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Pulse mode"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "label": {
+                                "en": "Edge-Toggle mode"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Manual switch S1 and S2 can set to Edge mode or Pulse mode or Edge-Toggle mode, default value is Edge mode."
+                    }
+                },
+                {
+                    "id": "config_param_5",
+                    "type": "number",
+                    "label": {
+                        "en": "Threshold of watt for load caution"
+                    },
+                    "value": 750,
+                    "attr": {
+                        "min": 10,
+                        "max": 750
+                    },
+                    "hint": {
+                        "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 750."
+                    }
+                },
+                {
+                    "id": "config_param_6",
+                    "type": "number",
+                    "label": {
+                        "en": "Threshold of KWH for load caution"
+                    },
+                    "value": 10000,
+                    "attr": {
+                        "min": 1,
+                        "max": 10000
+                    },
+                    "hint": {
+                        "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000."
+                    }
+                },
+                {
+                    "id": "config_param_7",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "Restore switch state mode"
+                    },
+                    "value": "1",
+                    "values": [
+                        {
+                            "id": "0",
+                            "label": {
+                                "en": "Switch off"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Last switch state"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Switch on"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Whenever the AC power return from lost, Micromodule will restore the switch state. The default setting is Last switch state"
+                    }
+                },
+                {
+                    "id": "config_param_8",
+                    "type": "number",
+                    "label": {
+                        "en": "Auto off timer (in seconds)"
+                    },
+                    "value": 0,
+                    "attr": {
+                        "min": 0,
+                        "max": 32767
+                    },
+                    "hint": {
+                        "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0."
+                    }
+                },
+                {
+                    "id": "config_param_9",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "RF off command mode"
+                    },
+                    "value": "0",
+                    "values": [
+                        {
+                            "id": "0",
+                            "label": {
+                                "en": "Switch off"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Ignore"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Switch toggle"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "label": {
+                                "en": "Switch on"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off"
+                    }
+                },
+                {
+                    "id": "config_param_10",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "Existence of endpoint3"
+                    },
+                    "value": "1",
+                    "values": [
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Endpoint exist"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "No Endpoint3"
+                            }
                         }
                     ]
                 }

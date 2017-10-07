@@ -6,7 +6,7 @@ const ZwaveDriver	= require('homey-zwavedriver');
 //https://products.z-wavealliance.org/products/2421
 
 module.exports = new ZwaveDriver( path.basename(__dirname), {
-	debug: true,
+	debug: false,
 	capabilities: {
         'onoff': {
             'command_class'				: 'COMMAND_CLASS_SWITCH_BINARY',
@@ -37,9 +37,12 @@ module.exports = new ZwaveDriver( path.basename(__dirname), {
             }),
             command_report: 'METER_REPORT',
             command_report_parser: report => {
-                if (report['Sensor Type'] !== 'Power (version 2)') return null;
-
-                return report['Sensor Value (Parsed)'];
+        if (report.hasOwnProperty('Properties2') &&
+            report.Properties2.hasOwnProperty('Scale bits 10') &&
+            report.Properties2['Scale bits 10'] === 2) {
+            return report['Meter Value (Parsed)'];
+        }
+        return null;
             },
         },
 

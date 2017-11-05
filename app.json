@@ -809,6 +809,293 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "PH-PAN16.EU.G",
+            "name": {
+                "en": "Smart energy plug-in switch",
+                "nl": "Tussenstekker"
+            },
+            "zwave": {
+                "manufacturerId": 316,
+                "productTypeId": 1,
+                "productId": 41,
+                "learnmode": {
+                    "instruction": {
+                        "en": "Press include button three times within 2 seconds.",
+                        "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+                    }
+                },
+                "associationGroups": [
+                    1
+                ]
+            },
+            "class": "socket",
+            "capabilities": [
+                "onoff",
+                "measure_power",
+                "meter_power"
+            ],
+            "images": {
+                "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
+                "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"
+            },
+            "settings": [
+                {
+                    "id": "config_param_1",
+                    "type": "number",
+                    "label": {
+                        "en": "Watt meter report period (in seconds)",
+                        "nl": "Watt meter rapportage periode (in seconde)"
+                    },
+                    "value": 3600,
+                    "attr": {
+                        "min": 0,
+                        "max": 163835,
+                        "step": 5
+                    },
+                    "hint": {
+                        "en": "If the setting is configured for 3600 seconds (default value), Micromodule will report its instant power consumption every 1 hour",
+                        "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde), zal de module zijn huidig verbruik elk uur doorsturen"
+                    }
+                },
+                {
+                    "id": "config_param_2",
+                    "type": "number",
+                    "label": {
+                        "en": "KWh meter report period (in minutes)",
+                        "nl": "KWh meter rapportage periode (in minuten)"
+                    },
+                    "value": 60,
+                    "attr": {
+                        "min": 0,
+                        "max": 327670,
+                        "step": 10
+                    },
+                    "hint": {
+                        "en": "If the setting is configured for 60 minutes (default value), Plug-in switch will report its Accumulated Power Consumption (KW/h) every 1 hour",
+                        "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde), zal de module het totale verbruik (KW/h) elk uur doorsturen"
+                    }
+                },
+                {
+                    "id": "config_param_3",
+                    "type": "number",
+                    "label": {
+                        "en": "Threshold of watt for load caution",
+                        "nl": "Drempel in wattage voor overbelasting."
+                    },
+                    "value": 1300,
+                    "attr": {
+                        "min": 10,
+                        "max": 1300
+                    },
+                    "hint": {
+                        "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 1300.",
+                        "nl": "Verstuur een waarschuwing bij een hogere belasting dan de aangegeven wattage. De standaard waarde is 1300"
+                    }
+                },
+                {
+                    "id": "config_param_4",
+                    "type": "number",
+                    "label": {
+                        "en": "Threshold of KWH for load caution",
+                        "nl": "Drempel in KWH voor overbelasting"
+                    },
+                    "value": 10000,
+                    "attr": {
+                        "min": 1,
+                        "max": 10000
+                    },
+                    "hint": {
+                        "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000.",
+                        "nl": "Verstuur een waarschuwing bij een hoger gebruik dan de aangegeven KWh. De standaard waarde is 10000."
+                    }
+                },
+                {
+                    "id": "config_param_5",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "Restore switch state mode",
+                        "nl": "Schakelaar mode na stroomuitval"
+                    },
+                    "value": "1",
+                    "values": [
+                        {
+                            "id": "0",
+                            "label": {
+                                "en": "Switch off",
+                                "nl": "Schakelaar uit"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Last switch state",
+                                "nl": "Laatste status"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Switch on",
+                                "nl": "Schakelaar aan"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Whenever the AC power return from lost, Plug-in switch will restore the switch state. The default setting is Last switch state",
+                        "nl": "Na stroomuitval, de schakelaar zal dan ingesteld worden op de aangegeven waarde. De standaard waarde is 'laatste status'"
+                    }
+                },
+                {
+                    "id": "config_param_6",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Mode of Switch Off function",
+                        "nl": "Schakelaar uit functie inschakelen"
+                    },
+                    "value": true,
+                    "hint": {
+                        "en": "Uncheck this option to disable the switch off function.",
+                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+                    }
+                },
+                {
+                    "id": "config_param_7",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "LED indication mode",
+                        "nl": "LED indicatie modus"
+                    },
+                    "value": "1",
+                    "values": [
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Show switch state",
+                                "nl": "Schakelaar status"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Show night mode",
+                                "nl": "Nacht modus"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "label": {
+                                "en": "One flash mode",
+                                "nl": "Flits modus"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "config_param_8",
+                    "type": "number",
+                    "label": {
+                        "en": "Auto off timer (in seconds)",
+                        "nl": "Automatisch uitschakelen (in seconden)"
+                    },
+                    "value": 0,
+                    "attr": {
+                        "min": 0,
+                        "max": 32767
+                    },
+                    "hint": {
+                        "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0.",
+                        "nl": "De schakelaar automatisch uitschakelen na x aantal seconden. Gebruik 0 (standaard waarde) om het automatisch uitschakelen uit te zetten."
+                    }
+                },
+                {
+                    "id": "config_param_9",
+                    "type": "dropdown",
+                    "label": {
+                        "en": "RF off command mode",
+                        "nl": "Schaklaar via zwave uit modus"
+                    },
+                    "value": "0",
+                    "values": [
+                        {
+                            "id": "0",
+                            "label": {
+                                "en": "Switch off",
+                                "nl": "Schakelaar uit"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "label": {
+                                "en": "Ignore",
+                                "nl": "Negeren"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "label": {
+                                "en": "Switch toggle",
+                                "nl": "Wissel schakelaar"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "label": {
+                                "en": "Switch on",
+                                "nl": "Schakelaar aan"
+                            }
+                        }
+                    ],
+                    "hint": {
+                        "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off",
+                        "nl": "Actie die uitgevoerd moet worden wanneer een uit commando ontvangen wordt. Standaard is schakelaar uit."
+                    }
+                },
+                {
+                    "id": "config_param_11",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Mode of Switch Off function",
+                        "nl": "Schakelaar uit functie inschakelen"
+                    },
+                    "value": true,
+                    "hint": {
+                        "en": "Uncheck this option to disable the switch off function.",
+                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+                    }
+                },
+                {
+                    "id": "config_param_12",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Mode of Switch Off function",
+                        "nl": "Schakelaar uit functie inschakelen"
+                    },
+                    "value": true,
+                    "hint": {
+                        "en": "Uncheck this option to disable the switch off function.",
+                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+                    }
+                },
+                {
+                    "id": "config_param_13",
+                    "type": "number",
+                    "label": {
+                        "en": "Adjustable overload",
+                        "nl": "Overbelastig beveiliging"
+                    },
+                    "value": 1450,
+                    "attr": {
+                        "min": 450,
+                        "max": 1450
+                    },
+                    "hint": {
+                        "en": "The overload current can be adjustable from 4.5A to 14.5A. The default value is 1450 for 14.5A",
+                        "nl": "De overbelasting beveiling kan aangepast worden van 4,5A tot 14,5A. De standaard waaarde is 1450, wat 14,5A betekend."
+                    }
+                }
+            ]
         }
     ],
     "flow": {

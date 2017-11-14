@@ -1231,6 +1231,38 @@
                 "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
                 "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
             }
+        },
+        {
+            "id": "HM-HS1CG-Z.EU",
+            "name": {
+                "en": "Smart combustible gas sensor",
+                "nl": "Gas sensor"
+            },
+            "zwave": {
+                "manufacturerId": 305,
+                "productTypeId": 32771,
+                "productId": 4096,
+                "learnmode": {
+                    "instruction": {
+                        "en": "Press include/network button three times within 1.5 seconds.",
+                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+                    }
+                },
+                "associationGroups": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "class": "sensor",
+            "capabilities": [
+                "alarm_generic"
+            ],
+            "images": {
+                "large": "/drivers/HM-HS1CG-Z.EU/assets/images/large.png",
+                "small": "/drivers/HM-HS1CG-Z.EU/assets/images/small.png"
+            }
         }
     ],
     "flow": {

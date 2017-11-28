@@ -1231,6 +1231,41 @@
                 "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
                 "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
             }
+        },
+        {
+            "id": "PH-PSR03.EU",
+            "name": {
+                "en": "Remote",
+                "nl": "Afstandsbediening"
+            },
+            "zwave": {
+                "manufacturerId": 316,
+                "productTypeId": 8,
+                "productId": 29,
+                "learnmode": {
+                    "instruction": {
+                        "en": "Hold down the central key, then press the top-right key 3 times within 1.5 seconds.",
+                        "nl": "Houdt de middelse knop ingedrukt, en druk daarna 3 keer op de rechter boven knop binnen 1.5 seconden."
+                    }
+                },
+                "associationGroups": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
+            },
+            "class": "other",
+            "capabilities": [],
+            "images": {
+                "large": "/drivers/PH-PSR03.EU/assets/images/large.png",
+                "small": "/drivers/PH-PSR03.EU/assets/images/small.png"
+            }
         }
     ],
     "flow": {

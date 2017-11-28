@@ -1,0 +1,14 @@
+{
+    "id": "PH-PSE02-1B.EU-turn_alarm_on",
+    "title": {
+        "en": "Turn siren on",
+        "nl": "Zet sirene aan"
+    },
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+        }
+    ]
+}

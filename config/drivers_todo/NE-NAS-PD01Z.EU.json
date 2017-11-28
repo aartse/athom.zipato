@@ -1,0 +1,206 @@
+{
+    "id": "NE-NAS-PD01Z.EU",
+    "name": {
+        "en": "PIR motion sensor",
+        "nl": "PIR bewegingsmelder"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 4227,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include/network button three times within 1.5 seconds.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "wakeUpInterval": 43200
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_motion",
+        "measure_luminance",
+        "measure_battery"
+    ],
+    "images": {
+        "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
+        "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
+    },
+    "settings": [
+        {
+            "id": "config_param_1",
+            "type": "number",
+            "label": {
+                "en": "Sensivity level",
+                "nl": "Gevoeligheidsniveau"
+            },
+            "value": 12,
+            "attr": {
+                "min": 8,
+                "max": 255
+            },
+            "hint": {
+                "en": "Adjust the sensitivity level with this parameter. 8 means high sensitivity and 255 means low sensitivity. Default is 12.",
+                "nl": "Pas hiermee het gevoeligheidsniveau aan. 8 is hoge gevoeligheid en 255 betekend lage gevoeligheid. Standaard is 12."
+            }
+        },
+        {
+            "id": "config_param_2",
+            "type": "number",
+            "label": {
+                "en": "On/off duration",
+                "nl": "Aan/uit timer"
+            },
+            "value": 30,
+            "attr": {
+                "min": 5,
+                "max": 600
+            },
+            "hint": {
+                "en": "Timeout in seconds before PIR sensor sends off signal. Default value is 30.",
+                "nl": "Aantal seconden voordat de PIR sensor een uit signaal stuurt. Standaard is 30 seconden."
+            }
+        },
+        {
+            "id": "config_param_3",
+            "type": "number",
+            "label": {
+                "en": "Basic set level",
+                "nl": "Basic set level"
+            },
+            "value": 255,
+            "attr": {
+                "min": 0,
+                "max": 255
+            },
+            "hint": {
+                "en": "0 = alarm canceling or turning device off. 1 - 99 is dimlevel. 255 is on. Default is 255",
+                "nl": "0 = alarm annuleren of apparaat uitschakelen. 1 - 99 is dim niveau. 255 is aan. Standaard is 255"
+            }
+        },
+        {
+            "id": "config_param_4",
+            "type": "dropdown",
+            "label": {
+                "en": "PIR sensor",
+                "nl": "PIR sensor"
+            },
+            "value": "255",
+            "values": [
+                {
+                    "id": "0",
+                    "label": {
+                        "en": "Disabled",
+                        "nl": "Uitgeschakeld"
+                    }
+                },
+                {
+                    "id": "255",
+                    "label": {
+                        "en": "Enabled",
+                        "nl": "Ingeschakeld"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "config_param_5",
+            "type": "number",
+            "label": {
+                "en": "Ambient illumination lux level",
+                "nl": "Lichtgevoeligheid"
+            },
+            "value": 100,
+            "attr": {
+                "min": 0,
+                "max": 1000
+            },
+            "hint": {
+                "en": "Default value is 100.",
+                "nl": "Standaard waarde is 100."
+            }
+        },
+        {
+            "id": "config_param_6",
+            "type": "number",
+            "label": {
+                "en": "Re-trigger interval",
+                "nl": "Re-trigger interval"
+            },
+            "value": 8,
+            "attr": {
+                "min": 1,
+                "max": 8
+            },
+            "hint": {
+                "en": "Default value is 8.",
+                "nl": "Standaard waarde is 8."
+            }
+        },
+        {
+            "id": "config_param_7",
+            "type": "number",
+            "label": {
+                "en": "Light sensor polling interval",
+                "nl": "Lichtsensor update interval"
+            },
+            "value": 180,
+            "attr": {
+                "min": 60,
+                "max": 3600
+            },
+            "hint": {
+                "en": "Default value is 180 seconden.",
+                "nl": "Standaard waarde is 180 seconden."
+            }
+        },
+        {
+            "id": "config_param_8",
+            "type": "dropdown",
+            "label": {
+                "en": "Lux level report",
+                "nl": "Lichtsensor rapportage"
+            },
+            "value": "0",
+            "values": [
+                {
+                    "id": "0",
+                    "label": {
+                        "en": "Disabled",
+                        "nl": "Uitgeschakeld"
+                    }
+                },
+                {
+                    "id": "1",
+                    "label": {
+                        "en": "Enabled",
+                        "nl": "Ingeschakeld"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "config_param_9",
+            "type": "number",
+            "label": {
+                "en": "Ambient illumination lux level report",
+                "nl": "Lichtsensor rapportage wijzigingsdrempel"
+            },
+            "value": 1,
+            "attr": {
+                "min": 0,
+                "max": 1000
+            },
+            "hint": {
+                "en": "Amount of lux to change when lux level is reported. Default value is 1 lux.",
+                "nl": "Aantal lux wat veranderd moet zijn voordat de waarde doorgestuurd wordt. Standaard waarde is 1 lux."
+            }
+        }
+    ]
+}

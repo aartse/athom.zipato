@@ -1,0 +1,34 @@
+{
+    "id": "HM-HS1CA-Z.EU",
+    "name": {
+        "en": "Smart carbon monoxide sensor",
+        "nl": "Slimme koolmonoxide melder"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 32773,
+        "productId": 4096,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include/network button three times within 1.5 seconds.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_co",
+        "measure_battery"
+    ],
+    "images": {
+        "large": "/drivers/HM-HS1CA-Z.EU/assets/images/large.png",
+        "small": "/drivers/HM-HS1CA-Z.EU/assets/images/small.png"
+    }
+}

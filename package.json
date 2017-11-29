@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "tinycolor2": "git+https://github.com/bgrins/TinyColor.git",
-    "homey-meshdriver": "https://github.com/athombv/node-homey-meshdriver#master"
+    "homey-meshdriver": "https://github.com/aartse/node-homey-meshdriver#master"
   },
   "devDependencies": {},
   "scripts": {

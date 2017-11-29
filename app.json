@@ -34,6 +34,40 @@
   },
   "drivers": [
     {
+      "id": "RGBWE2.EU",
+      "name": {
+        "en": "BULB 2",
+        "nl": "BULB 2"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 3,
+        "learnmode": {
+          "instruction": {
+            "en": "Turn on the bulb",
+            "nl": "Schakel de lamp in"
+          }
+        },
+        "associationGroups": [
+          1,
+          2
+        ]
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature"
+      ],
+      "images": {
+        "large": "/drivers/RGBWE2.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE2.EU/assets/images/small.png"
+      }
+    },
+    {
       "id": "ZP3102.EU",
       "name": {
         "en": "ZP3102",

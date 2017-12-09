@@ -26,13 +26,13 @@ class ZipatoDevice extends ZwaveDevice {
 		// settings parser for "Watt meter report period (in seconds)"
 		// @TODO: TEST!
 		this.registerSetting('config_param_1', value => {			
-			return new Buffer([value / 5]);
+			return Buffer.alloc(2,parseInt(value / 5));
 		});
 
 		// settings parser for "KWh meter report period (in minutes)"
 		// @TODO: TEST!
 		this.registerSetting('config_param_2', value => {			
-			return new Buffer([value / 10]);
+			return Buffer.alloc(2,parseInt(value / 10));
 		});
 	}
 }

@@ -48,6 +48,10 @@
             "hint": {
                 "en": "Adjust the sensitivity level with this parameter. 8 means high sensitivity and 255 means low sensitivity. Default is 12.",
                 "nl": "Pas hiermee het gevoeligheidsniveau aan. 8 is hoge gevoeligheid en 255 betekend lage gevoeligheid. Standaard is 12."
+            },
+            "zwave": {
+                "index": 1,
+                "size": 1
             }
         },
         {
@@ -65,6 +69,10 @@
             "hint": {
                 "en": "Timeout in seconds before PIR sensor sends off signal. Default value is 30.",
                 "nl": "Aantal seconden voordat de PIR sensor een uit signaal stuurt. Standaard is 30 seconden."
+            },
+            "zwave": {
+                "index": 2,
+                "size": 2
             }
         },
         {
@@ -82,6 +90,10 @@
             "hint": {
                 "en": "0 = alarm canceling or turning device off. 1 - 99 is dimlevel. 255 is on. Default is 255",
                 "nl": "0 = alarm annuleren of apparaat uitschakelen. 1 - 99 is dim niveau. 255 is aan. Standaard is 255"
+            },
+            "zwave": {
+                "index": 3,
+                "size": 1
             }
         },
         {
@@ -107,7 +119,11 @@
                         "nl": "Ingeschakeld"
                     }
                 }
-            ]
+            ],
+            "zwave": {
+                "index": 4,
+                "size": 1
+            }
         },
         {
             "id": "config_param_5",
@@ -124,8 +140,11 @@
             "hint": {
                 "en": "Default value is 100.",
                 "nl": "Standaard waarde is 100."
-            }
-        },
+            },
+            "zwave": {
+                "index": 5,
+                "size": 2
+            }        },
         {
             "id": "config_param_6",
             "type": "number",
@@ -141,6 +160,10 @@
             "hint": {
                 "en": "Default value is 8.",
                 "nl": "Standaard waarde is 8."
+            },
+            "zwave": {
+                "index": 6,
+                "size": 1
             }
         },
         {
@@ -158,6 +181,10 @@
             "hint": {
                 "en": "Default value is 180 seconden.",
                 "nl": "Standaard waarde is 180 seconden."
+            },
+            "zwave": {
+                "index": 7,
+                "size": 2
             }
         },
         {
@@ -183,7 +210,11 @@
                         "nl": "Ingeschakeld"
                     }
                 }
-            ]
+            ],
+            "zwave": {
+                "index": 8,
+                "size": 1
+            }
         },
         {
             "id": "config_param_9",
@@ -200,6 +231,10 @@
             "hint": {
                 "en": "Amount of lux to change when lux level is reported. Default value is 1 lux.",
                 "nl": "Aantal lux wat veranderd moet zijn voordat de waarde doorgestuurd wordt. Standaard waarde is 1 lux."
+            },
+            "zwave": {
+                "index": 9,
+                "size": 2
             }
         }
     ]

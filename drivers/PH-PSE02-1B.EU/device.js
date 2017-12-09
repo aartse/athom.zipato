@@ -27,4 +27,24 @@ class ZipatoDevice extends ZwaveDevice {
 	}
 }
 
+/*
+Homey.manager('flow').on('action.PH-PSE02-1B.EU-turn_alarm_on', (callback, args) => {
+    const node = module.exports.nodes[args.device.token];
+    if (node && node.hasOwnProperty('instance') && node.instance.hasOwnProperty('CommandClass') && node.instance.CommandClass['COMMAND_CLASS_SWITCH_BINARY']) {
+        node.instance.CommandClass['COMMAND_CLASS_SWITCH_BINARY'].SWITCH_BINARY_SET({
+            'Switch Value': 255
+        }, (err, result) => callback(err, result));
+    } else return callback('invalid_device_command_class');
+});
+
+Homey.manager('flow').on('action.PH-PSE02-1B.EU-turn_alarm_off', (callback, args) => {
+    const node = module.exports.nodes[args.device.token];
+    if (node && node.hasOwnProperty('instance') && node.instance.hasOwnProperty('CommandClass') && node.instance.CommandClass['COMMAND_CLASS_SWITCH_BINARY']) {
+        node.instance.CommandClass['COMMAND_CLASS_SWITCH_BINARY'].SWITCH_BINARY_SET({
+            'Switch Value': 0
+        }, (err, result) => callback(err, result));
+    } else return callback('invalid_device_command_class');
+});
+*/
+
 module.exports = ZipatoDevice;

@@ -15,8 +15,7 @@
             }
         },
         "associationGroups": [
-            1,
-            2
+            1
         ]
     },
     "class": "light",

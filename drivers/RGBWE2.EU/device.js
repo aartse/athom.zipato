@@ -52,7 +52,7 @@ class ZipatoDevice extends ZwaveDevice {
 		this.registerCapability('light_saturation', 'SWITCH_COLOR');
 		this.registerCapability('light_temperature', 'SWITCH_COLOR');
 
-		this._initColors();
+		//this._initColors();
 	}
 
 	/**

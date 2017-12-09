@@ -44,7 +44,11 @@
                 "en": "Default is Celcius, Check on is Kelvin ",
                 "nl": "Standaard is Celcius, Check aan is Kelvin"
             },
-            "value": false
+            "value": false,
+            "zwave": {
+                "index": 1,
+                "size": 1
+            }
         },
         {
             "id": "temperature_delta",
@@ -61,6 +65,10 @@
             "hint": {
                 "en": "Value is multiplied by 0.1. So 10 means 1°С/°F",
                 "nl": "Waarde wordt vermenigvuldigd met 0.1. Dus 10 betekent 1°С/°F "
+            },
+            "zwave": {
+                "index": 2,
+                "size": 1
             }
         },
         {
@@ -78,6 +86,10 @@
             "hint": {
                 "en": "Value is %",
                 "nl": "Waarde is % "
+            },
+            "zwave": {
+                "index": 3,
+                "size": 1
             }
         },
         {
@@ -95,6 +107,10 @@
             "hint": {
                 "en": "0 = off  Value is %",
                 "nl": "0 = uit  Waarde is % "
+            },
+            "zwave": {
+                "index": 4,
+                "size": 1
             }
         }
     ]

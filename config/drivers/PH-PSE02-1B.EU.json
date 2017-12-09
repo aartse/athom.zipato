@@ -51,7 +51,11 @@
                         "nl": "Sensor Binary Report"
                     }
                 }
-            ]
+            ],
+            "zwave": {
+                "index": 7,
+                "size": 1
+            }        
         },
         {
             "id": "config_param_29",
@@ -80,6 +84,10 @@
             "hint": {
                 "en": "After power up, alarm is re-enabled",
                 "nl": "Na opnieuw opstarten, wordt het alarm opnieuw ingeschakeld"
+            },
+            "zwave": {
+                "index": 29,
+                "size": 1
             }
         },
         {
@@ -98,7 +106,11 @@
             "hint": {
                 "en": "0 means never auto stop. Default value is 180 seconds.",
                 "nl": "0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden."
-            }
+            },
+            "zwave": {
+                "index": 31,
+                "size": 1
+            }    
         }
     ]
 }

@@ -12,8 +12,8 @@ class ZipatoDevice extends ZwaveDevice {
 
 	async onMeshInit() {
 
-		this.enableDebug();
-		this.printNode();
+		//this.enableDebug();
+		//this.printNode();
 
 		// register the onoff capability with SWITCH_MULTILEVEL
 		// override default setParser functions to prevent sending double on commands on flow

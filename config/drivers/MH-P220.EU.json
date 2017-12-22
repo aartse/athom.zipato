@@ -1,0 +1,34 @@
+{
+    "id": "MH-P220.EU",
+    "name": {
+        "en": "Mini energy dimmer",
+        "nl": "Inbouw mini dimmer"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 8714,
+        "productId": 4946,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include button three times within 2 seconds.",
+                "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4
+        ]
+    },
+    "class": "light",
+    "capabilities": [
+        "onoff",
+        "dim"
+    ],
+    "images": {
+        "large": "/drivers/MH-P220.EU/assets/images/large.png",
+        "small": "/drivers/MH-P220.EU/assets/images/small.png"
+    },
+    "settings": []
+}

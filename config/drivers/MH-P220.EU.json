@@ -285,7 +285,8 @@
             },
             "zwave": {
                 "index": 11,
-                "size": 2
+                "size": 2,
+                "signed": false
             }
         },
         {

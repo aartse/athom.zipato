@@ -35,6 +35,9 @@ class ZipatoDevice extends ZwaveDevice {
 		this.registerSetting('config_param_4', value => {			
 			return Buffer.alloc(1,parseInt(value));
 		});
+		this.registerSetting('config_param_11', value => {
+			return Buffer.alloc(1,parseInt(value));
+		});
 		this.registerSetting('config_param_15', value => {			
 			return Buffer.alloc(1,parseInt(value));
 		});

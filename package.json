@@ -4,8 +4,7 @@
   "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
   "dependencies": {
-    "tinycolor2": "git+https://github.com/bgrins/TinyColor.git",
-    "homey-meshdriver": "https://github.com/athombv/node-homey-meshdriver"
+    "homey-meshdriver": "https://github.com/aartse/node-homey-meshdriver#athom.zipato"
   },
   "devDependencies": {},
   "scripts": {

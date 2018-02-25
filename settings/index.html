@@ -1,6 +1,6 @@
 <html>
 <head>
-
+<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
 <style>
 table.zipato th, table.zipato td { font-size: 14px; text-align: left; padding-right: 10px; }
 table.zipato tr { font-size: 14px; }
@@ -193,8 +193,11 @@ button.zipato { margin-right: 10px; }
 		tagSelect.setAttribute('data-id', -1);
 		tagSelect.setAttribute('id', 'tagSelect_-1');
 
-        function onHomeyReady()
+		var Homey;
+
+        function onHomeyReady(homey)
 		{
+			Homey = homey;
 			// Retrieve log file			
         	retrieveLogFile();
 			

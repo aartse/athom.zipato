@@ -19,7 +19,8 @@
 				"s0": "Away",
 				"s1": "Home",
 				"s2": "Tag Paired",
-				"s3": "Scene Started"
+				"s3": "Scene Started",
+				"s4": "Unknown Tag"
 			},
 			"messages":
 			{

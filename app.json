@@ -1939,13 +1939,29 @@
 			  }
 			]
 		  },
-		  "class": "other",
+		  "class": "homealarm",
 		  "capabilities": [
         "measure_battery",
+        "alarm_tamper",
         "user_code_report",
-        "alarm_report",
+        "homealarm_state",
         "my_gateway_control"
-		  ],
+      ],
+      "mobile": {
+        "components": [
+            {
+                "id": "icon"
+            },
+            {
+                "id": "battery",
+                "capabilities": [ "measure_battery" ]
+            },
+            {
+                "id": "sensor",
+                "capabilities": [ "homealarm_state", "alarm_tamper" ]
+            }
+        ]
+      },
 		  "images": {
         "large": "/drivers/WT-RFID.EU/assets/images/large.png",
         "small": "/drivers/WT-RFID.EU/assets/images/small.png"
@@ -1953,14 +1969,18 @@
 		  "settings": [
 			{
 			  "id": "set_to_default",
+        "zwave": {
+          "index": 1,
+          "size": 1
+        },
 			  "type": "dropdown",
 			  "label": {
-				"en": "Reset to factory settings",
-				"nl": "Fabrieksinstellingen terugzetten"
+          "en": "Reset to factory settings",
+          "nl": "Fabrieksinstellingen terugzetten"
 			  },
 			  "hint": {
-				"en": "Set all configuration values to default values (factory settings).",
-				"nl": "Zet alle configuratie waarden terug naar de standaard instellingen."
+          "en": "Set all configuration values to default values (factory settings).",
+          "nl": "Zet alle configuratie waarden terug naar de standaard instellingen."
 			  },
 			  "value": "170",
 			  "values": [
@@ -1982,6 +2002,10 @@
 			},
 			{
 			  "id": "feedback_time",
+        "zwave": {
+          "index": 2,
+          "size": 1
+        },
 			  "type": "number",
 			  "label": {
           "en": "Feedback time",
@@ -1999,6 +2023,10 @@
 			},
 			{
 			  "id": "feedback_timeout",
+        "zwave": {
+          "index": 3,
+          "size": 1
+        },
 			  "type": "number",
 			  "label": {
           "en": "Feedback timeout",
@@ -2016,6 +2044,10 @@
 			},
 			{
 			  "id": "feedback_beeps_per_second",
+        "zwave": {
+          "index": 4,
+          "size": 1
+        },
 			  "type": "number",
 			  "label": {
           "en": "Feedback beeps per second",
@@ -2033,6 +2065,10 @@
 			},
 			{
 			  "id": "always_awake_mode",
+        "zwave": {
+          "index": 5,
+          "size": 1
+        },
 			  "type": "dropdown",
 			  "label": {
           "en": "Always awake mode",
@@ -2052,64 +2088,6 @@
 				  "label": {
             "en": "Always awake mode, Z-Wave chip is always on to request e.g. version or manufacturer id",
             "nl": "Altijd wakker modus, Z-Wave chip is altijd klaar om een verzoek te ontvangen"
-				  }
-				}
-			  ]
-			},
-			{
-			  "id": "operation_mode",
-			  "type": "dropdown",
-			  "label": {
-				"en": "Operation mode",
-				"nl": "Operatie modus"
-			  },
-			  "hint": {
-          "en": "The mode that the RFID Keypad communicates with the associated gateway.",
-          "nl": "De modus waarin de RFID Keypad communiceert met de gateway."
-			  },
-			  "value": "0",
-			  "values": [
-				{
-				  "id": "0",
-				  "label": {
-            "en": "The RFID and numeric codes are reported in gateway mode",
-            "nl": "De RFID en numerieke codes worden geraporteerd in gateway modus"
-				  }
-				},
-				{
-				  "id": "1",
-				  "label": {
-            "en": "The RFID and numeric codes are reported in local mode",
-            "nl": "De RFID en numerieke codes worden lokaal verwerkt"
-				  }
-				}
-			  ]
-			},
-			{
-			  "id": "gateway_confirmation",
-			  "type": "dropdown",
-			  "label": {
-          "en": "Gateway confirmation",
-          "nl": "Gateway bevestigings"
-			  },
-			  "hint": {
-          "en": "In gateway mode it is possible to let the gateway decide if the Tag Reader 500 can arm to home or away. If gateway indication is disabled the Tag Reader 500 automatically assumes that it can arm and will wait for a user input of RFID TAG or numeric code.",
-          "nl": "In gateway modus is het mogelijk om op terugkoppeling van de gateway te wachten of je het huis in thuis of afwezig modus mag zetten"
-			  },
-			  "value": "0",
-			  "values": [
-				{
-				  "id": "0",
-				  "label": {
-            "en": "Gateway confirmation disabled",
-            "nl": "Altijd mogelijk thuis/afwezig aan te geven"
-				  }
-				},
-				{
-				  "id": "1",
-				  "label": {
-            "en": "Gateway confirmation enabled",
-            "nl": "Gateway bepaald thuis/afwezig modus beschikbaarheid"
 				  }
 				}
 			  ]

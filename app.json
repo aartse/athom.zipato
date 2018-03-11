@@ -2276,7 +2276,6 @@
 			  },
 			  {
 				"name": "deviceId",
-				"type": "number",
 				"title": {
 				  "en": "RFID keypad ID",
 				  "nl": "RFID keypad ID"

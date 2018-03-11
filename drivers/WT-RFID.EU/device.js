@@ -19,9 +19,8 @@ const clamp = function(num, min, max) {
 
 class ZipatoDevice extends ZwaveDevice {
 	async onMeshInit() {
-		
-		this.enableDebug();
-		this.printNode();
+		//this.enableDebug();
+		//this.printNode();
 		this.log("Initializing mesh driver")
 		this.registerCapability('measure_battery', 'BATTERY');
 		this.registerCapability('homealarm_state', 'SWITCH_BINARY');
@@ -85,8 +84,8 @@ class ZipatoDevice extends ZwaveDevice {
 				const evt = report['ZWave Alarm Event'];
 				if(evt == 3) return;
 				this.log('report event recieved');
-				this.log(report);
-				this.log('Device ID: ' + this.getData().token);
+				//this.log(report);
+				//this.log('Device ID: ' + this.getData().token);
 				setDeviceReport(this.getData().token, 'BASIC');
 
 				let eventType = -1;
@@ -98,6 +97,7 @@ class ZipatoDevice extends ZwaveDevice {
 					case 6: // Home
 						eventType = 1;
 
+						this.log("Home")
 						// Toggle event, "User X came home"
 						this.userHomeTrigger.trigger(this, tokens, state, (err, result) => {
 							if (err) {
@@ -106,6 +106,8 @@ class ZipatoDevice extends ZwaveDevice {
 							}
 						});
 
+						//this.log("Trigger: ");
+						//console.log(this.userSystemHomeTrigger)
 						this.userSystemHomeTrigger.trigger(tokens, state, (err, result) => {
 							if (err) {
 								this.log(err);
@@ -117,7 +119,7 @@ class ZipatoDevice extends ZwaveDevice {
 						break;
 					case 5: // Away
 						eventType = 0;
-
+						this.log("Away")
 						// Toggle event, "User X went away"
 						this.userAwayTrigger.trigger(this, tokens, state, (err, result) => {
 							if (err) {
@@ -126,6 +128,8 @@ class ZipatoDevice extends ZwaveDevice {
 							}
 						});
 
+						//this.log("Trigger: ");
+						//console.log(this.userSystemAwayTrigger)
 						this.userSystemAwayTrigger.trigger(tokens, state, (err, result) => {
 							if (err) {
 								this.log(err);
@@ -176,56 +180,56 @@ class ZipatoDevice extends ZwaveDevice {
 		isAtHome
 		    .register()
 		    .registerRunListener(( args, state ) => {
-				Homey.log('');
-				Homey.log('on flow condition.is_at_home');
-				Homey.log('args', args);
-			
+				this.log('');
+				this.log('on flow condition.is_at_home');
+				this.log('args', args);
+
 				this.log(args);
-			
+
 				// Get the status of the requested user
 				const user = searchUserByUserId(args.person.id);
 				if (user !== null && typeof user.statusCode !== 'undefined') {
 					if (user.statusCode === 1 || user.statusCode === 0) {
 						return callback(null, user.statusCode === 1); // we've fired successfully
 					}
-			
+
 					var message = __('flow.condition.unknownUserStatus');
 					return callback(new Error(message)); // user not found.
 				}
-			
+
 				var message = __('flow.condition.userNotFound');
 				return callback(new Error(message)); // user not found.
 		    });
 			let isArmed = new Homey.FlowCardCondition('system_is_armed');
 			isArmed
 				.register()
-				.registerRunListener(( args, state ) => {
-					Homey.log('');
-					Homey.log('on flow condition.system_is_armed');
-				
+				.registerRunListener(( args, state, callback ) => {
+					this.log('');
+					this.log('on flow condition.system_is_armed');
+
 					return callback(null, getSystemArmed());
 				});
 
 			let setPersonHome = new Homey.FlowCardAction('toggle_person_home');
 			setPersonHome
 				.register()
-				.registerRunListener(( args, state ) => {
-					Homey.log('');
-					Homey.log('Set person home');
-					Homey.log('args', args);
-				
+				.registerRunListener(( args, state, callback ) => {
+					this.log('');
+					this.log('Set person home');
+					this.log('args', args);
+
 					// Set status of user to home
 					setStatusOfUser(args.person, 1);
-				
+
 					callback(null, true); // we've fired successfully
 				});
 			let setPersonAway = new Homey.FlowCardAction('toggle_person_away');
 			setPersonAway
 				.register()
-				.registerRunListener(( args, state ) => {
-					Homey.log('');
-					Homey.log('Set person away');
-					Homey.log('args', args);
+				.registerRunListener(( args, state, callback ) => {
+					this.log('');
+					this.log('Set person away');
+					this.log('args', args);
 				
 					// Set status of user to home
 					setStatusOfUser(args.person, 0);
@@ -240,14 +244,10 @@ class ZipatoDevice extends ZwaveDevice {
 			setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 			setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 
-			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('user_home');
-			this.userHomeTrigger.register();
-			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('user_away');
-			this.userAwayTrigger.register();
-			this.userSystemHomeTrigger = new Homey.FlowCardTrigger('user_system_home');
-			this.userSystemHomeTrigger.register();
-			this.userSystemAwayTrigger = new Homey.FlowCardTrigger('user_system_away');
-			this.userSystemAwayTrigger.register();
+			this.userSystemAwayTrigger = new Homey.FlowCardTrigger('user_system_away').register();
+			this.userSystemHomeTrigger = new Homey.FlowCardTrigger('user_system_home').register();
+			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('user_home').register();
+			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('user_away').register();
 	}
 
 

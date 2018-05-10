@@ -3,13 +3,16 @@
   "version": "2.0.0",
   "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aartse/athom.zipato.git"
+  },
   "dependencies": {
-    "tinycolor2": "git+https://github.com/bgrins/TinyColor.git",
-    "homey-meshdriver": "https://github.com/athombv/node-homey-meshdriver"
+    "homey-meshdriver": "git+https://github.com/aartse/node-homey-meshdriver.git#athom.zipato"
   },
   "devDependencies": {},
   "scripts": {
-    "run": "homeyConfig compose && athom project --run",
+    "run": "homeyConfig compose && athom app run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

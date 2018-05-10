@@ -3,8 +3,12 @@
   "version": "2.0.0",
   "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aartse/athom.zipato.git"
+  },
   "dependencies": {
-    "homey-meshdriver": "https://github.com/aartse/node-homey-meshdriver#athom.zipato"
+    "homey-meshdriver": "git+https://github.com/aartse/node-homey-meshdriver.git#athom.zipato"
   },
   "devDependencies": {},
   "scripts": {

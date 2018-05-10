@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "run": "homeyConfig compose && athom project --run",
+    "run": "homeyConfig compose && athom app run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -176,7 +176,7 @@ class ZipatoDevice extends ZwaveDevice {
 		await this.configurationSet({index: 8, size: 1}, 0);
 
 
-		let isAtHome = new Homey.FlowCardCondition('is_at_home');
+		let isAtHome = new Homey.FlowCardCondition('WT-RFID.EU-is_at_home');
 		isAtHome
 		    .register()
 		    .registerRunListener(( args, state ) => {
@@ -200,7 +200,7 @@ class ZipatoDevice extends ZwaveDevice {
 				var message = __('flow.condition.userNotFound');
 				return callback(new Error(message)); // user not found.
 		    });
-			let isArmed = new Homey.FlowCardCondition('system_is_armed');
+			let isArmed = new Homey.FlowCardCondition('WT-RFID.EU-system_is_armed');
 			isArmed
 				.register()
 				.registerRunListener(( args, state, callback ) => {
@@ -210,7 +210,7 @@ class ZipatoDevice extends ZwaveDevice {
 					return callback(null, getSystemArmed());
 				});
 
-			let setPersonHome = new Homey.FlowCardAction('toggle_person_home');
+			let setPersonHome = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_home');
 			setPersonHome
 				.register()
 				.registerRunListener(( args, state, callback ) => {
@@ -223,7 +223,7 @@ class ZipatoDevice extends ZwaveDevice {
 
 					callback(null, true); // we've fired successfully
 				});
-			let setPersonAway = new Homey.FlowCardAction('toggle_person_away');
+			let setPersonAway = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_away');
 			setPersonAway
 				.register()
 				.registerRunListener(( args, state, callback ) => {
@@ -244,10 +244,10 @@ class ZipatoDevice extends ZwaveDevice {
 			setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 			setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 
-			this.userSystemAwayTrigger = new Homey.FlowCardTrigger('user_system_away').register();
-			this.userSystemHomeTrigger = new Homey.FlowCardTrigger('user_system_home').register();
-			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('user_home').register();
-			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('user_away').register();
+			this.userSystemAwayTrigger = new Homey.FlowCardTrigger('WT-RFID.EU-user_system_away').register();
+			this.userSystemHomeTrigger = new Homey.FlowCardTrigger('WT-RFID.EU-user_system_home').register();
+			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
+			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
 	}
 
 

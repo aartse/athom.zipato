@@ -1,0 +1,49 @@
+{
+	"id": "WT-RFID.EU-user_home",
+	"title": {
+	  "en": "System disarmed",
+	  "nl": "Systeem gedeactiveerd"
+	},
+	"hint": {
+	  "en": "Triggered when a user presses the home button of this tag reader and enters a valid code / presents a valid tag.",
+	  "nl": "Wordt uitgevoerd wanneer iemand op de thuis knop van deze tag reader drukt en een geldige code / tag ingevoerd wordt."
+	},
+	"args": [
+	  {
+		"name": "device",
+		"type": "device",
+		"filter": "driver_id=WT-RFID.EU"
+	  }
+	],
+	"tokens": [
+	  {
+		"name": "userId",
+		"type": "number",
+		"title": {
+		  "en": "User ID",
+		  "nl": "Gebruikers ID"
+		},
+		"example": 2
+	  },
+	  {
+		"name": "userName",
+		"title": {
+		  "en": "Username",
+		  "nl": "Gebruikersnaam"
+		},
+		"example": {
+		  "en": "Test",
+		  "nl": "Test"
+		}
+	  },
+	  {
+		"name": "tagId",
+		"type": "number",
+		"title": {
+		  "en": "Tag ID",
+		  "nl": "Tag ID"
+		},
+		"example": 1
+	  }
+	]
+}

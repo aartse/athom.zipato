@@ -1742,6 +1742,75 @@
       ]
     },
     {
+      "id": "RGBWE2.EU",
+      "name": {
+        "en": "BULB 2",
+        "nl": "BULB 2"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 3,
+        "learnmode": {
+          "instruction": {
+            "en": "Turn on the bulb",
+            "nl": "Schakel de lamp in"
+          }
+        },
+        "associationGroups": [
+          1
+        ]
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "images": {
+        "large": "/drivers/RGBWE2.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE2.EU/assets/images/small.png"
+      }
+    },
+    {
+      "id": "RGBWE27ZW.EU",
+      "name": {
+        "en": "RGBW bulb",
+        "nl": "RGBW lamp"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 2,
+        "learnmode": {
+          "instruction": {
+            "en": "Tap on the bulb",
+            "nl": "Tik op de lamp"
+          }
+        },
+        "associationGroups": [
+          1,
+          2
+        ]
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "images": {
+        "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
+      }
+    },
+    {
       "id": "VS-ZD2201.EU",
       "name": {
         "en": "Multisensor 4 in 1",

@@ -17,7 +17,8 @@
         },
         "associationGroups": [
             1
-        ]
+        ],
+        "associationGroupsOptions": {}
     },
     "class": "sensor",
     "capabilities": [

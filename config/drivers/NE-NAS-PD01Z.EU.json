@@ -20,6 +20,7 @@
             3,
             4
         ],
+        "associationGroupsOptions": {},
         "wakeUpInterval": 43200
     },
     "class": "sensor",

@@ -18,6 +18,7 @@
         "associationGroups": [
             1
         ],
+        "associationGroupsOptions": {},
         "wakeUpInterval": 900,
         "defaultConfiguration": [{
             "id": 7,

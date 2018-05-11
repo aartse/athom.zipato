@@ -19,7 +19,8 @@
             2,
             3,
             4
-        ]
+        ],
+        "associationGroupsOptions": {}
     },
     "class": "light",
     "capabilities": [

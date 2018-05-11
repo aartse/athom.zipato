@@ -16,7 +16,8 @@
         },
         "associationGroups": [
             1
-        ]
+        ],
+        "associationGroupsOptions": {}
     },
     "class": "homealarm",
     "capabilities": [

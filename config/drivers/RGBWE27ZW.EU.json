@@ -17,7 +17,8 @@
         "associationGroups": [
             1,
             2
-        ]
+        ],
+        "associationGroupsOptions": {}
     },
     "class": "light",
     "capabilities": [

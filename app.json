@@ -105,7 +105,8 @@
           3,
           4,
           5
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [
@@ -139,7 +140,8 @@
           3,
           4,
           5
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [
@@ -172,7 +174,8 @@
           2,
           3,
           4
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [
@@ -206,7 +209,8 @@
           2,
           3,
           4
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "light",
       "capabilities": [
@@ -782,6 +786,7 @@
           3,
           4
         ],
+        "associationGroupsOptions": {},
         "wakeUpInterval": 43200
       },
       "class": "sensor",
@@ -1022,7 +1027,8 @@
           1,
           2,
           3
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "light",
       "capabilities": [
@@ -1358,7 +1364,8 @@
         },
         "associationGroups": [
           1
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "socket",
       "capabilities": [
@@ -1693,7 +1700,8 @@
         },
         "associationGroups": [
           1
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "homealarm",
       "capabilities": [
@@ -1809,7 +1817,8 @@
         },
         "associationGroups": [
           1
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "light",
       "capabilities": [
@@ -1844,7 +1853,8 @@
         "associationGroups": [
           1,
           2
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "light",
       "capabilities": [
@@ -1880,7 +1890,8 @@
           1,
           2,
           3
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [
@@ -1996,7 +2007,8 @@
         },
         "associationGroups": [
           1
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [
@@ -2114,6 +2126,7 @@
         "associationGroups": [
           1
         ],
+        "associationGroupsOptions": {},
         "wakeUpInterval": 900,
         "defaultConfiguration": [
           {
@@ -2290,10 +2303,7 @@
         "nl": "ZP3102"
       },
       "zwave": {
-        "manufacturerId": [
-          265,
-          305
-        ],
+        "manufacturerId": 265,
         "productTypeId": 8194,
         "productId": [
           515,
@@ -2308,7 +2318,8 @@
         },
         "associationGroups": [
           1
-        ]
+        ],
+        "associationGroupsOptions": {}
       },
       "class": "sensor",
       "capabilities": [

@@ -1,21 +1,21 @@
 {
-    "id": "VS-ZD2201.EU",
+    "id": "VS-ZD2301.EU",
     "name": {
-        "en": "Multisensor 4 in 1",
-        "nl": "Multisensor 4 in 1"
+        "en": "4 in 1 Door Sensor",
+        "nl": "4 in 1 Deur Sensor"
     },
     "zwave": {
-        "manufacturerId": 265,
+        "manufacturerId": 305,
         "productTypeId": 8223,
-        "productId": 7952,
+        "productId": 7968,
         "learnmode": {
             "instruction": {
-                "en": "Push the switch on the bottom",
-                "nl": "Druk op de knop op de onderkant"
+                "en": "Push the program switch once",
+                "nl": "Druk eenmaal op de programmeer knop"
             }
         },
         "associationGroups": [
-            1,2,3
+            1
         ]
     },
     "class": "sensor",
@@ -28,8 +28,8 @@
         "measure_battery"
     ],
     "images": {
-        "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
-        "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
+        "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"
     },
     "settings": [
         {

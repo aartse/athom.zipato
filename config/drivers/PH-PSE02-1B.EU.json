@@ -110,7 +110,8 @@
             },
             "zwave": {
                 "index": 31,
-                "size": 1
+                "size": 1,
+                "signed": false
             }    
         }
     ]

@@ -818,7 +818,8 @@
           },
           "zwave": {
             "index": 1,
-            "size": 1
+            "size": 1,
+            "signed": false
           }
         },
         {
@@ -839,7 +840,8 @@
           },
           "zwave": {
             "index": 2,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -860,7 +862,8 @@
           },
           "zwave": {
             "index": 3,
-            "size": 1
+            "size": 1,
+            "signed": false
           }
         },
         {
@@ -910,7 +913,8 @@
           },
           "zwave": {
             "index": 5,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -931,7 +935,8 @@
           },
           "zwave": {
             "index": 6,
-            "size": 1
+            "size": 1,
+            "signed": false
           }
         },
         {
@@ -952,7 +957,8 @@
           },
           "zwave": {
             "index": 7,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1002,7 +1008,8 @@
           },
           "zwave": {
             "index": 9,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         }
       ]
@@ -1060,7 +1067,8 @@
           },
           "zwave": {
             "index": 1,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1082,7 +1090,8 @@
           },
           "zwave": {
             "index": 2,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1204,7 +1213,8 @@
           },
           "zwave": {
             "index": 6,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1265,7 +1275,8 @@
           },
           "zwave": {
             "index": 8,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1397,7 +1408,8 @@
           },
           "zwave": {
             "index": 1,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1419,7 +1431,8 @@
           },
           "zwave": {
             "index": 2,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1440,7 +1453,8 @@
           },
           "zwave": {
             "index": 3,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1461,7 +1475,8 @@
           },
           "zwave": {
             "index": 4,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1575,7 +1590,8 @@
           },
           "zwave": {
             "index": 8,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         },
         {
@@ -1677,7 +1693,8 @@
           },
           "zwave": {
             "index": 13,
-            "size": 2
+            "size": 2,
+            "signed": false
           }
         }
       ]
@@ -1794,7 +1811,8 @@
           },
           "zwave": {
             "index": 31,
-            "size": 1
+            "size": 1,
+            "signed": false
           }
         }
       ]
@@ -2206,7 +2224,8 @@
           "id": "feedback_time",
           "zwave": {
             "index": 2,
-            "size": 1
+            "size": 1,
+            "signed": false
           },
           "type": "number",
           "label": {
@@ -2227,7 +2246,8 @@
           "id": "feedback_timeout",
           "zwave": {
             "index": 3,
-            "size": 1
+            "size": 1,
+            "signed": false
           },
           "type": "number",
           "label": {
@@ -2248,7 +2268,8 @@
           "id": "feedback_beeps_per_second",
           "zwave": {
             "index": 4,
-            "size": 1
+            "size": 1,
+            "signed": false
           },
           "type": "number",
           "label": {

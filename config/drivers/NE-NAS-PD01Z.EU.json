@@ -52,7 +52,8 @@
             },
             "zwave": {
                 "index": 1,
-                "size": 1
+                "size": 1,
+                "signed": false
             }
         },
         {
@@ -73,7 +74,8 @@
             },
             "zwave": {
                 "index": 2,
-                "size": 2
+                "size": 2,
+                "signed": false
             }
         },
         {
@@ -94,7 +96,8 @@
             },
             "zwave": {
                 "index": 3,
-                "size": 1
+                "size": 1,
+                "signed": false
             }
         },
         {
@@ -144,8 +147,10 @@
             },
             "zwave": {
                 "index": 5,
-                "size": 2
-            }        },
+                "size": 2,
+                "signed": false
+            }        
+        },
         {
             "id": "config_param_6",
             "type": "number",
@@ -164,7 +169,8 @@
             },
             "zwave": {
                 "index": 6,
-                "size": 1
+                "size": 1,
+                "signed": false
             }
         },
         {
@@ -185,7 +191,8 @@
             },
             "zwave": {
                 "index": 7,
-                "size": 2
+                "size": 2,
+                "signed": false
             }
         },
         {
@@ -235,7 +242,8 @@
             },
             "zwave": {
                 "index": 9,
-                "size": 2
+                "size": 2,
+                "signed": false
             }
         }
     ]

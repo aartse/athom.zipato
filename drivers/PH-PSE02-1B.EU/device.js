@@ -20,11 +20,6 @@ class ZipatoDevice extends ZwaveDevice {
 		this.registerCapability('alarm_tamper', 'NOTIFICATION');
 		this.registerCapability('alarm_tamper', 'SENSOR_BINARY');
 
-		// register a settings parser
-		this.registerSetting('config_param_31', value => {			
-			return new Buffer([value / 30])
-		});
-
 		let turnAlarmOnFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_on');
 		turnAlarmOnFlow
 		    .register()

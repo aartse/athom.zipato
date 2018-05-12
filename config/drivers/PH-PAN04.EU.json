@@ -39,15 +39,14 @@
                 "en": "Watt meter report period (in seconds)",
                 "nl": "Watt meter rapportage periode (in seconde)"
             },
-            "value": 3600,
+            "value": 720,
             "attr": {
-                "min": 5,
-                "max": 163835,
-                "step": 5
+                "min": 1,
+                "max": 32767
             },
             "hint": {
-                "en": "If the setting is configured for 3600 seconds (default value), Micromodule will report its instant power consumption every 1 hour",
-                "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde), zal de module zijn huidig verbruik elk uur doorsturen"
+                "en": "If the setting is configured for 3600 seconds (default value: 3600/5 = 720), Micromodule will report its instant power consumption every 1 hour",
+                "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde: 3600/5 = 720), zal de module zijn huidig verbruik elk uur doorsturen"
             },
             "zwave": {
                 "index": 1,
@@ -62,15 +61,14 @@
                 "en": "KWh meter report period (in minutes)",
                 "nl": "KWh meter rapportage periode (in minuten)"
             },
-            "value": 60,
+            "value": 6,
             "attr": {
-                "min": 10,
-                "max": 327670,
-                "step": 10
+                "min": 1,
+                "max": 32767
             },
             "hint": {
-                "en": "If the setting is configured for 60 minutes (default value), Micromodule will report its Accumulated Power Consumption (KW/h) every 1 hour",
-                "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde), zal de module het totale verbruik (KW/h) elk uur doorsturen"
+                "en": "If the setting is configured for 60 minutes (default value: 60/10 = 6), Micromodule will report its Accumulated Power Consumption (KW/h) every 1 hour",
+                "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde: 60/10 = 6), zal de module het totale verbruik (KW/h) elk uur doorsturen"
             },
             "zwave": {
                 "index": 2,

@@ -17,20 +17,6 @@ class ZipatoDevice extends ZwaveDevice {
 
 		// register the meter_power capability with COMMAND_CLASS_METER
 		this.registerCapability('meter_power', 'METER');
-
-		// settings parser for "Watt meter report period (in seconds)"
-		this.registerSetting('config_param_1', value => {
-			const buf = Buffer.alloc(2);
-			buf.writeUIntBE(parseInt(value / 5), 0, 2);
-			return buf;
-		});
-
-		// settings parser for "KWh meter report period (in minutes)"
-		this.registerSetting('config_param_2', value => {
-			const buf = Buffer.alloc(2);
-			buf.writeUIntBE(parseInt(value / 10), 0, 2);
-			return buf;
-		});
 	}
 }
 

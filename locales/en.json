@@ -80,7 +80,9 @@
 				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
 				"allowTags": "Registration of new tags is allowed",
 				"denyTags": "Registration of new tags is not allowed",
-				"toggleTagStatusConfirmedTitle": "Tag registration status switched: "
+				"toggleTagStatusConfirmedTitle": "Tag registration status switched: ",
+				"usersSavedErrorTitle": "Error saving users: ",
+				"usersSavedConfirmation": "Users succesfully saved"
 			},
 			"buttons":
 			{

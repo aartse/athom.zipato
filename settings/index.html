@@ -208,8 +208,8 @@ button.zipato { margin-right: 10px; }
         			console.log("Can't retrieve tags.");
         			return console.error(err);
         		}
-        		
-				if(typeof tags === 'undefined' || tags === null || tags.length <= 0)
+
+				if(typeof tags === 'undefined' || tags === null)
 				{
 					//document.getElementById('systemEventLogBody').innerHTML = '<tr><td colspan="5">' + __('settings.systemEventLog.messages.noUsersFound') + '</td></tr>';
 					return;
@@ -436,6 +436,8 @@ button.zipato { margin-right: 10px; }
 						
 						if(typeof tags !== 'undefined' && tags !== null)
 						{
+							console.log('getSelectValues(tags)');
+							console.log(tags);
 							users[i].tagIds = getSelectValues(tags);
 						}
 						
@@ -479,8 +481,15 @@ button.zipato { margin-right: 10px; }
 				// TODO :: VALIDATE DUBBLE ASSIGNED TAGS
 				
 				// Save allUsersToSave ! :)
+				console.log("allUsersToSave");
 				console.log(allUsersToSave);
-				Homey.set('userContainer', allUsersToSave);
+				Homey.set('userContainer', allUsersToSave, function(err, result) {
+					if (err) {
+						showMessage(__('settings.advanced.messages.usersSavedErrorTitle'), err, 'error');
+					} else {
+						showMessage('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
+					}
+				});
 				
 				// TODO :: GIVE FEEDBACK REGARDING ACTION
 			});	
@@ -515,11 +524,13 @@ button.zipato { margin-right: 10px; }
 		{
 			var options = select && select.options;
 			
-			if(typeof values === 'undefined' || values === null || values.length <= 0)
+			if(typeof values === 'undefined' || values === null || !Array.isArray(values) || values.length <= 0)
 			{
 				return select;
 			}
 			
+			console.log("setSelectValues");
+			console.log(values);
 			console.log(values);
 
 			for (var i=0, iLen=options.length; i<iLen; i++) {

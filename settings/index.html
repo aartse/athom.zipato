@@ -383,13 +383,14 @@ button.zipato { margin-right: 10px; }
 		
 		function removeUserRow(userId)
 		{
-			//if(confirm(__('settings.users.messages.confirmDeteleUser')))
-			//{
-				// http://stackoverflow.com/questions/3387427/remove-element-by-id
-				var element = document.getElementById('userRow_' + userId);
-				element.parentNode.removeChild(element);	 
-			//}
-			
+			Homey.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
+				if (result === true) {
+					// http://stackoverflow.com/questions/3387427/remove-element-by-id
+					var element = document.getElementById('userRow_' + userId);
+					element.parentNode.removeChild(element);	 
+				}
+			});
+
 			// Always return false to cancel the bubbling click events.
 			return false;
 		}
@@ -592,23 +593,25 @@ button.zipato { margin-right: 10px; }
 		
 		function clearEventLog()
 		{
-			//if(confirm(__('settings.advanced.messages.confirmClearEventLog')))
-			//{
-				Homey.set('systemEventLog', new Array());
-				showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
-			//}
-			
+			Homey.confirm(__('settings.advanced.messages.confirmClearEventLog'), 'warning', function(err, result) {
+				if (result === true) {
+					Homey.set('systemEventLog', new Array());
+					showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');				
+				}
+			});
+
 			// Always return false to cancel the bubbling click events.
 			return false;
 		}
 		
 		function clearTags()
 		{
-			//if(confirm(__('settings.advanced.messages.confirmClearTags')))
-			//{
-				Homey.set('tagContainer', new Array());
-				showMessage('', __('settings.advanced.messages.tagsClearedConfirmation'), 'success');	 
-			//}
+			Homey.confirm(__('settings.advanced.messages.confirmClearTags'), 'warning', function(err, result) {
+				if (result === true) {
+					Homey.set('tagContainer', new Array());
+					showMessage('', __('settings.advanced.messages.tagsClearedConfirmation'), 'success');	 
+				}
+			});
 			
 			// Always return false to cancel the bubbling click events.
 			return false;

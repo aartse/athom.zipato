@@ -8,7 +8,8 @@
     "url": "https://github.com/aartse/athom.zipato.git"
   },
   "dependencies": {
-    "homey-meshdriver": "git+https://github.com/aartse/node-homey-meshdriver.git#athom.zipato"
+    "homey-log": "^1.0.6",
+    "homey-meshdriver": "^1.2.27"
   },
   "devDependencies": {},
   "scripts": {

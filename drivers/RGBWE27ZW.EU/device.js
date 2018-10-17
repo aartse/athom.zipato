@@ -1,15 +1,24 @@
 "use strict";
 
-const ZwaveLightDevice = require('homey-meshdriver').ZwaveLightDevice;
+//Athom includes
+const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
-class ZipatoDevice extends ZwaveLightDevice {
+class ZipatoDevice extends ZwaveDevice {
 
-	async onMeshInit() {
-		await super.onMeshInit();
-
+	onMeshInit() {
+		
 		//this.enableDebug();
 		//this.printNode();
 
+    /*
+    ================================================================
+    Registering on/off and dim
+    ================================================================
+    */		
+    this.registerCapability('onoff', 'SWITCH_MULTILEVEL');
+    this.registerCapability('dim', 'SWITCH_MULTILEVEL');
+
+/*
 		// Register debounced capabilities
 		const groupedCapabilities = [];
 		if (this.hasCapability('onoff')) {
@@ -61,6 +70,7 @@ class ZipatoDevice extends ZwaveLightDevice {
 			});
 		}
 		this.registerGroupedCapabilities(groupedCapabilities);
+		*/
 	}
 }
 

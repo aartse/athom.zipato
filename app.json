@@ -1795,7 +1795,94 @@
       "images": {
         "large": "/drivers/RGBWE2.EU/assets/images/large.png",
         "small": "/drivers/RGBWE2.EU/assets/images/small.png"
-      }
+      },
+      "settings": [
+        {
+          "id": "config_param_2",
+          "type": "number",
+          "label": {
+            "en": "Strobe interval",
+            "nl": "Stroboscoopinterval"
+          },
+          "hint": {
+            "en": "Strobe interval, in units of 10 milliseconds",
+            "nl": "Strobe-interval, in eenheden van 10 milliseconden"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 25
+          },
+          "zwave": {
+            "index": 2,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_3",
+          "type": "number",
+          "label": {
+            "en": "Strobe pulse count",
+            "nl": "Aantal stroboscooppulsen"
+          },
+          "hint": {
+            "en": "Number of strobe pulses. Setting this parameter to value 127 makes the bulbe strobe indefinitely",
+            "nl": "Aantal stroboscooppulsen. Door deze parameter in te stellen op waarde 127, blijft de blub knipperen"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 127
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "checkbox",
+          "label": {
+            "en": "Randomize strobe pulse color",
+            "nl": "Willekeurige knipperpulskleur"
+          },
+          "value": false,
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_255",
+          "type": "dropdown",
+          "label": {
+            "en": "Reset bulb to factory settings",
+            "nl": "Lamp naar fabrieksinstellingen resetten"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "No",
+                "nl": "Nee"
+              }
+            },
+            {
+              "id": "2290649224",
+              "label": {
+                "en": "Yes",
+                "nl": "Ja"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 255,
+            "size": 4,
+            "signed": false
+          }
+        }
+      ]
     },
     {
       "id": "RGBWE27ZW.EU",

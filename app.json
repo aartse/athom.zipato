@@ -32,56 +32,6 @@
       }
     ]
   },
-  "capabilities": {
-    "user_code_report": {
-      "type": "number",
-      "title": {
-        "en": "User Code Report",
-        "nl": "Gebruikerscode Rapport"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "status",
-        "nl": "status"
-      },
-      "min": 0,
-      "max": 100,
-      "step": 1
-    },
-    "alarm_report": {
-      "type": "number",
-      "title": {
-        "en": "Alarm Report User ID",
-        "nl": "Alarm Rapport Gebruiker ID"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "status",
-        "nl": "status"
-      },
-      "min": 0,
-      "max": 100,
-      "step": 1
-    },
-    "my_gateway_control": {
-      "type": "number",
-      "title": {
-        "en": "Gateway Events",
-        "nl": "Gateway Events"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "event",
-        "nl": "event"
-      },
-      "min": 0,
-      "max": 100,
-      "step": 1
-    }
-  },
   "drivers": [
     {
       "id": "HM-HS1CA-Z.EU",
@@ -2351,6 +2301,88 @@
     }
   ],
   "flow": {
+    "actions": [
+      {
+        "id": "PH-PSE02-1B.EU-turn_alarm_off",
+        "title": {
+          "en": "Turn siren off",
+          "nl": "Zet sirene uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-turn_alarm_on",
+        "title": {
+          "en": "Turn siren on",
+          "nl": "Zet sirene aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-toggle_person_away",
+        "title": {
+          "en": "Mark as away",
+          "nl": "Is afwezig"
+        },
+        "hint": {
+          "en": "Select a person to set the status of the person to away.",
+          "nl": "Selecteer een persoon om de status van deze persoon op afwezig te zetten."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
+          {
+            "name": "person",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Who has gone away?",
+              "nl": "Wie is er afwezig?"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-toggle_person_home",
+        "title": {
+          "en": "Mark as home",
+          "nl": "Is thuis"
+        },
+        "hint": {
+          "en": "Select a person to set the status of the person to home.",
+          "nl": "Selecteer een persoon om de status van deze persoon op thuis te zetten."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
+          {
+            "name": "person",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Who came home?",
+              "nl": "Wie is er thuis?"
+            }
+          }
+        ]
+      }
+    ],
     "triggers": [
       {
         "id": "WT-RFID.EU-start_scene",
@@ -2362,13 +2394,6 @@
           "en": "Triggered when a user presses numbers without pressing home/away first. Please note that trying to trigger multiple scenes after each other without an home/away event screws up the tag reader in sending some random scene numbers somehow.",
           "nl": "Wordt uitgevoerd wanneer iemand een nummber indrukt zonder home/away te gebruiken. Houdt er rekening mee dat als je meerdere scenes achter alkaar wilt uitvoeren zonder dat er een home/away event tussen zit dat de tag reader dan random scene nummers verstuurd naar Homey en er geen touw meer aan vast te knopen is."
         },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=WT-RFID.EU"
-          }
-        ],
         "tokens": [
           {
             "name": "sceneId",
@@ -2378,6 +2403,13 @@
               "nl": "Scene Nr"
             },
             "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
           }
         ]
       },
@@ -2391,13 +2423,6 @@
           "en": "Triggered when a user presses the away button of this tag reader and presents a valid code / tag.",
           "nl": "Wordt uitgevoerd wanneer iemand op de afwezig knop van deze tag reader drukt en een geldige code / tag invoert."
         },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=WT-RFID.EU"
-          }
-        ],
         "tokens": [
           {
             "name": "userId",
@@ -2427,6 +2452,13 @@
               "nl": "Tag ID"
             },
             "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
           }
         ]
       },
@@ -2440,13 +2472,6 @@
           "en": "Triggered when a user presses the home button of this tag reader and enters a valid code / presents a valid tag.",
           "nl": "Wordt uitgevoerd wanneer iemand op de thuis knop van deze tag reader drukt en een geldige code / tag ingevoerd wordt."
         },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=WT-RFID.EU"
-          }
-        ],
         "tokens": [
           {
             "name": "userId",
@@ -2476,6 +2501,13 @@
               "nl": "Tag ID"
             },
             "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
           }
         ]
       },
@@ -2530,6 +2562,13 @@
               "nl": "123x"
             }
           }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
         ]
       },
       {
@@ -2583,6 +2622,13 @@
               "nl": "123x"
             }
           }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
         ]
       }
     ],
@@ -2598,6 +2644,11 @@
           "nl": "Selecteer een persoon om te controleren of deze persoon thuis of afwezig is."
         },
         "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
           {
             "name": "person",
             "type": "autocomplete",
@@ -2616,80 +2667,65 @@
         "hint": {
           "en": "If the system is armed.",
           "nl": "If the system is armed."
-        }
-      }
-    ],
-    "actions": [
-      {
-        "id": "PH-PSE02-1B.EU-turn_alarm_off",
-        "title": {
-          "en": "Turn siren off",
-          "nl": "Zet sirene uit"
         },
         "args": [
           {
-            "name": "device",
             "type": "device",
-            "filter": "driver_id=PH-PSE02-1B.EU"
-          }
-        ]
-      },
-      {
-        "id": "PH-PSE02-1B.EU-turn_alarm_on",
-        "title": {
-          "en": "Turn siren on",
-          "nl": "Zet sirene aan"
-        },
-        "args": [
-          {
             "name": "device",
-            "type": "device",
-            "filter": "driver_id=PH-PSE02-1B.EU"
-          }
-        ]
-      },
-      {
-        "id": "WT-RFID.EU-toggle_person_away",
-        "title": {
-          "en": "Mark as away",
-          "nl": "Is afwezig"
-        },
-        "hint": {
-          "en": "Select a person to set the status of the person to away.",
-          "nl": "Selecteer een persoon om de status van deze persoon op afwezig te zetten."
-        },
-        "args": [
-          {
-            "name": "person",
-            "type": "autocomplete",
-            "placeholder": {
-              "en": "Who has gone away?",
-              "nl": "Wie is er afwezig?"
-            }
-          }
-        ]
-      },
-      {
-        "id": "WT-RFID.EU-toggle_person_home",
-        "title": {
-          "en": "Mark as home",
-          "nl": "Is thuis"
-        },
-        "hint": {
-          "en": "Select a person to set the status of the person to home.",
-          "nl": "Selecteer een persoon om de status van deze persoon op thuis te zetten."
-        },
-        "args": [
-          {
-            "name": "person",
-            "type": "autocomplete",
-            "placeholder": {
-              "en": "Who came home?",
-              "nl": "Wie is er thuis?"
-            }
+            "filter": "driver_id=WT-RFID.EU"
           }
         ]
       }
     ]
+  },
+  "capabilities": {
+    "alarm_report": {
+      "type": "number",
+      "title": {
+        "en": "Alarm Report User ID",
+        "nl": "Alarm Rapport Gebruiker ID"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "status",
+        "nl": "status"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "my_gateway_control": {
+      "type": "number",
+      "title": {
+        "en": "Gateway Events",
+        "nl": "Gateway Events"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "event",
+        "nl": "event"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "user_code_report": {
+      "type": "number",
+      "title": {
+        "en": "User Code Report",
+        "nl": "Gebruikerscode Rapport"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "status",
+        "nl": "status"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
   }
 }

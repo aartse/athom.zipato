@@ -1,0 +1,35 @@
+{
+    "id": "VS-ZD2201.EU",
+    "name": {
+        "en": "Multisensor 4 in 1",
+        "nl": "Multisensor 4 in 1"
+    },
+    "zwave": {
+        "manufacturerId": 265,
+        "productTypeId": 8223,
+        "productId": 7952,
+        "learnmode": {
+            "instruction": {
+                "en": "Push the switch on the bottom",
+                "nl": "Druk op de knop op de onderkant"
+            }
+        },
+        "associationGroups": [
+            1,2,3
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_contact",
+        "alarm_tamper",
+        "measure_temperature",
+        "measure_humidity",
+        "measure_luminance",
+        "measure_battery"
+    ],
+    "images": {
+        "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
+    }
+}

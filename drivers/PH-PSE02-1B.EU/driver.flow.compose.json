@@ -1,0 +1,16 @@
+{
+  "triggers": [
+  ],
+  "conditions": [
+  ],
+  "actions": [
+    {
+      "$extends":"turn_alarm_off",
+      "id": "PH-PSE02-1B.EU-turn_alarm_off"
+    },
+    {
+      "$extends":"turn_alarm_on",
+      "id": "PH-PSE02-1B.EU-turn_alarm_on"
+    }
+  ]
+}

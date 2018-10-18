@@ -3,6 +3,7 @@
 //Athom includes
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 const util = require('homey-meshdriver').Util;
+const Homey = require('homey');
 
 class ZipatoDevice extends ZwaveDevice {
 
@@ -53,6 +54,42 @@ class ZipatoDevice extends ZwaveDevice {
   
       return Promise.resolve();
     });
+
+    /*
+    ================================================================
+    Triggers
+    ================================================================
+    */
+    let strobeOnFlow = new Homey.FlowCardAction('RGBWE2.EU-strobe_on');
+    strobeOnFlow
+        .register()
+        .registerRunListener(( args, state ) => {
+
+          let oldSettings = {};
+          let newSettings = {};
+          let changedKeysArr = [];
+
+          if (args.hasOwnProperty('speed') && args.speed !== '') {
+            oldSettings.config_param_2 = args.device.getSetting('config_param_2');
+            newSettings.config_param_2 = args.speed;
+            changedKeysArr.push('config_param_2');
+          }
+
+          if (args.hasOwnProperty('count') && args.count !== '') {
+            oldSettings.config_param_3 = args.device.getSetting('config_param_3');
+            newSettings.config_param_3 = args.count;
+            changedKeysArr.push('config_param_3');
+          }
+
+          return args.device.onSettings(oldSettings, newSettings, changedKeysArr);
+        });
+
+    let strobeOffFlow = new Homey.FlowCardAction('RGBWE2.EU-strobe_off');
+    strobeOffFlow
+        .register()
+        .registerRunListener(( args, state ) => {
+          return args.device.onSettings({config_param_3:127},{config_param_3:0},['config_param_3'])
+        });
   }
   
   async _sendSwitchMultilevel(capability, value, opts) {

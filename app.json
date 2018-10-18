@@ -2418,6 +2418,54 @@
         ]
       },
       {
+        "id": "RGBWE2.EU-strobe_on",
+        "title": {
+          "en": "Strobe on",
+          "nl": "Stroboscoop aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=RGBWE2.EU"
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "min": 1,
+            "max": 127,
+            "placeholder": {
+              "en": "Count",
+              "nl": "Aantal"
+            }
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 1,
+            "max": 25,
+            "placeholder": {
+              "en": "Interval",
+              "nl": "Interval"
+            }
+          }
+        ]
+      },
+      {
+        "id": "RGBWE2.EU-strobe_off",
+        "title": {
+          "en": "Strobe off",
+          "nl": "Stroboscoop uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=RGBWE2.EU"
+          }
+        ]
+      },
+      {
         "id": "WT-RFID.EU-toggle_person_away",
         "title": {
           "en": "Mark as away",

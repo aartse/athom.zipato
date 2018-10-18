@@ -19,7 +19,7 @@ class ZipatoDevice extends ZwaveDevice {
 		this.registerCapability('alarm_tamper', 'NOTIFICATION');
 
 		// register the measure_temperature capability with SENSOR_MULTILEVEL
-		this.registerCapability('measure_temperature', 'SENSOR_MULTILEVEL');
+		this.registerCapability('measure_temperature', 'SENSOR_MULTILEVEL', {getOpts: {getOnStart: false}});
 	}
 }
 

@@ -1,7 +1,7 @@
 {
 	"title": {
-	  "en": "System disarmed",
-	  "nl": "Systeem gedeactiveerd"
+	  "en": "User is home",
+	  "nl": "Iemand is thuis gekomen"
 	},
 	"hint": {
 	  "en": "Triggered when a user presses the home button of this tag reader and enters a valid code / presents a valid tag.",

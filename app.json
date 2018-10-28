@@ -2418,6 +2418,68 @@
         ]
       },
       {
+        "id": "PH-PSE02-1B.EU-play_sound",
+        "title": {
+          "en": "Play sound",
+          "nl": "Speel geluid"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No sound"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Emergency sound"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Fire alert"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Ambulance sound"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Police car sound"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Door chime"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Beep Beep"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "RGBWE2.EU-strobe_on",
         "title": {
           "en": "Strobe on",

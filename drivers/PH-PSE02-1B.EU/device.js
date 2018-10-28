@@ -24,7 +24,6 @@ class ZipatoDevice extends ZwaveDevice {
 		turnAlarmOnFlow
 		    .register()
 		    .registerRunListener(( args, state ) => {
-
 		    	return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
 				    'Switch Value': 255
 				});
@@ -34,9 +33,17 @@ class ZipatoDevice extends ZwaveDevice {
 		turnAlarmOffFlow
 		    .register()
 		    .registerRunListener(( args, state ) => {
-
 		    	return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
 				    'Switch Value': 0
+				});
+		    });	
+
+		let PlaySoundFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-play_sound');
+		PlaySoundFlow
+		    .register()
+		    .registerRunListener(( args, state ) => {
+		    	return args.device.getCommandClass("SWITCH_MULTILEVEL").SWITCH_MULTILEVEL_SET({
+				    Value: args.sound
 				});
 		    });		
 	}

@@ -108,12 +108,14 @@ class ZipatoDevice extends ZwaveDevice {
 
 						//this.log("Trigger: ");
 						//console.log(this.userSystemHomeTrigger)
-						this.userSystemHomeTrigger.trigger(tokens, state, (err, result) => {
-							if (err) {
-								this.log(err);
-								return Homey.error(err);
-							}
-						});
+						if (getSystemArmed() == true) {
+							this.userSystemHomeTrigger.trigger(this, tokens, state, (err, result) => {
+								if (err) {
+									this.log(err);
+									return Homey.error(err);
+								}
+							});
+						}
 						setSystemArmed(false);
 
 						break;
@@ -130,12 +132,14 @@ class ZipatoDevice extends ZwaveDevice {
 
 						//this.log("Trigger: ");
 						//console.log(this.userSystemAwayTrigger)
-						this.userSystemAwayTrigger.trigger(tokens, state, (err, result) => {
-							if (err) {
-								this.log(err);
-								return Homey.error(err);
-							}
-						});
+						if (getSystemArmed() == false) {
+							this.userSystemAwayTrigger.trigger(this, tokens, state, (err, result) => {
+								if (err) {
+									this.log(err);
+									return Homey.error(err);
+								}
+							});
+						}
 						setSystemArmed(true);
 
 						break;
@@ -244,8 +248,8 @@ class ZipatoDevice extends ZwaveDevice {
 			setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 			setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 
-			this.userSystemAwayTrigger = new Homey.FlowCardTrigger('WT-RFID.EU-user_system_away').register();
-			this.userSystemHomeTrigger = new Homey.FlowCardTrigger('WT-RFID.EU-user_system_home').register();
+			this.userSystemAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_away').register();
+			this.userSystemHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_home').register();
 			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
 			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
 	}

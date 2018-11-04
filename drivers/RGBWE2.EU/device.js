@@ -69,12 +69,21 @@ class ZipatoDevice extends ZwaveDevice {
           let newSettings = {};
           let changedKeysArr = [];
 
+          //Speed of strobes
           if (args.hasOwnProperty('speed') && args.speed !== '') {
             oldSettings.config_param_2 = args.device.getSetting('config_param_2');
             newSettings.config_param_2 = args.speed;
             changedKeysArr.push('config_param_2');
           }
 
+          //Random color
+          if (args.hasOwnProperty('random_color') && args.random_color !== '') {
+            oldSettings.config_param_4 = args.device.getSetting('config_param_4');
+            newSettings.config_param_4 = args.random_color;
+            changedKeysArr.push('config_param_4');
+          }
+
+          //Number of strobes
           if (args.hasOwnProperty('count') && args.count !== '') {
             oldSettings.config_param_3 = args.device.getSetting('config_param_3');
             newSettings.config_param_3 = args.count;

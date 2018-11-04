@@ -23,6 +23,26 @@
 		        "en": "Interval",
 		        "nl": "Interval"
 		    }
+		},
+		{
+			"name": "random_color",
+			"type": "dropdown",
+			"values": [
+				{
+					"id": "0",
+					"label": {
+						"en": "Current color",
+						"nl": "Huidige kleur"
+					}
+				},
+				{
+					"id": "1",
+					"label": {
+						"en": "Random color",
+						"nl": "Willekeurige kleur"
+					}
+				}
+			]
 		}
 	]
 }

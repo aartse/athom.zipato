@@ -68,12 +68,10 @@ class ZipatoDevice extends ZwaveDevice {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
 				switch (report['ZWave Alarm Event']) {
-					case 3:
-						const tamperVal = report['ZWave Alarm Status'] == 'On';
-						this.log("Tamper alert: " + tamperVal);
-						return tamperVal
+					case 3: // Tamper
+						return (report['ZWave Alarm Status'] == 'On');
 					case 6: // Home
-						return false
+						return false;
 				}
 				return null
 			}
@@ -82,7 +80,9 @@ class ZipatoDevice extends ZwaveDevice {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
 				const evt = report['ZWave Alarm Event'];
-				if(evt == 3) return;
+				if(evt == 3) { 
+				  return null;
+				}
 				this.log('report event recieved');
 				//this.log(report);
 				//this.log('Device ID: ' + this.getData().token);

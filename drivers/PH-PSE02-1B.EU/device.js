@@ -9,8 +9,8 @@ class ZipatoDevice extends ZwaveDevice {
 
 	async onMeshInit() {
 
-		//this.enableDebug();
-		//this.printNode();
+		this.enableDebug();
+		this.printNode();
 
 		// register the onoff capability with COMMAND_CLASS_SWITCH_BINARY or COMMAND_CLASS_BASIC
 		this.registerCapability('onoff', 'SWITCH_BINARY');

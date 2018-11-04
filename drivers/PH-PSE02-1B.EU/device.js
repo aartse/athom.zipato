@@ -42,9 +42,13 @@ class ZipatoDevice extends ZwaveDevice {
 		PlaySoundFlow
 		    .register()
 		    .registerRunListener(( args, state ) => {
-		    	return args.device.getCommandClass("SWITCH_MULTILEVEL").SWITCH_MULTILEVEL_SET({
+		      if (!args.device.hasCommandClass('SWITCH_MULTILEVEL')) {
+            return Promise.reject('Device has no SWITCH_MULTILEVEL command class');
+		      }
+
+		      return args.device.getCommandClass("SWITCH_MULTILEVEL").SWITCH_MULTILEVEL_SET({
 				    Value: args.sound
-				});
+		    	});
 		    });		
 	}
 }

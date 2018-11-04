@@ -1,5 +1,6 @@
 "use strict";
 
+const Homey = require('homey');
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
 class ZipatoDevice extends ZwaveDevice {
@@ -20,6 +21,14 @@ class ZipatoDevice extends ZwaveDevice {
 
 		// register the measure_temperature capability with SENSOR_MULTILEVEL
 		this.registerCapability('measure_temperature', 'SENSOR_MULTILEVEL', {getOpts: {getOnStart: false}});
+
+		// set motion status
+    let setMotionFlow = new Homey.FlowCardAction('ZP3102.EU-set_motion');
+    setMotionFlow
+        .register()
+        .registerRunListener(( args, state ) => {
+          return args.device.setCapabilityValue('alarm_motion', (args.motion == "1"))
+        });
 	}
 }
 

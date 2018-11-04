@@ -2598,6 +2598,40 @@
             }
           }
         ]
+      },
+      {
+        "id": "ZP3102.EU-set_motion",
+        "title": {
+          "en": "Force motion",
+          "nl": "Forceer beweging"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ZP3102.EU"
+          },
+          {
+            "name": "motion",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No motion",
+                  "nl": "Geen beweging"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Motion detected",
+                  "nl": "Beweging"
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "triggers": [

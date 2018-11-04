@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "homey-log": "^1.0.6",
-    "homey-meshdriver": "^1.2.27"
+    "homey-meshdriver": "^1.2.28"
   },
   "devDependencies": {},
   "scripts": {

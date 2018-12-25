@@ -5,7 +5,7 @@
         "nl": "Binnen sirene"
     },
     "zwave": {
-        "manufacturerId": 316,
+        "manufacturerId": [316, 305],
         "productTypeId": 4,
         "productId": 10,
         "learnmode": {

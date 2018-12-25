@@ -43,7 +43,7 @@ class ZipatoDevice extends ZwaveDevice {
 		    .register()
 		    .registerRunListener(( args, state ) => {
 		      if (!args.device.hasCommandClass('SWITCH_MULTILEVEL')) {
-            return Promise.reject('Device has no SWITCH_MULTILEVEL command class');
+                  return Promise.reject('Device has no SWITCH_MULTILEVEL command class');
 		      }
 
 		      return args.device.getCommandClass("SWITCH_MULTILEVEL").SWITCH_MULTILEVEL_SET({

@@ -82,7 +82,8 @@
 				"denyTags": "Registration of new tags is not allowed",
 				"toggleTagStatusConfirmedTitle": "Tag registration status switched: ",
 				"usersSavedErrorTitle": "Error saving users: ",
-				"usersSavedConfirmation": "Users succesfully saved"
+				"usersSavedConfirmation": "Users succesfully saved",
+				"userDeleted": "User deleted, click on save user settings to commit the delete"
 			},
 			"buttons":
 			{

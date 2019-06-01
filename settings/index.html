@@ -1,27 +1,31 @@
 <html>
-	<head>
-		<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-		<script type="text/javascript" src="js/global.js"></script>
-		<link type="text/css" href="css/global.css" />
-	</head>
-	<body>
+<head>
+	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/global.css" />
+</head>
+<body>
 
-    <div id="content">
-		<h2 data-i18n="settings.title"></h2>
-	    <p style="display:block" data-i18n="settings.description"></p>
-
-		<button class="" onclick="loadPage('wt-rfid/index.html', 'wt-rfid/js/index.js');" data-i18n="settings.index.buttons.wt-rfid"></button>
-    </div>
+	<div id="container">
+		<div id="content"></div>
+		<div id="footer">
+			Terug
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		var Homey;
 
-        function onHomeyReady(homey)
+	    function onHomeyReady(homey)
 		{
 			Homey = homey;
+
+			//load homepage
+			loadPage('home.html');
+
 			Homey.ready();
 		}
 	</script>
 
-	</body>
+</body>
 </html>

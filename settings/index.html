@@ -7,9 +7,12 @@
 <body>
 
 	<div id="container">
-		<div id="content"></div>
+		<div id="message"></div>
+		<div id="content">
+			<p data-i18n="settings.loading"></p>
+		</div>
 		<div id="footer">
-			Terug
+			<button class="btn-large" onclick="previousPage();" data-i18n="settings.footer.buttons.back"></button>
 		</div>
 	</div>
 
@@ -19,11 +22,10 @@
 	    function onHomeyReady(homey)
 		{
 			Homey = homey;
+			Homey.ready();
 
 			//load homepage
-			loadPage('home.html');
-
-			Homey.ready();
+			openPage('home.html');
 		}
 	</script>
 

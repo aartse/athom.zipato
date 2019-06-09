@@ -4,9 +4,6 @@ tagSelect.setAttribute('multiple', 'multiple');
 tagSelect.setAttribute('data-id', -1);
 tagSelect.setAttribute('id', 'tagSelect_-1');
 
-// Retrieve log file			
-retrieveLogFile();
-
 Homey.get('tagContainer', function(err, tags)
 {
 	if(err)
@@ -17,7 +14,6 @@ Homey.get('tagContainer', function(err, tags)
 
 	if(typeof tags === 'undefined' || tags === null)
 	{
-		//document.getElementById('systemEventLogBody').innerHTML = '<tr><td colspan="5">' + __('settings.systemEventLog.messages.noUsersFound') + '</td></tr>';
 		return;
 	}
 	
@@ -331,78 +327,6 @@ function setSelectValues(select, values)
 	
 	//select.options = options;
 	return select;
-}
-
-function retrieveLogFile()
-{
-	Homey.get('systemEventLog', function(err, eventLog) {
-		if(err)
-		{
-		    showMessage('error getting systemEventLog', err, 'danger');
-			return console.error(err);
-		}
-		
-		if(typeof eventLog === 'undefined' || eventLog === null || eventLog.length <= 0)
-		{
-			document.getElementById('systemEventLogBody').innerHTML = '<tr data-type="emptyMessage"><td colspan="5">' + __('settings.systemEventLog.messages.noEventsYet') + '</td></tr>';
-			return;
-		}
-		
-		var tableBody = document.getElementById('systemEventLogBody').innerHTML = '';
-		
-		// Parse array into log table
-		var previousChild = null;
-		for (var i = 0; i < eventLog.length; i++)
-		{
-			var logEntry = eventLog[i];
-			var tableRow = document.createElement("tr");
-			
-			// Parse data in nice format
-			var date = new Date(logEntry.time);
-			var device = logEntry.deviceName === null ? (logEntry.deviceId !== null ? logEntry.deviceId : __('settings.systemEventLog.messages.deviceUnknown')) : logEntry.deviceName;
-			var user = logEntry.userName === null ? __('settings.systemEventLog.messages.userNameUnknown') : logEntry.userName + ' (' + logEntry.userId + ')';
-								
-			tableRow.innerHTML += '<td>' + date.toString() + '</td>';
-			tableRow.innerHTML += '<td>' + __('settings.systemEventLog.eventTypes.s' + logEntry.statusCode) + '</td>';
-			tableRow.innerHTML += '<td>' + device + '</td>';
-			tableRow.innerHTML += '<td>' + logEntry.tagId + '</td>';
-			tableRow.innerHTML += '<td>' + user + '</td>';
-			
-			var tableBody = document.getElementById('systemEventLogBody');
-			if(previousChild === null)
-			{
-				tableBody.appendChild(tableRow);
-				previousChild = tableBody.getElementsByTagName("tr")[0];
-			}
-			else
-			{
-				previousChild = tableBody.insertBefore(tableRow, previousChild);
-			}
-		}
-	});
-	
-	setTimeout(retrieveLogFile, 30000); // reloads every 30 seconds.
-}
-
-function clearEventLog()
-{
-	Homey.confirm(__('settings.advanced.messages.confirmClearEventLog'), 'warning', function(err, result) {
-		if (err === true || result === true) {
-			document.getElementById('systemEventLogBody').innerHTML = '<tr data-type="emptyMessage"><td colspan="5">Clearing eventlog...</td></tr>';
-
-			Homey.set('systemEventLog', new Array(), function(err) {
-				if (err) {
-					showMessage('Error clearing event log', err, 'danger');	
-				} else {
-					showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
-				}
-				retrieveLogFile();
-			});
-		}
-	});
-
-	// Always return false to cancel the bubbling click events.
-	return false;
 }
 
 function clearTags()

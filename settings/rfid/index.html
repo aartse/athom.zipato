@@ -1,4 +1,6 @@
 <div>
+	<h2 data-i18n="settings.rfid.title"></h2>
+
 	<fieldset>
 		<legend data-i18n="settings.users.title"></legend>
         <table id="systemUser" class="zipato">
@@ -36,10 +38,6 @@
 					<td><button class="left zipato" style="display:block" onclick="toggleTagStatus()" data-i18n="settings.advanced.buttons.toggleTag"></button></td>
 					<td id="currentTagStatus" data-i18n="settings.advanced.table.tagApprovalStatus"></td>
 				</tr>
-				<tr>
-					<td data-i18n="settings.advanced.table.eventLog"></td>
-					<td colspan='2'><button class="left zipato" style="display:block" onclick="clearEventLog()" data-i18n="settings.advanced.buttons.clearEventLog"></button></td>
-				</tr>
 			</tbody>
 		</table>
 		<br /><br />
@@ -60,39 +58,9 @@
 			</tbody>
 		</table>
     </fieldset>
-	<br /><br />
-	<div class="table-container">
-		<fieldset>
-			<legend data-i18n="settings.systemEventLog.title"></legend>
-			<table id="systemEventLog" class="zipato flex">
-				<thead>
-					<tr>
-						<th data-i18n="settings.systemEventLog.table.datetime"></th>
-						<th data-i18n="settings.systemEventLog.table.event"></th>
-						<th data-i18n="settings.systemEventLog.table.device"></th>
-						<th data-i18n="settings.systemEventLog.table.tagOrCode"></th>
-						<th data-i18n="settings.systemEventLog.table.person"></th>
-					</tr>
-				</thead>
-				<tbody id="systemEventLogBody">
-				</tbody>
-			</table>
-		</fieldset>
-		<br />
-	</div>
-	<br /><br />
-	<fieldset>
-		<legend data-i18n="settings.devices.title"></legend>
-        <table id="systemDevices" class="zipato">
-			<thead>
-				<tr>
-					<th data-i18n="settings.devices.table.deviceId"></th>
-					<th data-i18n="settings.devices.table.status"></th>
-					<th data-i18n="settings.devices.table.lastUpdated"></th>
-				</tr>
-			</thead>
-			<tbody id="systemDevicesBody">
-			</tbody>
-		</table>
-    </fieldset>
+	<br />
+	<button class="full-width" onclick="openPage('rfid/devices.html', 'rfid/js/devices.js');" data-i18n="settings.rfid.buttons.devices"></button>
+	<br />
+	<br />
+	<button class="full-width" onclick="openPage('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
 </div>

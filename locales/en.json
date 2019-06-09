@@ -1,13 +1,28 @@
 {
 	"settings": {
 		"title": "Zipato Device Settings",
-		"description": "On this page you see the settings for the Zipato RFID Keypad.",
+		"description": "On this page you see the settings for the Zipato devices.",
+		"loading": "Loading...",
 		"index":
 		{
 			"buttons": {
-				"wt-rfid": "Mini RFID keypad"
+				"rfid": "RFID keypad"
 			}
 		},
+		"footer":
+		{
+			"buttons": {
+				"back": "< Back"
+			}
+		},
+		"rfid": {
+			"title": "Zipato RFID keypad settings",
+			"buttons": {
+				"logs": "Logs",
+				"devices": "Devices"
+			}
+		},
+
 		"systemEventLog":
 		{
 			"title": "Event Log",

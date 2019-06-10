@@ -73,11 +73,14 @@ function clearEventLog()
 		if (result === true) {
 			document.getElementById('systemEventLogs').innerText = __('settings.loading');
 			
+			// return when lastEventLogs is empty
 			if (lastEventLogs === null) {
 				showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
 				previousPage();
+				return;
 			}
 
+			// reset systemEventLog
 			Homey.set('systemEventLog', new Array(), function(err) {
 				if (err) {
 					showMessage('Error clearing event log', err, 'danger');	
@@ -85,7 +88,7 @@ function clearEventLog()
 					showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
 				}
 				
-				// Current page is nothing left todo, so close page
+				// Current page is nothing left todo, so close page and load previous page
 				previousPage();
 			});
 		}

@@ -1,0 +1,32 @@
+{
+    "id": "PH-PAN16.EU.G",
+    "name": {
+        "en": "Smart energy plug-in switch",
+        "nl": "Tussenstekker"
+    },
+    "zwave": {
+        "manufacturerId": 316,
+        "productTypeId": 1,
+        "productId": 41,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include button three times within 2 seconds.",
+                "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+            }
+        },
+        "associationGroups": [
+            1
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "socket",
+    "capabilities": [
+        "onoff",
+        "measure_power",
+        "meter_power"
+    ],
+    "images": {
+        "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
+        "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"
+    }
+}

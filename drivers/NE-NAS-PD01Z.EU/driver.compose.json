@@ -1,0 +1,36 @@
+{
+    "id": "NE-NAS-PD01Z.EU",
+    "name": {
+        "en": "PIR motion sensor",
+        "nl": "PIR bewegingsmelder"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 4227,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include/network button three times within 1.5 seconds.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "associationGroupsOptions": {},
+        "wakeUpInterval": 43200
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_motion",
+        "measure_luminance",
+        "measure_battery"
+    ],
+    "images": {
+        "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
+        "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
+    }
+}

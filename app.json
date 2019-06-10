@@ -1,1268 +1,2985 @@
 {
-    "id": "nl.aartse.zipato",
-    "name": {
-        "en": "Zipato",
-        "nl": "Zipato"
-    },
-    "version": "1.5.0",
-    "compatibility": "0.x || 1.x",
-    "author": {
+  "id": "nl.aartse.zipato",
+  "version": "2.2.1",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Zipato",
+    "nl": "Zipato"
+  },
+  "author": {
+    "name": "Jeroen Aartse",
+    "email": "jeroen@webdesigntilburg.nl"
+  },
+  "category": [
+    "lights",
+    "security"
+  ],
+  "description": {
+    "en": "Support for zipato devices",
+    "nl": "Support for zipato devices"
+  },
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "contributors": {
+    "developers": [
+      {
         "name": "Jeroen Aartse",
+        "website": "http://www.webdesigntilburg.nl",
         "email": "jeroen@webdesigntilburg.nl"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "HM-HS1CA-Z.EU",
+      "name": {
+        "en": "Smart carbon monoxide sensor",
+        "nl": "Slimme koolmonoxide melder"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 32773,
+        "productId": 4096,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include/network button three times within 1.5 seconds.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_co",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/HM-HS1CA-Z.EU/assets/images/large.png",
+        "small": "/drivers/HM-HS1CA-Z.EU/assets/images/small.png"
+      }
     },
-    "category": [
-        "lights",
-        "security"
-    ],
-    "description": {
-        "en": "Support for zipato devices",
-        "nl": "Support for zipato devices"
+    {
+      "id": "HM-HS1SA-Z.EU",
+      "name": {
+        "en": "Smart smoke sensor",
+        "nl": "Slimme rookmelder"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 32770,
+        "productId": 4096,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include/network button three times within 1.5 seconds.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_smoke",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/HM-HS1SA-Z.EU/assets/images/large.png",
+        "small": "/drivers/HM-HS1SA-Z.EU/assets/images/small.png"
+      }
     },
-    "images": {
-        "large": "/assets/images/large.jpg",
-        "small": "/assets/images/small.jpg"
+    {
+      "id": "HM-HS1WL-Z.EU",
+      "name": {
+        "en": "Smart water leakage sensor",
+        "nl": "Water lekkage sensor"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 32772,
+        "productId": 4096,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include/network button three times within 1.5 seconds.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_water",
+        "measure_battery",
+        "alarm_tamper"
+      ],
+      "images": {
+        "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
+        "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
+      }
     },
-
-    "contributors": {
-        "developers": [
+    {
+      "id": "MH-P220.EU",
+      "name": {
+        "en": "Mini energy dimmer",
+        "nl": "Inbouw mini dimmer"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 8714,
+        "productId": 4946,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include button three times within 2 seconds.",
+            "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim"
+      ],
+      "images": {
+        "large": "/drivers/MH-P220.EU/assets/images/large.png",
+        "small": "/drivers/MH-P220.EU/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "config_param_1",
+          "type": "checkbox",
+          "label": {
+            "en": "Save dimmer status when power is down",
+            "nl": "Sla de dimmer stand op als de strom uitgevallen is"
+          },
+          "value": true,
+          "zwave": {
+            "index": 1,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_2",
+          "type": "dropdown",
+          "label": {
+            "en": "Switch type",
+            "nl": "Schakelaar type"
+          },
+          "value": "0",
+          "values": [
             {
-                "name": "Jeroen Aartse",
-                "website": "http://www.webdesigntilburg.nl",
-                "email": "jeroen@webdesigntilburg.nl"
+              "id": "0",
+              "label": {
+                "en": "Pulse mode",
+                "nl": "Pulsdruk schakelaar"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Toggle mode",
+                "nl": "Tuimel schaklaar"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "S1 dim up, S2 dim down",
+                "nl": "S1 feller, S2 dimmen"
+              }
             }
-        ]
-    },    
-    "drivers": [
+          ],
+          "zwave": {
+            "index": 2,
+            "size": 1
+          }
+        },
         {
-            "id": "ZP3102.EU",
-            "name": {
-                "en": "ZP3102",
-                "nl": "ZP3102"
+          "id": "config_param_3",
+          "type": "checkbox",
+          "label": {
+            "en": "Toggle dimmer with specified on/off position",
+            "nl": "Tuimel schaklaar met specifieke aan/uit positie"
+          },
+          "value": true,
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "dropdown",
+          "label": {
+            "en": "All on/off",
+            "nl": "Volledig aan/uit"
+          },
+          "value": "255",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Forbit all on and forbit all off",
+                "nl": "Voorkom volledig aan en voorkom volledig uit"
+              }
             },
-            "zwave": {
-                "manufacturerId": [265,305],
-                "productTypeId": 8194,
-                "productId": [515, 517],
-                "learnmode": {
-                    "image": "/drivers/ZP3102.EU/assets/learnmode.svg",
-                    "instruction": {
-                        "en": "Push the program switch on the back",
-                        "nl": "Druk op de programma toets op de achterkant"
-                    }
-                },
-                "associationGroups": [
-                    1
-                ]
+            {
+              "id": "1",
+              "label": {
+                "en": "Forbit all on and allow all off",
+                "nl": "Voorkom volledig aan en volledig uit toestaan"
+              }
             },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_motion",
-                "alarm_tamper",
-                "measure_temperature",
-                "measure_battery"
-            ],
-            "images": {
-                "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
-                "small": "/drivers/ZP3102.EU/assets/images/small.jpg"
+            {
+              "id": "2",
+              "label": {
+                "en": "Allow all on and forbit all off",
+                "nl": "Volledig aan toestaan en voorkom volledig uit"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "Allow all on and allow all off",
+                "nl": "Volledig aan toestaan en volledig uit toestaan"
+              }
             }
+          ],
+          "zwave": {
+            "index": 4,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "RGBWE27ZW.EU",
-            "name": {
-                "en": "RGBW bulb",
-                "nl": "RGBW lamp"
+          "id": "config_param_5",
+          "type": "number",
+          "label": {
+            "en": "Minimum brightness level",
+            "nl": "Minimum brightness niveau"
+          },
+          "value": 1,
+          "attr": {
+            "min": 0,
+            "max": 98
+          },
+          "hint": {
+            "en": "The max level should always higher than min level",
+            "nl": "Het maximum niveau moet altijd hoger zijn dan het minimum niveau"
+          },
+          "zwave": {
+            "index": 5,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_6",
+          "type": "number",
+          "label": {
+            "en": "Maximum brightness level",
+            "nl": "Maximum brightness niveau"
+          },
+          "value": 99,
+          "attr": {
+            "min": 2,
+            "max": 99
+          },
+          "hint": {
+            "en": "The max level should always higher than min level",
+            "nl": "Het maximum niveau moet altijd hoger zijn dan het minimum niveau"
+          },
+          "zwave": {
+            "index": 6,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_7",
+          "type": "number",
+          "label": {
+            "en": "Single dimming step time in ms (manual)",
+            "nl": "Tijd in ms voor een dim stap (handmatig)"
+          },
+          "value": 30,
+          "attr": {
+            "min": 0,
+            "max": 2550,
+            "step": 10
+          },
+          "hint": {
+            "en": "Manual control realized by holding external switch",
+            "nl": "Handmatig bediening door de externe schakelaar ingedrukt te houden"
+          },
+          "zwave": {
+            "index": 7,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_8",
+          "type": "number",
+          "label": {
+            "en": "Percentage single dimming step size (manual)",
+            "nl": "Dim stap grootte in procenten (handmatig)"
+          },
+          "value": 1,
+          "attr": {
+            "min": 1,
+            "max": 9
+          },
+          "hint": {
+            "en": "Manual control realized by holding external switch",
+            "nl": "Handmatig bediening door de externe schakelaar ingedrukt te houden"
+          },
+          "zwave": {
+            "index": 8,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_9",
+          "type": "number",
+          "label": {
+            "en": "Single dimming step time in ms (auto)",
+            "nl": "Tijd in ms voor een dim stap (automatisch)"
+          },
+          "value": 30,
+          "attr": {
+            "min": 0,
+            "max": 2550,
+            "step": 10
+          },
+          "hint": {
+            "en": "Auto control realized by 1 action",
+            "nl": "Automatisch bedienen door uitvoeren van 1 actie"
+          },
+          "zwave": {
+            "index": 9,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_10",
+          "type": "number",
+          "label": {
+            "en": "Percentage single dimming step size (auto)",
+            "nl": "Dim stap grootte in procenten (auto)"
+          },
+          "value": 1,
+          "attr": {
+            "min": 1,
+            "max": 9
+          },
+          "hint": {
+            "en": "Auto control realized by 1 action",
+            "nl": "Automatisch bedienen door uitvoeren van 1 actie"
+          },
+          "zwave": {
+            "index": 10,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_11",
+          "type": "number",
+          "label": {
+            "en": "Timer function (auto-off)",
+            "nl": "Timer functie (automatisch uit)"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "hint": {
+            "en": "Value is in seconds (0 = function off)",
+            "nl": "Geef een waarde in secondes (0 = functie uit)"
+          },
+          "zwave": {
+            "index": 11,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_13",
+          "type": "number",
+          "label": {
+            "en": "Brightness level on one click of S1",
+            "nl": "Brightness niveau na 1 keer drukken van S1"
+          },
+          "value": 99,
+          "attr": {
+            "min": 0,
+            "max": 99
+          },
+          "hint": {
+            "en": "Use 0 for using last saved brightness level",
+            "nl": "Gebruik 0 om het laatste brightness niveau te gebruiken"
+          },
+          "zwave": {
+            "index": 13,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_14",
+          "type": "checkbox",
+          "label": {
+            "en": "Switch to max brightness level on double click of S1",
+            "nl": "Ga naar max brightness niveau na 2 keer drukken van S1"
+          },
+          "value": true,
+          "zwave": {
+            "index": 14,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_15",
+          "type": "dropdown",
+          "label": {
+            "en": "Operation report from S1 to Association Group 2 and 3",
+            "nl": "Operation report van S1 naar Association Group 2 and 3"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Report all options",
+                "nl": "Raporteer alle opties"
+              }
             },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 2,
-                "productId": 2,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Tap on the bulb",
-                        "nl": "Tik op de lamp"
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2
-                ]
+            {
+              "id": "1",
+              "label": {
+                "en": "Report basic set on and dim level",
+                "nl": "Rapporteer basic set on en dim niveau"
+              }
             },
-            "class": "light",
-            "capabilities": [
-                "onoff",
-                "dim",
-                "light_hue",
-                "light_saturation",
-                "light_temperature"
-            ],
-            "images": {
-                "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
-                "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
+            {
+              "id": "2",
+              "label": {
+                "en": "Report basic set off and dim level",
+                "nl": "Rapporteer basic set off en dim niveau"
+              }
+            },
+            {
+              "id": "128",
+              "label": {
+                "en": "Report basic on and off",
+                "nl": "Rapporteer basic on en off"
+              }
+            },
+            {
+              "id": "129",
+              "label": {
+                "en": "Report basic on",
+                "nl": "Rapporteer basic on"
+              }
+            },
+            {
+              "id": "130",
+              "label": {
+                "en": "Report basic off",
+                "nl": "Rapporteer basic off"
+              }
             }
+          ],
+          "zwave": {
+            "index": 15,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "RGBWE2.EU",
-            "name": {
-                "en": "BULB 2",
-                "nl": "BULB 2"
+          "id": "config_param_16",
+          "type": "dropdown",
+          "label": {
+            "en": "Operation report from S1 to Association Group 2",
+            "nl": "Operation report van S1 naar Association Group 2"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "When sent Basic Set On, carried value is 0xFF",
+                "nl": "Wanneer Basic Set On is verzonden, stuur de waarde 0xFF"
+              }
             },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 2,
-                "productId": 3,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Turn on the bulb",
-                        "nl": "Schakel de lamp in"
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2
-                ]
-            },
-            "class": "light",
-            "capabilities": [
-                "onoff",
-                "dim",
-                "light_hue",
-                "light_saturation",
-                "light_temperature"
-            ],
-            "images": {
-                "large": "/drivers/RGBWE2.EU/assets/images/large.png",
-                "small": "/drivers/RGBWE2.EU/assets/images/small.png"
+            {
+              "id": "1",
+              "label": {
+                "en": "When sent Basic Set On, carried value is dim level",
+                "nl": "Wanneer Basic Set On is verzonden, stuur het dim niveau"
+              }
             }
+          ],
+          "zwave": {
+            "index": 16,
+            "size": 1
+          }
         },
         {
-            "id": "PH-PAN04.EU",
-            "name": {
-                "en": "Switch double",
-                "nl": "Dubbele schakelaar"
+          "id": "config_param_17",
+          "type": "dropdown",
+          "label": {
+            "en": "Switch 2 function",
+            "nl": "Schakelaar 2 functie"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Enable S2 switch",
+                "nl": "S2 schakelaar inschakelen"
+              }
             },
-            "zwave": {
-                "manufacturerId": 316,
-                "productTypeId": 1,
-                "productId": 18,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include button three times within 2 seconds.",
-                        "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2,
-                    3
-                ]
+            {
+              "id": "1",
+              "label": {
+                "en": "Enable scene activation and send Basic Set On/Off to AG4",
+                "nl": "Scene activatie inschakelen en stuur Basic Set On/Off naar AG4"
+              }
             },
-            "class": "light",
-            "capabilities": [
-                "onoff",
-                "measure_power",
-                "meter_power"
-            ],
-            "images": {
-                "large": "/drivers/PH-PAN04.EU/assets/images/large.png",
-                "small": "/drivers/PH-PAN04.EU/assets/images/small.png"
+            {
+              "id": "2",
+              "label": {
+                "en": "Scene activation only",
+                "nl": "Alleen scene activatie"
+              }
             },
-            "settings": [
-                {
-                    "id": "config_param_1",
-                    "type": "number",
-                    "label": {
-                        "en": "Watt meter report period (in seconds)",
-                        "nl": "Watt meter rapportage periode (in seconde)"
-                    },
-                    "value": 3600,
-                    "attr": {
-                        "min": 5,
-                        "max": 163835,
-                        "step": 5
-                    },
-                    "hint": {
-                        "en": "If the setting is configured for 3600 seconds (default value), Micromodule will report its instant power consumption every 1 hour",
-                        "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde), zal de module zijn huidig verbruik elk uur doorsturen"
-                    }
-                },
-                {
-                    "id": "config_param_2",
-                    "type": "number",
-                    "label": {
-                        "en": "KWh meter report period (in minutes)",
-                        "nl": "KWh meter rapportage periode (in minuten)"
-                    },
-                    "value": 60,
-                    "attr": {
-                        "min": 10,
-                        "max": 327670,
-                        "step": 10
-                    },
-                    "hint": {
-                        "en": "If the setting is configured for 60 minutes (default value), Micromodule will report its Accumulated Power Consumption (KW/h) every 1 hour",
-                        "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde), zal de module het totale verbruik (KW/h) elk uur doorsturen"
-                    }
-                },
-                {
-                    "id": "config_param_3",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Selected relay",
-                        "nl": "Geselecteerde relay"
-                    },
-                    "value": "3",
-                    "values": [
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Relay 1",
-                                "nl": "Relay 1"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Relay 2",
-                                "nl": "Relay 2"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "label": {
-                                "en": "Relay 1 & Relay 2",
-                                "nl": "Relay 1 & Relay 2"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Set which relay can be controlled and report. Default is relay 1 and 2",
-                        "nl": "Geef hiermee aan welke relay er bestuurd kan worden en kan rapporteren. De standaard waarde is relay 1 en relay 2"
-                    }
-                },
-                {
-                    "id": "config_param_4",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Switch type",
-                        "nl": "Schakelaar type"
-                    },
-                    "value": "1",
-                    "values": [
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Edge mode",
-                                "nl": "Tuimel schaklaar"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Pulse mode",
-                                "nl": "Pulsdruk schakelaar"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "label": {
-                                "en": "Edge-Toggle mode",
-                                "nl": "Rolgordijn schakelaar"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Manual switch S1 and S2 can set to Edge mode or Pulse mode or Edge-Toggle mode, default value is Edge mode.",
-                        "nl": "Schakelaar modus voor S1 en S2 kan ingesteld worden op een tuimelschaklaar of pulsdruk schakelaar. De standaard waarde is tuimel schakelaar."
-                    }
-                },
-                {
-                    "id": "config_param_5",
-                    "type": "number",
-                    "label": {
-                        "en": "Threshold of watt for load caution",
-                        "nl": "Drempel in wattage voor overbelasting."
-                    },
-                    "value": 750,
-                    "attr": {
-                        "min": 10,
-                        "max": 750
-                    },
-                    "hint": {
-                        "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 750.",
-                        "nl": "Verstuur een waarschuwing bij een hogere belasting dan de aangegeven wattage. De standaard waarde is 750"
-                    }
-                },
-                {
-                    "id": "config_param_6",
-                    "type": "number",
-                    "label": {
-                        "en": "Threshold of KWH for load caution",
-                        "nl": "Drempel in KWH voor overbelasting"
-                    },
-                    "value": 10000,
-                    "attr": {
-                        "min": 1,
-                        "max": 10000
-                    },
-                    "hint": {
-                        "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000.",
-                        "nl": "Verstuur een waarschuwing bij een hoger gebruik dan de aangegeven KWh. De standaard waarde is 10000."
-                    }
-                },
-                {
-                    "id": "config_param_7",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Restore switch state mode",
-                        "nl": "Schakelaar mode na stroomuitval"
-                    },
-                    "value": "1",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Switch off",
-                                "nl": "Schakelaar uit"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Last switch state",
-                                "nl": "Laatste status"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Switch on",
-                                "nl": "Schakelaar aan"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Whenever the AC power return from lost, Micromodule will restore the switch state. The default setting is Last switch state",
-                        "nl": "Na stroomuitval, de schakelaar zal dan ingesteld worden op de aangegeven waarde. De standaard waarde is 'laatste status'"
-                    }
-                },
-                {
-                    "id": "config_param_8",
-                    "type": "number",
-                    "label": {
-                        "en": "Auto off timer (in seconds)",
-                        "nl": "Automatisch uitschakelen (in seconden)"
-                    },
-                    "value": 0,
-                    "attr": {
-                        "min": 0,
-                        "max": 32767
-                    },
-                    "hint": {
-                        "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0.",
-                        "nl": "De schakelaar automatisch uitschakelen na x aantal seconden. Gebruik 0 (standaard waarde) om het automatisch uitschakelen uit te zetten."
-                    }
-                },
-                {
-                    "id": "config_param_9",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "RF off command mode",
-                        "nl": "Schaklaar via zwave uit modus"
-                    },
-                    "value": "0",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Switch off",
-                                "nl": "Schakelaar uit"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Ignore",
-                                "nl": "Negeren"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Switch toggle",
-                                "nl": "Wissel schakelaar"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "label": {
-                                "en": "Switch on",
-                                "nl": "Schakelaar aan"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off",
-                        "nl": "Actie die uitgevoerd moet worden wanneer een uit commando ontvangen wordt. Standaard is schakelaar uit."
-                    }
-                },
-                {
-                    "id": "config_param_10",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Existence of endpoint3",
-                        "nl": "Beschikbaarheid van endpoint3"
-                    },
-                    "value": "1",
-                    "values": [
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Endpoint exist",
-                                "nl": "Endpoint bestaat"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "No Endpoint3",
-                                "nl": "Geen endpoint3"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "HM-HS1SA-Z.EU",
-            "name": {
-                "en": "Smart smoke sensor",
-                "nl": "Slimme rookmelder"
+            {
+              "id": "3",
+              "label": {
+                "en": "Send Basic On/Off only",
+                "nl": "Alleen Basic On/Off verzenden"
+              }
             },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 32770,
-                "productId": 4096,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include/network button three times within 1.5 seconds.",
-                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                ]
-            },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_smoke",
-                "measure_battery"
-            ],
-            "images": {
-                "large": "/drivers/HM-HS1SA-Z.EU/assets/images/large.png",
-                "small": "/drivers/HM-HS1SA-Z.EU/assets/images/small.png"
+            {
+              "id": "255",
+              "label": {
+                "en": "Disable S2 function",
+                "nl": "S2 functie uitschakelen"
+              }
             }
+          ],
+          "zwave": {
+            "index": 17,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "HM-HS1CA-Z.EU",
-            "name": {
-                "en": "Smart carbon monoxide sensor",
-                "nl": "Slimme koolmonoxide melder"
+          "id": "config_param_18",
+          "type": "dropdown",
+          "label": {
+            "en": "Operation report from Switch 2 to AG4",
+            "nl": "Status reportage van schakelaar 2 naar AG4"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Send basic On/Off to AG4 when turn on/off S2",
+                "nl": "Stuur Basic On/Off naar AG4 wanneer S2 aan of uit gezet wordt"
+              }
             },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 32773,
-                "productId": 4096,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include/network button three times within 1.5 seconds.",
-                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                ]
+            {
+              "id": "1",
+              "label": {
+                "en": "Only send Basic On",
+                "nl": "Alleen Basic On verzenden"
+              }
             },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_co",
-                "measure_battery"
-            ],
-            "images": {
-                "large": "/drivers/HM-HS1CA-Z.EU/assets/images/large.png",
-                "small": "/drivers/HM-HS1CA-Z.EU/assets/images/small.png"
+            {
+              "id": "2",
+              "label": {
+                "en": "Only send Basic Off",
+                "nl": "Alleen Basic Off verzenden"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "no report to AG4",
+                "nl": "Geen rapportage naar AG4"
+              }
             }
+          ],
+          "zwave": {
+            "index": 18,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "NE-NAS-PD01Z.EU",
-            "name": {
-                "en": "PIR motion sensor",
-                "nl": "PIR bewegingsmelder"
-            },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 3,
-                "productId": 4227,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include/network button three times within 1.5 seconds.",
-                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2,
-                    3,
-                    4
-                ],
-                "wakeUpInterval": 43200
-            },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_motion",
-                "measure_luminance",
-                "measure_battery"
-            ],
-            "images": {
-                "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
-                "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
-            },
-            "settings": [
-                {
-                    "id": "config_param_1",
-                    "type": "number",
-                    "label": {
-                        "en": "Sensivity level",
-                        "nl": "Gevoeligheidsniveau"
-                    },
-                    "value": 12,
-                    "attr": {
-                        "min": 8,
-                        "max": 255
-                    },
-                    "hint": {
-                        "en": "Adjust the sensitivity level with this parameter. 8 means high sensitivity and 255 means low sensitivity. Default is 12.",
-                        "nl": "Pas hiermee het gevoeligheidsniveau aan. 8 is hoge gevoeligheid en 255 betekend lage gevoeligheid. Standaard is 12."
-                    }
-                },
-                {
-                    "id": "config_param_2",
-                    "type": "number",
-                    "label": {
-                        "en": "On/off duration",
-                        "nl": "Aan/uit timer"
-                    },
-                    "value": 30,
-                    "attr": {
-                        "min": 5,
-                        "max": 600
-                    },
-                    "hint": {
-                        "en": "Timeout in seconds before PIR sensor sends off signal. Default value is 30.",
-                        "nl": "Aantal seconden voordat de PIR sensor een uit signaal stuurt. Standaard is 30 seconden."
-                    }
-                },
-                {
-                    "id": "config_param_3",
-                    "type": "number",
-                    "label": {
-                        "en": "Basic set level",
-                        "nl": "Basic set level"
-                    },
-                    "value": 255,
-                    "attr": {
-                        "min": 0,
-                        "max": 255
-                    },
-                    "hint": {
-                        "en": "0 = alarm canceling or turning device off. 1 - 99 is dimlevel. 255 is on. Default is 255",
-                        "nl": "0 = alarm annuleren of apparaat uitschakelen. 1 - 99 is dim niveau. 255 is aan. Standaard is 255"
-                    }
-                },
-                {
-                    "id": "config_param_4",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "PIR sensor",
-                        "nl": "PIR sensor"
-                    },
-                    "value": "255",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Disabled",
-                                "nl": "Uitgeschakeld"
-                            }
-                        },
-                        {
-                            "id": "255",
-                            "label": {
-                                "en": "Enabled",
-                                "nl": "Ingeschakeld"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "config_param_5",
-                    "type": "number",
-                    "label": {
-                        "en": "Ambient illumination lux level",
-                        "nl": "Lichtgevoeligheid"
-                    },
-                    "value": 100,
-                    "attr": {
-                        "min": 0,
-                        "max": 1000
-                    },
-                    "hint": {
-                        "en": "Default value is 100.",
-                        "nl": "Standaard waarde is 100."
-                    }
-                },
-                {
-                    "id": "config_param_6",
-                    "type": "number",
-                    "label": {
-                        "en": "Re-trigger interval",
-                        "nl": "Re-trigger interval"
-                    },
-                    "value": 8,
-                    "attr": {
-                        "min": 1,
-                        "max": 8
-                    },
-                    "hint": {
-                        "en": "Default value is 8.",
-                        "nl": "Standaard waarde is 8."
-                    }
-                },
-                {
-                    "id": "config_param_7",
-                    "type": "number",
-                    "label": {
-                        "en": "Light sensor polling interval",
-                        "nl": "Lichtsensor update interval"
-                    },
-                    "value": 180,
-                    "attr": {
-                        "min": 60,
-                        "max": 3600
-                    },
-                    "hint": {
-                        "en": "Default value is 180 seconden.",
-                        "nl": "Standaard waarde is 180 seconden."
-                    }
-                },
-                {
-                    "id": "config_param_8",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Lux level report",
-                        "nl": "Lichtsensor rapportage"
-                    },
-                    "value": "0",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Disabled",
-                                "nl": "Uitgeschakeld"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Enabled",
-                                "nl": "Ingeschakeld"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "config_param_9",
-                    "type": "number",
-                    "label": {
-                        "en": "Ambient illumination lux level report",
-                        "nl": "Lichtsensor rapportage wijzigingsdrempel"
-                    },
-                    "value": 1,
-                    "attr": {
-                        "min": 0,
-                        "max": 1000
-                    },
-                    "hint": {
-                        "en": "Amount of lux to change when lux level is reported. Default value is 1 lux.",
-                        "nl": "Aantal lux wat veranderd moet zijn voordat de waarde doorgestuurd wordt. Standaard waarde is 1 lux."
-                    }
-                }
-            ]
+          "id": "config_param_19",
+          "type": "number",
+          "label": {
+            "en": "Scene ID sent to AG1 when one click of S1",
+            "nl": "Verstuur scene ID naar AG1 wanneer 1x op S1 is gedrukt"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "hint": {
+            "en": "Use 0 for disable scene activation",
+            "nl": "Gebruik 0 om scane activatie uit te schakelen"
+          },
+          "zwave": {
+            "index": 19,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "PH-PSE02-1B.EU",
-            "name": {
-                "en": "Indoor siren",
-                "nl": "Binnen sirene"
-            },
-            "zwave": {
-                "manufacturerId": 316,
-                "productTypeId": 4,
-                "productId": 10,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include/network button three times within 1.5 seconds.",
-                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1
-                ]
-            },
-            "class": "homealarm",
-            "capabilities": [
-                "onoff",
-                "alarm_tamper"
-            ],
-            "images": {
-                "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
-                "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
-            },
-            "settings": [
-                {
-                    "id": "config_param_7",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Notification Type",
-                        "nl": "Notification Type"
-                    },
-                    "value": "0",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Notification Report",
-                                "nl": "Notification Report"
-                            }
-                        },
-                        {
-                            "id": "16",
-                            "label": {
-                                "en": "Sensor Binary Report",
-                                "nl": "Sensor Binary Report"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "config_param_29",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Disable alarm",
-                        "nl": "Alarm uitschakelen"
-                    },
-                    "value": "0",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "No",
-                                "nl": "Nee"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Yes",
-                                "nl": "Ja"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "After power up, alarm is re-enabled",
-                        "nl": "Na opnieuw opstarten, wordt het alarm opnieuw ingeschakeld"
-                    }
-                },
-                {
-                    "id": "config_param_31",
-                    "type": "number",
-                    "label": {
-                        "en": "Alarm sound duration (in seconds)",
-                        "nl": "Sirene tijd (in seconden)"
-                    },
-                    "value": 180,
-                    "attr": {
-                        "min": 0,
-                        "max": 3810,
-                        "step": 30
-                    },
-                    "hint": {
-                        "en": "0 means never auto stop. Default value is 180 seconds.",
-                        "nl": "0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden."
-                    }
-                }
-            ]
+          "id": "config_param_20",
+          "type": "number",
+          "label": {
+            "en": "Scene ID sent to AG1 when double click of S1",
+            "nl": "Verstuur scene ID naar AG1 wanneer 2x op S1 is gedrukt"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "hint": {
+            "en": "Use 0 for disable scene activation",
+            "nl": "Gebruik 0 om scane activatie uit te schakelen"
+          },
+          "zwave": {
+            "index": 20,
+            "size": 1,
+            "signed": false
+          }
         },
         {
-            "id": "PH-PAN16.EU.G",
-            "name": {
-                "en": "Smart energy plug-in switch",
-                "nl": "Tussenstekker"
-            },
-            "zwave": {
-                "manufacturerId": 316,
-                "productTypeId": 1,
-                "productId": 41,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include button three times within 2 seconds.",
-                        "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1
-                ]
-            },
-            "class": "socket",
-            "capabilities": [
-                "onoff",
-                "measure_power",
-                "meter_power"
-            ],
-            "images": {
-                "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
-                "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"
-            },
-            "settings": [
-                {
-                    "id": "config_param_1",
-                    "type": "number",
-                    "label": {
-                        "en": "Watt meter report period (in seconds)",
-                        "nl": "Watt meter rapportage periode (in seconde)"
-                    },
-                    "value": 3600,
-                    "attr": {
-                        "min": 0,
-                        "max": 163835,
-                        "step": 5
-                    },
-                    "hint": {
-                        "en": "If the setting is configured for 3600 seconds (default value), Micromodule will report its instant power consumption every 1 hour",
-                        "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde), zal de module zijn huidig verbruik elk uur doorsturen"
-                    }
-                },
-                {
-                    "id": "config_param_2",
-                    "type": "number",
-                    "label": {
-                        "en": "KWh meter report period (in minutes)",
-                        "nl": "KWh meter rapportage periode (in minuten)"
-                    },
-                    "value": 60,
-                    "attr": {
-                        "min": 0,
-                        "max": 327670,
-                        "step": 10
-                    },
-                    "hint": {
-                        "en": "If the setting is configured for 60 minutes (default value), Plug-in switch will report its Accumulated Power Consumption (KW/h) every 1 hour",
-                        "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde), zal de module het totale verbruik (KW/h) elk uur doorsturen"
-                    }
-                },
-                {
-                    "id": "config_param_3",
-                    "type": "number",
-                    "label": {
-                        "en": "Threshold of watt for load caution",
-                        "nl": "Drempel in wattage voor overbelasting."
-                    },
-                    "value": 1300,
-                    "attr": {
-                        "min": 10,
-                        "max": 1300
-                    },
-                    "hint": {
-                        "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 1300.",
-                        "nl": "Verstuur een waarschuwing bij een hogere belasting dan de aangegeven wattage. De standaard waarde is 1300"
-                    }
-                },
-                {
-                    "id": "config_param_4",
-                    "type": "number",
-                    "label": {
-                        "en": "Threshold of KWH for load caution",
-                        "nl": "Drempel in KWH voor overbelasting"
-                    },
-                    "value": 10000,
-                    "attr": {
-                        "min": 1,
-                        "max": 10000
-                    },
-                    "hint": {
-                        "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000.",
-                        "nl": "Verstuur een waarschuwing bij een hoger gebruik dan de aangegeven KWh. De standaard waarde is 10000."
-                    }
-                },
-                {
-                    "id": "config_param_5",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "Restore switch state mode",
-                        "nl": "Schakelaar mode na stroomuitval"
-                    },
-                    "value": "1",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Switch off",
-                                "nl": "Schakelaar uit"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Last switch state",
-                                "nl": "Laatste status"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Switch on",
-                                "nl": "Schakelaar aan"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Whenever the AC power return from lost, Plug-in switch will restore the switch state. The default setting is Last switch state",
-                        "nl": "Na stroomuitval, de schakelaar zal dan ingesteld worden op de aangegeven waarde. De standaard waarde is 'laatste status'"
-                    }
-                },
-                {
-                    "id": "config_param_6",
-                    "type": "checkbox",
-                    "label": {
-                        "en": "Mode of Switch Off function",
-                        "nl": "Schakelaar uit functie inschakelen"
-                    },
-                    "value": true,
-                    "hint": {
-                        "en": "Uncheck this option to disable the switch off function.",
-                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
-                    }
-                },
-                {
-                    "id": "config_param_7",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "LED indication mode",
-                        "nl": "LED indicatie modus"
-                    },
-                    "value": "1",
-                    "values": [
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Show switch state",
-                                "nl": "Schakelaar status"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Show night mode",
-                                "nl": "Nacht modus"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "label": {
-                                "en": "One flash mode",
-                                "nl": "Flits modus"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "config_param_8",
-                    "type": "number",
-                    "label": {
-                        "en": "Auto off timer (in seconds)",
-                        "nl": "Automatisch uitschakelen (in seconden)"
-                    },
-                    "value": 0,
-                    "attr": {
-                        "min": 0,
-                        "max": 32767
-                    },
-                    "hint": {
-                        "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0.",
-                        "nl": "De schakelaar automatisch uitschakelen na x aantal seconden. Gebruik 0 (standaard waarde) om het automatisch uitschakelen uit te zetten."
-                    }
-                },
-                {
-                    "id": "config_param_9",
-                    "type": "dropdown",
-                    "label": {
-                        "en": "RF off command mode",
-                        "nl": "Schaklaar via zwave uit modus"
-                    },
-                    "value": "0",
-                    "values": [
-                        {
-                            "id": "0",
-                            "label": {
-                                "en": "Switch off",
-                                "nl": "Schakelaar uit"
-                            }
-                        },
-                        {
-                            "id": "1",
-                            "label": {
-                                "en": "Ignore",
-                                "nl": "Negeren"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "label": {
-                                "en": "Switch toggle",
-                                "nl": "Wissel schakelaar"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "label": {
-                                "en": "Switch on",
-                                "nl": "Schakelaar aan"
-                            }
-                        }
-                    ],
-                    "hint": {
-                        "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off",
-                        "nl": "Actie die uitgevoerd moet worden wanneer een uit commando ontvangen wordt. Standaard is schakelaar uit."
-                    }
-                },
-                {
-                    "id": "config_param_11",
-                    "type": "checkbox",
-                    "label": {
-                        "en": "Mode of Switch Off function",
-                        "nl": "Schakelaar uit functie inschakelen"
-                    },
-                    "value": true,
-                    "hint": {
-                        "en": "Uncheck this option to disable the switch off function.",
-                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
-                    }
-                },
-                {
-                    "id": "config_param_12",
-                    "type": "checkbox",
-                    "label": {
-                        "en": "Mode of Switch Off function",
-                        "nl": "Schakelaar uit functie inschakelen"
-                    },
-                    "value": true,
-                    "hint": {
-                        "en": "Uncheck this option to disable the switch off function.",
-                        "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
-                    }
-                },
-                {
-                    "id": "config_param_13",
-                    "type": "number",
-                    "label": {
-                        "en": "Adjustable overload",
-                        "nl": "Overbelastig beveiliging"
-                    },
-                    "value": 1450,
-                    "attr": {
-                        "min": 450,
-                        "max": 1450
-                    },
-                    "hint": {
-                        "en": "The overload current can be adjustable from 4.5A to 14.5A. The default value is 1450 for 14.5A",
-                        "nl": "De overbelasting beveiling kan aangepast worden van 4,5A tot 14,5A. De standaard waaarde is 1450, wat 14,5A betekend."
-                    }
-                }
-            ]
-        },
-        {
-            "id": "VS-ZD2201.EU",
-            "name": {
-                "en": "Multisensor 4 in 1",
-                "nl": "Multisensor 4 in 1"
-            },
-            "zwave": {
-                "manufacturerId": 265,
-                "productTypeId": 8223,
-                "productId": 7952,
-                "learnmode": {
-                    "image": "/drivers/VS-ZD2201.EU/assets/learnmode.svg",
-                    "instruction": {
-                        "en": "Push the switch on the bottom",
-                        "nl": "Druk op de knop op de onderkant"
-                    }
-                },
-                "associationGroups": [
-                    1,2,3
-                ]
-            },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_contact",
-                "alarm_tamper",
-                "measure_temperature",
-                "measure_humidity",
-                "measure_luminance",
-                "measure_battery"
-            ],
-            "images": {
-                "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
-                "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
-            },
-            "settings": [
-                {
-                    "id": "temperature_unit",
-                    "type": "checkbox",
-                    "label": {
-                        "en": "Temperature unit Kelvin",
-                        "nl": "Temperatuur melden in Kelvin"
-                    },
-                    "hint": {
-                        "en": "Default is Celcius, Check on is Kelvin ",
-                        "nl": "Standaard is Celcius, Check aan is Kelvin"
-                    },
-                    "value": false
-                },
-                {
-                    "id": "temperature_delta",
-                    "type": "number",
-                    "label": {
-                        "en": "Defines the temperature delta for report.",
-                        "nl": "Pas de temperatuur aan die gemeld wordt."
-                    },
-                    "value": 10,
-                    "attr": {
-                        "min": 1,
-                        "max": 50
-                    },
-                    "hint": {
-                        "en": "Value is multiplied by 0.1. So 10 means 1°С/°F",
-                        "nl": "Waarde wordt vermenigvuldigd met 0.1. Dus 10 betekent 1°С/°F "
-                    }
-                },
-                {
-                    "id": "humidity_delta",
-                    "type": "number",
-                    "label": {
-                        "en": "The humidity delta for report.",
-                        "nl": "Pas de vochtigheid van die gemeld wordt."
-                    },
-                    "value": 10,
-                    "attr": {
-                        "min": 1,
-                        "max": 50
-                    },
-                    "hint": {
-                        "en": "Value is %",
-                        "nl": "Waarde is % "
-                    }
-                },
-                {
-                    "id": "light_delta",
-                    "type": "number",
-                    "label": {
-                        "en": "The light delta for report.",
-                        "nl": "Pas de lichtsterkte aan die gemeld wordt."
-                    },
-                    "value": 10,
-                    "attr": {
-                        "min": 0,
-                        "max": 50
-                    },
-                    "hint": {
-                        "en": "0 = off  Value is %",
-                        "nl": "0 = uit  Waarde is % "
-                    }
-                }
-            ]
-        },
-        {
-            "id": "HM-HS1WL-Z.EU",
-            "name": {
-                "en": "Smart water leakage sensor",
-                "nl": "Water lekkage sensor"
-            },
-            "zwave": {
-                "manufacturerId": 305,
-                "productTypeId": 32772,
-                "productId": 4096,
-                "learnmode": {
-                    "instruction": {
-                        "en": "Press include/network button three times within 1.5 seconds.",
-                        "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-                    }
-                },
-                "associationGroups": [
-                    1,
-                    2,
-                    3,
-                    4
-                ]
-            },
-            "class": "sensor",
-            "capabilities": [
-                "alarm_water",
-                "measure_battery",
-                "alarm_tamper"
-            ],
-            "images": {
-                "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
-                "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
-            }
+          "id": "config_param_21",
+          "type": "number",
+          "label": {
+            "en": "Scene ID sent to AG1 when hold S1",
+            "nl": "Verstuur scene ID naar AG1 wanneer S1 ingedrukt is"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "hint": {
+            "en": "Use 0 for disable scene activation",
+            "nl": "Gebruik 0 om scane activatie uit te schakelen"
+          },
+          "zwave": {
+            "index": 20,
+            "size": 1,
+            "signed": false
+          }
         }
-    ],
-    "flow": {
-        "actions": [
+      ]
+    },
+    {
+      "id": "NE-NAS-PD01Z.EU",
+      "name": {
+        "en": "PIR motion sensor",
+        "nl": "PIR bewegingsmelder"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 4227,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include/network button three times within 1.5 seconds.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "associationGroupsOptions": {},
+        "wakeUpInterval": 43200
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_motion",
+        "measure_luminance",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
+        "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
+      },
+      "settings": [
+        {
+          "id": "config_param_1",
+          "type": "number",
+          "label": {
+            "en": "Sensivity level",
+            "nl": "Gevoeligheidsniveau"
+          },
+          "value": 12,
+          "attr": {
+            "min": 8,
+            "max": 255
+          },
+          "hint": {
+            "en": "Adjust the sensitivity level with this parameter. 8 means high sensitivity and 255 means low sensitivity. Default is 12.",
+            "nl": "Pas hiermee het gevoeligheidsniveau aan. 8 is hoge gevoeligheid en 255 betekend lage gevoeligheid. Standaard is 12."
+          },
+          "zwave": {
+            "index": 1,
+            "size": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_2",
+          "type": "number",
+          "label": {
+            "en": "On/off duration",
+            "nl": "Aan/uit timer"
+          },
+          "value": 30,
+          "attr": {
+            "min": 5,
+            "max": 600
+          },
+          "hint": {
+            "en": "Timeout in seconds before PIR sensor sends off signal. Default value is 30.",
+            "nl": "Aantal seconden voordat de PIR sensor een uit signaal stuurt. Standaard is 30 seconden."
+          },
+          "zwave": {
+            "index": 2,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_3",
+          "type": "number",
+          "label": {
+            "en": "Basic set level",
+            "nl": "Basic set level"
+          },
+          "value": 255,
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "hint": {
+            "en": "0 = alarm canceling or turning device off. 1 - 99 is dimlevel. 255 is on. Default is 255",
+            "nl": "0 = alarm annuleren of apparaat uitschakelen. 1 - 99 is dim niveau. 255 is aan. Standaard is 255"
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "dropdown",
+          "label": {
+            "en": "PIR sensor",
+            "nl": "PIR sensor"
+          },
+          "value": "255",
+          "values": [
             {
-                "id": "PH-PSE02-1B.EU-turn_alarm_on",
-                "title": {
-                    "en": "Turn siren on",
-                    "nl": "Zet sirene aan"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=PH-PSE02-1B.EU"
-                    }
-                ]
+              "id": "0",
+              "label": {
+                "en": "Disabled",
+                "nl": "Uitgeschakeld"
+              }
             },
             {
-                "id": "PH-PSE02-1B.EU-turn_alarm_off",
-                "title": {
-                    "en": "Turn siren off",
-                    "nl": "Zet sirene uit"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=PH-PSE02-1B.EU"
-                    }
-                ]
+              "id": "255",
+              "label": {
+                "en": "Enabled",
+                "nl": "Ingeschakeld"
+              }
             }
+          ],
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_5",
+          "type": "number",
+          "label": {
+            "en": "Ambient illumination lux level",
+            "nl": "Lichtgevoeligheid"
+          },
+          "value": 100,
+          "attr": {
+            "min": 0,
+            "max": 1000
+          },
+          "hint": {
+            "en": "Default value is 100.",
+            "nl": "Standaard waarde is 100."
+          },
+          "zwave": {
+            "index": 5,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_6",
+          "type": "number",
+          "label": {
+            "en": "Re-trigger interval",
+            "nl": "Re-trigger interval"
+          },
+          "value": 8,
+          "attr": {
+            "min": 1,
+            "max": 8
+          },
+          "hint": {
+            "en": "Default value is 8.",
+            "nl": "Standaard waarde is 8."
+          },
+          "zwave": {
+            "index": 6,
+            "size": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_7",
+          "type": "number",
+          "label": {
+            "en": "Light sensor polling interval",
+            "nl": "Lichtsensor update interval"
+          },
+          "value": 180,
+          "attr": {
+            "min": 60,
+            "max": 3600
+          },
+          "hint": {
+            "en": "Default value is 180 seconden.",
+            "nl": "Standaard waarde is 180 seconden."
+          },
+          "zwave": {
+            "index": 7,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_8",
+          "type": "dropdown",
+          "label": {
+            "en": "Lux level report",
+            "nl": "Lichtsensor rapportage"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Disabled",
+                "nl": "Uitgeschakeld"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Enabled",
+                "nl": "Ingeschakeld"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 8,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_9",
+          "type": "number",
+          "label": {
+            "en": "Ambient illumination lux level report",
+            "nl": "Lichtsensor rapportage wijzigingsdrempel"
+          },
+          "value": 1,
+          "attr": {
+            "min": 0,
+            "max": 1000
+          },
+          "hint": {
+            "en": "Amount of lux to change when lux level is reported. Default value is 1 lux.",
+            "nl": "Aantal lux wat veranderd moet zijn voordat de waarde doorgestuurd wordt. Standaard waarde is 1 lux."
+          },
+          "zwave": {
+            "index": 9,
+            "size": 2,
+            "signed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "PH-PAN04.EU",
+      "name": {
+        "en": "Switch double",
+        "nl": "Dubbele schakelaar"
+      },
+      "zwave": {
+        "manufacturerId": 316,
+        "productTypeId": 1,
+        "productId": 18,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include button three times within 2 seconds.",
+            "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "measure_power",
+        "meter_power"
+      ],
+      "images": {
+        "large": "/drivers/PH-PAN04.EU/assets/images/large.png",
+        "small": "/drivers/PH-PAN04.EU/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "config_param_1",
+          "type": "number",
+          "label": {
+            "en": "Watt meter report period (in seconds)",
+            "nl": "Watt meter rapportage periode (in seconde)"
+          },
+          "value": 720,
+          "attr": {
+            "min": 1,
+            "max": 32767
+          },
+          "hint": {
+            "en": "If the setting is configured for 3600 seconds (default value: 3600/5 = 720), Micromodule will report its instant power consumption every 1 hour",
+            "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde: 3600/5 = 720), zal de module zijn huidig verbruik elk uur doorsturen"
+          },
+          "zwave": {
+            "index": 1,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_2",
+          "type": "number",
+          "label": {
+            "en": "KWh meter report period (in minutes)",
+            "nl": "KWh meter rapportage periode (in minuten)"
+          },
+          "value": 6,
+          "attr": {
+            "min": 1,
+            "max": 32767
+          },
+          "hint": {
+            "en": "If the setting is configured for 60 minutes (default value: 60/10 = 6), Micromodule will report its Accumulated Power Consumption (KW/h) every 1 hour",
+            "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde: 60/10 = 6), zal de module het totale verbruik (KW/h) elk uur doorsturen"
+          },
+          "zwave": {
+            "index": 2,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_3",
+          "type": "dropdown",
+          "label": {
+            "en": "Selected relay",
+            "nl": "Geselecteerde relay"
+          },
+          "value": "3",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Relay 1",
+                "nl": "Relay 1"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Relay 2",
+                "nl": "Relay 2"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Relay 1 & Relay 2",
+                "nl": "Relay 1 & Relay 2"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Set which relay can be controlled and report. Default is relay 1 and 2",
+            "nl": "Geef hiermee aan welke relay er bestuurd kan worden en kan rapporteren. De standaard waarde is relay 1 en relay 2"
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "dropdown",
+          "label": {
+            "en": "Switch type",
+            "nl": "Schakelaar type"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Edge mode",
+                "nl": "Tuimel schaklaar"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Pulse mode",
+                "nl": "Pulsdruk schakelaar"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Edge-Toggle mode",
+                "nl": "Rolgordijn schakelaar"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Manual switch S1 and S2 can set to Edge mode or Pulse mode or Edge-Toggle mode, default value is Edge mode.",
+            "nl": "Schakelaar modus voor S1 en S2 kan ingesteld worden op een tuimelschaklaar of pulsdruk schakelaar. De standaard waarde is tuimel schakelaar."
+          },
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_5",
+          "type": "number",
+          "label": {
+            "en": "Threshold of watt for load caution",
+            "nl": "Drempel in wattage voor overbelasting."
+          },
+          "value": 750,
+          "attr": {
+            "min": 10,
+            "max": 750
+          },
+          "hint": {
+            "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 750.",
+            "nl": "Verstuur een waarschuwing bij een hogere belasting dan de aangegeven wattage. De standaard waarde is 750"
+          },
+          "zwave": {
+            "index": 5,
+            "size": 2
+          }
+        },
+        {
+          "id": "config_param_6",
+          "type": "number",
+          "label": {
+            "en": "Threshold of KWH for load caution",
+            "nl": "Drempel in KWH voor overbelasting"
+          },
+          "value": 10000,
+          "attr": {
+            "min": 1,
+            "max": 10000
+          },
+          "hint": {
+            "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000.",
+            "nl": "Verstuur een waarschuwing bij een hoger gebruik dan de aangegeven KWh. De standaard waarde is 10000."
+          },
+          "zwave": {
+            "index": 6,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_7",
+          "type": "dropdown",
+          "label": {
+            "en": "Restore switch state mode",
+            "nl": "Schakelaar mode na stroomuitval"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Switch off",
+                "nl": "Schakelaar uit"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Last switch state",
+                "nl": "Laatste status"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Switch on",
+                "nl": "Schakelaar aan"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Whenever the AC power return from lost, Micromodule will restore the switch state. The default setting is Last switch state",
+            "nl": "Na stroomuitval, de schakelaar zal dan ingesteld worden op de aangegeven waarde. De standaard waarde is 'laatste status'"
+          },
+          "zwave": {
+            "index": 7,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_8",
+          "type": "number",
+          "label": {
+            "en": "Auto off timer (in seconds)",
+            "nl": "Automatisch uitschakelen (in seconden)"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 32767
+          },
+          "hint": {
+            "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0.",
+            "nl": "De schakelaar automatisch uitschakelen na x aantal seconden. Gebruik 0 (standaard waarde) om het automatisch uitschakelen uit te zetten."
+          },
+          "zwave": {
+            "index": 8,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_9",
+          "type": "dropdown",
+          "label": {
+            "en": "RF off command mode",
+            "nl": "Schaklaar via zwave uit modus"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Switch off",
+                "nl": "Schakelaar uit"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Ignore",
+                "nl": "Negeren"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Switch toggle",
+                "nl": "Wissel schakelaar"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Switch on",
+                "nl": "Schakelaar aan"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off",
+            "nl": "Actie die uitgevoerd moet worden wanneer een uit commando ontvangen wordt. Standaard is schakelaar uit."
+          },
+          "zwave": {
+            "index": 9,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_10",
+          "type": "dropdown",
+          "label": {
+            "en": "Existence of endpoint3",
+            "nl": "Beschikbaarheid van endpoint3"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Endpoint exist",
+                "nl": "Endpoint bestaat"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "No Endpoint3",
+                "nl": "Geen endpoint3"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 10,
+            "size": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "PH-PAN16.EU.G",
+      "name": {
+        "en": "Smart energy plug-in switch",
+        "nl": "Tussenstekker"
+      },
+      "zwave": {
+        "manufacturerId": 316,
+        "productTypeId": 1,
+        "productId": 41,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include button three times within 2 seconds.",
+            "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff",
+        "measure_power",
+        "meter_power"
+      ],
+      "images": {
+        "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
+        "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "config_param_1",
+          "type": "number",
+          "label": {
+            "en": "Watt meter report period (in seconds)",
+            "nl": "Watt meter rapportage periode (in seconde)"
+          },
+          "value": 720,
+          "attr": {
+            "min": 0,
+            "max": 32767
+          },
+          "hint": {
+            "en": "If the setting is configured for 3600 seconds (default value: 3600/5 = 720), Micromodule will report its instant power consumption every 1 hour",
+            "nl": "Als de waarde ingesteld is op 3600 seconden (standaard waarde: 3600/5 = 720), zal de module zijn huidig verbruik elk uur doorsturen"
+          },
+          "zwave": {
+            "index": 1,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_2",
+          "type": "number",
+          "label": {
+            "en": "KWh meter report period (in minutes)",
+            "nl": "KWh meter rapportage periode (in minuten)"
+          },
+          "value": 6,
+          "attr": {
+            "min": 0,
+            "max": 32767
+          },
+          "hint": {
+            "en": "If the setting is configured for 60 minutes (default value: 60/10 = 6), Plug-in switch will report its Accumulated Power Consumption (KW/h) every 1 hour",
+            "nl": "Als de waarde ingesteld is op 60 minuten (standaard waarde: 60/10 = 6), zal de module het totale verbruik (KW/h) elk uur doorsturen"
+          },
+          "zwave": {
+            "index": 2,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_3",
+          "type": "number",
+          "label": {
+            "en": "Threshold of watt for load caution",
+            "nl": "Drempel in wattage voor overbelasting."
+          },
+          "value": 1300,
+          "attr": {
+            "min": 10,
+            "max": 1300
+          },
+          "hint": {
+            "en": "This is a warning when the wattage of load over the preset threshold value. The default value is 1300.",
+            "nl": "Verstuur een waarschuwing bij een hogere belasting dan de aangegeven wattage. De standaard waarde is 1300"
+          },
+          "zwave": {
+            "index": 3,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "number",
+          "label": {
+            "en": "Threshold of KWH for load caution",
+            "nl": "Drempel in KWH voor overbelasting"
+          },
+          "value": 10000,
+          "attr": {
+            "min": 1,
+            "max": 10000
+          },
+          "hint": {
+            "en": "This is a warning when the KWh of load exceeds preset threshold value. The default value is 10000.",
+            "nl": "Verstuur een waarschuwing bij een hoger gebruik dan de aangegeven KWh. De standaard waarde is 10000."
+          },
+          "zwave": {
+            "index": 4,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_5",
+          "type": "dropdown",
+          "label": {
+            "en": "Restore switch state mode",
+            "nl": "Schakelaar mode na stroomuitval"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Switch off",
+                "nl": "Schakelaar uit"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Last switch state",
+                "nl": "Laatste status"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Switch on",
+                "nl": "Schakelaar aan"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Whenever the AC power return from lost, Plug-in switch will restore the switch state. The default setting is Last switch state",
+            "nl": "Na stroomuitval, de schakelaar zal dan ingesteld worden op de aangegeven waarde. De standaard waarde is 'laatste status'"
+          },
+          "zwave": {
+            "index": 5,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_6",
+          "type": "checkbox",
+          "label": {
+            "en": "Mode of Switch Off function",
+            "nl": "Schakelaar uit functie inschakelen"
+          },
+          "value": true,
+          "hint": {
+            "en": "Uncheck this option to disable the switch off function.",
+            "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+          },
+          "zwave": {
+            "index": 6,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_7",
+          "type": "dropdown",
+          "label": {
+            "en": "LED indication mode",
+            "nl": "LED indicatie modus"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "Show switch state",
+                "nl": "Schakelaar status"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Show night mode",
+                "nl": "Nacht modus"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "One flash mode",
+                "nl": "Flits modus"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 7,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_8",
+          "type": "number",
+          "label": {
+            "en": "Auto off timer (in seconds)",
+            "nl": "Automatisch uitschakelen (in seconden)"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 32767
+          },
+          "hint": {
+            "en": "Whenever Micromodule switches to on, the auto off timer begin to count down. After the timer decrease to zero, it will switch off automatically. However if Auto off timer is set as 0, the auto off function will be disabled. The default setting is 0.",
+            "nl": "De schakelaar automatisch uitschakelen na x aantal seconden. Gebruik 0 (standaard waarde) om het automatisch uitschakelen uit te zetten."
+          },
+          "zwave": {
+            "index": 8,
+            "size": 2,
+            "signed": false
+          }
+        },
+        {
+          "id": "config_param_9",
+          "type": "dropdown",
+          "label": {
+            "en": "RF off command mode",
+            "nl": "Schaklaar via zwave uit modus"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Switch off",
+                "nl": "Schakelaar uit"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Ignore",
+                "nl": "Negeren"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "Switch toggle",
+                "nl": "Wissel schakelaar"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Switch on",
+                "nl": "Schakelaar aan"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Whenever a switch off command is received, it could be interpreted as 4 kinds of commands. The default is switch off",
+            "nl": "Actie die uitgevoerd moet worden wanneer een uit commando ontvangen wordt. Standaard is schakelaar uit."
+          },
+          "zwave": {
+            "index": 9,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_11",
+          "type": "checkbox",
+          "label": {
+            "en": "Mode of Switch Off function",
+            "nl": "Schakelaar uit functie inschakelen"
+          },
+          "value": true,
+          "hint": {
+            "en": "Uncheck this option to disable the switch off function.",
+            "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+          },
+          "zwave": {
+            "index": 11,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_12",
+          "type": "checkbox",
+          "label": {
+            "en": "Mode of Switch Off function",
+            "nl": "Schakelaar uit functie inschakelen"
+          },
+          "value": true,
+          "hint": {
+            "en": "Uncheck this option to disable the switch off function.",
+            "nl": "Zet deze optie uit om de tussenstekker niet uit te laten schakelen."
+          },
+          "zwave": {
+            "index": 12,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_13",
+          "type": "number",
+          "label": {
+            "en": "Adjustable overload",
+            "nl": "Overbelastig beveiliging"
+          },
+          "value": 1450,
+          "attr": {
+            "min": 450,
+            "max": 1450
+          },
+          "hint": {
+            "en": "The overload current can be adjustable from 4.5A to 14.5A. The default value is 1450 for 14.5A",
+            "nl": "De overbelasting beveiling kan aangepast worden van 4,5A tot 14,5A. De standaard waaarde is 1450, wat 14,5A betekend."
+          },
+          "zwave": {
+            "index": 13,
+            "size": 2,
+            "signed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "PH-PSE02-1B.EU",
+      "name": {
+        "en": "Indoor siren",
+        "nl": "Binnen sirene"
+      },
+      "zwave": {
+        "manufacturerId": [
+          316,
+          305
+        ],
+        "productTypeId": 4,
+        "productId": 10,
+        "learnmode": {
+          "instruction": {
+            "en": "Press include/network button three times within 1.5 seconds.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "onoff",
+        "alarm_tamper"
+      ],
+      "images": {
+        "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
+        "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "config_param_7",
+          "type": "dropdown",
+          "label": {
+            "en": "Notification Type",
+            "nl": "Notification Type"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Notification Report",
+                "nl": "Notification Report"
+              }
+            },
+            {
+              "id": "16",
+              "label": {
+                "en": "Sensor Binary Report",
+                "nl": "Sensor Binary Report"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 7,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_29",
+          "type": "dropdown",
+          "label": {
+            "en": "Disable alarm",
+            "nl": "Alarm uitschakelen"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "No",
+                "nl": "Nee"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "Yes",
+                "nl": "Ja"
+              }
+            }
+          ],
+          "hint": {
+            "en": "After power up, alarm is re-enabled",
+            "nl": "Na opnieuw opstarten, wordt het alarm opnieuw ingeschakeld"
+          },
+          "zwave": {
+            "index": 29,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_31",
+          "type": "number",
+          "label": {
+            "en": "Alarm sound duration (in seconds)",
+            "nl": "Sirene tijd (in seconden)"
+          },
+          "value": 6,
+          "attr": {
+            "min": 0,
+            "max": 127
+          },
+          "hint": {
+            "en": "0 means never auto stop. Default value is 180 seconds (180 / 30 = 6).",
+            "nl": "0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden (180 / 30 = 6)."
+          },
+          "zwave": {
+            "index": 31,
+            "size": 1,
+            "signed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "RGBWE2.EU",
+      "name": {
+        "en": "BULB 2",
+        "nl": "BULB 2"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 3,
+        "learnmode": {
+          "instruction": {
+            "en": "Turn on the bulb",
+            "nl": "Schakel de lamp in"
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "images": {
+        "large": "/drivers/RGBWE2.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE2.EU/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "config_param_2",
+          "type": "number",
+          "label": {
+            "en": "Strobe interval",
+            "nl": "Stroboscoopinterval"
+          },
+          "hint": {
+            "en": "Strobe interval, in units of 10 milliseconds",
+            "nl": "Strobe-interval, in eenheden van 10 milliseconden"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 25
+          },
+          "zwave": {
+            "index": 2,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_3",
+          "type": "number",
+          "label": {
+            "en": "Strobe pulse count",
+            "nl": "Aantal stroboscooppulsen"
+          },
+          "hint": {
+            "en": "Number of strobe pulses. Setting this parameter to value 127 makes the bulbe strobe indefinitely",
+            "nl": "Aantal stroboscooppulsen. Door deze parameter in te stellen op waarde 127, blijft de blub knipperen"
+          },
+          "value": 0,
+          "attr": {
+            "min": 0,
+            "max": 127
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_4",
+          "type": "checkbox",
+          "label": {
+            "en": "Randomize strobe pulse color",
+            "nl": "Willekeurige knipperpulskleur"
+          },
+          "value": false,
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        },
+        {
+          "id": "config_param_255",
+          "type": "dropdown",
+          "label": {
+            "en": "Reset bulb to factory settings",
+            "nl": "Lamp naar fabrieksinstellingen resetten"
+          },
+          "value": "1",
+          "values": [
+            {
+              "id": "1",
+              "label": {
+                "en": "No",
+                "nl": "Nee"
+              }
+            },
+            {
+              "id": "2290649224",
+              "label": {
+                "en": "Yes",
+                "nl": "Ja"
+              }
+            }
+          ],
+          "zwave": {
+            "index": 255,
+            "size": 4,
+            "signed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "RGBWE27ZW.EU",
+      "name": {
+        "en": "RGBW bulb",
+        "nl": "RGBW lamp"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 2,
+        "learnmode": {
+          "instruction": {
+            "en": "Tap on the bulb",
+            "nl": "Tik op de lamp"
+          }
+        },
+        "associationGroups": [
+          1,
+          2
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "images": {
+        "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
+      }
+    },
+    {
+      "id": "VS-ZD2201.EU",
+      "name": {
+        "en": "Multisensor 4 in 1",
+        "nl": "Multisensor 4 in 1"
+      },
+      "zwave": {
+        "manufacturerId": 265,
+        "productTypeId": 8223,
+        "productId": 7952,
+        "learnmode": {
+          "instruction": {
+            "en": "Push the switch on the bottom",
+            "nl": "Druk op de knop op de onderkant"
+          }
+        },
+        "associationGroups": [
+          1,
+          2,
+          3
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_contact",
+        "alarm_tamper",
+        "measure_temperature",
+        "measure_humidity",
+        "measure_luminance",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
+      },
+      "settings": [
+        {
+          "id": "temperature_unit",
+          "type": "checkbox",
+          "label": {
+            "en": "Temperature unit Kelvin",
+            "nl": "Temperatuur melden in Kelvin"
+          },
+          "hint": {
+            "en": "Default is Celcius, Check on is Kelvin ",
+            "nl": "Standaard is Celcius, Check aan is Kelvin"
+          },
+          "value": false,
+          "zwave": {
+            "index": 1,
+            "size": 1
+          }
+        },
+        {
+          "id": "temperature_delta",
+          "type": "number",
+          "label": {
+            "en": "Defines the temperature delta for report.",
+            "nl": "Pas de temperatuur aan die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 1,
+            "max": 50
+          },
+          "hint": {
+            "en": "Value is multiplied by 0.1. So 10 means 1°С/°F",
+            "nl": "Waarde wordt vermenigvuldigd met 0.1. Dus 10 betekent 1°С/°F "
+          },
+          "zwave": {
+            "index": 2,
+            "size": 1
+          }
+        },
+        {
+          "id": "humidity_delta",
+          "type": "number",
+          "label": {
+            "en": "The humidity delta for report.",
+            "nl": "Pas de vochtigheid van die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 1,
+            "max": 50
+          },
+          "hint": {
+            "en": "Value is %",
+            "nl": "Waarde is % "
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "light_delta",
+          "type": "number",
+          "label": {
+            "en": "The light delta for report.",
+            "nl": "Pas de lichtsterkte aan die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 0,
+            "max": 50
+          },
+          "hint": {
+            "en": "0 = off  Value is %",
+            "nl": "0 = uit  Waarde is % "
+          },
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "VS-ZD2301.EU",
+      "name": {
+        "en": "4 in 1 Door Sensor",
+        "nl": "4 in 1 Deur Sensor"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 8223,
+        "productId": 7968,
+        "learnmode": {
+          "instruction": {
+            "en": "Push the program switch once",
+            "nl": "Druk eenmaal op de programmeer knop"
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_contact",
+        "alarm_tamper",
+        "measure_temperature",
+        "measure_humidity",
+        "measure_luminance",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"
+      },
+      "settings": [
+        {
+          "id": "temperature_unit",
+          "type": "checkbox",
+          "label": {
+            "en": "Temperature unit Kelvin",
+            "nl": "Temperatuur melden in Kelvin"
+          },
+          "hint": {
+            "en": "Default is Celcius, Check on is Kelvin ",
+            "nl": "Standaard is Celcius, Check aan is Kelvin"
+          },
+          "value": false,
+          "zwave": {
+            "index": 1,
+            "size": 1
+          }
+        },
+        {
+          "id": "temperature_delta",
+          "type": "number",
+          "label": {
+            "en": "Defines the temperature delta for report.",
+            "nl": "Pas de temperatuur aan die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 1,
+            "max": 50
+          },
+          "hint": {
+            "en": "Value is multiplied by 0.1. So 10 means 1°С/°F",
+            "nl": "Waarde wordt vermenigvuldigd met 0.1. Dus 10 betekent 1°С/°F "
+          },
+          "zwave": {
+            "index": 2,
+            "size": 1
+          }
+        },
+        {
+          "id": "humidity_delta",
+          "type": "number",
+          "label": {
+            "en": "The humidity delta for report.",
+            "nl": "Pas de vochtigheid van die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 1,
+            "max": 50
+          },
+          "hint": {
+            "en": "Value is %",
+            "nl": "Waarde is % "
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          }
+        },
+        {
+          "id": "light_delta",
+          "type": "number",
+          "label": {
+            "en": "The light delta for report.",
+            "nl": "Pas de lichtsterkte aan die gemeld wordt."
+          },
+          "value": 10,
+          "attr": {
+            "min": 0,
+            "max": 50
+          },
+          "hint": {
+            "en": "0 = off  Value is %",
+            "nl": "0 = uit  Waarde is % "
+          },
+          "zwave": {
+            "index": 4,
+            "size": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "WT-RFID.EU",
+      "name": {
+        "en": "Mini RFID keypad",
+        "nl": "Mini RFID keypad"
+      },
+      "zwave": {
+        "manufacturerId": 151,
+        "productTypeId": 24881,
+        "productId": 17665,
+        "learnmode": {
+          "image": "/drivers/WT-RFID.EU/assets/learnmode.svg",
+          "instruction": {
+            "en": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine.",
+            "nl": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {},
+        "wakeUpInterval": 900,
+        "defaultConfiguration": [
+          {
+            "id": 7,
+            "size": 1,
+            "value": 0
+          }
         ]
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "measure_battery",
+        "alarm_tamper",
+        "user_code_report",
+        "homealarm_state",
+        "my_gateway_control"
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "battery",
+            "capabilities": [
+              "measure_battery"
+            ]
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "homealarm_state",
+              "alarm_tamper"
+            ]
+          }
+        ]
+      },
+      "images": {
+        "large": "/drivers/WT-RFID.EU/assets/images/large.png",
+        "small": "/drivers/WT-RFID.EU/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "set_to_default",
+          "zwave": {
+            "index": 1,
+            "size": 1
+          },
+          "type": "dropdown",
+          "label": {
+            "en": "Reset to factory settings",
+            "nl": "Fabrieksinstellingen terugzetten"
+          },
+          "hint": {
+            "en": "Set all configuration values to default values (factory settings).",
+            "nl": "Zet alle configuratie waarden terug naar de standaard instellingen."
+          },
+          "value": "170",
+          "values": [
+            {
+              "id": "170",
+              "label": {
+                "en": "Don't reset settings",
+                "nl": "Wis gegevens niet"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Reset to factory settings",
+                "nl": "Fabrieksinstellingen terugzetten"
+              }
+            }
+          ]
+        },
+        {
+          "id": "feedback_time",
+          "zwave": {
+            "index": 2,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "label": {
+            "en": "Feedback time",
+            "nl": "Terugkoppel tijd"
+          },
+          "hint": {
+            "en": "To configure the time the beep is automatically turned off in seconds (0 = off, 1 - 244 = value in seconds, 255 = not turned off, default 15).",
+            "nl": "De tijd waarna de piep automatisch uitgezet wordt. (0 = uit, 1 - 244 = waarde in seconden, 255 = nooit, standaard: 15)."
+          },
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "value": 15
+        },
+        {
+          "id": "feedback_timeout",
+          "zwave": {
+            "index": 3,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "label": {
+            "en": "Feedback timeout",
+            "nl": "Terugkoppel timeout"
+          },
+          "hint": {
+            "en": "To configure the timeout to wait for a WAKEUP_NO_MORE_INFORMATION before the error beep is automatically sound. The error beeps are fixed 8 beeps shortly after each other (0 = off, 1 - 255 = value in seconds. Default 0).",
+            "nl": "Tijd waarna, bij het niet ontvangen van een WAKEUP_NO_MORE_INFORMATION frame van Homey, het apparaat error geluiden laad horen. De error piep is altijd 8 piepjes kort na elkaar (0 = uit, 1 - 255 = waarde in seconden, standaard: 0)."
+          },
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "value": 0
+        },
+        {
+          "id": "feedback_beeps_per_second",
+          "zwave": {
+            "index": 4,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "label": {
+            "en": "Feedback beeps per second",
+            "nl": "Terugekoppeling piepjes per seconde"
+          },
+          "hint": {
+            "en": "To configure the number of beeps per second. Every beep is fixed about 10ms (0 = off, 1 - 255 = number of beeps per second. Default: 2)",
+            "nl": "Het aantal piepjes per seconde. Elke piep duurt 10ms (0 = uit, 1 - 255 = aantal piepjes per seconde. Standaard: 2)."
+          },
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "value": 2
+        },
+        {
+          "id": "always_awake_mode",
+          "zwave": {
+            "index": 5,
+            "size": 1
+          },
+          "type": "dropdown",
+          "label": {
+            "en": "Always awake mode",
+            "nl": "Altijd wakker modus"
+          },
+          "value": "0",
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "Mode 1, normal operating mode",
+                "nl": "Mode 1, normale modus"
+              }
+            },
+            {
+              "id": "3",
+              "label": {
+                "en": "Always awake mode, Z-Wave chip is always on to request e.g. version or manufacturer id",
+                "nl": "Altijd wakker modus, Z-Wave chip is altijd klaar om een verzoek te ontvangen"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ZP3102.EU",
+      "name": {
+        "en": "ZP3102",
+        "nl": "ZP3102"
+      },
+      "zwave": {
+        "manufacturerId": 265,
+        "productTypeId": 8194,
+        "productId": [
+          515,
+          517
+        ],
+        "learnmode": {
+          "image": "/drivers/ZP3102.EU/assets/learnmode.svg",
+          "instruction": {
+            "en": "Push the program switch on the back",
+            "nl": "Druk op de programma toets op de achterkant"
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_motion",
+        "alarm_tamper",
+        "measure_temperature",
+        "measure_battery"
+      ],
+      "images": {
+        "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
+        "small": "/drivers/ZP3102.EU/assets/images/small.jpg"
+      }
     }
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "PH-PSE02-1B.EU-turn_alarm_off",
+        "title": {
+          "en": "Turn siren off",
+          "nl": "Zet sirene uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-turn_alarm_on",
+        "title": {
+          "en": "Turn siren on",
+          "nl": "Zet sirene aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-play_sound",
+        "title": {
+          "en": "Play sound",
+          "nl": "Speel geluid"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No sound"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Emergency sound"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Fire alert"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Ambulance sound"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Police car sound"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Door chime"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Beep Beep"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RGBWE2.EU-strobe_on",
+        "title": {
+          "en": "Strobe on",
+          "nl": "Stroboscoop aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=RGBWE2.EU"
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "min": 1,
+            "max": 127,
+            "placeholder": {
+              "en": "Count",
+              "nl": "Aantal"
+            }
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 1,
+            "max": 25,
+            "placeholder": {
+              "en": "Interval",
+              "nl": "Interval"
+            }
+          },
+          {
+            "name": "random_color",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Current color",
+                  "nl": "Huidige kleur"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Random color",
+                  "nl": "Willekeurige kleur"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RGBWE2.EU-strobe_off",
+        "title": {
+          "en": "Strobe off",
+          "nl": "Stroboscoop uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=RGBWE2.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-toggle_person_away",
+        "title": {
+          "en": "Mark as away",
+          "nl": "Is afwezig"
+        },
+        "hint": {
+          "en": "Select a person to set the status of the person to away.",
+          "nl": "Selecteer een persoon om de status van deze persoon op afwezig te zetten."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
+          {
+            "name": "person",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Who has gone away?",
+              "nl": "Wie is er afwezig?"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-toggle_person_home",
+        "title": {
+          "en": "Mark as home",
+          "nl": "Is thuis"
+        },
+        "hint": {
+          "en": "Select a person to set the status of the person to home.",
+          "nl": "Selecteer een persoon om de status van deze persoon op thuis te zetten."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
+          {
+            "name": "person",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Who came home?",
+              "nl": "Wie is er thuis?"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ZP3102.EU-set_motion",
+        "title": {
+          "en": "Force motion",
+          "nl": "Forceer beweging"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ZP3102.EU"
+          },
+          {
+            "name": "motion",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "No motion",
+                  "nl": "Geen beweging"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Motion detected",
+                  "nl": "Beweging"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "id": "WT-RFID.EU-start_scene",
+        "title": {
+          "en": "Scene activated",
+          "nl": "Scene geactiveerd"
+        },
+        "hint": {
+          "en": "Triggered when a user presses numbers without pressing home/away first. Please note that trying to trigger multiple scenes after each other without an home/away event screws up the tag reader in sending some random scene numbers somehow.",
+          "nl": "Wordt uitgevoerd wanneer iemand een nummber indrukt zonder home/away te gebruiken. Houdt er rekening mee dat als je meerdere scenes achter alkaar wilt uitvoeren zonder dat er een home/away event tussen zit dat de tag reader dan random scene nummers verstuurd naar Homey en er geen touw meer aan vast te knopen is."
+        },
+        "tokens": [
+          {
+            "name": "sceneId",
+            "type": "number",
+            "title": {
+              "en": "Scene ID",
+              "nl": "Scene Nr"
+            },
+            "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-user_away",
+        "title": {
+          "en": "User is away",
+          "nl": "Iemand is weggegaan"
+        },
+        "hint": {
+          "en": "Triggered when a user presses the away button of this tag reader and presents a valid code / tag.",
+          "nl": "Wordt uitgevoerd wanneer iemand op de afwezig knop van deze tag reader drukt en een geldige code / tag invoert."
+        },
+        "tokens": [
+          {
+            "name": "userId",
+            "type": "number",
+            "title": {
+              "en": "User ID",
+              "nl": "Gebruikers ID"
+            },
+            "example": 2
+          },
+          {
+            "name": "userName",
+            "title": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "example": {
+              "en": "Test",
+              "nl": "Test"
+            }
+          },
+          {
+            "name": "tagId",
+            "type": "number",
+            "title": {
+              "en": "Tag ID",
+              "nl": "Tag ID"
+            },
+            "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-user_home",
+        "title": {
+          "en": "User is home",
+          "nl": "Iemand is thuis gekomen"
+        },
+        "hint": {
+          "en": "Triggered when a user presses the home button of this tag reader and enters a valid code / presents a valid tag.",
+          "nl": "Wordt uitgevoerd wanneer iemand op de thuis knop van deze tag reader drukt en een geldige code / tag ingevoerd wordt."
+        },
+        "tokens": [
+          {
+            "name": "userId",
+            "type": "number",
+            "title": {
+              "en": "User ID",
+              "nl": "Gebruikers ID"
+            },
+            "example": 2
+          },
+          {
+            "name": "userName",
+            "title": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "example": {
+              "en": "Test",
+              "nl": "Test"
+            }
+          },
+          {
+            "name": "tagId",
+            "type": "number",
+            "title": {
+              "en": "Tag ID",
+              "nl": "Tag ID"
+            },
+            "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-user_system_away",
+        "title": {
+          "en": "System armed",
+          "nl": "Systeem geactiveerd"
+        },
+        "hint": {
+          "en": "Triggered when a user presses the away button on a tag reader and presents a valid code / tag.",
+          "nl": "Wordt uitgevoerd wanneer iemand op de afwezig knop op de tag reader drukt en een geldige code / tag invoert."
+        },
+        "tokens": [
+          {
+            "name": "userId",
+            "type": "number",
+            "title": {
+              "en": "User ID",
+              "nl": "Gebruikers ID"
+            },
+            "example": 2
+          },
+          {
+            "name": "userName",
+            "title": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "example": {
+              "en": "Test",
+              "nl": "Test"
+            }
+          },
+          {
+            "name": "tagId",
+            "type": "number",
+            "title": {
+              "en": "Tag ID",
+              "nl": "Tag ID"
+            },
+            "example": 1
+          },
+          {
+            "name": "deviceId",
+            "title": {
+              "en": "Keypad ID",
+              "nl": "Keypad ID"
+            },
+            "example": {
+              "en": "123x",
+              "nl": "123x"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-user_system_home",
+        "title": {
+          "en": "System disarmed",
+          "nl": "Systeem gedeactiveerd"
+        },
+        "hint": {
+          "en": "Triggered when a user presses the home button on a tag reader and presents a valid code / tag.",
+          "nl": "Wordt uitgevoerd wanneer iemand op de thuis knop op de tag reader drukt en een geldige code / tag invoert."
+        },
+        "tokens": [
+          {
+            "name": "userId",
+            "type": "number",
+            "title": {
+              "en": "User ID",
+              "nl": "Gebruikers ID"
+            },
+            "example": 2
+          },
+          {
+            "name": "userName",
+            "title": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "example": {
+              "en": "Test",
+              "nl": "Test"
+            }
+          },
+          {
+            "name": "tagId",
+            "type": "number",
+            "title": {
+              "en": "Tag ID",
+              "nl": "Tag ID"
+            },
+            "example": 1
+          },
+          {
+            "name": "deviceId",
+            "title": {
+              "en": "RFID keypad ID",
+              "nl": "RFID keypad ID"
+            },
+            "example": {
+              "en": "123x",
+              "nl": "123x"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "WT-RFID.EU-is_at_home",
+        "title": {
+          "en": "Is !{{|not}} at home",
+          "nl": "Is !{{|niet}} thuis"
+        },
+        "hint": {
+          "en": "Select a person to check if this person is home or away.",
+          "nl": "Selecteer een persoon om te controleren of deze persoon thuis of afwezig is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          },
+          {
+            "name": "person",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Who?",
+              "nl": "Wie?"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-system_is_armed",
+        "title": {
+          "en": "Is !{{|not}} armed"
+        },
+        "hint": {
+          "en": "If the system is armed.",
+          "nl": "If the system is armed."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      }
+    ]
+  },
+  "capabilities": {
+    "alarm_report": {
+      "type": "number",
+      "title": {
+        "en": "Alarm Report User ID",
+        "nl": "Alarm Rapport Gebruiker ID"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "status",
+        "nl": "status"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "my_gateway_control": {
+      "type": "number",
+      "title": {
+        "en": "Gateway Events",
+        "nl": "Gateway Events"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "event",
+        "nl": "event"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "user_code_report": {
+      "type": "number",
+      "title": {
+        "en": "User Code Report",
+        "nl": "Gebruikerscode Rapport"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "status",
+        "nl": "status"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  }
 }

@@ -1,0 +1,34 @@
+{
+    "id": "PH-PAN04.EU",
+    "name": {
+        "en": "Switch double",
+        "nl": "Dubbele schakelaar"
+    },
+    "zwave": {
+        "manufacturerId": 316,
+        "productTypeId": 1,
+        "productId": 18,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include button three times within 2 seconds.",
+                "nl": "Druk de programmeer knop 3 keer in binnen 2 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "light",
+    "capabilities": [
+        "onoff",
+        "measure_power",
+        "meter_power"
+    ],
+    "images": {
+        "large": "/drivers/PH-PAN04.EU/assets/images/large.png",
+        "small": "/drivers/PH-PAN04.EU/assets/images/small.png"
+    }
+}

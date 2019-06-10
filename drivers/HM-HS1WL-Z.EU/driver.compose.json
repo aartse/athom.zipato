@@ -1,0 +1,35 @@
+{
+    "id": "HM-HS1WL-Z.EU",
+    "name": {
+        "en": "Smart water leakage sensor",
+        "nl": "Water lekkage sensor"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 32772,
+        "productId": 4096,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include/network button three times within 1.5 seconds.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_water",
+        "measure_battery",
+        "alarm_tamper"
+    ],
+    "images": {
+        "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
+        "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "triggers": [
+  ],
+  "conditions": [
+  ],
+  "actions": [
+    {
+      "$extends":"strobe_on",
+      "id": "RGBWE2.EU-strobe_on"
+    },
+    {
+      "$extends":"strobe_off",
+      "id": "RGBWE2.EU-strobe_off"
+    }
+  ]
+}

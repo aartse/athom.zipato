@@ -1,0 +1,31 @@
+{
+    "id": "PH-PSE02-1B.EU",
+    "name": {
+        "en": "Indoor siren",
+        "nl": "Binnen sirene"
+    },
+    "zwave": {
+        "manufacturerId": [316, 305],
+        "productTypeId": 4,
+        "productId": 10,
+        "learnmode": {
+            "instruction": {
+                "en": "Press include/network button three times within 1.5 seconds.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "homealarm",
+    "capabilities": [
+        "onoff",
+        "alarm_tamper"
+    ],
+    "images": {
+        "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
+        "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "id": "WT-RFID.EU",
+    "name": {
+        "en": "Mini RFID keypad",
+        "nl": "Mini RFID keypad"
+    },
+    "zwave": {
+        "manufacturerId": 151,
+        "productTypeId": 24881,
+        "productId": 17665,
+        "learnmode": {
+            "image": "/drivers/WT-RFID.EU/assets/learnmode.svg",
+            "instruction": {
+                "en": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine.",
+                "nl": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine."
+            }
+        },
+        "associationGroups": [
+            1
+        ],
+        "associationGroupsOptions": {},
+        "wakeUpInterval": 900,
+        "defaultConfiguration": [{
+            "id": 7,
+            "size": 1,
+            "value": 0
+        }]
+    },
+    "class": "homealarm",
+    "capabilities": [
+        "measure_battery",
+        "alarm_tamper",
+        "user_code_report",
+        "homealarm_state",
+        "my_gateway_control"
+    ],
+    "mobile": {
+        "components": [
+            {
+                "id": "icon"
+            },
+            {
+                "id": "battery",
+                "capabilities": [ "measure_battery" ]
+            },
+            {
+            "id": "sensor",
+            "capabilities": [ "homealarm_state", "alarm_tamper" ]
+            }
+        ]
+    },
+    "images": {
+        "large": "/drivers/WT-RFID.EU/assets/images/large.png",
+        "small": "/drivers/WT-RFID.EU/assets/images/small.png"
+    }
+}

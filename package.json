@@ -1,14 +1,20 @@
 {
   "name": "nl.aartse.zipato",
-  "version": "1.0.0",
-  "description": "This app adds support for Zipato Motion sensor in Homey",
+  "version": "2.2.1",
+  "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aartse/athom.zipato.git"
+  },
   "dependencies": {
-    "tinycolor2": "git+https://github.com/bgrins/TinyColor.git",
-    "homey-zwavedriver": "git+https://github.com/aartse/node-homey-zwavedriver.git"
+    "homey-log": "^1.0.6",
+    "homey-meshdriver": "^1.2.30"
   },
   "devDependencies": {},
   "scripts": {
+    "run": "homeyConfig compose && athom app run",
+    "install": "homeyConfig compose && athom app install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

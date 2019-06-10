@@ -1,0 +1,36 @@
+{
+    "id": "RGBWE27ZW.EU",
+    "name": {
+        "en": "RGBW bulb",
+        "nl": "RGBW lamp"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 2,
+        "productId": 2,
+        "learnmode": {
+            "instruction": {
+                "en": "Tap on the bulb",
+                "nl": "Tik op de lamp"
+            }
+        },
+        "associationGroups": [
+            1,
+            2
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "light",
+    "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+    ],
+    "images": {
+        "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
+        "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
+    }
+}

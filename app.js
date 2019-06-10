@@ -1,7 +1,11 @@
 "use strict";
 
-function init() {
-	Homey.log("Zipato app started");
+const Homey = require('homey');
+
+class ZipatoApp extends Homey.App {
+	onInit() {
+		this.log(`${Homey.manifest.id} running...`);
+	}
 }
 
-module.exports.init = init;
+module.exports = ZipatoApp;

@@ -1,0 +1,35 @@
+{
+    "id": "VS-ZD2301.EU",
+    "name": {
+        "en": "4 in 1 Door Sensor",
+        "nl": "4 in 1 Deur Sensor"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 8223,
+        "productId": 7968,
+        "learnmode": {
+            "instruction": {
+                "en": "Push the program switch once",
+                "nl": "Druk eenmaal op de programmeer knop"
+            }
+        },
+        "associationGroups": [
+            1
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_contact",
+        "alarm_tamper",
+        "measure_temperature",
+        "measure_humidity",
+        "measure_luminance",
+        "measure_battery"
+    ],
+    "images": {
+        "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "triggers": [
+  ],
+  "conditions": [
+  ],
+  "actions": [
+    {
+      "$extends":"set_motion",
+      "id": "ZP3102.EU-set_motion"
+    }
+  ]
+}

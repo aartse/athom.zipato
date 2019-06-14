@@ -19,7 +19,32 @@
 			"title": "Zipato RFID keypad settings",
 			"buttons": {
 				"logs": "Logs",
-				"devices": "Devices"
+				"devices": "Devices",
+				"clearEventLog": "Clear event log",
+				"clearTags": "Clear tags",
+				"toggleTag": "Toggle tag registration on/off"
+			},
+			"titles": {
+				"readers": "Readers",
+				"tags": "Tags"
+			},
+			"descriptions": {
+				"clearTags": "Please use the below settings only when you are really sure you want to reset the settings of the tags in Homey (and therefore in most cases need to rebuild your flows and reset your Tag Readers as well).",
+				"allowTags": "Registration of new tags is allowed",
+				"denyTags": "Registration of new tags is not allowed"
+			},
+			"messages": {
+				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
+				"eventLogClearedConfirmation": "The event log is cleared.",
+				"confirmClearTags": "Clear all tags from the Homey cache. Please note that you should reset all your devices to factory settings and start adding the tags and codes again. Are you sure?",
+				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
+				"toggleTagStatusConfirmed": "Tag registration status switched",
+				"usersSavedErrorTitle": "Error saving users: ",
+				"usersSavedConfirmation": "Users succesfully saved",
+				"userDeleted": "User deleted, click on save user settings to commit the delete",
+				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
+				"noTags": "No tags available.",
+				"noReaders": "No tag readers available."
 			}
 		},
 
@@ -45,7 +70,6 @@
 			},
 			"messages":
 			{
-				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
 				"userNameUnknown": "Unknown",
 				"deviceUnknown": "Unknown"
 			}
@@ -92,25 +116,6 @@
 				"tags": "Tags",
 				"tagApproval": "Tag Approval",
 				"tagApprovalStatus": "Current status: Unknown"
-			},
-			"messages":
-			{
-				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
-				"eventLogClearedConfirmation": "The event log is cleared.",
-				"confirmClearTags": "Clear all tags from the Homey cache. Please note that you should reset all your devices to factory settings and start adding the tags and codes again. Are you sure?",
-				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
-				"allowTags": "Registration of new tags is allowed",
-				"denyTags": "Registration of new tags is not allowed",
-				"toggleTagStatusConfirmedTitle": "Tag registration status switched: ",
-				"usersSavedErrorTitle": "Error saving users: ",
-				"usersSavedConfirmation": "Users succesfully saved",
-				"userDeleted": "User deleted, click on save user settings to commit the delete"
-			},
-			"buttons":
-			{
-				"clearEventLog": "Clear event log",
-				"clearTags": "Clear tags",
-				"toggleTag": "Toggle tag registration on/off"
 			}
 		},
 		"buttons":

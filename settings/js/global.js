@@ -55,8 +55,6 @@ function openPage(url, js)
 
 function previousPage()
 {
-	console.log(pages);
-
 	if (pages.length > 1) {
 		pages.pop();
 		var page = pages[pages.length-1];
@@ -83,7 +81,7 @@ function showMessage(title, messageText, style)
 	}
 
 	// show message
-	document.getElementById('message').innerHTML = message;
+	document.getElementById('message').innerHTML = '<span>' + message + '</span>';
 	document.getElementById('message').setAttribute('class', 'alert alert-' + style);
 
 	// auto hide message
@@ -101,19 +99,20 @@ function hideMessage()
 function createTable(rows)
 {
 	var table = document.createElement("table");
-
-	var tableRow = document.createElement("tr");
-	table.appendChild(tableRow);
+	table.setAttribute('class', 'decorated');
 
 	for (var i=0; i<rows.length; i++) {
 		var row = rows[i];
 
+		var tableRow = document.createElement("tr");
+		table.appendChild(tableRow);
+
 		var tableLabel = document.createElement("th");
-		tableLabel.text = row.label;
+		tableLabel.innerText = row.label;
 		tableRow.appendChild(tableLabel);
 
 		var tableValue = document.createElement("td");
-		tableValue.text = row.value;
+		tableValue.innerText = row.value;
 		tableRow.appendChild(tableValue);
 	}
 

@@ -24,43 +24,9 @@
 	<br /><br />
 	<fieldset>
 		<legend data-i18n="settings.advanced.title"></legend>
-		<table id="systemAdvancedSettings" class="zipato">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody id="systemAdvancedSettingsBody">
-				<tr>
-					<td data-i18n="settings.advanced.table.tagApproval"></td>
-					<td><button class="left zipato" style="display:block" onclick="toggleTagStatus()" data-i18n="settings.advanced.buttons.toggleTag"></button></td>
-					<td id="currentTagStatus" data-i18n="settings.advanced.table.tagApprovalStatus"></td>
-				</tr>
-			</tbody>
-		</table>
-		<br /><br />
-		<p data-i18n="settings.advanced.description"></p>
-		<table id="systemAdvancedSettings" class="zipato">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td data-i18n="settings.advanced.table.tags"></td>
-					<td colspan='2'><button class="left zipato" style="display:block" onclick="clearTags()" data-i18n="settings.advanced.buttons.clearTags" ></button></td>
-				</tr>
-			</tbody>
-		</table>
+		<button class="full-width" onclick="openPage('rfid/devices.html', 'rfid/js/devices.js');" data-i18n="settings.rfid.buttons.devices"></button>
+		<br />
+		<br />
+		<button class="full-width" onclick="openPage('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
     </fieldset>
-	<br />
-	<button class="full-width" onclick="openPage('rfid/devices.html', 'rfid/js/devices.js');" data-i18n="settings.rfid.buttons.devices"></button>
-	<br />
-	<br />
-	<button class="full-width" onclick="openPage('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
 </div>

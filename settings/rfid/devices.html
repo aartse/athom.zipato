@@ -2,17 +2,23 @@
 	<h2 data-i18n="settings.rfid.title"></h2>
 
 	<fieldset>
-		<legend data-i18n="settings.devices.title"></legend>
-        <table id="systemDevices" class="zipato">
-			<thead>
-				<tr>
-					<th data-i18n="settings.devices.table.deviceId"></th>
-					<th data-i18n="settings.devices.table.status"></th>
-					<th data-i18n="settings.devices.table.lastUpdated"></th>
-				</tr>
-			</thead>
-			<tbody id="systemDevicesBody">
-			</tbody>
-		</table>
+		<legend data-i18n="settings.rfid.titles.readers"></legend>
+
+		<div id="systemDevices" data-i18n="settings.loading"></div>
+
+		<p id="currentTagStatus"></p>
+
+		<button class="full-width" onclick="toggleTagStatus()" data-i18n="settings.rfid.buttons.toggleTag"></button>
+
+    </fieldset>
+
+	<fieldset>
+		<legend data-i18n="settings.rfid.titles.tags"></legend>
+
+		<div id="systemTags" data-i18n="settings.loading"></div>
+
+		<p data-i18n="settings.rfid.descriptions.clearTags"></p>
+
+		<button class="hy-nostyle danger full-width" onclick="clearTags()" data-i18n="settings.rfid.buttons.clearTags" ></button>
     </fieldset>
 </div>

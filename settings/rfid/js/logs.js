@@ -1,6 +1,4 @@
-var lastEventLogs = null;
-
-function reloadEventLogs()
+function loadEventLogs()
 {
 	Homey.get('systemEventLog', function(err, eventLogs) {
 
@@ -14,13 +12,12 @@ function reloadEventLogs()
 		
 		// check if eventLogs is loaded
 		if (typeof eventLogs === 'undefined' || eventLogs === null || eventLogs.length === 0) {
-			systemEventLogContent.innerText = __('settings.systemEventLog.messages.noEventsYet');
+			systemEventLogContent.innerText = __('settings.rfid.messages.noEventsYet');
 			return;
 		}
 
 		// clear log
 		systemEventLogContent.innerHTML = '';
-		lastEventLogs = eventLogs;
 		
 		// load log
 		for (var i=0; i<eventLogs.length; i++) {
@@ -28,7 +25,7 @@ function reloadEventLogs()
 			var rows = new Array();
 
 			//add date
-			var date = new Date(logEntry.time);
+			var date = new Date(eventLog.time);
 			rows.push({
 				label: __('settings.systemEventLog.table.datetime'),
 				value: date.toString()
@@ -37,28 +34,28 @@ function reloadEventLogs()
 			//add event
 			rows.push({
 				label: __('settings.systemEventLog.table.event'),
-				value: __('settings.systemEventLog.eventTypes.s' + logEntry.statusCode)
+				value: __('settings.systemEventLog.eventTypes.s' + eventLog.statusCode)
 			});
 
 			//add device
-			if (logEntry.deviceId !== null || logEntry.deviceName !== null) {
+			if (eventLog.deviceId !== null || eventLog.deviceName !== null) {
 				rows.push({
 					label: __('settings.systemEventLog.table.device'),
-					value: (logEntry.deviceName !== null ? logEntry.deviceName : logEntry.deviceId)
+					value: (eventLog.deviceName !== null ? eventLog.deviceName : eventLog.deviceId)
 				});
 			}
 
 			//add tag
 			rows.push({
 				label: __('settings.systemEventLog.table.tagOrCode'),
-				value: logEntry.tagId
+				value: eventLog.tagId
 			});
 
 			//add user
-			if (logEntry.userName !== null) {
+			if (eventLog.userName !== null) {
 				rows.push({
 					label: __('settings.systemEventLog.table.person'),
-					value: logEntry.userName + ' (' + logEntry.userId + ')'
+					value: eventLog.userName + ' (' + eventLog.userId + ')'
 				});
 			}
 
@@ -69,28 +66,18 @@ function reloadEventLogs()
 
 function clearEventLog()
 {
-	Homey.confirm(__('settings.advanced.messages.confirmClearEventLog'), 'warning', function(err, result) {
+	Homey.confirm(__('settings.rfid.messages.confirmClearEventLog'), 'warning', function(err, result) {
 		if (result === true) {
+
+			// reset logs
 			document.getElementById('systemEventLogs').innerText = __('settings.loading');
 			
-			// return when lastEventLogs is empty
-			if (lastEventLogs === null) {
-				showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
-				previousPage();
-				return;
-			}
-
 			// reset systemEventLog
-			Homey.set('systemEventLog', new Array(), function(err) {
-				if (err) {
-					showMessage('Error clearing event log', err, 'danger');	
-				} else {
-					showMessage('', __('settings.advanced.messages.eventLogClearedConfirmation'), 'success');
-				}
-				
-				// Current page is nothing left todo, so close page and load previous page
-				previousPage();
-			});
+			Homey.set('systemEventLog', new Array());
+			showMessage('', __('settings.rfid.messages.eventLogClearedConfirmation'), 'success');
+
+			// Current page is nothing left todo, so close page and load previous page
+			previousPage();
 		}
 	});
 
@@ -99,4 +86,4 @@ function clearEventLog()
 }
 
 // init load event logs
-reloadEventLogs();
+loadEventLogs();

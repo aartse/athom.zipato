@@ -18,6 +18,7 @@
 		"rfid": {
 			"title": "Zipato RFID keypad settings",
 			"buttons": {
+				"addUser": "Add user",
 				"logs": "Logs",
 				"devices": "Devices",
 				"clearEventLog": "Clear event log",
@@ -42,6 +43,7 @@
 				"usersSavedErrorTitle": "Error saving users: ",
 				"usersSavedConfirmation": "Users succesfully saved",
 				"userDeleted": "User deleted, click on save user settings to commit the delete",
+				"noUserssYet": "No users available",
 				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
 				"noTags": "No tags available.",
 				"noReaders": "No tag readers available."

@@ -3,30 +3,17 @@
 
 	<fieldset>
 		<legend data-i18n="settings.users.title"></legend>
-        <table id="systemUser" class="zipato">
-			<thead>
-				<tr>
-					<th data-i18n="settings.users.table.userId"></th>
-					<th data-i18n="settings.users.table.userName"></th>
-					<th data-i18n="settings.users.table.tags"></th>
-					<th data-i18n="settings.users.table.status"></th>
-					<th data-i18n="settings.users.table.edit"></th>
-				</tr>
-			</thead>
-			<tbody id="systemUserBody">
-			</tbody>
-		</table>
-		
-		<br /><br />
-		<button class="left zipato" style="display:block" onclick="addNewUserRow()" data-i18n="settings.buttons.addUser"></button>
-		<button class="left zipato" style="display:block" onclick="saveUsers()" data-i18n="settings.buttons.saveSettings" ></button>
+
+		<div id="userList" data-i18n="settings.loading"></div>
+
+		<button class="full-width" onclick="app.page.open('rfid/user.html', 'rfid/js/user.js');" data-i18n="settings.rfid.buttons.addUser"></button>
     </fieldset>
-	<br /><br />
+	<br />
 	<fieldset>
 		<legend data-i18n="settings.advanced.title"></legend>
-		<button class="full-width" onclick="openPage('rfid/devices.html', 'rfid/js/devices.js');" data-i18n="settings.rfid.buttons.devices"></button>
+		<button class="full-width" onclick="app.page.open('rfid/devices.html', 'rfid/js/devices.js');" data-i18n="settings.rfid.buttons.devices"></button>
 		<br />
 		<br />
-		<button class="full-width" onclick="openPage('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
+		<button class="full-width" onclick="app.page.open('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
     </fieldset>
 </div>

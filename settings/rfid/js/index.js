@@ -32,7 +32,7 @@
 				//add name
 				rows.push({
 					label: __('settings.systemEventLog.table.person'),
-					value: __(user.name)
+					value: user.name
 				});
 
 				//add status
@@ -41,7 +41,22 @@
 					value: __('settings.systemEventLog.eventTypes.s' + user.statusCode)
 				});
 
-				userList.appendChild(app.createTable(rows));
+				//add status
+				rows.push({
+					label: __('settings.users.table.tags'),
+					value: user.tagIds.join(',')
+				});
+
+				//add edit button
+				var editButton = document.createElement("button");
+				editButton.className = 'hy-nostyle full-width';
+				editButton.innerText = __('settings.users.table.edit');
+				editButton.user = user;
+				editButton.onclick = function() {
+					app.page.open('rfid/user.html', 'rfid/js/user.js', {user: this.user});
+				}
+
+				userList.appendChild(app.createTable(rows, {editButton: editButton}));
 			}
 		});
 	}

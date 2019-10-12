@@ -97,7 +97,7 @@ var app = (function() {
 			data.text().then(function(response) {
 		    	var jsModule = eval(response);
 		    	if (typeof jsModule === 'function') {
-		    		page.module = jsModule(app);
+		    		page.module = jsModule(app, page.args);
 		    	}
 		    });
 	    })
@@ -109,7 +109,7 @@ var app = (function() {
 	/**
 	 * Open new page
 	 */
-	function openPage(url, js)
+	function openPage(url, js, args)
 	{
 		//destroy current page
 		if (pages.length > 1) {
@@ -122,7 +122,8 @@ var app = (function() {
 		//save page to pages stack
 		var page = {
 			url: url,
-			js: js
+			js: js,
+			args: args
 		};
 		pages.push(page);
 
@@ -181,7 +182,7 @@ var app = (function() {
 		document.getElementById('message').setAttribute('class', '');
 	}
 
-	function createTable(rows)
+	function createTable(rows, args)
 	{
 		var table = document.createElement("table");
 		table.setAttribute('class', 'decorated');
@@ -199,6 +200,18 @@ var app = (function() {
 			var tableValue = document.createElement("td");
 			tableValue.innerText = row.value;
 			tableRow.appendChild(tableValue);
+		}
+
+		if (typeof args !== 'undefined') {
+			if (typeof args.editButton !== 'undefined') {
+				var tableRow = document.createElement("tr");
+				table.appendChild(tableRow);
+
+				var tableValue = document.createElement("td");
+				tableValue.colSpan=2;
+				tableValue.appendChild(args.editButton);
+				tableRow.appendChild(tableValue);
+			}
 		}
 
 		return table;

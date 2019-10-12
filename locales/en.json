@@ -23,7 +23,9 @@
 				"devices": "Devices",
 				"clearEventLog": "Clear event log",
 				"clearTags": "Clear tags",
-				"toggleTag": "Toggle tag registration on/off"
+				"toggleTag": "Toggle tag registration on/off",
+				"saveUser": "Save user",
+				"deleteUser": "Delete user"
 			},
 			"titles": {
 				"readers": "Readers",
@@ -83,9 +85,9 @@
 			{
 				"userId": "#",
 				"userName": "Name",
-				"tags": "Tags belonging to user",
+				"tags": "Tag ID",
 				"status": "Current status",
-				"edit": "Remove"
+				"edit": "Edit"
 			},
 			"messages":
 			{

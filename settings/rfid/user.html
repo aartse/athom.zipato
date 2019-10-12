@@ -1,1 +1,20 @@
-user.html
+<div>
+	<h2 data-i18n="settings.rfid.title"></h2>
+
+	<fieldset>
+		<legend data-i18n="settings.users.title"></legend>
+
+        <div class="field row">
+            <label for="name">Name</label>
+            <input id="name" type="text" value="" />
+        </div>
+
+        <div class="field row">
+            <label for="tags">Tags</label>
+        </div>
+
+        <button class="full-width hy-nostyle" id="saveButton" data-i18n="settings.rfid.buttons.saveUser"></button>
+
+        <button class="full-width hy-nostyle danger" id="deleteButton" data-i18n="settings.rfid.buttons.deleteUser" style="display:none;margin-top:20px;"></button>
+    </fieldset>
+</div>

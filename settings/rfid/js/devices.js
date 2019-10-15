@@ -53,7 +53,7 @@
 		app.homey.get('tagReaders', function(err, devices)
 		{
 			if(err) {
-				showMessage('error getting tagReaders', err, 'danger');
+				app.message.show('error getting tagReaders', err, 'danger');
 				return;
 			}
 
@@ -74,6 +74,12 @@
 				rows.push({
 					label: __('settings.devices.table.deviceId'),
 					value: device.id
+				});
+
+				//add id
+				rows.push({
+					label: __('settings.devices.table.status'),
+					value: device.state
 				});
 
 				//add last updated

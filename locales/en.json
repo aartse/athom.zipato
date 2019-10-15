@@ -102,7 +102,7 @@
 			"table":
 			{
 				"deviceId": "#",
-				"status": "Current Reporting Status",
+				"status": "Reporting Status",
 				"lastUpdated": "Last Updated"
 			},
 			"messages":

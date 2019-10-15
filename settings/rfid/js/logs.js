@@ -5,11 +5,11 @@
 	 */
 	function loadEventLogs()
 	{
-		Homey.get('systemEventLog', function(err, eventLogs) {
+		app.homey.get('systemEventLog', function(err, eventLogs) {
 
 			// handle error
 			if (err) {
-			    showMessage('error getting systemEventLog', err, 'danger');
+			    app.message.show('error getting systemEventLog', err, 'danger');
 				return;
 			}
 
@@ -74,18 +74,18 @@
 	 */
 	function clearEventLog()
 	{
-		Homey.confirm(__('settings.rfid.messages.confirmClearEventLog'), 'warning', function(err, result) {
+		app.homey.confirm(__('settings.rfid.messages.confirmClearEventLog'), 'warning', function(err, result) {
 			if (result === true) {
 
 				// reset logs
 				document.getElementById('systemEventLogs').innerText = __('settings.loading');
 				
 				// reset systemEventLog
-				Homey.set('systemEventLog', new Array());
-				showMessage('', __('settings.rfid.messages.eventLogClearedConfirmation'), 'success');
+				app.homey.set('systemEventLog', new Array());
+				app.message.show('', __('settings.rfid.messages.eventLogClearedConfirmation'), 'success');
 
 				// Current page is nothing left todo, so close page and load previous page
-				previousPage();
+				app.page.close();
 			}
 		});
 

@@ -217,6 +217,31 @@ var app = (function() {
 		return table;
 	}
 
+	function createChecklist(items)
+	{
+		var checklist = document.createElement("div");
+		checklist.className = 'decorated';
+
+		for (var i=0; i<items.length; i++) {
+			var item = items[i];
+
+			var checklistItem = document.createElement("div");
+			checklistItem.className = 'field row';
+			checklist.appendChild(checklistItem);
+
+			var input = document.createElement("input");
+			input.type = 'checkbox';
+			input.value = item.id;
+			checklist.appendChild(input);
+
+			var label = document.createElement("label");
+			label.innerText = item.label;
+			checklist.appendChild(label);
+		}
+
+		return checklist;
+	}
+
 	return {
 		onHomeyReady: onHomeyReady,
 		page: {
@@ -228,6 +253,7 @@ var app = (function() {
 			hide: hideMessage,
 		},
 		createTable: createTable,
+		createChecklist: createChecklist,
 		homey: {
 			get: function(name, callback) {
 				return homey.get(name, callback);

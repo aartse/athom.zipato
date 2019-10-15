@@ -1,19 +1,52 @@
 (function(app, args) {
 
 	//load user data for editing
-	var currentUser = null;
+	var currentUser = {};
 	if (typeof args !== 'undefined' && typeof args.user !== 'undefined') {
 		currentUser = args.user;
 	}
 
-	//fill form for editing user
-	if (currentUser !== null) {
-		document.getElementById('name').value = currentUser.name;
+	if (typeof currentUser.id === 'undefined') {
+		currentUser.id = null;
+	}
 
+	if (typeof currentUser.name === 'undefined') {
+		currentUser.name = null;
+	}
+
+	if (typeof currentUser.tagIds === 'undefined') {
+		currentUser.tagIds = new Array();
+	}
+
+	//fill form for editing user
+	document.getElementById('name').value = currentUser.name;
+
+	app.homey.get('tagContainer', function(err, tags) {
+
+		// handle when no tags are found
+		if(typeof tags === 'undefined' || tags === null || tags.length === 0) {
+			document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
+			return;
+		}
+
+		// convert tags to checklistItems
+		var checklistItems = new Array();
+		for (var i=0; i<tags.length; i++) {
+			checklistItems.push({
+				id: tags[i].tagId,
+				label: tags[i].tagId,
+				checked: (currentUser.tagIds.indexOf(tags[i].tagId) !== -1)
+			});
+		}
+
+		document.getElementById('tagIds').innerHTML = app.createChecklist(checklistItems);
+	});
+
+	if (currentUser.id !== null) {
 		//init delete button
 		document.getElementById('deleteButton').style.display = '';
 		document.getElementById('deleteButton').onclick = function() {
-			Homey.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
+			app.homey.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
 				if (err === true || result === true) {
 					removeUser();
 				}

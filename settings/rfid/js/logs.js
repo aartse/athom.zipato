@@ -24,8 +24,8 @@
 			// clear log
 			systemEventLogContent.innerHTML = '';
 			
-			// load log
-			for (var i=0; i<eventLogs.length; i++) {
+			// load log in reverse order
+			for (var i=eventLogs.length-1; i>0; i--) {
 				var eventLog = eventLogs[i];
 				var rows = new Array();
 
@@ -56,11 +56,12 @@
 					value: eventLog.tagId
 				});
 
-				//add user
-				if (eventLog.userName !== null) {
+				//add users
+				//@TODO: what about multiple users?
+				if (eventLog.userName !== null && eventLog.userName !== '') {
 					rows.push({
 						label: __('settings.systemEventLog.table.person'),
-						value: eventLog.userName + ' (' + eventLog.userId + ')'
+						value: eventLog.userName
 					});
 				}
 
@@ -93,6 +94,19 @@
 		return false;
 	}
 
+	/**
+	 * handle settings save for this page
+	 */
+	function onSettingsSet(name)
+	{
+		if (name === 'systemEventLog') {
+			loadEventLogs();
+		}
+	}
+
+	//bind global events
+	app.on('settings.set', onSettingsSet);
+
 	//bind events
 	document.getElementById('btnClearEventLog').onclick = function() {
 		clearEventLog();
@@ -102,5 +116,9 @@
 	// init load event logs
 	loadEventLogs();
 
-	return {}
+	return {
+		destroy: function() {
+			app.off('settings.set', onSettingsSet);
+		}		
+	}
 });

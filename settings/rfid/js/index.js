@@ -61,8 +61,25 @@
 		});
 	}
 
+	/**
+	 * handle settings save for this page
+	 */
+	function onSettingsSet(name)
+	{
+		if (name === 'userContainer') {
+			loadUsers();
+		}
+	}
+
+	//bind global events
+	app.on('settings.set', onSettingsSet);
+
 	// init load users
 	loadUsers();
 
-	return {};
+	return {
+		destroy: function() {
+			app.off('settings.set', onSettingsSet);
+		}
+	};
 });

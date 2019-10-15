@@ -6,14 +6,22 @@
 		currentUser = args.user;
 	}
 
+	//load initial data for (new)user
 	if (typeof currentUser.id === 'undefined') {
 		currentUser.id = null;
 	}
 
+	//load initial data for (new)user
 	if (typeof currentUser.name === 'undefined') {
 		currentUser.name = null;
 	}
 
+	//load initial data for (new)user
+	if (typeof currentUser.statusCode === 'undefined') {
+		currentUser.statusCode = -1;
+	}
+
+	//load initial data for (new)user
 	if (typeof currentUser.tagIds === 'undefined') {
 		currentUser.tagIds = new Array();
 	}
@@ -21,6 +29,8 @@
 	//fill form for editing user
 	document.getElementById('name').value = currentUser.name;
 
+	//load tags
+	var checklistItems = new Array();
 	app.homey.get('tagContainer', function(err, tags) {
 
 		// handle when no tags are found
@@ -30,7 +40,6 @@
 		}
 
 		// convert tags to checklistItems
-		var checklistItems = new Array();
 		for (var i=0; i<tags.length; i++) {
 			checklistItems.push({
 				id: tags[i].tagId,
@@ -39,7 +48,8 @@
 			});
 		}
 
-		document.getElementById('tagIds').innerHTML = app.createChecklist(checklistItems);
+		document.getElementById('tagIds').innerHTML = '';
+		document.getElementById('tagIds').appendChild(app.createChecklist('tagIds', checklistItems));
 	});
 
 	if (currentUser.id !== null) {
@@ -64,7 +74,7 @@
 	 */
 	function removeUser()
 	{
-		if (currentUser !== null) {
+		if (currentUser.id !== null) {
 			app.homey.get('userContainer', function(err, users) {
 
 				//update user container
@@ -94,18 +104,22 @@
 	{
 		app.homey.get('userContainer', function(err, users) {
 
-			//create new user object
-			var user = currentUser || {id: null, statusCode:-1};
-			user.name = document.getElementById('name').value;
-			user.tagIds = new Array();
+			//update current user object
+			currentUser.name = document.getElementById('name').value;
+			currentUser.tagIds = new Array();
+			for (var i=0; i<checklistItems.length; i++) {
+				if (document.getElementById('tagIds_' + checklistItems[i].id).checked) {
+					currentUser.tagIds.push(checklistItems[i].id);
+				}
+			}
 
 			//update existing user container
 			var maxUserId = 0;
 			var userContainer = new Array();
 			if (!(typeof users === 'undefined' || users === null || users.length === 0)) {
 				for (var i=0; i<users.length; i++) {
-					if (user.id !== null && user.id === users[i].id) {
-						userContainer.push(user);
+					if (currentUser.id !== null && currentUser.id === users[i].id) {
+						userContainer.push(currentUser);
 					} else {
 						userContainer.push(users[i]);
 					}
@@ -117,9 +131,9 @@
 			}
 
 			//add new user
-			if (user.id === null) {
-				user.id = maxUserId+1;
-				userContainer.push(user);
+			if (currentUser.id === null) {
+				currentUser.id = maxUserId+1;
+				userContainer.push(currentUser);
 			}
 
 			//save new user container, close window

@@ -61,7 +61,7 @@
 				"event": "Event",
 				"device": "Device",
 				"person": "User",
-				"tagOrCode": "Tag/Code ID or Scene"
+				"tagOrCode": "Tag/Code"
 			},
 			"eventTypes":
 			{

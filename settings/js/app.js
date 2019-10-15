@@ -13,10 +13,10 @@ var app = (function() {
 		});	
 
 		//load homepage
-		openPage('home.html');
+		//openPage('home.html');
 
 		//load rfid device
-		//openPage('rfid/index.html', 'rfid/js/index.js');
+		openPage('rfid/index.html', 'rfid/js/index.js');
 	}
 
 	function triggerEvent(eventType, extraParameters)
@@ -217,7 +217,7 @@ var app = (function() {
 		return table;
 	}
 
-	function createChecklist(items)
+	function createChecklist(name, items)
 	{
 		var checklist = document.createElement("div");
 		checklist.className = 'decorated';
@@ -231,7 +231,10 @@ var app = (function() {
 
 			var input = document.createElement("input");
 			input.type = 'checkbox';
+			input.name = name + '[]';
+			input.id = name + '_' + item.id;
 			input.value = item.id;
+			input.checked = item.checked;
 			checklist.appendChild(input);
 
 			var label = document.createElement("label");

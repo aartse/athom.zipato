@@ -1,0 +1,130 @@
+/** START GLOBAL **/
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container {
+  min-height: 100%;
+}
+#content {
+  padding-bottom: 50px;
+}
+#content.loading {
+  opacity: 0.4;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  border-top: 1px solid #e7e7e7;
+  display: flex;
+  align-items: center;
+}
+
+div.field {
+  margin-bottom: 20px;
+}
+
+button.full-width {
+  width: 100%;
+}
+button.hy-nostyle.danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+button.hy-nostyle.info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+input[type="button"].hy-nostyle, button.hy-nostyle {
+  -webkit-appearance: none;
+  background-color: #e7e7e7;
+  border: 0;
+  border-radius: 3px;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  padding: 6px 16px;
+  font-size: 1em;
+  font-weight: 400;
+  color: #555;
+  height: auto !important;
+  flex-shrink: 0;
+}
+
+#message {
+  position: fixed;
+  top: 0;
+  width: 99%;
+  height: 0;
+  overflow: hidden;
+  transition: .5s ease;
+}
+#message.alert {
+  height: auto;
+}
+
+.alert {
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert span {
+  margin: 15px;
+  display: block;
+}
+.alert.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+.alert.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+.alert.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+.alert.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+table.decorated {
+  margin-bottom: 20px;
+  border:1px solid #e7e7e7;
+  border-bottom:0;
+  border-spacing: 0;
+  width: 100%;
+}
+table.decorated th,
+table.decorated td {
+  font-size: 12px;
+  text-align: left;
+  padding: 5px;
+  border-bottom:1px solid #e7e7e7;
+}
+table.decorated td {
+  font-weight: 300;
+}
+table.decorated td.no-padding {
+  padding: 0;
+}
+table.decorated td button {
+  font-weight: normal;
+  font-size: 13px;
+}
+table.decorated th {
+  background-color:#e7e7e7;
+  border-bottom:1px solid #fff;
+}

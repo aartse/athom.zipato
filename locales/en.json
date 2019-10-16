@@ -1,7 +1,57 @@
 {
 	"settings": {
 		"title": "Zipato Device Settings",
-		"description": "On this page you see the settings for the Zipato RFID Keypad.",
+		"description": "On this page you see the settings for the Zipato devices.",
+		"loading": "Loading...",
+		"index":
+		{
+			"buttons": {
+				"rfid": "RFID keypad"
+			}
+		},
+		"footer":
+		{
+			"buttons": {
+				"back": "< Back"
+			}
+		},
+		"rfid": {
+			"title": "Zipato RFID keypad settings",
+			"buttons": {
+				"addUser": "Add user",
+				"logs": "Logs",
+				"devices": "Devices",
+				"clearEventLog": "Clear event log",
+				"clearTags": "Clear tags",
+				"toggleTag": "Toggle tag registration on/off",
+				"saveUser": "Save user",
+				"deleteUser": "Delete user"
+			},
+			"titles": {
+				"readers": "Readers",
+				"tags": "Tags"
+			},
+			"descriptions": {
+				"clearTags": "Please use the below settings only when you are really sure you want to reset the settings of the tags in Homey (and therefore in most cases need to rebuild your flows and reset your Tag Readers as well).",
+				"allowTags": "Registration of new tags is allowed",
+				"denyTags": "Registration of new tags is not allowed"
+			},
+			"messages": {
+				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
+				"eventLogClearedConfirmation": "The event log is cleared.",
+				"confirmClearTags": "Clear all tags from the Homey cache. Please note that you should reset all your devices to factory settings and start adding the tags and codes again. Are you sure?",
+				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
+				"toggleTagStatusConfirmed": "Tag registration status switched",
+				"usersSavedErrorTitle": "Error saving users: ",
+				"usersSavedConfirmation": "Users succesfully saved",
+				"userDeleted": "User deleted, click on save user settings to commit the delete",
+				"noUserssYet": "No users available",
+				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
+				"noTags": "No tags available.",
+				"noReaders": "No tag readers available."
+			}
+		},
+
 		"systemEventLog":
 		{
 			"title": "Event Log",
@@ -11,7 +61,7 @@
 				"event": "Event",
 				"device": "Device",
 				"person": "User",
-				"tagOrCode": "Tag/Code ID or Scene"
+				"tagOrCode": "Tag/Code"
 			},
 			"eventTypes":
 			{
@@ -24,7 +74,6 @@
 			},
 			"messages":
 			{
-				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
 				"userNameUnknown": "Unknown",
 				"deviceUnknown": "Unknown"
 			}
@@ -36,9 +85,9 @@
 			{
 				"userId": "#",
 				"userName": "Name",
-				"tags": "Tags belonging to user",
+				"tags": "Tag ID",
 				"status": "Current status",
-				"edit": "Remove"
+				"edit": "Edit"
 			},
 			"messages":
 			{
@@ -53,7 +102,7 @@
 			"table":
 			{
 				"deviceId": "#",
-				"status": "Current Reporting Status",
+				"status": "Reporting Status",
 				"lastUpdated": "Last Updated"
 			},
 			"messages":
@@ -71,25 +120,6 @@
 				"tags": "Tags",
 				"tagApproval": "Tag Approval",
 				"tagApprovalStatus": "Current status: Unknown"
-			},
-			"messages":
-			{
-				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
-				"eventLogClearedConfirmation": "The event log is cleared.",
-				"confirmClearTags": "Clear all tags from the Homey cache. Please note that you should reset all your devices to factory settings and start adding the tags and codes again. Are you sure?",
-				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
-				"allowTags": "Registration of new tags is allowed",
-				"denyTags": "Registration of new tags is not allowed",
-				"toggleTagStatusConfirmedTitle": "Tag registration status switched: ",
-				"usersSavedErrorTitle": "Error saving users: ",
-				"usersSavedConfirmation": "Users succesfully saved",
-				"userDeleted": "User deleted, click on save user settings to commit the delete"
-			},
-			"buttons":
-			{
-				"clearEventLog": "Clear event log",
-				"clearTags": "Clear tags",
-				"toggleTag": "Toggle tag registration on/off"
 			}
 		},
 		"buttons":

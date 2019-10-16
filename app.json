@@ -63,6 +63,11 @@
         "alarm_co",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
       "images": {
         "large": "/drivers/HM-HS1CA-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1CA-Z.EU/assets/images/small.png"
@@ -98,6 +103,11 @@
         "alarm_smoke",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
       "images": {
         "large": "/drivers/HM-HS1SA-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1SA-Z.EU/assets/images/small.png"
@@ -133,6 +143,12 @@
         "measure_battery",
         "alarm_tamper"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "images": {
         "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
@@ -745,6 +761,11 @@
         "measure_luminance",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
       "images": {
         "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
         "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
@@ -1955,6 +1976,12 @@
         "measure_luminance",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "images": {
         "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
@@ -2072,6 +2099,11 @@
         "measure_luminance",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
       "images": {
         "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"
@@ -2215,6 +2247,12 @@
               "alarm_tamper"
             ]
           }
+        ]
+      },
+      "energy": {
+        "batteries": [
+          "AA",
+          "AA"
         ]
       },
       "images": {
@@ -2384,6 +2422,11 @@
         "measure_temperature",
         "measure_battery"
       ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
       "images": {
         "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
         "small": "/drivers/ZP3102.EU/assets/images/small.jpg"

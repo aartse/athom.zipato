@@ -27,6 +27,9 @@
         "measure_temperature",
         "measure_battery"
     ],
+    "energy": {
+        "batteries": [ "CR123A" ]
+    },
     "images": {
         "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
         "small": "/drivers/ZP3102.EU/assets/images/small.jpg"

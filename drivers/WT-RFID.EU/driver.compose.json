@@ -49,6 +49,9 @@
             }
         ]
     },
+    "energy": {
+        "batteries": [ "AA", "AA" ]
+    },
     "images": {
         "large": "/drivers/WT-RFID.EU/assets/images/large.png",
         "small": "/drivers/WT-RFID.EU/assets/images/small.png"

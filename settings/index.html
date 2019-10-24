@@ -1,7 +1,13 @@
 <html>
 <head>
 	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+	
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/event.js"></script>
+	<script type="text/javascript" src="js/repository.js"></script>
+	<script type="text/javascript" src="js/message.js"></script>
+	<script type="text/javascript" src="js/ui.js"></script>
+
 	<link type="text/css" rel="stylesheet" href="css/global.css" />
 </head>
 <body>
@@ -18,7 +24,8 @@
 	<script type="text/javascript">
 		function onHomeyReady(homey)
 		{
-			app.onHomeyReady(homey);
+			//bootstrap app
+			app = app(homey);
 		}		
 	</script>
 </body>

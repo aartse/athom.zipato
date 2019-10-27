@@ -108,14 +108,14 @@ var app = (function(homey) {
 	}	
 
 	// load services into container
-	appContainer.message = messageService();
+	appContainer.message = messageService(homey);
 	appContainer.event = eventService(homey);
 	appContainer.userRepository = repositoryService(homey, appContainer.event, 'userContainer');
 	appContainer.tagRepository = repositoryService(homey, appContainer.event, 'tagContainer');
 	appContainer.ui = uiService();
 	appContainer.page = {
 		open: openPage,
-		close: previousPage		
+		close: previousPage
 	};
 
 	// open first page
@@ -126,39 +126,4 @@ var app = (function(homey) {
 
 	// return container with services
 	return appContainer;
-
-	/*
-		homey: {
-			getContainer: function(name, callback) {
-				homey.get(name, function(err, value) {
-
-					// handle error
-					if (err) {
-					    showMessage('error getting ' + name, err, 'danger');
-						return;
-					}
-
-					// fix value
-					if (typeof value === 'undefined' || value === null || value.length === 0) {
-						value = new Array();
-					}
-
-					// call
-					callback(value);
-				});
-			},
-			get: function(name, callback) {
-				return homey.get(name, callback);
-			},
-			set: function(name, value) {
-				return homey.set(name, value);
-			},
-			confirm: function(message, icon, callback) {
-				return homey.confirm(message, icon, callback);
-			},
-			alert: function(message, icon) {
-				return homey.alert(message, icon);
-			}
-		},
-	*/
 });

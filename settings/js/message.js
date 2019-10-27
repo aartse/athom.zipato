@@ -1,4 +1,4 @@
-var messageService = (function() {
+var messageService = (function(homey) {
 	/**
 	 * Displays message on settings page
 	 * Style can be "danger" or "success" or "info"
@@ -33,8 +33,17 @@ var messageService = (function() {
 		document.getElementById('message').setAttribute('class', '');
 	}
 
+	/**
+	 * confirm message
+	 */
+	function confirmMessage(message, icon, callback)
+	{
+		return homey.confirm(message, icon, callback);
+	}
+
 	return {
 		show: showMessage,
-		hide: hideMessage
+		hide: hideMessage,
+		confirm: confirmMessage
 	}	
 });

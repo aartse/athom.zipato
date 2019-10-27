@@ -26,6 +26,14 @@ var repositoryService = (function(homey, event, containerName) {
 	}
 
 	/**
+	 * save data
+	 */
+	function saveData(value)
+	{
+		homey.set(containerName, value);
+	}
+
+	/**
 	 * handle settings save for this page
 	 */
 	function onSettingsSet(name)
@@ -42,20 +50,60 @@ var repositoryService = (function(homey, event, containerName) {
 	reloadData();
 
 	return {
-		findById: function(id) {
-			var search = getDataAsArray();
-			for (var i=0; i<search.length; i++) {
-				if (search[i].id == id) {
-					return search[i];
+		findItemById: function(id) {
+			var items = getDataAsArray();
+			for (var i=0; i<items.length; i++) {
+				if (items[i].id == id) {
+					return items[i];
 				}
 			}
 			return null;
 		},
-		findAll: function() {
+		findAllItems: function() {
 			return getDataAsArray();
 		},
 		getData: function() {
 			return data;
+		},
+		saveItem: function(item) {
+
+			var items = getDataAsArray();
+
+			if (item.id === null) {
+				var newId = 0;
+
+				for (var i=0; i<items.length; i++) {
+					if (items[i].id > newId) {
+						newId = items[i].id;
+					}
+				}
+
+				item.id = newId+1
+				items.push(item);
+			} else {
+				for (var i=0; i<items.length; i++) {
+					if (items[i].id == item.id) {
+						items[i] = item;
+					}
+				}
+			}
+
+			saveData(items);
+		},
+		saveData: function(data) {
+			saveData(data);
+		},
+		deleteItem: function(item) {
+			var items = getDataAsArray();
+			if (item.id !== null) {
+				for (var i=0; i<items.length; i++) {
+					if (items[i].id == item.id) {
+						items.splice(i, 1);
+						break;
+					}
+				}
+			}
+			saveData(items);
 		}
 	}	
 });

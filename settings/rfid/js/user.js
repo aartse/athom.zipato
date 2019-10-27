@@ -31,7 +31,7 @@
 
 	//load tags
 	var checklistItems = new Array();
-	var tags = app.tagRepository.findAll()
+	var tags = app.tagRepository.findAllItems();
 	if(tags.length > 0) {
 		// convert tags to checklistItems
 		for (var i=0; i<tags.length; i++) {
@@ -47,95 +47,35 @@
 	} else
 		document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
 
+	//bind delete button
 	if (currentUser.id !== null) {
-		//init delete button
 		document.getElementById('deleteButton').style.display = '';
 		document.getElementById('deleteButton').onclick = function() {
-			app.homey.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
+			app.message.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
 				if (err === true || result === true) {
-					removeUser();
+					app.userRepository.deleteItem(currentUser);
+					app.message.show('', __('settings.advanced.messages.userDeleted'), 'success');
+					app.page.close();
 				}
 			});
 		};
 	}
 
-	//bind save event
+	//bind save button
 	document.getElementById('saveButton').onclick = function() {
-		saveUser();
-	}
-
-	/**
-	 * remove current user
-	 */
-	function removeUser()
-	{
-		if (currentUser.id !== null) {
-			app.homey.get('userContainer', function(err, users) {
-
-				//update user container
-				var userContainer = new Array();
-				if (!(typeof users === 'undefined' || users === null || users.length === 0)) {
-					for (var i=0; i<users.length; i++) {
-						if (users[i].id != currentUser.id) {
-							userContainer.push(users[i]);
-						}
-					}
-				}
-
-				//save new user container, close window
-				app.homey.set('userContainer', userContainer);
-				app.message.show('', __('settings.advanced.messages.userDeleted'), 'success');
-				app.page.close();
-			});
-			return;
+		//update current user object
+		currentUser.name = document.getElementById('name').value;
+		currentUser.tagIds = new Array();
+		for (var i=0; i<checklistItems.length; i++) {
+			if (document.getElementById('tagIds_' + checklistItems[i].id).checked) {
+				currentUser.tagIds.push(checklistItems[i].id);
+			}
 		}
+
+		//save user, show success message and close page
+		app.userRepository.saveItem(currentUser);
+		app.message.show('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
 		app.page.close();
-	}
-
-	/**
-	 * add or edit current user
-	 */
-	function saveUser()
-	{
-		app.homey.get('userContainer', function(err, users) {
-
-			//update current user object
-			currentUser.name = document.getElementById('name').value;
-			currentUser.tagIds = new Array();
-			for (var i=0; i<checklistItems.length; i++) {
-				if (document.getElementById('tagIds_' + checklistItems[i].id).checked) {
-					currentUser.tagIds.push(checklistItems[i].id);
-				}
-			}
-
-			//update existing user container
-			var maxUserId = 0;
-			var userContainer = new Array();
-			if (!(typeof users === 'undefined' || users === null || users.length === 0)) {
-				for (var i=0; i<users.length; i++) {
-					if (currentUser.id !== null && currentUser.id === users[i].id) {
-						userContainer.push(currentUser);
-					} else {
-						userContainer.push(users[i]);
-					}
-
-					if (users[i].id > maxUserId) {
-						maxUserId = users[i].id;
-					}
-				}
-			}
-
-			//add new user
-			if (currentUser.id === null) {
-				currentUser.id = maxUserId+1;
-				userContainer.push(currentUser);
-			}
-
-			//save new user container, close window
-			app.homey.set('userContainer', userContainer);
-			app.message.show('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
-			app.page.close();
-		});
 	}
 
 	return {};

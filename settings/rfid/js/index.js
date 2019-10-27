@@ -6,7 +6,7 @@
 	function loadUsers()
 	{
 		// get users
-		var users = app.userRepository.findAll();
+		var users = app.userRepository.findAllItems();
 
 		// check if users is loaded
 		if (users.length === 0) {
@@ -25,7 +25,7 @@
 			//search for tag names
 			var tagNames = new Array();
 			for (var i2=0; i2<user.tagIds.length; i2++) {
-				var tag = app.tagRepository.findById(user.tagIds[i2]);
+				var tag = app.tagRepository.findItemById(user.tagIds[i2]);
 				if (tag !== null && tag.name != '') {
 					tagNames.push(tag.name);
 				} else {

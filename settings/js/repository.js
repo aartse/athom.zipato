@@ -9,9 +9,13 @@ var repositoryService = (function(homey, event, containerName) {
 	{
 		homey.get(containerName, function(err, value) {
 			data = value;
+			event.trigger('repository.loaded', [containerName]);
 		});
 	}
 
+	/**
+	 * return data as array
+	 */
 	function getDataAsArray()
 	{
 		if(typeof data === 'undefined' || data === null || data.length === 0) {
@@ -32,7 +36,10 @@ var repositoryService = (function(homey, event, containerName) {
 	}
 
 	//bind global events
-	event.on('settings.set', onSettingsSet);	
+	event.on('settings.set', onSettingsSet);
+
+	//init data
+	reloadData();
 
 	return {
 		findById: function(id) {
@@ -46,6 +53,9 @@ var repositoryService = (function(homey, event, containerName) {
 		},
 		findAll: function() {
 			return getDataAsArray();
+		},
+		getData: function() {
+			return data;
 		}
 	}	
 });

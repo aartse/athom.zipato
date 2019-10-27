@@ -3,6 +3,9 @@ var app = (function(homey) {
 	var appContainer = {};
 	var pages = [];
 
+	/**
+	 * load page
+	 */
 	function loadPage(page)
 	{
 		// add loading class to content
@@ -104,7 +107,7 @@ var app = (function(homey) {
 		}
 	}	
 
-	// load services
+	// load services into container
 	appContainer.message = messageService();
 	appContainer.event = eventService(homey);
 	appContainer.userRepository = repositoryService(homey, appContainer.event, 'userContainer');
@@ -121,7 +124,7 @@ var app = (function(homey) {
 	// homey is ready
 	homey.ready();
 
-	// return container
+	// return container with services
 	return appContainer;
 
 	/*

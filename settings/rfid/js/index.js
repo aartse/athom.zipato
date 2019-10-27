@@ -5,6 +5,7 @@
 	 */
 	function loadUsers()
 	{
+		// get users
 		var users = app.userRepository.findAll();
 
 		// check if users is loaded
@@ -13,7 +14,7 @@
 			return;
 		}
 
-		// clear users
+		// clear previous users
 		document.getElementById('userList').innerHTML = '';
 
 		// load users
@@ -21,9 +22,15 @@
 			var user = users[i];
 			var rows = new Array();
 
+			//search for tag names
 			var tagNames = new Array();
-			for (var i2=0; i2<tags.length; i2++) {
-				
+			for (var i2=0; i2<user.tagIds.length; i2++) {
+				var tag = app.tagRepository.findById(user.tagIds[i2]);
+				if (tag !== null && tag.name != '') {
+					tagNames.push(tag.name);
+				} else {
+					tagNames.push('id:' + user.tagIds[i2]);
+				}
 			}
 
 			//add name
@@ -41,7 +48,7 @@
 			//add status
 			rows.push({
 				label: __('settings.users.table.tags'),
-				value: user.tagIds.join(',')
+				value: tagNames.join(', ')
 			});
 
 			//add edit button
@@ -53,29 +60,25 @@
 				app.page.open('rfid/user.html', 'rfid/js/user.js', {user: this.user});
 			}
 
-			document.getElementById('userList').appendChild(app.createTable(rows, {editButton: editButton}));
+			document.getElementById('userList').appendChild(app.ui.createTable(rows, {editButton: editButton}));
 		}
 	}
 
-	/**
-	 * handle settings save for this page
-	 */
-	function onSettingsSet(name)
-	{
-		if (name === 'userContainer') {
+	function onRepositoryLoaded(name) {
+		if (name == 'userContainer') {
 			loadUsers();
 		}
 	}
 
-	//bind global events
-	app.event.on('settings.set', onSettingsSet);
+	// bind global events
+	app.event.on('repository.loaded', onRepositoryLoaded);
 
 	// init load users
 	loadUsers();
 
 	return {
 		destroy: function() {
-			app.event.off('settings.set', onSettingsSet);
+			app.event.off('repository.loaded', onRepositoryLoaded);
 		}
 	};
 });

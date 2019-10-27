@@ -31,14 +31,8 @@
 
 	//load tags
 	var checklistItems = new Array();
-	app.homey.get('tagContainer', function(err, tags) {
-
-		// handle when no tags are found
-		if(typeof tags === 'undefined' || tags === null || tags.length === 0) {
-			document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
-			return;
-		}
-
+	var tags = app.tagRepository.findAll()
+	if(tags.length > 0) {
 		// convert tags to checklistItems
 		for (var i=0; i<tags.length; i++) {
 			checklistItems.push({
@@ -49,8 +43,9 @@
 		}
 
 		document.getElementById('tagIds').innerHTML = '';
-		document.getElementById('tagIds').appendChild(app.createChecklist('tagIds', checklistItems));
-	});
+		document.getElementById('tagIds').appendChild(app.ui.createChecklist('tagIds', checklistItems));
+	} else
+		document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
 
 	if (currentUser.id !== null) {
 		//init delete button

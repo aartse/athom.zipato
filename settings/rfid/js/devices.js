@@ -1,5 +1,4 @@
 (function(app) {
-	var tagStatus = null;
 
 	/**
 	 * reload tags
@@ -20,7 +19,6 @@
 		for (var i=0; i<tags.length; i++)
 		{
 			var tag = tags[i];
-			console.log(tag);
 
 			var rows = new Array();
 
@@ -62,48 +60,42 @@
 	 */
 	function loadDevices()
 	{
-		app.homey.get('tagReaders', function(err, devices)
-		{
-			if(err) {
-				app.message.show('error getting tagReaders', err, 'danger');
-				return;
-			}
+		// get devices
+		var devices = app.tagreaderRepository.getAllTagreaders();
 
-			var systemDevicesContent = document.getElementById('systemDevices');
-			
-			if(typeof devices === 'undefined' || devices === null || devices.length === 0) {
-				systemDevicesContent.innerText = __('settings.rfid.messages.noReaders');
-				return;
-			}
+		var systemDevicesContent = document.getElementById('systemDevices');
+		
+		if (devices.length === 0) {
+			systemDevicesContent.innerText = __('settings.rfid.messages.noReaders');
+			return;
+		}
 
-			systemDevicesContent.innerHTML = '';
-			for (var i=0; i<devices.length; i++)
-			{
-				var device = devices[i];
-				var rows = new Array();
+		systemDevicesContent.innerHTML = '';
+		for (var i=0; i<devices.length; i++) {
+			var device = devices[i];
+			var rows = new Array();
 
-				//add id
-				rows.push({
-					label: __('settings.devices.table.deviceId'),
-					value: device.id
-				});
+			//add id
+			rows.push({
+				label: __('settings.devices.table.deviceId'),
+				value: device.id
+			});
 
-				//add id
-				rows.push({
-					label: __('settings.devices.table.status'),
-					value: device.state
-				});
+			//add id
+			rows.push({
+				label: __('settings.devices.table.status'),
+				value: device.state
+			});
 
-				//add last updated
-				var date = new Date(device.lastUpdate);
-				rows.push({
-					label: __('settings.devices.table.lastUpdated'),
-					value: date.toString()
-				});
+			//add last updated
+			var date = new Date(device.lastUpdate);
+			rows.push({
+				label: __('settings.devices.table.lastUpdated'),
+				value: date.toString()
+			});
 
-				systemDevicesContent.appendChild(app.createTable(rows));
-			}
-		});
+			systemDevicesContent.appendChild(app.ui.createTable(rows));
+		}
 	}
 
 	/**
@@ -111,82 +103,41 @@
 	 */
 	function loadTagStatus()
 	{
-		app.homey.get('tagStatus', function(err, status)
-		{
-			if(err) {
-				app.message.show('error getting tagStatus', err, 'danger');
-				return
-			}
-
-			// save status
-			tagStatus = (status === true);
-			if(tagStatus === true) {
-				document.getElementById('currentTagStatus').innerHTML = __('settings.rfid.descriptions.allowTags');
-			} else {
-				document.getElementById('currentTagStatus').innerHTML = __('settings.rfid.descriptions.denyTags');
-			}
-		});
+		if(app.tagstatusRepository.getTagStatus()) {
+			document.getElementById('currentTagStatus').innerHTML = __('settings.rfid.descriptions.allowTags');
+		} else {
+			document.getElementById('currentTagStatus').innerHTML = __('settings.rfid.descriptions.denyTags');
+		}
 	}
 
-	/**
-	 * clear tags
-	 */
-	function clearTags()
-	{
-		app.message.confirm(__('settings.rfid.messages.confirmClearTags'), 'warning', function(err, result) {
-			if (result === true) {
-				app.homey.set('tagContainer', new Array());
-				app.message.show('', __('settings.rfid.messages.tagsClearedConfirmation'), 'success');
-			}
-		});
-	}
-
-	/**
-	 * toggle current tag status
-	 */
-	function toggleTagStatus()
-	{
-		app.homey.set('tagStatus', (tagStatus === false));
-	}
-
-	/**
-	 * handle settings save for this page
-	 */
-	function onSettingsSet(name)
-	{
-		if (name === 'tagContainer') {
+	function onRepositoryLoaded(name) {
+		if (name == 'tagContainer') {
 			loadTags();
 		}
 
-		if (name === 'tagStatus') {
+		if (name == 'tagStatus') {
 			app.message.show('', __('settings.rfid.messages.toggleTagStatusConfirmed'), 'success');
 			loadTagStatus();
 		}
 	}
 
-	//bind events
-	document.getElementById('btnClearTags').onclick = function() {
-		clearTags();
-		return false;
-	}
-
-	//bind events
+	//toggle tag status button
 	document.getElementById('btnToggleStatus').onclick = function() {
-		toggleTagStatus();
+		app.tagstatusRepository.toggleTagStatus();
 		return false;
 	}	
 
-	//bind global events
-	app.event.on('settings.set', onSettingsSet);
+	// bind global events
+	app.event.on('repository.loaded', onRepositoryLoaded);
 
 	//init
-	//loadDevices();
-	//loadTagStatus();
+	loadDevices();
+	loadTagStatus();
 	loadTags();
 
 	return {
 		destroy: function() {
-			app.event.off('settings.set', onSettingsSet);
+			app.event.off('repository.loaded', onRepositoryLoaded);
 		}
 	}
 });

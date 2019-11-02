@@ -17,6 +17,7 @@ var tagRepository = (function(homey, event) {
 		getAllTags: repository.getAllItems,
 		saveTag: repository.saveItem,
 		deleteTag: repository.deleteItem,
+		clearTags: repository.deleteAll,
 		getTagNames: getTagNames
 	}	
 });

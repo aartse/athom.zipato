@@ -1,4 +1,7 @@
 var messageHelper = (function(homey) {
+
+	var autoHideMessageTimer = null;
+
 	/**
 	 * Displays message on settings page
 	 * Style can be "danger" or "success" or "info"
@@ -21,8 +24,12 @@ var messageHelper = (function(homey) {
 		document.getElementById('message').innerHTML = '<span>' + message + '</span>';
 		document.getElementById('message').setAttribute('class', 'alert alert-' + style);
 
+		if (autoHideMessageTimer !== null) {
+			clearTimeout(autoHideMessageTimer);
+		}
+
 		// auto hide message
-		setTimeout(hideMessage, 3000);
+		autoHideMessageTimer = setTimeout(hideMessage, 3000);
 	}
 
 	/**
@@ -30,6 +37,7 @@ var messageHelper = (function(homey) {
 	 */
 	function hideMessage()
 	{
+		autoHideMessageTimer = null;
 		document.getElementById('message').setAttribute('class', '');
 	}
 

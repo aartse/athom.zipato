@@ -1,60 +1,43 @@
 (function(app, args) {
 
-	//load user data for editing
-	var currentUser = {};
-	if (typeof args !== 'undefined' && typeof args.user !== 'undefined') {
-		currentUser = args.user;
+	//load tag data for editing
+	if (typeof args === 'undefined' || typeof args.tag === 'undefined') {
+		app.message.show('', 'cannot manually add tags', 'error');
+		app.page.close();
+		return {};
 	}
 
-	//load initial data for (new)user
-	if (typeof currentUser.id === 'undefined') {
-		currentUser.id = null;
-	}
+	var currentTag = args.tag;
 
-	//load initial data for (new)user
-	if (typeof currentUser.name === 'undefined') {
-		currentUser.name = null;
-	}
+	//fill form for editing tag
+	document.getElementById('name').value = currentTag.name;
 
-	//load initial data for (new)user
-	if (typeof currentUser.statusCode === 'undefined') {
-		currentUser.statusCode = -1;
-	}
-
-	//load initial data for (new)user
-	if (typeof currentUser.tagIds === 'undefined') {
-		currentUser.tagIds = new Array();
-	}
-
-	//fill form for editing user
-	document.getElementById('name').value = currentUser.name;
-
-	//load tags
+	//load users
 	var checklistItems = new Array();
-	var tags = app.tagRepository.findAllItems();
-	if(tags.length > 0) {
-		// convert tags to checklistItems
-		for (var i=0; i<tags.length; i++) {
+	var users = app.userRepository.getAllUsers();
+	if(users.length > 0) {
+		// convert users to checklistItems
+		for (var i=0; i<users.length; i++) {
 			checklistItems.push({
-				id: tags[i].tagId,
-				label: tags[i].tagId,
-				checked: (currentUser.tagIds.indexOf(tags[i].tagId) !== -1)
+				id: users[i].id,
+				label: (users[i].name != '' ? users[i].name : 'id ' + users[i].id),
+				checked: (users[i].tagIds.indexOf(currentTag.id) !== -1)
 			});
 		}
 
-		document.getElementById('tagIds').innerHTML = '';
-		document.getElementById('tagIds').appendChild(app.ui.createChecklist('tagIds', checklistItems));
+		document.getElementById('userIds').innerHTML = '';
+		document.getElementById('userIds').appendChild(app.ui.createChecklist('userIds', checklistItems));
 	} else
-		document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
+		document.getElementById('userIds').innerHTML = __('settings.rfid.messages.noUsers');
 
 	//bind delete button
-	if (currentUser.id !== null) {
+	if (currentTag.id !== null) {
 		document.getElementById('deleteButton').style.display = '';
 		document.getElementById('deleteButton').onclick = function() {
-			app.message.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
+			app.message.confirm(__('settings.users.messages.confirmDeteleTag'), 'warning', function(err, result) {
 				if (err === true || result === true) {
-					app.userRepository.deleteItem(currentUser);
-					app.message.show('', __('settings.advanced.messages.userDeleted'), 'success');
+					app.tagRepository.deleteTag(currentTag);
+					app.message.show('', __('settings.advanced.messages.tagDeleted'), 'success');
 					app.page.close();
 				}
 			});
@@ -64,17 +47,28 @@
 	//bind save button
 	document.getElementById('saveButton').onclick = function() {
 		//update current user object
-		currentUser.name = document.getElementById('name').value;
-		currentUser.tagIds = new Array();
-		for (var i=0; i<checklistItems.length; i++) {
-			if (document.getElementById('tagIds_' + checklistItems[i].id).checked) {
-				currentUser.tagIds.push(checklistItems[i].id);
+		currentTag.name = document.getElementById('name').value;
+
+		//save tag
+		app.tagRepository.saveTag(currentTag);
+
+		//update tagIds for all users
+		var users = app.userRepository.getAllUsers();
+		for (var i=0; i<users.length; i++) {
+			if (document.getElementById('userIds_' + users[i].id).checked) {
+				if (users[i].tagIds.indexOf(currentTag.id) === -1) {
+					users[i].tagIds.push(currentTag.id);
+				}
+			} else {
+				if (users[i].tagIds.indexOf(currentTag.id) > -1) {
+					users[i].tagIds.splice(users[i].tagIds.indexOf(currentTag.id), 1);
+				}
 			}
 		}
+		app.userRepository.saveUsers(users);
 
-		//save user, show success message and close page
-		app.userRepository.saveItem(currentUser);
-		app.message.show('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
+		//show success message and close page
+		app.message.show('', __('settings.advanced.messages.tagSavedConfirmation'), 'success');
 		app.page.close();
 	}
 

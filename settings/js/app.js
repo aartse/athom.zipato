@@ -110,8 +110,9 @@ var app = (function(homey) {
 	// load services into container
 	appContainer.message = messageHelper(homey);
 	appContainer.event = eventHelper(homey);
-	appContainer.userRepository = userRepository(homey, appContainer.event);
+	appContainer.logRepository = logRepository(homey, appContainer.event);
 	appContainer.tagRepository = tagRepository(homey, appContainer.event);
+	appContainer.userRepository = userRepository(homey, appContainer.event);
 	appContainer.ui = uiHelper();
 	appContainer.page = {
 		open: openPage,

@@ -30,7 +30,40 @@ var repositoryHelper = (function(homey, event, containerName) {
 	 */
 	function saveData(value)
 	{
+		data = value;
 		homey.set(containerName, value);
+	}
+
+	/**
+	 * save multiple items
+	 */
+	function saveItems(itemsToSave)
+	{
+		var items = getDataAsArray();
+
+		for (var i=0; i<itemsToSave.length; i++) {
+			var item = itemsToSave[i];
+			if (item.id === null) {
+				var newId = 0;
+
+				for (var i2=0; i2<items.length; i2++) {
+					if (items[i2].id > newId) {
+						newId = items[i2].id;
+					}
+				}
+
+				item.id = newId+1
+				items.push(item);
+			} else {
+				for (var i2=0; i2<items.length; i2++) {
+					if (items[i2].id == item.id) {
+						items[i2] = item;
+					}
+				}
+			}
+		}
+
+		saveData(items);		
 	}
 
 	/**
@@ -65,29 +98,11 @@ var repositoryHelper = (function(homey, event, containerName) {
 		getAllItems: function() {
 			return getDataAsArray();
 		},
+		saveItems: function(items) {
+			saveItems(items);
+		},
 		saveItem: function(item) {
-			var items = getDataAsArray();
-
-			if (item.id === null) {
-				var newId = 0;
-
-				for (var i=0; i<items.length; i++) {
-					if (items[i].id > newId) {
-						newId = items[i].id;
-					}
-				}
-
-				item.id = newId+1
-				items.push(item);
-			} else {
-				for (var i=0; i<items.length; i++) {
-					if (items[i].id == item.id) {
-						items[i] = item;
-					}
-				}
-			}
-
-			saveData(items);
+			saveItems([item]);
 		},
 		saveData: function(data) {
 			saveData(data);
@@ -104,6 +119,9 @@ var repositoryHelper = (function(homey, event, containerName) {
 				}
 			}
 			saveData(items);
+		},
+		deleteAll: function() {
+			saveData(new Array());
 		}
 	}	
 });

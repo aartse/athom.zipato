@@ -5,69 +5,62 @@
 	 */
 	function loadEventLogs()
 	{
-		app.homey.get('systemEventLog', function(err, eventLogs) {
+		var eventLogs = app.logRepository.getAllLogs();
 
-			// handle error
-			if (err) {
-			    app.message.show('error getting systemEventLog', err, 'danger');
-				return;
+		var systemEventLogContent = document.getElementById('systemEventLogs');
+		
+		// check if eventLogs is loaded
+		if (eventLogs.length === 0) {
+			systemEventLogContent.innerText = __('settings.rfid.messages.noEventsYet');
+			return;
+		}
+
+		// clear log
+		systemEventLogContent.innerHTML = '';
+		
+		// load log in reverse order
+		for (var i=eventLogs.length-1; i>=0; i--) {
+			var eventLog = eventLogs[i];
+			var rows = new Array();
+
+			//add date
+			var date = new Date(eventLog.time);
+			rows.push({
+				label: __('settings.systemEventLog.table.datetime'),
+				value: date.toString()
+			});
+
+			//add event
+			rows.push({
+				label: __('settings.systemEventLog.table.event'),
+				value: __('settings.systemEventLog.eventTypes.s' + eventLog.statusCode)
+			});
+
+			//add device
+			if (eventLog.deviceId !== null || eventLog.deviceName !== null) {
+				rows.push({
+					label: __('settings.systemEventLog.table.device'),
+					value: (eventLog.deviceName !== null ? eventLog.deviceName : eventLog.deviceId)
+				});
 			}
 
-			var systemEventLogContent = document.getElementById('systemEventLogs');
-			
-			// check if eventLogs is loaded
-			if (typeof eventLogs === 'undefined' || eventLogs === null || eventLogs.length === 0) {
-				systemEventLogContent.innerText = __('settings.rfid.messages.noEventsYet');
-				return;
+			//add tag
+			rows.push({
+				label: __('settings.systemEventLog.table.tagOrCode'),
+				value: eventLog.tagId
+			});
+
+			//add users
+			//@TODO: what about multiple users?
+			if (eventLog.userName !== null && eventLog.userName !== '') {
+				rows.push({
+					label: __('settings.systemEventLog.table.person'),
+					value: eventLog.userName
+				});
 			}
 
-			// clear log
-			systemEventLogContent.innerHTML = '';
-			
-			// load log in reverse order
-			for (var i=eventLogs.length-1; i>0; i--) {
-				var eventLog = eventLogs[i];
-				var rows = new Array();
-
-				//add date
-				var date = new Date(eventLog.time);
-				rows.push({
-					label: __('settings.systemEventLog.table.datetime'),
-					value: date.toString()
-				});
-
-				//add event
-				rows.push({
-					label: __('settings.systemEventLog.table.event'),
-					value: __('settings.systemEventLog.eventTypes.s' + eventLog.statusCode)
-				});
-
-				//add device
-				if (eventLog.deviceId !== null || eventLog.deviceName !== null) {
-					rows.push({
-						label: __('settings.systemEventLog.table.device'),
-						value: (eventLog.deviceName !== null ? eventLog.deviceName : eventLog.deviceId)
-					});
-				}
-
-				//add tag
-				rows.push({
-					label: __('settings.systemEventLog.table.tagOrCode'),
-					value: eventLog.tagId
-				});
-
-				//add users
-				//@TODO: what about multiple users?
-				if (eventLog.userName !== null && eventLog.userName !== '') {
-					rows.push({
-						label: __('settings.systemEventLog.table.person'),
-						value: eventLog.userName
-					});
-				}
-
-				systemEventLogContent.appendChild(createTable(rows));
-			}
-		});
+			systemEventLogContent.appendChild(app.ui.createTable(rows));
+		}
 	}
 
 	/**
@@ -75,18 +68,14 @@
 	 */
 	function clearEventLog()
 	{
-		app.homey.confirm(__('settings.rfid.messages.confirmClearEventLog'), 'warning', function(err, result) {
+		app.message.confirm(__('settings.rfid.messages.confirmClearEventLog'), 'warning', function(err, result) {
 			if (result === true) {
 
-				// reset logs
-				document.getElementById('systemEventLogs').innerText = __('settings.loading');
-				
 				// reset systemEventLog
-				app.homey.set('systemEventLog', new Array());
+				document.getElementById('systemEventLogs').innerText = __('settings.loading');
+				app.logRepository.clearLogs();
+				loadEventLogs();
 				app.message.show('', __('settings.rfid.messages.eventLogClearedConfirmation'), 'success');
-
-				// Current page is nothing left todo, so close page and load previous page
-				app.page.close();
 			}
 		});
 
@@ -94,18 +83,14 @@
 		return false;
 	}
 
-	/**
-	 * handle settings save for this page
-	 */
-	function onSettingsSet(name)
-	{
-		if (name === 'systemEventLog') {
+	function onRepositoryLoaded(name) {
+		if (name == 'systemEventLog') {
 			loadEventLogs();
 		}
 	}
 
-	//bind global events
-	app.on('settings.set', onSettingsSet);
+	// bind global events
+	app.event.on('repository.loaded', onRepositoryLoaded);
 
 	//bind events
 	document.getElementById('btnClearEventLog').onclick = function() {
@@ -118,7 +103,7 @@
 
 	return {
 		destroy: function() {
-			app.off('settings.set', onSettingsSet);
+			app.event.off('repository.loaded', onRepositoryLoaded);
 		}		
 	}
 });

@@ -36,9 +36,9 @@
 		// convert tags to checklistItems
 		for (var i=0; i<tags.length; i++) {
 			checklistItems.push({
-				id: tags[i].tagId,
-				label: (tags[i].name != '' ? tags[i].name : tags[i].tagId),
-				checked: (currentUser.tagIds.indexOf(tags[i].tagId) !== -1)
+				id: tags[i].id,
+				label: (tags[i].name != '' ? tags[i].name : 'id ' + tags[i].id),
+				checked: (currentUser.tagIds.indexOf(tags[i].id) !== -1)
 			});
 		}
 

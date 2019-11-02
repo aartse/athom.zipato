@@ -7,7 +7,7 @@
 	function loadTags()
 	{
 		// get users
-		var tags = app.tagRepository.findAllItems();
+		var tags = app.tagRepository.getAllTags();
 
 		var systemTagsContent = document.getElementById('systemTags');
 
@@ -27,7 +27,7 @@
 			//add id
 			rows.push({
 				label: __('settings.devices.table.deviceId'),
-				value: tag.tagId
+				value: tag.id
 			});
 
 			//add id
@@ -53,7 +53,7 @@
 				app.page.open('rfid/tag.html', 'rfid/js/tag.js', {tag: this.tag});
 			}
 
-			systemTagsContent.appendChild(app.createTable(rows));
+			systemTagsContent.appendChild(app.ui.createTable(rows, {editButton: editButton}));
 		}
 	}
 
@@ -133,7 +133,7 @@
 	 */
 	function clearTags()
 	{
-		app.homey.confirm(__('settings.rfid.messages.confirmClearTags'), 'warning', function(err, result) {
+		app.message.confirm(__('settings.rfid.messages.confirmClearTags'), 'warning', function(err, result) {
 			if (result === true) {
 				app.homey.set('tagContainer', new Array());
 				app.message.show('', __('settings.rfid.messages.tagsClearedConfirmation'), 'success');
@@ -177,16 +177,16 @@
 	}	
 
 	//bind global events
-	app.on('settings.set', onSettingsSet);
+	app.event.on('settings.set', onSettingsSet);
 
 	//init
-	loadDevices();
-	loadTagStatus();
+	//loadDevices();
+	//loadTagStatus();
 	loadTags();
 
 	return {
 		destroy: function() {
-			app.off('settings.set', onSettingsSet);
+			app.event.off('settings.set', onSettingsSet);
 		}
 	}
 });

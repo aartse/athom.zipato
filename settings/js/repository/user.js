@@ -5,6 +5,7 @@ var userRepository = (function(homey, event) {
 		getUserById: repository.findItemById,
 		getAllUsers: repository.getAllItems,
 		saveUser: repository.saveItem,
+		saveUsers: repository.saveItems,
 		deleteUser: repository.deleteItem
 	}
 });

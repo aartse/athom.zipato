@@ -1,4 +1,4 @@
-var tagRepository = (function(homey, event, containerName) {
+var tagRepository = (function(homey, event) {
 	var repository = repositoryHelper(homey, event, 'tagContainer');
 
 	function getTagNames(ids)

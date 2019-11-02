@@ -10,20 +10,22 @@ const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
 // Based on the https://github.com/Inversion-NL/eu.benext
 
-const eventsRecieved = new Array();
-const eventIdsRecieved = new Array();
-
 const clamp = function(num, min, max) {
 	return Math.min(Math.max(num, min), max);
 };
 
 class ZipatoDevice extends ZwaveDevice {
+
 	async onMeshInit() {
-		//this.enableDebug();
-		//this.printNode();
-		this.log("Initializing mesh driver")
+
+		this.enableDebug();
+		this.printNode();
+
+		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');
+
 		this.registerCapability('homealarm_state', 'SWITCH_BINARY');
+
 		this.registerCapability('user_code_report', 'USER_CODE', {
 			report: 'USER_CODE_REPORT',
 			reportParser: report => {
@@ -64,6 +66,8 @@ class ZipatoDevice extends ZwaveDevice {
 				};
 			}
 		});
+
+		// register the alarm_tamper capability with COMMAND_CLASS_ALARM
 		this.registerCapability('alarm_tamper', 'ALARM', {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
@@ -76,6 +80,8 @@ class ZipatoDevice extends ZwaveDevice {
 				return null
 			}
 		});
+
+
 		this.registerCapability('homealarm_state', 'ALARM', {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
@@ -83,10 +89,6 @@ class ZipatoDevice extends ZwaveDevice {
 				if(evt == 3) { 
 				  return null;
 				}
-				this.log('report event recieved');
-				//this.log(report);
-				//this.log('Device ID: ' + this.getData().token);
-				setDeviceReport(this.getData().token, 'BASIC');
 
 				let eventType = -1;
 				const tagReaderTagId = report['Event Parameter'].toString('hex'); // Tag reader sends us a tag ID we provided it earlier.
@@ -161,6 +163,7 @@ class ZipatoDevice extends ZwaveDevice {
 				return (eventType == 0) ? "armed" : "disarmed";
 			}
 		});
+
 		this.registerSetting('set_to_default', value => {
 			return new Buffer([ (value === true) ? 0 : 1 ])
 		});
@@ -338,17 +341,6 @@ function setSystemArmed(value) {
 
 function getTagStatus() {
 	return Homey.ManagerSettings.get('tagStatus') === true;
-}
-
-function setTagStatus(value) // value needs to be true or false
-{
-	if (value === false || value === 0) {
-		value = false;
-	} else {
-		value = true;
-	}
-
-	Homey.ManagerSettings.set('tagStatus', value);
 }
 
 function getTagReaders() {
@@ -596,34 +588,6 @@ function handleOrphanTag(tagId, nodeId) {
 		setTagContainer(tags);
 		return tag;
 	}
-}
-
-/**
- * Sets the device status reports after a report came in.
- * @param nodeToken; the unique id from the device in the event
- * @param statusName; the type of status (BASIC or GATEWAY)
- */
-function setDeviceReport(nodeToken, statusName) {
-	let devices = getTagReaders();
-	if (typeof devices === 'undefined' || devices === null || typeof devices.length === 'undefined') {
-		devices = new Array();
-	}
-
-	let match = false;
-	for (let i = 0; i < devices.length; i++) {
-		if (devices[i].id === nodeToken) {
-			devices[i].state = statusName;
-			devices[i].lastUpdate = new Date();
-			match = true;
-			i = devices.length + 1;
-		}
-	}
-
-	if (match === false) {
-		devices.push({ id: nodeToken, state: statusName, lastUpdate: new Date(), name: '' });
-	}
-
-	setTagReaders(devices);
 }
 
 module.exports = ZipatoDevice;

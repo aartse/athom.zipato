@@ -28,19 +28,11 @@
 				value: tag.id
 			});
 
-			//add id
+			//add name
 			rows.push({
 				label: __('settings.devices.table.name'),
 				value: tag.name
 			});
-/*
-			//add last updated
-			var date = new Date(device.lastUpdate);
-			rows.push({
-				label: __('settings.devices.table.lastUpdated'),
-				value: date.toString()
-			});
-*/
 
 			//add edit button
 			var editButton = document.createElement("button");
@@ -52,49 +44,6 @@
 			}
 
 			systemTagsContent.appendChild(app.ui.createTable(rows, {editButton: editButton}));
-		}
-	}
-
-	/**
-	 * reload devices
-	 */
-	function loadDevices()
-	{
-		// get devices
-		var devices = app.tagreaderRepository.getAllTagreaders();
-
-		var systemDevicesContent = document.getElementById('systemDevices');
-		
-		if (devices.length === 0) {
-			systemDevicesContent.innerText = __('settings.rfid.messages.noReaders');
-			return;
-		}
-
-		systemDevicesContent.innerHTML = '';
-		for (var i=0; i<devices.length; i++) {
-			var device = devices[i];
-			var rows = new Array();
-
-			//add id
-			rows.push({
-				label: __('settings.devices.table.deviceId'),
-				value: device.id
-			});
-
-			//add id
-			rows.push({
-				label: __('settings.devices.table.status'),
-				value: device.state
-			});
-
-			//add last updated
-			var date = new Date(device.lastUpdate);
-			rows.push({
-				label: __('settings.devices.table.lastUpdated'),
-				value: date.toString()
-			});
-
-			systemDevicesContent.appendChild(app.ui.createTable(rows));
 		}
 	}
 
@@ -131,7 +80,6 @@
 	app.event.on('repository.loaded', onRepositoryLoaded);
 
 	//init
-	loadDevices();
 	loadTagStatus();
 	loadTags();
 

@@ -1,4 +1,4 @@
-var repositoryService = (function(homey, event, containerName) {
+var repositoryHelper = (function(homey, event, containerName) {
 
 	var data = null;
 
@@ -14,8 +14,8 @@ var repositoryService = (function(homey, event, containerName) {
 	}
 
 	/**
-	 * return data as array
-	 */
+	* return data as array
+	*/
 	function getDataAsArray()
 	{
 		if(typeof data === 'undefined' || data === null || data.length === 0) {
@@ -46,7 +46,7 @@ var repositoryService = (function(homey, event, containerName) {
 	//bind global events
 	event.on('settings.set', onSettingsSet);
 
-	//init data
+	//load data
 	reloadData();
 
 	return {
@@ -59,14 +59,13 @@ var repositoryService = (function(homey, event, containerName) {
 			}
 			return null;
 		},
-		findAllItems: function() {
-			return getDataAsArray();
-		},
 		getData: function() {
 			return data;
 		},
+		getAllItems: function() {
+			return getDataAsArray();
+		},
 		saveItem: function(item) {
-
 			var items = getDataAsArray();
 
 			if (item.id === null) {
@@ -95,6 +94,7 @@ var repositoryService = (function(homey, event, containerName) {
 		},
 		deleteItem: function(item) {
 			var items = getDataAsArray();
+
 			if (item.id !== null) {
 				for (var i=0; i<items.length; i++) {
 					if (items[i].id == item.id) {

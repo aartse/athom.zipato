@@ -31,13 +31,13 @@
 
 	//load tags
 	var checklistItems = new Array();
-	var tags = app.tagRepository.getAllTags();
+	var tags = app.tagRepository.findAllItems();
 	if(tags.length > 0) {
 		// convert tags to checklistItems
 		for (var i=0; i<tags.length; i++) {
 			checklistItems.push({
 				id: tags[i].tagId,
-				label: (tags[i].name != '' ? tags[i].name : tags[i].tagId),
+				label: tags[i].tagId,
 				checked: (currentUser.tagIds.indexOf(tags[i].tagId) !== -1)
 			});
 		}
@@ -53,7 +53,7 @@
 		document.getElementById('deleteButton').onclick = function() {
 			app.message.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
 				if (err === true || result === true) {
-					app.userRepository.deleteUser(currentUser);
+					app.userRepository.deleteItem(currentUser);
 					app.message.show('', __('settings.advanced.messages.userDeleted'), 'success');
 					app.page.close();
 				}
@@ -73,7 +73,7 @@
 		}
 
 		//save user, show success message and close page
-		app.userRepository.saveUser(currentUser);
+		app.userRepository.saveItem(currentUser);
 		app.message.show('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
 		app.page.close();
 	}

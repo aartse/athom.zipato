@@ -6,7 +6,7 @@
 	function loadUsers()
 	{
 		// get users
-		var users = app.userRepository.findAllItems();
+		var users = app.userRepository.getAllUsers();
 
 		// check if users is loaded
 		if (users.length === 0) {
@@ -21,17 +21,6 @@
 		for (var i=0; i<users.length; i++) {
 			var user = users[i];
 			var rows = new Array();
-
-			//search for tag names
-			var tagNames = new Array();
-			for (var i2=0; i2<user.tagIds.length; i2++) {
-				var tag = app.tagRepository.findItemById(user.tagIds[i2]);
-				if (tag !== null && tag.name != '') {
-					tagNames.push(tag.name);
-				} else {
-					tagNames.push('id:' + user.tagIds[i2]);
-				}
-			}
 
 			//add name
 			rows.push({
@@ -48,7 +37,7 @@
 			//add status
 			rows.push({
 				label: __('settings.users.table.tags'),
-				value: tagNames.join(', ')
+				value: app.tagRepository.getTagNames(user.tagIds).join(', ')
 			});
 
 			//add edit button
@@ -65,7 +54,7 @@
 	}
 
 	function onRepositoryLoaded(name) {
-		if (name == 'userContainer') {
+		if (name == 'userContainer' || name == 'tagContainer') {
 			loadUsers();
 		}
 	}

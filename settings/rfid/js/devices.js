@@ -6,43 +6,55 @@
 	 */
 	function loadTags()
 	{
-		app.homey.get('tagContainer', function(err, tags)
+		// get users
+		var tags = app.tagRepository.findAllItems();
+
+		var systemTagsContent = document.getElementById('systemTags');
+
+		if(tags.length === 0) {
+			systemTagsContent.innerText = __('settings.rfid.messages.noTags');
+			return;
+		}
+		
+		systemTagsContent.innerHTML = '';
+		for (var i=0; i<tags.length; i++)
 		{
-			if(err) {
-				app.message.show('error getting tagContainer', err, 'danger');
-				return;
+			var tag = tags[i];
+			console.log(tag);
+
+			var rows = new Array();
+
+			//add id
+			rows.push({
+				label: __('settings.devices.table.deviceId'),
+				value: tag.tagId
+			});
+
+			//add id
+			rows.push({
+				label: __('settings.devices.table.name'),
+				value: tag.name
+			});
+/*
+			//add last updated
+			var date = new Date(device.lastUpdate);
+			rows.push({
+				label: __('settings.devices.table.lastUpdated'),
+				value: date.toString()
+			});
+*/
+
+			//add edit button
+			var editButton = document.createElement("button");
+			editButton.className = 'hy-nostyle full-width';
+			editButton.innerText = __('settings.tags.table.edit');
+			editButton.tag = tag;
+			editButton.onclick = function() {
+				app.page.open('rfid/tag.html', 'rfid/js/tag.js', {tag: this.tag});
 			}
 
-			var systemTagsContent = document.getElementById('systemTags');
-
-			if(typeof tags === 'undefined' || tags === null || tags.length === 0) {
-				systemTagsContent.innerText = __('settings.rfid.messages.noTags');
-				return;
-			}
-			
-			systemTagsContent.innerHTML = '';
-			for (var i=0; i<tags.length; i++)
-			{
-				var tag = tags[i];
-
-				var rows = new Array();
-
-				//add id
-				rows.push({
-					label: __('settings.devices.table.deviceId'),
-					value: tag.tagId
-				});
-	/*
-				//add last updated
-				var date = new Date(device.lastUpdate);
-				rows.push({
-					label: __('settings.devices.table.lastUpdated'),
-					value: date.toString()
-				});
-	*/
-				systemTagsContent.appendChild(app.createTable(rows));
-			}
-		});
+			systemTagsContent.appendChild(app.createTable(rows));
+		}
 	}
 
 	/**

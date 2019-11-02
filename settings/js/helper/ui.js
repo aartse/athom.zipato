@@ -1,4 +1,4 @@
-var uiService = (function() {
+var uiHelper = (function() {
 
 	function createTable(rows, args)
 	{
@@ -56,6 +56,7 @@ var uiService = (function() {
 			checklist.appendChild(input);
 
 			var label = document.createElement("label");
+			label.htmlFor = name + '_' + item.id;
 			label.innerText = item.label;
 			checklist.appendChild(label);
 		}

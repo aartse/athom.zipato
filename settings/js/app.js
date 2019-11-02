@@ -108,11 +108,11 @@ var app = (function(homey) {
 	}	
 
 	// load services into container
-	appContainer.message = messageService(homey);
-	appContainer.event = eventService(homey);
-	appContainer.userRepository = repositoryService(homey, appContainer.event, 'userContainer');
-	appContainer.tagRepository = repositoryService(homey, appContainer.event, 'tagContainer');
-	appContainer.ui = uiService();
+	appContainer.message = messageHelper(homey);
+	appContainer.event = eventHelper(homey);
+	appContainer.userRepository = userRepository(homey, appContainer.event);
+	appContainer.tagRepository = tagRepository(homey, appContainer.event);
+	appContainer.ui = uiHelper();
 	appContainer.page = {
 		open: openPage,
 		close: previousPage

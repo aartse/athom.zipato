@@ -1,4 +1,4 @@
-var eventService = (function(homey) {
+var eventHelper = (function(homey) {
 	var events = [];
 
 	function triggerEvent(eventType, extraParameters)

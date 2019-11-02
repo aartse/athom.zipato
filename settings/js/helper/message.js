@@ -1,4 +1,4 @@
-var messageService = (function(homey) {
+var messageHelper = (function(homey) {
 	/**
 	 * Displays message on settings page
 	 * Style can be "danger" or "success" or "info"

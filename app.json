@@ -2264,7 +2264,8 @@
           "id": "set_to_default",
           "zwave": {
             "index": 1,
-            "size": 1
+            "size": 1,
+            "signed": false
           },
           "type": "dropdown",
           "label": {
@@ -2275,17 +2276,17 @@
             "en": "Set all configuration values to default values (factory settings).",
             "nl": "Zet alle configuratie waarden terug naar de standaard instellingen."
           },
-          "value": "170",
+          "value": "0",
           "values": [
             {
-              "id": "170",
+              "id": "0",
               "label": {
                 "en": "Don't reset settings",
                 "nl": "Wis gegevens niet"
               }
             },
             {
-              "id": "3",
+              "id": "255",
               "label": {
                 "en": "Reset to factory settings",
                 "nl": "Fabrieksinstellingen terugzetten"
@@ -2370,10 +2371,10 @@
             "en": "Always awake mode",
             "nl": "Altijd wakker modus"
           },
-          "value": "0",
+          "value": "1",
           "values": [
             {
-              "id": "0",
+              "id": "1",
               "label": {
                 "en": "Mode 1, normal operating mode",
                 "nl": "Mode 1, normale modus"

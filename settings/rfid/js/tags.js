@@ -73,6 +73,11 @@
 	//toggle tag status button
 	document.getElementById('btnToggleStatus').onclick = function() {
 		app.tagstatusRepository.toggleTagStatus();
+
+		//when tags adding is allowed, set system armed to false in case of repairing the reader in system armed state
+		if (app.tagstatusRepository.getTagStatus()) {
+			app.systemarmedRepository.setSystemArmed(false);
+		}
 		return false;
 	}	
 

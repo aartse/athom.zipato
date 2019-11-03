@@ -54,7 +54,7 @@
 			app.message.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
 				if (err === true || result === true) {
 					app.userRepository.deleteUser(currentUser);
-					app.message.show('', __('settings.advanced.messages.userDeleted'), 'success');
+					app.message.show('', __('settings.rfid.messages.userDeleted'), 'success');
 					app.page.close();
 				}
 			});
@@ -74,7 +74,7 @@
 
 		//save user, show success message and close page
 		app.userRepository.saveUser(currentUser);
-		app.message.show('', __('settings.advanced.messages.usersSavedConfirmation'), 'success');
+		app.message.show('', __('settings.rfid.messages.userSavedConfirmation'), 'success');
 		app.page.close();
 	}
 

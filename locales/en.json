@@ -20,35 +20,32 @@
 			"buttons": {
 				"addUser": "Add user",
 				"logs": "Logs",
-				"devices": "Devices",
+				"tags": "Tags",
 				"clearEventLog": "Clear event log",
-				"clearTags": "Clear tags",
-				"toggleTag": "Toggle tag registration on/off",
 				"saveUser": "Save user",
-				"deleteUser": "Delete user"
+				"deleteUser": "Delete user",
+				"toggleTag": "Toggle tag registration on/off",
+				"saveTag": "Save tag",
+				"deleteTag": "Delete tag"
 			},
 			"titles": {
-				"readers": "Readers",
-				"tags": "Tags"
+				"users": "Manage users",
+				"tags": "Manage tags",
+				"advanced": "Advanced settings"
 			},
 			"descriptions": {
-				"clearTags": "Please use the below settings only when you are really sure you want to reset the settings of the tags in Homey (and therefore in most cases need to rebuild your flows and reset your Tag Readers as well).",
 				"allowTags": "Registration of new tags is allowed",
 				"denyTags": "Registration of new tags is not allowed"
 			},
 			"messages": {
 				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
 				"eventLogClearedConfirmation": "The event log is cleared.",
-				"confirmClearTags": "Clear all tags from the Homey cache. Please note that you should reset all your devices to factory settings and start adding the tags and codes again. Are you sure?",
-				"tagsClearedConfirmation": "The tags are all removed from Homey. Please reset your Tag Readers manually.",
 				"toggleTagStatusConfirmed": "Tag registration status switched",
-				"usersSavedErrorTitle": "Error saving users: ",
-				"usersSavedConfirmation": "Users succesfully saved",
-				"userDeleted": "User deleted, click on save user settings to commit the delete",
+				"userSavedConfirmation": "User saved",
+				"userDeleted": "User deleted",
 				"noUserssYet": "No users available",
-				"noEventsYet": "No events yet available, add a Tag Reader to your Homey to start collecting events.",
-				"noTags": "No tags available.",
-				"noReaders": "No tag readers available."
+				"noEventsYet": "No events yet available, add a Tag Reader and tags to your Homey to start collecting events.",
+				"noTags": "No tags available, please add tags first."
 			}
 		},
 
@@ -109,32 +106,13 @@
 			{
 				"noDevicesYet": "No reports reported to Homey yet, couldn't determine devices and their reporting status."
 			}
-		},
-		"advanced":
-		{
-			"title": "Advanced Settings",
-			"description": "Please use the below settings only when you are really sure you want to reset the settings of Homey (and therefore in most cases need to rebuild your flows and reset your Tag Readers as well).",
-			"table":
-			{
-				"eventLog": "Event Log",
-				"tags": "Tags",
-				"tagApproval": "Tag Approval",
-				"tagApprovalStatus": "Current status: Unknown"
-			}
-		},
-		"buttons":
-		{
-			"addUser": "Add user",
-			"removeUser": "Remove user",
-			"saveSettings": "Save user settings"
 		}
 	},
 	"flow":
 	{
 		"condition":
 		{
-			"userNotFound": "Can't find user with given ID.",
-			"unknownUserStatus": "The status of the user is unknown. Please toggle the user status first before using this condition card."
+			"userNotFound": "Can't find user with given ID."
 		}
 	}
 }

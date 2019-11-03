@@ -2987,11 +2987,12 @@
       {
         "id": "WT-RFID.EU-system_is_armed",
         "title": {
-          "en": "Is !{{|not}} armed"
+          "en": "Is !{{|not}} armed",
+          "nl": "Is !{{|not}} ingeschakeld"
         },
         "hint": {
           "en": "If the system is armed.",
-          "nl": "If the system is armed."
+          "nl": "Als het systeem is ingeschakeld."
         },
         "args": [
           {

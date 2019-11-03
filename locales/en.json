@@ -70,7 +70,7 @@
 				"s1": "Home",
 				"s2": "Tag Paired",
 				"s3": "Scene Started",
-				"s4": "Unknown Tag"
+				"s4": "Unknown Tag. The manual toggle is set to off or your system is in armed status."
 			},
 			"messages":
 			{

@@ -30,12 +30,10 @@ class ZipatoDevice extends ZwaveDevice {
 						return Homey.error(err);
 					}
 				});
-				
-				this.log('TODO: trigger flow for unknown tag: ' + userCode);
 
 				// Check if tags can be added
 				if (!canAddNewTags()) {
-					this.log('LOG IN EVENTLOGGER: You are not allowed to add tags. Either the manual toggle is set to off or your system is in armed status');
+					addLog(null, this.getData().token, null, 4, null);
 					return null;
 				}
 
@@ -56,15 +54,7 @@ class ZipatoDevice extends ZwaveDevice {
 				);
 
 				// Log new tag
-				addLog(
-					null,
-					this.getData().token,
-					tag.id,
-					2, // tag added
-					null,
-					null
-				);
-
+				addLog(null, this.getData().token, tag.id, 2, null, null);
 				return null;
 			}
 		});
@@ -97,12 +87,12 @@ class ZipatoDevice extends ZwaveDevice {
 					default: return null;
 				}
 
-				// Search for tag and update state
+				// Search for tag
 				var tag = getTagById(parseInt(report['Event Parameter'].toString('hex'), 16));
 				if (tag === null) {
 					// Check if tags can be added
 					if (!canAddNewTags()) {
-						this.log('LOG IN EVENTLOGGER: You are not allowed to add tags. Either the manual toggle is set to off or your system is in armed status');
+						addLog(null, this.getData().token, null, 4, null);
 						return null;
 					}
 
@@ -219,6 +209,9 @@ class ZipatoDevice extends ZwaveDevice {
 				});
 			}
 			setSystemArmed(false);
+
+			//log
+			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 1, tokens.userName);
 		}
 
 		if (alarmState === 'away') {
@@ -240,6 +233,9 @@ class ZipatoDevice extends ZwaveDevice {
 				});
 			}
 			setSystemArmed(true);
+
+			//log
+			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 0, tokens.userName);
 		}
 
 		return true;
@@ -455,16 +451,15 @@ function getTagById(id)
  * Writes entry to log file
  * statusCodes: 0 = away, 1 = home, 2 = tag added, 3 = Scene Started
  */
-function addLog(userId, deviceId, tagId, statusCode, userName, deviceName)
+function addLog(userId, deviceId, tagId, statusCode, userName)
 {
 	const logEntry = {
 		time: new Date(),
-		userId,
-		tagId,
-		statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
-		userName,
-		deviceName,
-		deviceId,
+		userId: userId,
+		userName: userName,
+		tagId: tagId,
+		statusCode: statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
+		deviceId: deviceId,
 	};
 
 	var log = Homey.ManagerSettings.get('systemEventLog');
@@ -509,8 +504,8 @@ function initSettings() {
 		if (typeof tagContainer[i].userCode === 'undefined') {
 			tagContainer[i].userCode = tagContainer[i].tagValue;
 		}
-		if (typeof tagContainer[i].name === 'undefined') {
-			tagContainer[i].name = '';
+		if (typeof tagContainer[i].name === 'undefined' || tagContainer[i].name === '') {
+			tagContainer[i].name = 'ID ' + tagContainer[i].id;
 		}
 		delete tagContainer[i].tagId;
 		delete tagContainer[i].tagValue;

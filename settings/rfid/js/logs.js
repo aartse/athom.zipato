@@ -37,21 +37,22 @@
 			});
 
 			//add device
-			if (eventLog.deviceId !== null || eventLog.deviceName !== null) {
+			if (eventLog.deviceId !== null) {
 				rows.push({
 					label: __('settings.systemEventLog.table.device'),
-					value: (eventLog.deviceName !== null ? eventLog.deviceName : eventLog.deviceId)
+					value: eventLog.deviceId
 				});
 			}
 
 			//add tag
-			rows.push({
-				label: __('settings.systemEventLog.table.tagOrCode'),
-				value: eventLog.tagId
-			});
-
+			if (eventLog.tagId !== null) {
+				rows.push({
+					label: __('settings.systemEventLog.table.tagOrCode'),
+					value: eventLog.tagId
+				});
+			}
+			
 			//add users
-			//@TODO: what about multiple users?
 			if (eventLog.userName !== null && eventLog.userName !== '') {
 				rows.push({
 					label: __('settings.systemEventLog.table.person'),

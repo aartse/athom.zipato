@@ -24,6 +24,13 @@ class ZipatoDevice extends ZwaveDevice {
 
 				// Get user or tag code
 				var userCode = report.USER_CODE.toString('hex');
+				this.userUnknownTrigger.trigger(this, {deviceId: this.getData().token, userCode: userCode}, {}, (err, result) => {
+					if (err) {
+						this.log(err);
+						return Homey.error(err);
+					}
+				});
+				
 				this.log('TODO: trigger flow for unknown tag: ' + userCode);
 
 				// Check if tags can be added
@@ -181,6 +188,7 @@ class ZipatoDevice extends ZwaveDevice {
 		this.userSystemHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_home').register();
 		this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
 		this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
+		this.userUnknownTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_unknown').register();
 	}
 
 	triggerStateChange(alarmState, deviceId, tag, user) {

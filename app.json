@@ -2204,8 +2204,8 @@
         "learnmode": {
           "image": "/drivers/WT-RFID.EU/assets/learnmode.svg",
           "instruction": {
-            "en": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine.",
-            "nl": "Press and hold the tamper switch about a second until indication LED blinks once per second, then release to start the add/remove routine."
+            "en": "Press and hold the tamper switch about a second until indication LED blinks, then release to start the add/remove routine.",
+            "nl": "Houd de sabotageschakelaar ongeveer een seconde ingedrukt totdat de indicatie-LED knippert en laat hem vervolgens los om de procedure voor toevoegen / verwijderen te starten."
           }
         },
         "associationGroups": [
@@ -2918,6 +2918,33 @@
             "example": {
               "en": "123x",
               "nl": "123x"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=WT-RFID.EU"
+          }
+        ]
+      },
+      {
+        "id": "WT-RFID.EU-user_unknown",
+        "title": {
+          "en": "Usercode is unknown",
+          "nl": "Iemand heeft een onbekende code ingevoerd"
+        },
+        "hint": {
+          "en": "Triggered when an unknown tag is used or an invalid code was entered.",
+          "nl": "Wordt uitgevoerd wanneer iemand een onbekende tag gebruikt of een verkeerde code ingevoerd heet."
+        },
+        "tokens": [
+          {
+            "name": "userCode",
+            "title": {
+              "en": "Code/Tag",
+              "nl": "Code/Tag"
             }
           }
         ],

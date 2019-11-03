@@ -124,7 +124,7 @@ class ZipatoDevice extends ZwaveDevice {
 		let isAtHome = new Homey.FlowCardCondition('WT-RFID.EU-is_at_home');
 		isAtHome
 		    .register()
-		    .registerRunListener(( args, state ) => {
+		    .registerRunListener(( args, state, callback ) => {
 
 				// Get the status of the requested user
 				var user = getUserById(args.person.id);

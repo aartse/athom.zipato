@@ -29,7 +29,7 @@
         "measure_battery"
     ],
     "energy": {
-        "batteries": [ "OTHER" ]
+        "batteries": [ "CR14250", "CR14250" ]
     },
     "images": {
         "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",

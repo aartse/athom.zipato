@@ -1,7 +1,5 @@
 "use strict";
 
-// energy.battery = CR14250 (=1/2 AA)
-
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
 class ZipatoDevice extends ZwaveDevice {

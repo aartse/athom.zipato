@@ -6,14 +6,16 @@
 
 		<div id="userList" data-i18n="settings.loading"></div>
 
-		<button class="full-width" onclick="app.page.open('rfid/user.html', 'rfid/js/user.js');" data-i18n="settings.rfid.buttons.addUser"></button>
+		<button class="full-width" id="addUserButton" data-i18n="settings.rfid.buttons.addUser"></button>
     </fieldset>
 	<br />
 	<fieldset>
 		<legend data-i18n="settings.rfid.titles.advanced"></legend>
-		<button class="full-width" onclick="app.page.open('rfid/tags.html', 'rfid/js/tags.js');" data-i18n="settings.rfid.buttons.tags"></button>
+
+		<button class="full-width" id="tagsButton" data-i18n="settings.rfid.buttons.tags"></button>
 		<br />
 		<br />
-		<button class="full-width" onclick="app.page.open('rfid/logs.html', 'rfid/js/logs.js');" data-i18n="settings.rfid.buttons.logs"></button>
+		
+		<button class="full-width" id="logsButton" data-i18n="settings.rfid.buttons.logs"></button>
     </fieldset>
 </div>

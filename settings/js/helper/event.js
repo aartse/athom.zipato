@@ -6,7 +6,7 @@ var eventHelper = (function(homey) {
 		for (var i = events.length - 1; i >= 0; i--) {
 			if (events[i].eventType === eventType && typeof events[i].callback === 'function') {
 				//@TODO: app variable controleren waar dat nodig is?????
-				events[i].callback.apply(app, extraParameters);
+				events[i].callback.apply(null, extraParameters);
 			}
 		}
 	}

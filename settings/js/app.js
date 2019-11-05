@@ -121,8 +121,15 @@ var app = (function(homey) {
 		close: previousPage
 	};
 
+	document.getElementById('backButton').onclick = function() {
+		previousPage();
+	};
+
+	
+
 	// open first page
-	openPage('rfid/index.html', 'rfid/js/index.js');
+	openPage('home.html', 'js/home.js');
+	//openPage('rfid/index.html', 'rfid/js/index.js');
 
 	// homey is ready
 	homey.ready();

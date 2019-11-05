@@ -62,6 +62,18 @@
 	// bind global events
 	app.event.on('repository.loaded', onRepositoryLoaded);
 
+	document.getElementById('addUserButton').onclick = function() {
+		app.page.open('rfid/user.html', 'rfid/js/user.js');
+	};
+
+	document.getElementById('tagsButton').onclick = function() {
+		app.page.open('rfid/tags.html', 'rfid/js/tags.js');
+	};
+
+	document.getElementById('logsButton').onclick = function() {
+		app.page.open('rfid/logs.html', 'rfid/js/logs.js');
+	};
+
 	// init load users
 	loadUsers();
 

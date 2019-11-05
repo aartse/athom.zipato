@@ -2101,7 +2101,8 @@
       ],
       "energy": {
         "batteries": [
-          "OTHER"
+          "CR14250",
+          "CR14250"
         ]
       },
       "images": {

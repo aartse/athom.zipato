@@ -2205,8 +2205,8 @@
         "learnmode": {
           "image": "/drivers/WT-RFID.EU/assets/learnmode.svg",
           "instruction": {
-            "en": "Press and hold the tamper switch about a second until indication LED blinks, then release to start the add/remove routine.",
-            "nl": "Houd de sabotageschakelaar ongeveer een seconde ingedrukt totdat de indicatie-LED knippert en laat hem vervolgens los om de procedure voor toevoegen / verwijderen te starten."
+            "en": "Press and hold the tamper switch about a second until indication LED lights up, then immediately release to start the add/remove routine. Note: the rfid keypad must be close to homey.",
+            "nl": "Houd de sabotageschakelaar ongeveer een seconde ingedrukt totdat de indicatie-LED aan gaat en laat hem dan meteen los om de procedure voor toevoegen / verwijderen te starten. Let op: de rfid keypad moet dicht bij homey in de buurt zijn."
           }
         },
         "associationGroups": [

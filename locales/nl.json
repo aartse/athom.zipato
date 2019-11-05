@@ -1,0 +1,81 @@
+{
+	"settings": {
+		"title": "Zipato instellingen",
+		"description": "Op deze pagina zijn instellingen voor zipato apparaten aan te passen.",
+		"loading": "Laden...",
+		"buttons": {
+			"rfid": "RFID keypad",
+			"back": "< Terug"
+		},
+		"rfid": {
+			"title": "Zipato RFID keypad instellingen",
+			"buttons": {
+				"addUser": "Gebruiker toevoegen",
+				"deleteTag": "Tag verwijderen",
+				"deleteUser": "Gebruiker verwijderen",
+				"clearEventLog": "Gebeurtenissen verwijderen",
+				"editTag": "Bewerk tag",
+				"editUser": "Bewerk gebruiker",
+				"logs": "Gebeurtenissen",
+				"tags": "Tags",
+				"toggleTag": "Tag registratie wisselen",
+				"saveTag": "Tag opslaan",
+				"saveUser": "Gebruiker opslaan"
+			},
+			"titles": {
+				"advanced": "Geavanceerd",
+				"eventLog": "Gebeurtenissen",
+				"tags": "Tags",
+				"users": "Gebruikers"
+			},
+			"descriptions": {
+				"allowTags": "Registratie van tags is toegestaan",
+				"denyTags": "Registratie van tags is uitgeschakeld"
+			},
+			"messages": {
+				"confirmClearEventLog": "Weet je zeker dat je alle gebeurtenissen wilt verwijderen?",
+				"confirmDeteleTag": "Weet je zeker dat je deze tag wilt verwijderen?",
+				"confirmDeteleUser": "Weet je zeker dat je deze gebruiker wilt verwijderen?",
+				"eventLogClearedConfirmation": "Gebeurtenissen zijn verwijderd.",
+				"tagDeleted": "Tag verwijderd",
+				"tagSavedConfirmation": "Tag opgeslagen",
+				"toggleTagStatusConfirmed": "Tag registratie gewisseld",
+				"userDeleted": "Gebruiker verwijderd",
+				"userSavedConfirmation": "Gebruiker opgeslagen",
+				"noUsersYet": "Geen tag-gebruikers bekend. Voeg een gebruiker toe via de toevoegen knop.",
+				"noEventsYet": "Geen gebeurtenissen bekend. Voeg tags toe om events te registreren.",
+				"noTagsYet": "Geen tags bekend, voeg eerst tags toe."
+			},
+			"labels": {
+				"datetime": "Datum",
+				"event": "Gebeurtenis",
+				"edit": "Bewerken",
+				"device": "Apparaat",
+				"person": "Gebruiker",
+				"persons": "Gebruikers",
+				"status": "Huidige status",
+				"tag": "Tag",
+				"tagId": "ID",
+				"tags": "Tags",
+				"tagName": "Naam",
+				"userId": "ID",
+				"userName": "Naam"
+			},
+			"statusCodes": {
+				"s-1": "Onbekend",
+				"s0": "Weg",
+				"s1": "Thuis",
+				"s2": "Tag gekoppeld",
+				"s3": "Scene gestart",
+				"s4": "Onbekende Tag. Tag toevoegen is uitgeschakeld of je alarm is ingeschakeld."
+			}
+		}
+	},
+	"flow":
+	{
+		"condition":
+		{
+			"userNotFound": "Can't find user with given ID."
+		}
+	}
+}

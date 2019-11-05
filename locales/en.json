@@ -46,12 +46,13 @@
 				"noEventsYet": "No events yet available, add a Tag Reader and tags to your Homey to start collecting events.",
 				"noTagsYet": "No tags available, please add tags first."
 			},
-			"columns": {
+			"labels": {
 				"datetime": "Date",
 				"event": "Event",
 				"edit": "Edit",
 				"device": "Device",
 				"person": "User",
+				"persons": "Users",
 				"status": "Current status",
 				"tag": "Tag",
 				"tagId": "ID",

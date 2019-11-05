@@ -24,13 +24,13 @@
 
 			//add id
 			rows.push({
-				label: __('settings.rfid.columns.tagId'),
+				label: __('settings.rfid.labels.tagId'),
 				value: tag.id
 			});
 
 			//add name
 			rows.push({
-				label: __('settings.rfid.columns.tagName'),
+				label: __('settings.rfid.labels.tagName'),
 				value: tag.name
 			});
 

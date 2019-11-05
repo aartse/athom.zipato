@@ -24,19 +24,19 @@
 
 			//add name
 			rows.push({
-				label: __('settings.rfid.columns.person'),
+				label: __('settings.rfid.labels.userName'),
 				value: user.name
 			});
 
 			//add status
 			rows.push({
-				label: __('settings.rfid.columns.status'),
+				label: __('settings.rfid.labels.status'),
 				value: __('settings.rfid.statusCodes.s' + user.statusCode)
 			});
 
 			//add status
 			rows.push({
-				label: __('settings.rfid.columns.tags'),
+				label: __('settings.rfid.labels.tags'),
 				value: app.tagRepository.getTagNames(user.tagIds).join(', ')
 			});
 

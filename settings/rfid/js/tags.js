@@ -11,7 +11,7 @@
 		var systemTagsContent = document.getElementById('systemTags');
 
 		if(tags.length === 0) {
-			systemTagsContent.innerText = __('settings.rfid.messages.noTags');
+			systemTagsContent.innerText = __('settings.rfid.messages.noTagsYet');
 			return;
 		}
 		
@@ -24,20 +24,20 @@
 
 			//add id
 			rows.push({
-				label: __('settings.devices.table.deviceId'),
+				label: __('settings.rfid.columns.tagId'),
 				value: tag.id
 			});
 
 			//add name
 			rows.push({
-				label: __('settings.devices.table.name'),
+				label: __('settings.rfid.columns.tagName'),
 				value: tag.name
 			});
 
 			//add edit button
 			var editButton = document.createElement("button");
 			editButton.className = 'hy-nostyle full-width';
-			editButton.innerText = __('settings.tags.table.edit');
+			editButton.innerText = __('settings.rfid.buttons.editTag');
 			editButton.tag = tag;
 			editButton.onclick = function() {
 				app.page.open('rfid/tag.html', 'rfid/js/tag.js', {tag: this.tag});

@@ -28,16 +28,16 @@
 		document.getElementById('userIds').innerHTML = '';
 		document.getElementById('userIds').appendChild(app.ui.createChecklist('userIds', checklistItems));
 	} else
-		document.getElementById('userIds').innerHTML = __('settings.rfid.messages.noUsers');
+		document.getElementById('userIds').innerHTML = __('settings.rfid.messages.noUsersYet');
 
 	//bind delete button
 	if (currentTag.id !== null) {
 		document.getElementById('deleteButton').style.display = '';
 		document.getElementById('deleteButton').onclick = function() {
-			app.message.confirm(__('settings.users.messages.confirmDeteleTag'), 'warning', function(err, result) {
+			app.message.confirm(__('settings.rfid.messages.confirmDeteleTag'), 'warning', function(err, result) {
 				if (err === true || result === true) {
 					app.tagRepository.deleteTag(currentTag);
-					app.message.show('', __('settings.advanced.messages.tagDeleted'), 'success');
+					app.message.show('', __('settings.rfid.messages.tagDeleted'), 'success');
 					app.page.close();
 				}
 			});
@@ -68,7 +68,7 @@
 		app.userRepository.saveUsers(users);
 
 		//show success message and close page
-		app.message.show('', __('settings.advanced.messages.tagSavedConfirmation'), 'success');
+		app.message.show('', __('settings.rfid.messages.tagSavedConfirmation'), 'success');
 		app.page.close();
 	}
 

@@ -10,7 +10,7 @@
 
 		// check if users is loaded
 		if (users.length === 0) {
-			document.getElementById('userList').innerText = __('settings.rfid.messages.noUserssYet');
+			document.getElementById('userList').innerText = __('settings.rfid.messages.noUsersYet');
 			return;
 		}
 
@@ -24,26 +24,26 @@
 
 			//add name
 			rows.push({
-				label: __('settings.systemEventLog.table.person'),
+				label: __('settings.rfid.columns.person'),
 				value: user.name
 			});
 
 			//add status
 			rows.push({
-				label: __('settings.users.table.status'),
-				value: __('settings.systemEventLog.eventTypes.s' + user.statusCode)
+				label: __('settings.rfid.columns.status'),
+				value: __('settings.rfid.statusCodes.s' + user.statusCode)
 			});
 
 			//add status
 			rows.push({
-				label: __('settings.users.table.tags'),
+				label: __('settings.rfid.columns.tags'),
 				value: app.tagRepository.getTagNames(user.tagIds).join(', ')
 			});
 
 			//add edit button
 			var editButton = document.createElement("button");
 			editButton.className = 'hy-nostyle full-width';
-			editButton.innerText = __('settings.users.table.edit');
+			editButton.innerText = __('settings.rfid.buttons.editUser');
 			editButton.user = user;
 			editButton.onclick = function() {
 				app.page.open('rfid/user.html', 'rfid/js/user.js', {user: this.user});

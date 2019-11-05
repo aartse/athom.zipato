@@ -45,13 +45,13 @@
 		document.getElementById('tagIds').innerHTML = '';
 		document.getElementById('tagIds').appendChild(app.ui.createChecklist('tagIds', checklistItems));
 	} else
-		document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTags');
+		document.getElementById('tagIds').innerHTML = __('settings.rfid.messages.noTagsYet');
 
 	//bind delete button
 	if (currentUser.id !== null) {
 		document.getElementById('deleteButton').style.display = '';
 		document.getElementById('deleteButton').onclick = function() {
-			app.message.confirm(__('settings.users.messages.confirmDeteleUser'), 'warning', function(err, result) {
+			app.message.confirm(__('settings.rfid.messages.confirmDeteleUser'), 'warning', function(err, result) {
 				if (err === true || result === true) {
 					app.userRepository.deleteUser(currentUser);
 					app.message.show('', __('settings.rfid.messages.userDeleted'), 'success');

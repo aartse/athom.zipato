@@ -26,20 +26,20 @@
 			//add date
 			var date = new Date(eventLog.time);
 			rows.push({
-				label: __('settings.systemEventLog.table.datetime'),
+				label: __('settings.rfid.columns.datetime'),
 				value: date.toString()
 			});
 
 			//add event
 			rows.push({
-				label: __('settings.systemEventLog.table.event'),
-				value: __('settings.systemEventLog.eventTypes.s' + eventLog.statusCode)
+				label: __('settings.rfid.columns.event'),
+				value: __('settings.rfid.statusCodes.s' + eventLog.statusCode)
 			});
 
 			//add device
 			if (eventLog.deviceId !== null) {
 				rows.push({
-					label: __('settings.systemEventLog.table.device'),
+					label: __('settings.rfid.columns.device'),
 					value: eventLog.deviceId
 				});
 			}
@@ -47,7 +47,7 @@
 			//add tag
 			if (eventLog.tagId !== null) {
 				rows.push({
-					label: __('settings.systemEventLog.table.tagOrCode'),
+					label: __('settings.rfid.columns.tag'),
 					value: eventLog.tagId
 				});
 			}
@@ -55,7 +55,7 @@
 			//add users
 			if (eventLog.userName !== null && eventLog.userName !== '') {
 				rows.push({
-					label: __('settings.systemEventLog.table.person'),
+					label: __('settings.rfid.columns.person'),
 					value: eventLog.userName
 				});
 			}

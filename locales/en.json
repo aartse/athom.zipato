@@ -3,35 +3,30 @@
 		"title": "Zipato Device Settings",
 		"description": "On this page you see the settings for the Zipato devices.",
 		"loading": "Loading...",
-		"index":
-		{
-			"buttons": {
-				"rfid": "RFID keypad"
-			}
-		},
-		"footer":
-		{
-			"buttons": {
-				"back": "< Back"
-			}
+		"buttons": {
+			"rfid": "RFID keypad",
+			"back": "< Back"
 		},
 		"rfid": {
 			"title": "Zipato RFID keypad settings",
 			"buttons": {
 				"addUser": "Add user",
+				"deleteTag": "Delete tag",
+				"deleteUser": "Delete user",
+				"clearEventLog": "Clear event log",
+				"editTag": "Edit tag",
+				"editUser": "Edit user",
 				"logs": "Logs",
 				"tags": "Tags",
-				"clearEventLog": "Clear event log",
-				"saveUser": "Save user",
-				"deleteUser": "Delete user",
 				"toggleTag": "Toggle tag registration on/off",
 				"saveTag": "Save tag",
-				"deleteTag": "Delete tag"
+				"saveUser": "Save user"
 			},
 			"titles": {
-				"users": "Manage users",
+				"advanced": "Advanced settings",
+				"eventLog": "Event Log",
 				"tags": "Manage tags",
-				"advanced": "Advanced settings"
+				"users": "Manage users"
 			},
 			"descriptions": {
 				"allowTags": "Registration of new tags is allowed",
@@ -39,72 +34,39 @@
 			},
 			"messages": {
 				"confirmClearEventLog": "Are you sure you want to clear the entire event log?",
+				"confirmDeteleTag": "Are you sure you want to remove this tag?",
+				"confirmDeteleUser": "Are you sure you want to remove this user?",
 				"eventLogClearedConfirmation": "The event log is cleared.",
+				"tagDeleted": "Tag deleted",
+				"tagSavedConfirmation": "Tag saved",
 				"toggleTagStatusConfirmed": "Tag registration status switched",
-				"userSavedConfirmation": "User saved",
 				"userDeleted": "User deleted",
-				"noUserssYet": "No users available",
+				"userSavedConfirmation": "User saved",
+				"noUsersYet": "No tagusers known in Homey yet, add a user via the add button.",
 				"noEventsYet": "No events yet available, add a Tag Reader and tags to your Homey to start collecting events.",
-				"noTags": "No tags available, please add tags first."
-			}
-		},
-
-		"systemEventLog":
-		{
-			"title": "Event Log",
-			"table":
-			{
+				"noTagsYet": "No tags available, please add tags first."
+			},
+			"columns": {
 				"datetime": "Date",
 				"event": "Event",
+				"edit": "Edit",
 				"device": "Device",
 				"person": "User",
-				"tagOrCode": "Tag/Code"
+				"status": "Current status",
+				"tag": "Tag",
+				"tagId": "ID",
+				"tags": "Tags",
+				"tagName": "Name",
+				"userId": "ID",
+				"userName": "Name"
 			},
-			"eventTypes":
-			{
+			"statusCodes": {
 				"s-1": "Unknown",
 				"s0": "Away",
 				"s1": "Home",
 				"s2": "Tag Paired",
 				"s3": "Scene Started",
 				"s4": "Unknown Tag. The manual toggle is set to off or your system is in armed status."
-			},
-			"messages":
-			{
-				"userNameUnknown": "Unknown",
-				"deviceUnknown": "Unknown"
-			}
-		},
-		"users":
-		{
-			"title": "Manage Users",
-			"table":
-			{
-				"userId": "#",
-				"userName": "Name",
-				"tags": "Tag ID",
-				"status": "Current status",
-				"edit": "Edit"
-			},
-			"messages":
-			{
-				"noUsersYet": "No users known in Homey yet, add a user via the add button.",
-				"confirmDeteleUser": "Are you sure you want to remove this user?"
-			}
-		},
-		"devices":
-		{
-			"title": "Devices",
-			"description": "",
-			"table":
-			{
-				"deviceId": "#",
-				"status": "Reporting Status",
-				"lastUpdated": "Last Updated"
-			},
-			"messages":
-			{
-				"noDevicesYet": "No reports reported to Homey yet, couldn't determine devices and their reporting status."
 			}
 		}
 	},

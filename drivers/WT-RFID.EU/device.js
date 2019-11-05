@@ -10,12 +10,12 @@ class ZipatoDevice extends ZwaveDevice {
 
 	async onMeshInit() {
 
-		this.enableDebug();
-		this.printNode();
+		//this.enableDebug();
+		//this.printNode();
 
 		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');
-		this.registerCapability('alarm_battery', 'BATTERY');
+		//this.registerCapability('alarm_battery', 'BATTERY');
 
 		// register user_code_report capabilty for adding new tags
 		this.registerCapability('user_code_report', 'USER_CODE', {

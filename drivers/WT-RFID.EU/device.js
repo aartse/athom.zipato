@@ -79,6 +79,11 @@ class ZipatoDevice extends ZwaveDevice {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
 
+				//check if Event Parameter is known
+				if (typeof report['Event Parameter'] === 'undefined' || report['Event Parameter'] === null) {
+					return null;
+				}
+
 				// Only handle events 5 (away) or 6 (home)
 				var alarmState = null;
 				switch (report['ZWave Alarm Event']) {

@@ -19,6 +19,10 @@
     {
       "$extends":"user_system_home",
       "id": "WT-RFID.EU-user_system_home"
+    },
+    {
+      "$extends":"user_unknown",
+      "id": "WT-RFID.EU-user_unknown"
     }
   ],
   "conditions": [

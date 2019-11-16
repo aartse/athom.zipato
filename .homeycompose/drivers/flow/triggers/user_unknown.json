@@ -1,0 +1,19 @@
+{
+	"title": {
+	  "en": "Usercode is unknown",
+	  "nl": "Iemand heeft een onbekende code ingevoerd"
+	},
+	"hint": {
+	  "en": "Triggered when an unknown tag is used or an invalid code was entered.",
+	  "nl": "Wordt uitgevoerd wanneer iemand een onbekende tag gebruikt of een verkeerde code ingevoerd heet."
+	},
+	"tokens": [
+	  {
+		"name": "userCode",
+		"title": {
+		  "en": "Code/Tag",
+		  "nl": "Code/Tag"
+		}
+	  }
+	]
+}

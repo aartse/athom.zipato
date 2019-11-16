@@ -28,6 +28,9 @@
         "measure_battery",
         "alarm_tamper"
     ],
+    "energy": {
+        "batteries": [ "AAA", "AAA" ]
+    },
     "images": {
         "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"

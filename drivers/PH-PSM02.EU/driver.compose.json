@@ -1,0 +1,51 @@
+{
+	"id": "PH-PSM02.EU",
+	"name": {
+		"en": "MULTISENSOR QUAD",
+		"nl": "MULTISENSOR QUAD"
+	},
+	"class": "sensor",
+	"capabilities": [
+		"alarm_motion",
+		"alarm_contact",
+		"alarm_tamper",
+		"measure_temperature",
+		"measure_luminance",
+		"measure_battery"
+	],
+	"images": {
+		"large": "/drivers/PH-PSM02.EU/assets/images/large.png",
+		"small": "/drivers/PH-PSM02.EU/assets/images/small.png"
+	},
+    "energy": {
+        "batteries": [ "CR123A" ]
+    },
+	"zwave": {
+		"manufacturerId": 316,
+		"productTypeId": 2,
+		"productId": 12,
+		"learnmode": {
+			"image": "/drivers/PH-PSM02.EU/assets/learnmode.svg",
+			"instruction": {
+				"en": "Triple click the Tamper Switch on the backside confirms inclusion and exclusion.",
+				"nl": "Druk 3 keer op de sabotage schakelaar om het apparaat toe te voegen of te verwijderen."
+
+			}
+		},
+		"associationGroups": [
+			1
+		],
+		"defaultConfiguration": [
+			{
+				"id": 5,
+				"size": 1,
+				"value": 4
+			},
+			{
+				"id": 6,
+				"size": 1,
+				"value": 68
+			}
+		]
+	}
+}

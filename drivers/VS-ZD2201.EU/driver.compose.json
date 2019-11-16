@@ -28,6 +28,9 @@
         "measure_luminance",
         "measure_battery"
     ],
+    "energy": {
+        "batteries": [ "AAA", "AAA" ]
+    },
     "images": {
         "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"

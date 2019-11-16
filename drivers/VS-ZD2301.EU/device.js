@@ -1,7 +1,5 @@
 "use strict";
 
-// @TODO: TEST!
-
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
 class ZipatoDevice extends ZwaveDevice {

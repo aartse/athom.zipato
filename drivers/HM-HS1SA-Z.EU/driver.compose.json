@@ -28,6 +28,9 @@
         "alarm_smoke",
         "measure_battery"
     ],
+    "energy": {
+        "batteries": [ "CR123A" ]
+    },
     "images": {
         "large": "/drivers/HM-HS1SA-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1SA-Z.EU/assets/images/small.png"

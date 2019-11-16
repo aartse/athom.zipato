@@ -1,69 +1,66 @@
 'use strict';
 
 const Homey = require('homey');
-const path = require('path');
-const util = require('homey-meshdriver').Util;
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
 // https://www.zipato.com/product/mini-keypad-rfid
 // https://file.m.nu/pdf/wt-rfid-eu_zipato.pdf
 
-// Based on the https://github.com/Inversion-NL/eu.benext
-
-const eventsRecieved = new Array();
-const eventIdsRecieved = new Array();
-
-const clamp = function(num, min, max) {
-	return Math.min(Math.max(num, min), max);
-};
-
 class ZipatoDevice extends ZwaveDevice {
+
 	async onMeshInit() {
+
 		//this.enableDebug();
 		//this.printNode();
-		this.log("Initializing mesh driver")
+
+		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');
-		this.registerCapability('homealarm_state', 'SWITCH_BINARY');
+		//this.registerCapability('alarm_battery', 'BATTERY');
+
+		// register user_code_report capabilty for adding new tags
 		this.registerCapability('user_code_report', 'USER_CODE', {
 			report: 'USER_CODE_REPORT',
 			reportParser: report => {
 
-				this.log(report)
+				// Get user or tag code
+				var userCode = report.USER_CODE.toString('hex');
+				this.userUnknownTrigger.trigger(this, {deviceId: this.getData().token, userCode: userCode}, {}, (err, result) => {
+					if (err) {
+						this.log(err);
+						return Homey.error(err);
+					}
+				});
 
-				// var userIdentifier = report["User Identifier (Raw)"];
-				const tagOrUserCode = report.USER_CODE.toString('hex'); // It's a buffer (hex), and we store the translated value
-				// var userIdStatus = report["User ID Status (Raw)"];
-				this.log("User code: " + tagOrUserCode)
-				// Tags are only allowed when the manual toggle is set to true and the system is not armed.
-				const tagAllowed = getTagStatus() && !getSystemArmed();
-				if (!tagAllowed) {
-					this.log('You are not allowed to add tags. Either the manual toggle is set to off or your system is in armed status');
+				// Check if tags can be added
+				if (!canAddNewTags()) {
+					addLog(null, this.getData().token, null, 4, null);
 					return null;
 				}
 
-				// When home is not armed, send a "USER_CODE_SET" back with a new/existing ID
-				const tag = this.retrieveAndSetUserId(tagOrUserCode, -1); // -1 because we don't know if it is a tag or not.
-				this.log(tag);
-				if (tag === false) {
-					this.log('Something went wrong! :(');
-					return null;
-				}
+				// Add new tag
+				var tag = addTag(userCode);
 
-				writeToLogFile(
-					null,
-					this.getData().token,
-					tag.tagId,
-					2, // tag added
-					null,
-					null
+				// Send new tag id back to tagreader
+				this.node.CommandClass.COMMAND_CLASS_USER_CODE.USER_CODE_SET({
+						'User Identifier': tag.id,
+						'User ID Status': Buffer.from('01', 'hex'),
+						USER_CODE: Buffer.from(tag.userCode, 'hex'),
+					},
+					(err, result) => {
+						if (err) {
+							return console.error(err);
+						}
+					}
 				);
 
-				return {
-					'Tag Value': tagOrUserCode,
-					'Tag Id':tag.tagId
-				};
+				// Log new tag
+				addLog(null, this.getData().token, tag.id, 2, null, null);
+				return null;
 			}
 		});
+
+		// register the alarm_tamper capability with COMMAND_CLASS_ALARM
+		// when system is unarmed, set tamper alarm to off
 		this.registerCapability('alarm_tamper', 'ALARM', {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
@@ -76,554 +73,467 @@ class ZipatoDevice extends ZwaveDevice {
 				return null
 			}
 		});
+
+		// register the alarm_tamper capability with COMMAND_CLASS_ALARM
 		this.registerCapability('homealarm_state', 'ALARM', {
 			report: 'ALARM_REPORT',
 			reportParser: report => {
-				const evt = report['ZWave Alarm Event'];
-				if(evt == 3) { 
-				  return null;
-				}
-				this.log('report event recieved');
-				//this.log(report);
-				//this.log('Device ID: ' + this.getData().token);
-				setDeviceReport(this.getData().token, 'BASIC');
 
-				let eventType = -1;
-				const tagReaderTagId = report['Event Parameter'].toString('hex'); // Tag reader sends us a tag ID we provided it earlier.
-				const tokens = searchUserBelongingToTagId(tagReaderTagId, this.getData().token);
-				const state = {};
-
-				switch (evt) {
-					case 6: // Home
-						eventType = 1;
-
-						this.log("Home")
-						// Toggle event, "User X came home"
-						this.userHomeTrigger.trigger(this, tokens, state, (err, result) => {
-							if (err) {
-								this.log(err);
-								return Homey.error(err);
-							}
-						});
-
-						//this.log("Trigger: ");
-						//console.log(this.userSystemHomeTrigger)
-						if (getSystemArmed() == true) {
-							this.userSystemHomeTrigger.trigger(this, tokens, state, (err, result) => {
-								if (err) {
-									this.log(err);
-									return Homey.error(err);
-								}
-							});
-						}
-						setSystemArmed(false);
-
-						break;
-					case 5: // Away
-						eventType = 0;
-						this.log("Away")
-						// Toggle event, "User X went away"
-						this.userAwayTrigger.trigger(this, tokens, state, (err, result) => {
-							if (err) {
-								this.log(err);
-								return Homey.error(err);
-							}
-						});
-
-						//this.log("Trigger: ");
-						//console.log(this.userSystemAwayTrigger)
-						if (getSystemArmed() == false) {
-							this.userSystemAwayTrigger.trigger(this, tokens, state, (err, result) => {
-								if (err) {
-									this.log(err);
-									return Homey.error(err);
-								}
-							});
-						}
-						setSystemArmed(true);
-
-						break;
+				//check if Event Parameter is known
+				if (typeof report['Event Parameter'] === 'undefined' || report['Event Parameter'] === null) {
+					return null;
 				}
 
-				if (tokens !== null) {
-					setStatusOfUser(tokens, eventType);
+				// Only handle events 5 (away) or 6 (home)
+				var alarmState = null;
+				switch (report['ZWave Alarm Event']) {
+					case 5: alarmState = 'away'; break;
+					case 6: alarmState = 'home'; break;
+					default: return null;
 				}
 
-				writeToLogFile(
-					tokens !== null ? tokens.userId : null,
-					this.getData().token,
-					tokens !== null ? tokens.tagId : tagReaderTagId,
-					eventType,
-					tokens !== null ? tokens.userName : null,
-					null
-				);
+				// Search for tag
+				var tag = getTagById(parseInt(report['Event Parameter'].toString('hex'), 16));
+				if (tag === null) {
+					// Check if tags can be added
+					if (!canAddNewTags()) {
+						addLog(null, this.getData().token, null, 4, null);
+						return null;
+					}
 
-				return (eventType == 0) ? "armed" : "disarmed";
+					// Add tag when tag was previously removed
+					tag = addTag('(From device)', parseInt(report['Event Parameter'].toString('hex'), 16));
+				}
+
+				// Get all users linked to this tag
+				var users = getUsersByTagId(tag.id);
+
+				// Send trigger for tag when no users are linked to this tag
+				if (users.length > 0) {
+
+					// Update all user states
+					updateUsersState(users, alarmState);
+
+					// Send triggers for every user linked to this tag
+					for(var i=0; i<users.length; i++) {
+						this.triggerStateChange(alarmState, this.getData().token, tag, users[i]);
+					}
+				} else {
+					this.triggerStateChange(alarmState, this.getData().token, tag, null);
+				}
+
+				return (alarmState == 'away') ? "armed" : "disarmed";
 			}
 		});
-		this.registerSetting('set_to_default', value => {
-			return new Buffer([ (value === true) ? 0 : 1 ])
-		});
-		this.registerSetting('feedback_time', value => {
-			return new Buffer([ clamp(value, 0, 255) ])
-		});
-		this.registerSetting('feedback_timeout', value => {
-			return new Buffer([ clamp(value, 0, 255) ])
-		});
-		this.registerSetting('feedback_beeps_per_second', value => {
-			return new Buffer([ clamp(value, 0, 255) ])
-		});
-		this.registerSetting('always_awake_mode', value => {
-			return new Buffer([ (value === true) ? 0 : 1 ])
-		});
-		// Gateway confirmation is not yet implemented
-		await this.configurationSet({index: 8, size: 1}, 0);
-
 
 		let isAtHome = new Homey.FlowCardCondition('WT-RFID.EU-is_at_home');
 		isAtHome
 		    .register()
-		    .registerRunListener(( args, state ) => {
-				this.log('');
-				this.log('on flow condition.is_at_home');
-				this.log('args', args);
-
-				this.log(args);
+		    .registerRunListener(( args, state, callback ) => {
 
 				// Get the status of the requested user
-				const user = searchUserByUserId(args.person.id);
-				if (user !== null && typeof user.statusCode !== 'undefined') {
-					if (user.statusCode === 1 || user.statusCode === 0) {
-						return callback(null, user.statusCode === 1); // we've fired successfully
-					}
-
-					var message = __('flow.condition.unknownUserStatus');
-					return callback(new Error(message)); // user not found.
+				var user = getUserById(args.person.id);
+				if (user !== null) {
+					return callback(null, user.statusCode === 1); // we've fired successfully
 				}
 
-				var message = __('flow.condition.userNotFound');
-				return callback(new Error(message)); // user not found.
+				return callback(new Error(__('flow.condition.userNotFound'))); // user not found.
 		    });
-			let isArmed = new Homey.FlowCardCondition('WT-RFID.EU-system_is_armed');
-			isArmed
-				.register()
-				.registerRunListener(( args, state, callback ) => {
-					this.log('');
-					this.log('on flow condition.system_is_armed');
 
-					return callback(null, getSystemArmed());
-				});
+		let isArmed = new Homey.FlowCardCondition('WT-RFID.EU-system_is_armed');
+		isArmed
+			.register()
+			.registerRunListener(( args, state, callback ) => {
+				return callback(null, isSystemArmed());
+			});
 
-			let setPersonHome = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_home');
-			setPersonHome
-				.register()
-				.registerRunListener(( args, state, callback ) => {
-					this.log('');
-					this.log('Set person home');
-					this.log('args', args);
+		let setPersonHome = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_home');
+		setPersonHome
+			.register()
+			.registerRunListener(( args, state, callback ) => {
 
-					// Set status of user to home
-					setStatusOfUser(args.person, 1);
+				// Set status of user to home
+				updateUsersState([args.person], 'home');
 
-					callback(null, true); // we've fired successfully
-				});
-			let setPersonAway = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_away');
-			setPersonAway
-				.register()
-				.registerRunListener(( args, state, callback ) => {
-					this.log('');
-					this.log('Set person away');
-					this.log('args', args);
-				
-					// Set status of user to home
-					setStatusOfUser(args.person, 0);
-				
-					callback(null, true); // we've fired successfully
-				});
-			function personAutocompleteListener(query, args, callback) {
-				const result = autocompleteUser(query);
-				callback(null, result); // err, results
-			}
-			isAtHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
-			setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
-			setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
+				callback(null, true); // we've fired successfully
+			});
 
-			this.userSystemAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_away').register();
-			this.userSystemHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_home').register();
-			this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
-			this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
-	}
+		let setPersonAway = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_away');
+		setPersonAway
+			.register()
+			.registerRunListener(( args, state, callback ) => {
+			
+				// Set status of user to away
+				updateUsersState([args.person], 'away');
+			
+				callback(null, true); // we've fired successfully
+			});
 
-
-	/**
-	 * Retrieves user ID from the homey settings.
-	 * Sends ID confirmation if tagcode couldn't be found in the homey settings.
-	 */
-	retrieveAndSetUserId(tagCode, tagType) {
-		// Check if tagCode already exists
-		let matchedTag = searchTag(getTagContainer(), tagCode);
-
-		// Create new unique tag ID if tag doesn't exist
-		if (matchedTag === null) {
-			matchedTag = addTag(tagCode, tagType);
+		function personAutocompleteListener(query, args, callback)
+		{
+			var users = getUserContainer();
+			callback(null, users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1)));
 		}
 
-		// Matched tag still null?
-		if (matchedTag === null) {
-			console.log("Tag couldn't be added.");
-			return false;
-		}
+		isAtHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
+		setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
+		setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
 
-		console.log(matchedTag);
-
-		// Send USER_CODE_SET to device with the new/existing unique tag ID
-		this.sendUserIdSetConfirmation(matchedTag);
-
-		return matchedTag;
+		this.userSystemAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_away').register();
+		this.userSystemHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_home').register();
+		this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
+		this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
+		this.userUnknownTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_unknown').register();
 	}
 
-	/**
-	 * Sends the tag ID to the device
-	 */
-	sendUserIdSetConfirmation(tag) {
-		console.log('Sending information');
-		this.node.CommandClass.COMMAND_CLASS_USER_CODE.USER_CODE_SET({
-				'User Identifier': tag.tagId,
-				'User ID Status': Buffer.from('01', 'hex'),
-				USER_CODE: Buffer.from(tag.tagValue, 'hex'),
-			},
-			(err, result) => {
-				console.log('Done sending information');
-				console.log(err);
-				console.log(result);
-	
-				if (err) { return console.error(err); }
+	triggerStateChange(alarmState, deviceId, tag, user) {
+
+		var tokens = {
+			userId: (user !== null ? user.id : null),
+			userName: (user !== null ? user.name : null),
+			tagId: (tag !== null ? tag.id : null),
+			deviceId: deviceId
+		};
+
+		if (alarmState === 'home') {
+			// Trigger event, "User X came home"
+			this.userHomeTrigger.trigger(this, tokens, {}, (err, result) => {
+				if (err) {
+					this.log(err);
+					return Homey.error(err);
+				}
+			});
+
+			// Trigger event, "System armed"
+			if (isSystemArmed() == true) {
+				this.userSystemHomeTrigger.trigger(this, tokens, {}, (err, result) => {
+					if (err) {
+						this.log(err);
+						return Homey.error(err);
+					}
+				});
 			}
-		);
+			setSystemArmed(false);
+
+			//log
+			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 1, tokens.userName);
+		}
+
+		if (alarmState === 'away') {
+			// Trigger event, "User X went away"
+			this.userAwayTrigger.trigger(this, tokens, {}, (err, result) => {
+				if (err) {
+					this.log(err);
+					return Homey.error(err);
+				}
+			});
+
+			// Trigger event, "System disarmed"
+			if (isSystemArmed() == false) {
+				this.userSystemAwayTrigger.trigger(this, tokens, {}, (err, result) => {
+					if (err) {
+						this.log(err);
+						return Homey.error(err);
+					}
+				});
+			}
+			setSystemArmed(true);
+
+			//log
+			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 0, tokens.userName);
+		}
+
+		return true;
 	}
 }
 
-// var tagContainer = [ ]; // contains objects: { "tagId": 0, "tagValue": "", "createdOn": "", "tagType": null };
-// tagType can be null (unknown, when not in gateway mode), 0 == RFID, or 1 == Code
-function getTagContainer() {
+/**
+ * get tags from settings
+ */
+function getTagContainer()
+{
 	return Homey.ManagerSettings.get('tagContainer');
 }
 
-function setTagContainer(value) {
+/**
+ * write tags to settings
+ */
+function setTagContainer(value)
+{
 	Homey.ManagerSettings.set('tagContainer', value);
 }
 
-// var userContainer = [ ]; // contains objects: { "name": "bla", "id": -1, "statusCode": 0 (0 = away, 1 = home), "tagIds": { 1, 3 } };
-function getUserContainer() {
+/**
+ * get users from settings
+ */
+function getUserContainer()
+{
 	return Homey.ManagerSettings.get('userContainer');
 }
 
-function setUserContainer(value) {
+/**
+ * write users to settings
+ */
+function setUserContainer(value)
+{
 	Homey.ManagerSettings.set('userContainer', value);
 }
 
-function getSystemArmed() {
-	return Homey.ManagerSettings.get('systemArmed') === true;
-}
-
-function setSystemArmed(value) {
-	if (value === false || value === 0) {
-		value = false;
-	} else {
-		value = true;
-	}
-
-	Homey.ManagerSettings.set('systemArmed', value);
-}
-
-function getTagStatus() {
-	return Homey.ManagerSettings.get('tagStatus') === true;
-}
-
-function setTagStatus(value) // value needs to be true or false
+/**
+ * checks if system is armed
+ *
+ * @return bool
+ */
+function isSystemArmed()
 {
-	if (value === false || value === 0) {
-		value = false;
-	} else {
-		value = true;
+	return (Homey.ManagerSettings.get('systemArmed') === true);
+}
+
+/**
+ * set system armed to true or false
+ */
+function setSystemArmed(value)
+{
+	Homey.ManagerSettings.set('systemArmed', (value === true));
+}
+
+/**
+ * checks if new tags can be added
+ *
+ * @return bool
+ */
+function canAddNewTags() {
+
+	//cannot add new tags when user has not enabled it
+	if (Homey.ManagerSettings.get('tagStatus') !== true) {
+		return false;
 	}
 
-	Homey.ManagerSettings.set('tagStatus', value);
+	//cannot add new tags when system is armed
+	if (isSystemArmed()) {
+		return false;
+	}
+
+	return true;
 }
 
-function getTagReaders() {
-	return Homey.ManagerSettings.get('tagReaders');
+/**
+ * update user statusCode
+ * 
+ * @param Object user User object
+ * @param string alarmState alarm state code ('away' or 'home')
+ */
+function updateUsersState(usersToUpdate, alarmState)
+{
+	var userIdsToUpdate = new Array();
+	for (let i=0; i<usersToUpdate.length; i++) {
+		userIdsToUpdate.push(usersToUpdate[i].id);
+	}
+
+	var users = getUserContainer();
+	for (let i=0; i<users.length; i++) {
+		if (userIdsToUpdate.indexOf(users[i].id) > -1) {
+			users[i].statusCode = (alarmState === 'away' ? 0 : 1);
+		}
+	}
+	setUserContainer(users);
 }
 
-function setTagReaders(value) {
-	Homey.ManagerSettings.set('tagReaders', value);
+/**
+ * search for users linked to given tag
+ * 
+ * @param int tagId search for users with this tag id
+ */
+function getUsersByTagId(tagId)
+{
+	var foundUsers = new Array();
+	var users = getUserContainer();
+	for (var i=0; i<users.length; i++) {
+		if (users[i].tagIds.indexOf(tagId) > -1) {
+			foundUsers.push(users[i]);
+		}
+	}
+	return foundUsers;
+}
+
+/**
+ * get tag by id
+ */
+function getUserById(id)
+{
+	var users = getUserContainer();
+	for (let i=0; i<users.length; i++) {
+		if (users[i].id === id) {
+			return users[i];
+		}
+	}
+	return null;
+}
+
+/**
+ * Add new tag to tags container
+ * 
+ * @param string userCode hex value of user code from tag reader
+ * @param int? tagId tag id when tag was removed and must added again
+ */
+function addTag(userCode, tagId)
+{
+	//get or add tag
+	var tag = null;
+	if (typeof tagId !== 'undefined') {
+		tag = getTagById(tagId);
+	} else {
+		tag = getTagByUserCode(userCode);
+	}
+	
+	//add tag when not found
+	if (tag === null) {
+
+		//get tags
+		let tags = getTagContainer();
+
+		//create new tag
+		tag = {
+			id: 0,
+			name: '',
+			userCode: userCode,
+			createdOn: new Date()
+		};
+
+		//assign new of existing id
+		if (typeof tagId === 'undefined') {
+			for (let i = 0; i < tags.length; i++) {
+				if (tags[i].id > tag.id) {
+					tag.id = tags[i].id;
+				}
+			}
+			tag.id++;
+		} else {
+			tag.id = tagId;
+		}
+
+		//set inital name
+		tag.name = 'ID ' + tag.id;
+
+		//add tag to container and save
+		tags.push(tag);
+		setTagContainer(tags);
+	}
+
+	//return (new) tag
+	return tag;
+}
+
+/**
+ * get tag by usercode
+ */
+function getTagByUserCode(userCode)
+{
+	var tags = getTagContainer();
+	for (let i=0; i<tags.length; i++) {
+		if (tags[i].userCode === userCode) {
+			return tags[i];
+		}
+	}
+	return null;
+}
+
+/**
+ * get tag by id
+ */
+function getTagById(id)
+{
+	var tags = getTagContainer();
+	for (let i=0; i<tags.length; i++) {
+		if (tags[i].id === id) {
+			return tags[i];
+		}
+	}
+	return null;
 }
 
 /**
  * Writes entry to log file
  * statusCodes: 0 = away, 1 = home, 2 = tag added, 3 = Scene Started
  */
-function writeToLogFile(userId, deviceId, tagId, statusCode, userName, deviceName) {
-	const logEntry =
-		{
-			time: new Date(),
-			userId,
-			tagId,
-			statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
-			userName,
-			deviceName,
-			deviceId,
-		};
-
-	let log = Homey.ManagerSettings.get('systemEventLog');
-	if (typeof log === 'undefined' || log === null) {
-		log = [];
-	}
-
-	if (typeof log.push === 'undefined') {
-		log = [];
-	}
-
-	log.push(logEntry);
-	log = log.slice(Math.max(log.length - 50, 0)); // Only keep last 50 events from event log
-	Homey.ManagerSettings.set('systemEventLog', log);
-
-	console.log('Just logged entry:');
-	console.log(logEntry);
-}
-
-/**
- * Function for autocompletion results in flow cards
- * @param filterValue ; value to search for
- * @returns array with user objects.
- */
-function autocompleteUser(filterValue) {
-	let myItems = getUserContainer();
-
-	if (typeof myItems === 'undefined' || myItems === null) {
-		myItems = [];
-	}
-
-	// filter items to match the search query
-	myItems = myItems.filter((item) => (item.name.toLowerCase().indexOf(filterValue.toLowerCase()) > -1));
-
-	return myItems;
-}
-
-/**
- * Returns the tag for the value searched.
- * @param tags ; All the tags you want to look in
- * @param matchValue ; The value you are looking for
- * @returns null if no match found, otherwise the matched tag object.
- */
-function searchTag(tags, matchValue) {
-	let match = null;
-	if (typeof tags === 'undefined' || tags === null) {
-		return null;
-	}
-
-	for (let i = 0; i < tags.length; i++) {
-		if (typeof tags[i].tagValue === 'undefined' || tags[i].tagValue === null) {
-			continue;
-		}
-
-		if (tags[i].tagValue === matchValue) {
-			console.log('match found');
-			console.log(tags[i]);
-			match = tags[i];
-			i = 100;
-		}
-	}
-
-	return match;
-}
-
-/**
- * Adds a tag to the tags container and returns the tag value (and id, as tag object). Searches first if the tag doesn't exist yet.
- * @param tagCode ; the tag code value
- * @param tagType ; the type of tag (0 = tag, 1 = user code, -1 = unknown)
- * @returns the newly added / or the found existing tag.
- * Please note that this function reads all tags from the tag container and overwrites all tags after adding the new tag.
- */
-function addTag(tagCode, tagType) {
-	let tags = getTagContainer();
-
-	if (tagType !== 0 && tagType !== 1) // 0 = tag, 1 = user code, -1 = unknown
-	{
-		tagType = -1;
-	}
-
-	if (typeof tags === 'undefined' || tags == null) {
-		console.log('Tags not set, new tag list initiated.');
-		tags = new Array();
-	}
-
-	if (typeof tags !== 'object') {
-		tags = new Array();
-	}
-
-	// Search for tag, in case we do not need to send the report back, we will still find a matching tag (or create a new one)
-	const existingTag = searchTag(tags, tagCode);
-	if (existingTag !== null) {
-		return existingTag;
-	}
-
-	let highestId = 0;
-	for (let i = 0; i < tags.length; i++) {
-		if (tags[i].tagId > highestId) {
-			highestId = tags[i].tagId;
-		}
-	}
-
-	const tag = { tagId: (highestId + 1), tagValue: tagCode, createdOn: new Date(), tagType };
-	tags.push(tag);
-	setTagContainer(tags);
-	return tag;
-}
-
-/**
- * Finds the user belonging to the tagId.
- * @param tagId; The tag ID you want to find a user match for
- * @returns null if no user with that Tag ID assigned found, otherwise returns the user object.
- */
-function searchUser(tagId) {
-	const users = getUserContainer();
-	if (typeof users === 'undefined' || users === null || typeof users !== 'object') {
-		return null;
-	}
-
-	for (let i = 0; i < users.length; i++) {
-
-		if (typeof users[i].tagIds === undefined || typeof users[i].tagIds.indexOf !== 'function') {
-			continue;
-		}
-
-		const match = users[i].tagIds.indexOf(tagId);
-		if (match > -1) {
-			console.log('match found id');
-			console.log(users[i]);
-			return users[i];
-		}
-	}
-
-	return null;
-}
-
-/**
- * Finds the user based on user id.
- * @param userId ; The ID of the user you are looking for
- * @returns null if no match found, otherwise returns the user object.
- */
-function searchUserByUserId(userId) {
-	const users = getUserContainer();
-	if (typeof users === 'undefined' || users === null || typeof users !== 'object') {
-		return null;
-	}
-
-	for (let i = 0; i < users.length; i++) {
-		if (users[i].id === userId) {
-			console.log('match found id');
-			console.log(users[i]);
-			return users[i];
-		}
-	}
-
-	return null;
-}
-
-/**
- * Sets the status of the user given in the user parameter
- * @param user ; An user object with user.id or user.userId
- * @param statusCode ; The statuscode this user should get (home = 1 or away = 0)
- * Please note: this function loads the user container and writes all objects back to it.
- */
-function setStatusOfUser(user, statusCode) {
-	const users = getUserContainer();
-	if (typeof users === 'undefined' || users === null || typeof users !== 'object') {
-		return null;
-	}
-
-	for (let i = 0; i < users.length; i++) {
-		const userId = (typeof user.id !== 'undefined') ? user.id : user.userId;
-		if (users[i].id === userId) {
-			users[i].statusCode = (statusCode === 0 ? 0 : 1);
-		}
-	}
-
-	setUserContainer(users);
-}
-
-/**
- * Lookups the user based on a tag ID
- * @param tagReaderTagId; the tag ID
- * @param node; the node that triggered this event
- * @returns an object with userId, userName, tagId, and deviceId
- */
-function searchUserBelongingToTagId(tagReaderTagId, nodeId) {
-	let tagReaderTagIdInt = -1;
-	try {
-		tagReaderTagIdInt = parseInt(tagReaderTagId, 16);
-	} catch (e) { console.log('Cannot parse tag reader id to int'); }
-
-	// Search for user with this tag id
-	const userWithTagId = searchUser(tagReaderTagIdInt);
-	if(userWithTagId == null) {
-		console.log("No user matching tag ID " + tagReaderTagId)
-		handleOrphanTag(tagReaderTagId, nodeId)
-	}
-
-	return {
-		userId: userWithTagId !== null ? userWithTagId.id : -1,
-		userName: userWithTagId !== null ? userWithTagId.name : '',
-		tagId: tagReaderTagIdInt,
-		deviceId: nodeId,
+function addLog(userId, deviceId, tagId, statusCode, userName)
+{
+	const logEntry = {
+		time: new Date(),
+		userId: userId,
+		userName: userName,
+		tagId: tagId,
+		statusCode: statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
+		deviceId: deviceId,
 	};
-}
 
-function handleOrphanTag(tagId, nodeId) {
-	let tags = getTagContainer();
-	for (let i = 0; i < tags.length; i++) {
-		if (tags[i].tagId == tagId) {
-			return null
-		}
-	}
-	const tagAllowed = getTagStatus() && !getSystemArmed();
-	if(!tagAllowed) {
-		writeToLogFile(-1, nodeId, parseInt(tagId, 16), 4, '', null);
-	} else {
-		const tag = { tagId: parseInt(tagId, 16), tagValue: '(From device)', createdOn: new Date(), tagType: -1 };
-		tags.push(tag);
-		setTagContainer(tags);
-		return tag;
-	}
+	var log = Homey.ManagerSettings.get('systemEventLog');
+	log.push(logEntry);
+	
+	// Only keep last 50 events from event log
+	Homey.ManagerSettings.set('systemEventLog', log.slice(Math.max(log.length - 50, 0)));
 }
 
 /**
- * Sets the device status reports after a report came in.
- * @param nodeToken; the unique id from the device in the event
- * @param statusName; the type of status (BASIC or GATEWAY)
+ * init/upgrade settings
  */
-function setDeviceReport(nodeToken, statusName) {
-	let devices = getTagReaders();
-	if (typeof devices === 'undefined' || devices === null || typeof devices.length === 'undefined') {
-		devices = new Array();
-	}
+function initSettings() {
 
-	let match = false;
-	for (let i = 0; i < devices.length; i++) {
-		if (devices[i].id === nodeToken) {
-			devices[i].state = statusName;
-			devices[i].lastUpdate = new Date();
-			match = true;
-			i = devices.length + 1;
+	//check user container
+	var userContainer = Homey.ManagerSettings.get('userContainer');
+	if (typeof userContainer === 'undefined' || userContainer === null || typeof userContainer.push === 'undefined') {
+		userContainer = new Array();
+	}
+	for (let i=0; i<userContainer.length; i++) {
+		if (typeof userContainer[i].tagIds === 'undefined' || userContainer[i].tagIds === null || typeof userContainer[i].tagIds.push === 'undefined') {
+			userContainer[i].tagIds = new Array();
+		}
+		if (typeof userContainer[i].name === 'undefined') {
+			userContainer[i].name = '';
+		}
+		if (typeof userContainer[i].statusCode === 'undefined') {
+			userContainer[i].statusCode = 1;
 		}
 	}
+	Homey.ManagerSettings.set('userContainer', userContainer);
 
-	if (match === false) {
-		devices.push({ id: nodeToken, state: statusName, lastUpdate: new Date(), name: '' });
+	//check tag container
+	var tagContainer = Homey.ManagerSettings.get('tagContainer');
+	if (typeof tagContainer === 'undefined' || tagContainer === null || typeof tagContainer.push === 'undefined') {
+		tagContainer = new Array();
+	}
+	for (let i=0; i<tagContainer.length; i++) {
+		if (typeof tagContainer[i].id === 'undefined') {
+			tagContainer[i].id = tagContainer[i].tagId;
+		}
+		if (typeof tagContainer[i].userCode === 'undefined') {
+			tagContainer[i].userCode = tagContainer[i].tagValue;
+		}
+		if (typeof tagContainer[i].name === 'undefined' || tagContainer[i].name === '') {
+			tagContainer[i].name = 'ID ' + tagContainer[i].id;
+		}
+		delete tagContainer[i].tagId;
+		delete tagContainer[i].tagValue;
+		delete tagContainer[i].tagType;
+	}
+	Homey.ManagerSettings.set('tagContainer', tagContainer);
+
+	//check event log
+	var log = Homey.ManagerSettings.get('systemEventLog');
+	if (typeof log === 'undefined' || log === null || typeof log.push === 'undefined') {
+		Homey.ManagerSettings.set('systemEventLog', new Array());
+	}	
+
+	//check tagStatus
+	if (Homey.ManagerSettings.get('tagStatus') !== true && Homey.ManagerSettings.get('tagStatus') !== false) {
+		Homey.ManagerSettings.set('tagStatus', false);
 	}
 
-	setTagReaders(devices);
+	//check systemArmed
+	if (Homey.ManagerSettings.get('systemArmed') !== true && Homey.ManagerSettings.get('systemArmed') !== false) {
+		Homey.ManagerSettings.set('systemArmed', false);
+	}
 }
+initSettings();
 
 module.exports = ZipatoDevice;

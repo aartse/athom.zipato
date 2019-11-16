@@ -3,10 +3,13 @@ This app adds support for Zipato devices in Homey. Only z-wave devices are suppo
 
 ## Credits:
 This app and driver development has been supported by:
+- www.domotica-blog.nl (by providing the devices for debugging and development).
 
-- <a href="https://www.domotica-blog.nl/">www.domotica-blog.nl (by providing the devices for debugging and development)</a>.
 
 ## Change Log:
+
+### 3.0.2
+- Updates for new appstore
 
 ### 3.0.0
 - App settings rewritten for WT-RFID.EU

@@ -23,6 +23,8 @@
     "large": "/assets/images/large.jpg",
     "small": "/assets/images/small.jpg"
   },
+  "source": "https://github.com/aartse/athom.zipato",
+  "brandColor": "000000",
   "contributors": {
     "developers": [
       {

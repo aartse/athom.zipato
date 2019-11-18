@@ -1,0 +1,34 @@
+{
+    "id": "VS-ZD2102.EU",
+    "name": {
+        "en": "Door/window sensor",
+        "nl": "Deur/raam sensor"
+    },
+    "zwave": {
+        "manufacturerId": 265,
+        "productTypeId": 8193,
+        "productId": [261, 262],
+        "learnmode": {
+            "instruction": {
+                "en": "Hold pressed the program switch of Door/Window Sensor for at least 1 second. The LED on the Door/Window Sensor should go solid, if not, please try again.",
+                "nl": "Druk op de programma knop voor minumaal 1 seconde. De LED zal continue gaan branden, zo niet, probeer het opnieuw."
+            }
+        },
+        "associationGroups": [
+            1
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "sensor",
+    "capabilities": [
+        "alarm_contact",
+        "alarm_tamper"
+    ],
+    "energy": {
+        "batteries": [ "CR123A" ]
+    },
+    "images": {
+        "large": "/drivers/VS-ZD2102.EU/assets/images/large.jpg",
+        "small": "/drivers/VS-ZD2102.EU/assets/images/small.jpg"
+    }
+}

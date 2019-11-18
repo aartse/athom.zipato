@@ -1,5 +1,44 @@
 {
+  "1.0.0": {
+    "en": "Added support for new device ZP3102.EU (Motion sensor);"
+  },
+  "1.1.0": {
+    "en": "Added support for new device RGBWE27ZW.EU (RGBW bulb);"
+  },
+  "1.1.3": {
+    "en": "Added color support for RGBWE27ZW.EU (RGBW bulb);"
+  },
+  "1.1.4": {
+    "en": "Added more devices for ZP3102.EU;"
+  },
+  "1.2.0": {
+    "en": "Added support for new device RGBWE2.EU (RGBW bulb 2);"
+  },
+  "1.3.0": {
+    "en": "Added support for new device PH-PAN04.EU (Switch double);"
+  },
+  "1.4.0": {
+    "en": "Added support for new device HM-HS1SA-Z.EU (Smart smoke sensor);"
+  },
+  "2.0.0": {
+    "en": "Rewritten app for compatibility SDK 2.0; \nAdded support for new device NE-NAS-PD01Z.EU (PIR motion sensor); \nAdded support for new device PH-PSE02-1B.EU (Indoor siren); \nAdded support for new device PH-PAN16.EU.G (Smart energy plug-in switch); \nAdded support for new device HM-HS1WL-Z.EU (Smart water leakage sensor); \nAdded support for new device VS-ZD2201.EU (Multisensor 4 in 1); \nAdded support for new device HM-HS1CA-Z.EU (Smart carbon monoxide sensor); \nAdded support for new device HM-HS1SA-Z.EU (Smart smoke sensor); \nAdded support for new device MH-P220.EU (Mini energy dimmer); \nHomey 2.0 compatibility;"
+  },
+  "2.1.0": {
+    "en": "Added support for new device WT-RFID (Mini RFID keypad);"
+  },
+  "2.2.2": {
+    "en": "Added more devices to PH-PSE02.EU; \nAdded flow set motion for device ZP3102; \nAdded random color setting for device RGBWE2.EU;"
+  },
+  "3.0.0": {
+    "en": "App settings rewritten for WT-RFID.EU; \nAdded dutch translation for app settings; \nDriver for device WT-RFID.EU rewritten; \nAdded support for new device PH-PSM02; \nUpdated mesh driver for bugfixes in all devices; \nHomey 3.0 compatibility;"
+  },
   "3.0.2": {
-    "en": "changes for new appstore"
+    "en": "Changes for new appstore;"
+  },
+  "3.0.3": {
+    "en": "Move changelog;"
+  },
+  "3.0.4": {
+    "en": "Changes to pass certification process;"
   }
 }

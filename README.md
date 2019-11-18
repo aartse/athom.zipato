@@ -4,7 +4,7 @@ See APPSTORE.md for more information about this app.
 
 ## Development
 - This app is using [HomeyConfig composer](https://www.npmjs.com/package/node-homey-config-composer).   
-- Please file Pull Requests on the *beta* branch of this repository.
+- Please file Pull Requests on the *master* branch of this repository.
 
 ### Setup
 - install athom-cli: `npm install -g athom-cli`

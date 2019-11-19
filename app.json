@@ -1,6 +1,6 @@
 {
   "id": "nl.aartse.zipato",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -2082,6 +2082,19 @@
         "light_temperature",
         "light_mode"
       ],
+      "capabilitiesOptions": {
+        "button.factory_reset": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Factory reset",
+            "nl": "Fabrieksinstellingen"
+          },
+          "desc": {
+            "en": "Reset bulb to factory settings.",
+            "nl": "Reset blub naar fabrieksinstellingen."
+          }
+        }
+      },
       "images": {
         "large": "/drivers/RGBWE2.EU/assets/images/large.png",
         "small": "/drivers/RGBWE2.EU/assets/images/small.png"

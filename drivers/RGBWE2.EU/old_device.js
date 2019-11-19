@@ -9,8 +9,8 @@ class ZipatoDevice extends ZwaveDevice {
 
   onMeshInit() {
     
-    this.enableDebug();
-    this.printNode();
+    //this.enableDebug();
+    //this.printNode();
     
     /*
     ================================================================
@@ -55,14 +55,6 @@ class ZipatoDevice extends ZwaveDevice {
       return Promise.resolve();
     });
 
-    this.registerCapabilityListener('button.factory_reset', async () => {
-      return this.configurationSet({
-        index: 255,
-        size: 4,
-        signed: false
-      }, 2290649224);
-    });    
-
     /*
     ================================================================
     Triggers
@@ -77,51 +69,28 @@ class ZipatoDevice extends ZwaveDevice {
           let newSettings = {};
           let changedKeysArr = [];
 
-          args.device.configurationGet({
-            index: 2
-          }).then(result => {
-            console.log(result);
-          });
-
-          args.device.configurationGet({
-            index: 3
-          }).then(result => {
-            console.log(result);
-          });
-
-          args.device.configurationGet({
-            index: 4
-          }).then(result => {
-            console.log(result);
-          });
-
-          var promises = [];
-
           //Speed of strobes
           if (args.hasOwnProperty('speed') && args.speed !== '') {
-            promises.push(args.device.configurationSet({
-              index: 2,
-              size: 1
-            }, args.speed));
+            oldSettings.config_param_2 = args.device.getSetting('config_param_2');
+            newSettings.config_param_2 = args.speed;
+            changedKeysArr.push('config_param_2');
           }
 
           //Random color
           if (args.hasOwnProperty('random_color') && args.random_color !== '') {
-            promises.push(args.device.configurationSet({
-              index: 4,
-              size: 1
-            }, args.random_color));
+            oldSettings.config_param_4 = args.device.getSetting('config_param_4');
+            newSettings.config_param_4 = args.random_color;
+            changedKeysArr.push('config_param_4');
           }
 
           //Number of strobes
           if (args.hasOwnProperty('count') && args.count !== '') {
-            promises.push(args.device.configurationSet({
-              index: 3,
-              size: 1
-            }, args.count));
+            oldSettings.config_param_3 = args.device.getSetting('config_param_3');
+            newSettings.config_param_3 = args.count;
+            changedKeysArr.push('config_param_3');
           }
 
-          return Promise.all(promises);
+          return args.device.onSettings(oldSettings, newSettings, changedKeysArr);
         });
 
     let strobeOffFlow = new Homey.FlowCardAction('RGBWE2.EU-strobe_off');

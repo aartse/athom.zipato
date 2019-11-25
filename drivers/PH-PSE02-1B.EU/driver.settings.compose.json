@@ -7,7 +7,7 @@
             "nl": "Notification Type",
             "de": "Notification Typ"
         },
-        "value": "0",
+        "value": "128",
 		"signed": false,
         "values": [
             {

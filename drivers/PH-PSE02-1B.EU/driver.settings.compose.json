@@ -8,9 +8,10 @@
             "de": "Notification Typ"
         },
         "value": "0",
+		"signed": false,
         "values": [
             {
-                "id": "-128",
+                "id": "128",
                 "label": {
                     "en": "Notification Report",
                     "nl": "Notification Report",
@@ -18,7 +19,7 @@
                 }
             },
             {
-                "id": "-111",
+                "id": "145",
                 "label": {
                     "en": "Sensor Binary Report",
                     "nl": "Sensor Binary Report",

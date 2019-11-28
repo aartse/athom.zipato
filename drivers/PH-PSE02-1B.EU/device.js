@@ -1,13 +1,14 @@
 'use strict';
 
+const TAMPER_TIMEOUT = 30 * 1000;
 
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 const Homey = require('homey');
 
-const TAMPER_TIMEOUT = 30 * 1000;
-
 class ZipatoDevice extends ZwaveDevice {
+
   async onMeshInit() {
+
     this.setCapabilityValue('alarm_tamper', false);
 
     // this.enableDebug();
@@ -28,25 +29,60 @@ class ZipatoDevice extends ZwaveDevice {
       }
     });
 
-
-    this.PlaySoundFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-play_sound').register().registerRunListener((args, state) => {
-      return this.node.CommandClass.COMMAND_CLASS_BASIC.BASIC_SET({
-        Value: Math.round(args.sound * 1),
+    //turn alarm off
+    let turnAlarmOffFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_off');
+    turnAlarmOffFlow
+      .register()
+      .registerRunListener(( args, state ) => {
+        return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
+          'Switch Value': 0
+        });
       });
-      return Promise.reject('Device has no valid command class to play sound');
-    });
-    this.DisableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-disable_siren').register().registerRunListener((args, state) => {
-      return this.configurationSet({
-        index: 29,
-        size: 1,
-      }, 1);
-    });
-    this.EnableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-enable_siren').register().registerRunListener((args, state) => {
-      return this.configurationSet({
-        index: 29,
-        size: 1,
-      }, 0);
-    });
+
+    //turn alarm on
+    let turnAlarmOnFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_on');
+    turnAlarmOnFlow
+      .register()
+      .registerRunListener(( args, state ) => {
+        return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
+          'Switch Value': 255
+        });
+      });
+
+    //play sound
+    let playSoundFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-play_sound');
+    playSoundFlow
+      .register()
+      .registerRunListener((args, state) => {
+        if (args.device.hasCommandClass('BASIC')) {
+          return args.device.getCommandClass("BASIC").BASIC_SET({
+            'Value': Math.round(args.sound * 1),
+          });
+        }
+        return Promise.reject('Device has no valid command class to play sound');
+      });
+
+    //disable siren
+    let disableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-disable_siren')
+    disableSirenFlow
+      .register()
+      .registerRunListener((args, state) => {
+        return this.configurationSet({
+          index: 29,
+          size: 1,
+        }, 1);
+      });
+
+    //enable siren
+    let enableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-enable_siren');
+    enableSirenFlow
+      .register()
+      .registerRunListener((args, state) => {
+        return this.configurationSet({
+          index: 29,
+          size: 1,
+        }, 0);
+      });
   }
 }
 

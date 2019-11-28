@@ -5,78 +5,18 @@
   ],
   "actions": [
     {
-      "name":"play_sound",
-	  	  "title": {
-        "en": "Alarm Sound",
-		"de": "Alarm Ton"
-},
-      "id": "PH-PSE02-1B.EU-play_sound",
-	        "args": [
-        {
-          "name": "sound",
-          "type": "dropdown",
-          "values": [
-            {
-              "id": "1",
-              "label": {
-                "en": "Emergengy",
-                "de": "Notfall"
-              }
-            },
-            {
-              "id": "2",
-              "label": {
-                "en": "Fire",
-                "de": "Feueralarm"
-              }
-            },
-            {
-              "id": "3",
-              "label": {
-                "en": "Ambulance",
-                "de": "Krankenwagen"
-              }
-            },
-            {
-              "id": "4",
-              "label": {
-                "en": "Police",
-                "de": "Polizeisirene"
-              }
-            },
-            {
-              "id": "5",
-              "label": {
-                "en": "Doorbell",
-                "de": "Türklingel"
-              }
-            },
-            {
-              "id": "6",
-              "label": {
-                "en": "Beep Beep",
-                "de": "Beep Beep"
-              }
-            },
-            {
-              "id": "7",
-              "label": {
-                "en": "Silent Alarm",
-                "de": "Stiller Alarm"
-              }
-            },
-            {
-              "id": "8",
-              "label": {
-                "en": "Beep",
-                "de": "Beep"
-              }
-            }
-          ]
-        }
-      ]
+      "$extends":"turn_alarm_off",
+      "id": "PH-PSE02-1B.EU-turn_alarm_off"
     },
-	{
+    {
+      "$extends":"turn_alarm_on",
+      "id": "PH-PSE02-1B.EU-turn_alarm_on"
+    },
+    {
+      "$extends":"play_sound",
+      "id": "PH-PSE02-1B.EU-play_sound"
+    },
+    {
       "id": "PH-PSE02-1B.EU-disable_siren",
       "title": {
         "en": "Disable Siren",

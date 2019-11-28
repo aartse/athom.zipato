@@ -3,17 +3,13 @@
     "name": {
       "en": "Indoor siren",
       "nl": "Binnen sirene",
-	  "de": "Alarmsirene"
+      "de": "Alarmsirene"
     },
     "class": "homealarm",
     "capabilities": [
       "alarm_tamper",
       "onoff"
     ],
-    "images": {
-      "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
-      "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
-    },
     "zwave": {
         "manufacturerId": [316, 305],
         "productTypeId": 4,
@@ -21,14 +17,14 @@
         "learnmode": {
             "instruction": {
                 "en": "Pressing tamper key three times within 1.5 seconds to enter the inclusion mode.",
-				"nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
                 "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Automatische Anmeldung zu versetzen."
             }
         },
-       "unlearnmode": {
+        "unlearnmode": {
             "instruction": {
-                "en": " Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
-				"nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+                "en": "Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
+                "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
                 "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Entfernen zu versetzen."
         }
       },
@@ -39,14 +35,18 @@
     },
     "class": "homealarm",
     "capabilities": [
-        "onoff",
-        "alarm_tamper"
+      "onoff",
+      "alarm_tamper"
     ],
-	 "defaultConfiguration": [
+    "images": {
+      "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
+      "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
+    },
+    "defaultConfiguration": [
       {
         "id": 7,
         "size": 1,
-        "value": -128
+        "value": 128
       }
-]
+    ]
 }

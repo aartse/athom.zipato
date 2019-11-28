@@ -1,56 +1,78 @@
 {
     "title": {
-        "en": "Play sound",
-        "nl": "Speel geluid"
+        "nl": "Alarm geluid",
+        "en": "Alarm sound",
+        "de": "Alarm ton"
     },
-	"args": [
-		{
-			"name": "sound",
-			"type": "dropdown",
-			"values": [
-	            {
-	                "id": "0",
-	                "label": {
-	                    "en": "No sound"
-	                }
-	            },
-	            {
-	                "id": "1",
-	                "label": {
-	                    "en": "Emergency sound"
-	                }
-	            },
-	            {
-	                "id": "2",
-	                "label": {
-	                    "en": "Fire alert"
-	                }
-	            },
-	            {
-	                "id": "3",
-	                "label": {
-	                    "en": "Ambulance sound"
-	                }
-	            },
-	            {
-	                "id": "4",
-	                "label": {
-	                    "en": "Police car sound"
-	                }
-	            },
-	            {
-	                "id": "5",
-	                "label": {
-	                    "en": "Door chime"
-	                }
-	            },
-	            {
-	                "id": "6",
-	                "label": {
-	                    "en": "Beep Beep"
-	                }
-	            }
-        	]
-		}
-	]
+    "args": [
+        {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+                {
+                    "id": "0",
+                    "label": {
+                        "nl": "Geen sound",
+                        "en": "No sound"
+                    }
+                },
+                {
+                    "id": "1",
+                    "label": {
+                        "en": "Emergency sound",
+                        "de": "Notfall"
+                    }
+                },
+                {
+                    "id": "2",
+                    "label": {
+                        "en": "Fire alert",
+                        "de": "Feueralarm"
+                    }
+                },
+                {
+                    "id": "3",
+                    "label": {
+                        "en": "Ambulance sound",
+                        "de": "Krankenwagen"
+                    }
+                },
+                {
+                    "id": "4",
+                    "label": {
+                        "en": "Police car sound",
+                        "de": "Polizeisirene"
+                    }
+                },
+                {
+                    "id": "5",
+                    "label": {
+                        "en": "Door chime",
+                        "de": "Türklingel"
+                    }
+                },
+                {
+                    "id": "6",
+                    "label": {
+                        "en": "Beep Beep",
+                        "de": "Beep Beep"
+                    }
+                },
+                {
+                    "id": "7",
+                    "label": {
+                        "en": "Silent Alarm",
+                        "de": "Stiller Alarm"
+                    }
+                },
+                {
+                    "id": "7",
+                    "label": {
+                        "en": "Beep",
+                        "de": "Beep"
+                    }
+                }
+            ]
+        }
+    ]
 }

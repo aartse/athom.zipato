@@ -9,8 +9,6 @@ class ZipatoDevice extends ZwaveDevice {
 
   async onMeshInit() {
 
-    this.setCapabilityValue('alarm_tamper', false);
-
     // this.enableDebug();
     // this.printNode();
 
@@ -29,16 +27,6 @@ class ZipatoDevice extends ZwaveDevice {
       }
     });
 
-    //turn alarm off
-    let turnAlarmOffFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_off');
-    turnAlarmOffFlow
-      .register()
-      .registerRunListener(( args, state ) => {
-        return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
-          'Switch Value': 0
-        });
-      });
-
     //turn alarm on
     let turnAlarmOnFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_on');
     turnAlarmOnFlow
@@ -46,6 +34,16 @@ class ZipatoDevice extends ZwaveDevice {
       .registerRunListener(( args, state ) => {
         return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
           'Switch Value': 255
+        });
+      });
+
+    //turn alarm off
+    let turnAlarmOffFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_off');
+    turnAlarmOffFlow
+      .register()
+      .registerRunListener(( args, state ) => {
+        return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
+          'Switch Value': 0
         });
       });
 

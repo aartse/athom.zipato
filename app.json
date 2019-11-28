@@ -1680,10 +1680,6 @@
         "onoff",
         "alarm_tamper"
       ],
-      "images": {
-        "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
-        "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
-      },
       "zwave": {
         "manufacturerId": [
           316,
@@ -1700,7 +1696,7 @@
         },
         "unlearnmode": {
           "instruction": {
-            "en": " Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
+            "en": "Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
             "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
             "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Entfernen zu versetzen."
           }
@@ -1710,11 +1706,15 @@
         ],
         "associationGroupsOptions": {}
       },
+      "images": {
+        "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
+        "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
+      },
       "defaultConfiguration": [
         {
           "id": 7,
           "size": 1,
-          "value": -128
+          "value": 128
         }
       ],
       "settings": [
@@ -1726,7 +1726,7 @@
             "nl": "Notification Type",
             "de": "Notification Typ"
           },
-          "value": "0",
+          "value": "128",
           "signed": false,
           "values": [
             {
@@ -2870,12 +2870,40 @@
   "flow": {
     "actions": [
       {
-        "name": "play_sound",
+        "id": "PH-PSE02-1B.EU-turn_alarm_off",
         "title": {
-          "en": "Alarm Sound",
-          "de": "Alarm Ton"
+          "en": "Turn siren off",
+          "nl": "Zet sirene uit"
         },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-turn_alarm_on",
+        "title": {
+          "en": "Turn siren on",
+          "nl": "Zet sirene aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
         "id": "PH-PSE02-1B.EU-play_sound",
+        "title": {
+          "nl": "Alarm geluid",
+          "en": "Alarm sound",
+          "de": "Alarm ton"
+        },
         "args": [
           {
             "type": "device",
@@ -2887,37 +2915,44 @@
             "type": "dropdown",
             "values": [
               {
+                "id": "0",
+                "label": {
+                  "nl": "Geen sound",
+                  "en": "No sound"
+                }
+              },
+              {
                 "id": "1",
                 "label": {
-                  "en": "Emergengy",
+                  "en": "Emergency sound",
                   "de": "Notfall"
                 }
               },
               {
                 "id": "2",
                 "label": {
-                  "en": "Fire",
+                  "en": "Fire alert",
                   "de": "Feueralarm"
                 }
               },
               {
                 "id": "3",
                 "label": {
-                  "en": "Ambulance",
+                  "en": "Ambulance sound",
                   "de": "Krankenwagen"
                 }
               },
               {
                 "id": "4",
                 "label": {
-                  "en": "Police",
+                  "en": "Police car sound",
                   "de": "Polizeisirene"
                 }
               },
               {
                 "id": "5",
                 "label": {
-                  "en": "Doorbell",
+                  "en": "Door chime",
                   "de": "Türklingel"
                 }
               },
@@ -2936,7 +2971,7 @@
                 }
               },
               {
-                "id": "8",
+                "id": "7",
                 "label": {
                   "en": "Beep",
                   "de": "Beep"

@@ -1672,25 +1672,8 @@
       "id": "PH-PSE02-1B.EU",
       "name": {
         "en": "Indoor siren",
-        "nl": "Binnen sirene"
-      },
-      "zwave": {
-        "manufacturerId": [
-          316,
-          305
-        ],
-        "productTypeId": 4,
-        "productId": 10,
-        "learnmode": {
-          "instruction": {
-            "en": "Press include/network button three times within 1.5 seconds.",
-            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden."
-          }
-        },
-        "associationGroups": [
-          1
-        ],
-        "associationGroupsOptions": {}
+        "nl": "Binnen sirene",
+        "de": "Alarmsirene"
       },
       "class": "homealarm",
       "capabilities": [
@@ -1701,28 +1684,65 @@
         "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
         "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
       },
+      "zwave": {
+        "manufacturerId": [
+          316,
+          305
+        ],
+        "productTypeId": 4,
+        "productId": 10,
+        "learnmode": {
+          "instruction": {
+            "en": "Pressing tamper key three times within 1.5 seconds to enter the inclusion mode.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+            "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Automatische Anmeldung zu versetzen."
+          }
+        },
+        "unlearnmode": {
+          "instruction": {
+            "en": " Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+            "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Entfernen zu versetzen."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "defaultConfiguration": [
+        {
+          "id": 7,
+          "size": 1,
+          "value": -128
+        }
+      ],
       "settings": [
         {
           "id": "config_param_7",
           "type": "dropdown",
           "label": {
             "en": "Notification Type",
-            "nl": "Notification Type"
+            "nl": "Notification Type",
+            "de": "Notification Typ"
           },
           "value": "0",
+          "signed": false,
           "values": [
             {
-              "id": "0",
+              "id": "128",
               "label": {
                 "en": "Notification Report",
-                "nl": "Notification Report"
+                "nl": "Notification Report",
+                "de": "Notification Report"
               }
             },
             {
-              "id": "16",
+              "id": "145",
               "label": {
                 "en": "Sensor Binary Report",
-                "nl": "Sensor Binary Report"
+                "nl": "Sensor Binary Report",
+                "de": "Sensor Binary Report"
               }
             }
           ],
@@ -1736,14 +1756,15 @@
           "type": "dropdown",
           "label": {
             "en": "Disable alarm",
-            "nl": "Alarm uitschakelen"
+            "nl": "Alarm uitschakelen",
+            "de": "Alarm deaktivieren"
           },
           "value": "0",
           "values": [
             {
               "id": "0",
               "label": {
-                "en": "No",
+                "en": "Nein",
                 "nl": "Nee"
               }
             },
@@ -1751,13 +1772,15 @@
               "id": "1",
               "label": {
                 "en": "Yes",
-                "nl": "Ja"
+                "nl": "Ja",
+                "de": "Ja"
               }
             }
           ],
           "hint": {
-            "en": "After power up, alarm is re-enabled",
-            "nl": "Na opnieuw opstarten, wordt het alarm opnieuw ingeschakeld"
+            "en": "If the alarm is deactivated, it cannot be triggered.",
+            "nl": "Als het alarm is gedeactiveerd, kan het niet worden geactiveerd.",
+            "de": "Wenn der Alarm deaktiviert wird, kann dieser nicht ausgelöst werden."
           },
           "zwave": {
             "index": 29,
@@ -1768,8 +1791,9 @@
           "id": "config_param_31",
           "type": "number",
           "label": {
-            "en": "Alarm sound duration (in seconds)",
-            "nl": "Sirene tijd (in seconden)"
+            "en": "Alarm sound duration",
+            "nl": "Sirene tijd",
+            "de": "Alarmtondauer"
           },
           "value": 6,
           "attr": {
@@ -1777,8 +1801,9 @@
             "max": 127
           },
           "hint": {
-            "en": "0 means never auto stop. Default value is 180 seconds (180 / 30 = 6).",
-            "nl": "0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden (180 / 30 = 6)."
+            "en": "1 = 30 seconds. 0 means never auto stop. Default value is 180 seconds (180 / 30 = 6).",
+            "nl": "1 = 30 seconden. 0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden (180 / 30 = 6).",
+            "de": "1 = 30 Sekunden. 0 bedeutet, dass nie automatisch gestoppt wird. Der Standardwert ist 180 Sekunden (180 / 30 = 6)."
           },
           "zwave": {
             "index": 31,
@@ -2845,39 +2870,12 @@
   "flow": {
     "actions": [
       {
-        "id": "PH-PSE02-1B.EU-turn_alarm_off",
+        "name": "play_sound",
         "title": {
-          "en": "Turn siren off",
-          "nl": "Zet sirene uit"
+          "en": "Alarm Sound",
+          "de": "Alarm Ton"
         },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=PH-PSE02-1B.EU"
-          }
-        ]
-      },
-      {
-        "id": "PH-PSE02-1B.EU-turn_alarm_on",
-        "title": {
-          "en": "Turn siren on",
-          "nl": "Zet sirene aan"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=PH-PSE02-1B.EU"
-          }
-        ]
-      },
-      {
         "id": "PH-PSE02-1B.EU-play_sound",
-        "title": {
-          "en": "Play sound",
-          "nl": "Speel geluid"
-        },
         "args": [
           {
             "type": "device",
@@ -2889,48 +2887,98 @@
             "type": "dropdown",
             "values": [
               {
-                "id": "0",
-                "label": {
-                  "en": "No sound"
-                }
-              },
-              {
                 "id": "1",
                 "label": {
-                  "en": "Emergency sound"
+                  "en": "Emergengy",
+                  "de": "Notfall"
                 }
               },
               {
                 "id": "2",
                 "label": {
-                  "en": "Fire alert"
+                  "en": "Fire",
+                  "de": "Feueralarm"
                 }
               },
               {
                 "id": "3",
                 "label": {
-                  "en": "Ambulance sound"
+                  "en": "Ambulance",
+                  "de": "Krankenwagen"
                 }
               },
               {
                 "id": "4",
                 "label": {
-                  "en": "Police car sound"
+                  "en": "Police",
+                  "de": "Polizeisirene"
                 }
               },
               {
                 "id": "5",
                 "label": {
-                  "en": "Door chime"
+                  "en": "Doorbell",
+                  "de": "Türklingel"
                 }
               },
               {
                 "id": "6",
                 "label": {
-                  "en": "Beep Beep"
+                  "en": "Beep Beep",
+                  "de": "Beep Beep"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Silent Alarm",
+                  "de": "Stiller Alarm"
+                }
+              },
+              {
+                "id": "8",
+                "label": {
+                  "en": "Beep",
+                  "de": "Beep"
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-disable_siren",
+        "title": {
+          "en": "Disable Siren",
+          "de": "Alarm deaktivieren"
+        },
+        "hint": {
+          "en": "This does not turn off the alarm.",
+          "de": "Dies schaltet nicht den Alarm aus."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSE02-1B.EU-enable_siren",
+        "title": {
+          "en": "Enable Siren",
+          "de": "Alarm aktivieren"
+        },
+        "hint": {
+          "en": "This does not trigger the alarm.",
+          "de": "Dies löst nicht den Alarm aus."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSE02-1B.EU"
           }
         ]
       },

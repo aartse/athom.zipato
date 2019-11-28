@@ -4,22 +4,26 @@
         "type": "dropdown",
         "label": {
             "en": "Notification Type",
-            "nl": "Notification Type"
+            "nl": "Notification Type",
+            "de": "Notification Typ"
         },
-        "value": "0",
+        "value": "128",
+		"signed": false,
         "values": [
             {
-                "id": "0",
+                "id": "128",
                 "label": {
                     "en": "Notification Report",
-                    "nl": "Notification Report"
+                    "nl": "Notification Report",
+                    "de": "Notification Report"
                 }
             },
             {
-                "id": "16",
+                "id": "145",
                 "label": {
                     "en": "Sensor Binary Report",
-                    "nl": "Sensor Binary Report"
+                    "nl": "Sensor Binary Report",
+                    "de": "Sensor Binary Report"
                 }
             }
         ],
@@ -33,7 +37,8 @@
         "type": "dropdown",
         "label": {
             "en": "Disable alarm",
-            "nl": "Alarm uitschakelen"
+            "nl": "Alarm uitschakelen",
+            "de": "Alarm deaktivieren"
         },
         "value": "0",
         "values": [
@@ -41,20 +46,23 @@
                 "id": "0",
                 "label": {
                     "en": "No",
-                    "nl": "Nee"
+                    "nl": "Nee",
+                    "en": "Nein"
                 }
             },
             {
                 "id": "1",
                 "label": {
                     "en": "Yes",
-                    "nl": "Ja"
+                    "nl": "Ja",
+                    "de": "Ja"
                 }
             }
         ],
         "hint": {
-            "en": "After power up, alarm is re-enabled",
-            "nl": "Na opnieuw opstarten, wordt het alarm opnieuw ingeschakeld"
+            "en": "If the alarm is deactivated, it cannot be triggered.",
+            "nl": "Als het alarm is gedeactiveerd, kan het niet worden geactiveerd.",
+            "de": "Wenn der Alarm deaktiviert wird, kann dieser nicht ausgelöst werden."
         },
         "zwave": {
             "index": 29,
@@ -65,8 +73,9 @@
         "id": "config_param_31",
         "type": "number",
         "label": {
-            "en": "Alarm sound duration (in seconds)",
-            "nl": "Sirene tijd (in seconden)"
+            "en": "Alarm sound duration",
+            "nl": "Sirene tijd",
+            "de": "Alarmtondauer"
         },
         "value": 6,
         "attr": {
@@ -74,8 +83,9 @@
             "max": 127
         },
         "hint": {
-            "en": "0 means never auto stop. Default value is 180 seconds (180 / 30 = 6).",
-            "nl": "0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden (180 / 30 = 6)."
+            "en": "1 = 30 seconds. 0 means never auto stop. Default value is 180 seconds (180 / 30 = 6).",
+            "nl": "1 = 30 seconden. 0 betekend niet automatisch stoppen. De standaard waarde is 180 seconden (180 / 30 = 6).",
+            "de": "1 = 30 Sekunden. 0 bedeutet, dass nie automatisch gestoppt wird. Der Standardwert ist 180 Sekunden (180 / 30 = 6)."
         },
         "zwave": {
             "index": 31,

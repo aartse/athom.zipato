@@ -15,6 +15,30 @@
     {
       "$extends":"play_sound",
       "id": "PH-PSE02-1B.EU-play_sound"
+    },
+    {
+      "id": "PH-PSE02-1B.EU-disable_siren",
+      "title": {
+        "en": "Disable Siren",
+        "de": "Alarm deaktivieren"
+      },
+      "hint": {
+        "en": "This does not turn off the alarm.",
+        "de": "Dies schaltet nicht den Alarm aus."
+      },
+      "args": []
+    },
+    {
+      "id": "PH-PSE02-1B.EU-enable_siren",
+      "title": {
+        "en": "Enable Siren",
+        "de": "Alarm aktivieren"
+      },
+      "hint": {
+        "en": "This does not trigger the alarm.",
+        "de": "Dies löst nicht den Alarm aus."
+      },
+      "args": []
     }
   ]
 }

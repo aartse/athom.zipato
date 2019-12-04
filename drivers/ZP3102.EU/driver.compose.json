@@ -1,8 +1,8 @@
 {
     "id": "ZP3102.EU",
     "name": {
-        "en": "ZP3102",
-        "nl": "ZP3102"
+        "en": "Multisensor duo",
+        "nl": "Bewegingsmelder"
     },
     "zwave": {
         "manufacturerId": [265, 305],

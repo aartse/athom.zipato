@@ -11,10 +11,10 @@
             "nl": "Bij gebruik van 'Lighting group control', stuur deze waarde mee bij het drukken op een knop. Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. gebruik 0 om het licht uit te zetten."
         },
         "value": 255,
-		"signed": false,
         "zwave": {
             "index": 2,
-            "size": 1
+            "size": 1,
+            "signed": false
         }        
     },
     {
@@ -29,7 +29,6 @@
           "nl": "Gebruik 'AV control', om triggers in homey te kunnen gebruiken. Om direct te communiceren via association groups, gebruik 'Lighting group control'"
         },
         "value": "0",
-		"signed": false,
         "values": [
             {
                 "id": "0",
@@ -47,6 +46,7 @@
             }
         ],
         "zwave": {
+            "signed": false,
             "index": 7,
             "size": 1
         }        
@@ -63,8 +63,8 @@
           "nl": "De interval om het battery niveau te rapporteren. 0 betekend uitschakelen van de rapportage. Elk getal staat voor  30 minuten. De standaard waarde is 12(6 uur)."
 	    },
         "value": 12,
-		"signed": false,
         "zwave": {
+            "signed": false,
             "index": 10,
             "size": 1
         }        
@@ -81,8 +81,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 1 (Association group 2). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 82,
             "size": 1
         }        
@@ -99,8 +99,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 2 (Association group 3). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 83,
             "size": 1
         }        
@@ -117,8 +117,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 3 (Association group 4). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 84,
             "size": 1
         }        
@@ -135,8 +135,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 4 (Association group 5). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 85,
             "size": 1
         }        
@@ -153,8 +153,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 5 (Association group 6). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 86,
             "size": 1
         }        
@@ -171,8 +171,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 6 (Association group 7). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 87,
             "size": 1
         }        
@@ -189,8 +189,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 7 (Association group 8). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 88,
             "size": 1
         }        
@@ -207,8 +207,8 @@
             "nl": "Stuur deze waarde naar de lamp in lighting group 8 (Association group 9). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
         },
         "value": 0,
-        "signed": false,
         "zwave": {
+            "signed": false,
             "index": 89,
             "size": 1
         }        

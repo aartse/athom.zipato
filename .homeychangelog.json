@@ -49,5 +49,8 @@
   },
   "3.2.0": {
     "en": "Fixed PH-PSE02-1B.EU-play_sound flow action;"
+  },
+  "3.2.1": {
+    "en": "Added support for new device PH-PSR03-1B.EU (Keyfob 5 remote);"
   }
 }

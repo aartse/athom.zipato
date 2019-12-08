@@ -1,0 +1,10 @@
+{
+	"title": {
+	  "en": "Emergency alarm activated",
+	  "nl": "Nood alarm geactiveerd"
+	},
+	"hint": {
+	  "en": "Triggered when a user presses emergency alarm button.",
+	  "nl": "Wordt uitgevoerd wanneer iemand een nood alarm knop indrukt."
+	}
+}

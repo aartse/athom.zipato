@@ -1,0 +1,102 @@
+{
+  "tokens": [
+    {
+      "name": "button_group",
+      "type": "number",
+      "title": {
+        "en": "Button group",
+        "nl": "Knoppen groep"
+      },
+      "example": 1
+    },
+    {
+      "name": "button_number",
+      "type": "number",
+      "title": {
+        "en": "Button number",
+        "nl": "Knop nummer"
+      },
+      "example": 1
+    },
+    {
+      "name": "button_location",
+      "type": "string",
+      "title": {
+        "en": "Button location",
+        "en": "Knop lokatie"
+      },
+      "example": "top-left"
+    }
+  ],
+  "args": [
+    {
+      "type": "dropdown",
+      "name": "button_number",
+      "values": [
+        {
+          "id": "0",
+          "label": {
+            "en": "-- Any --",
+            "nl": "-- Elke --"
+          }
+        },
+        {
+          "id": "1",
+          "label": {
+            "en": "1 - Top-left (Volume up)",
+            "nl": "1 - Links-boven (Volume up)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "2 - Top-right (Channel up)",
+            "nl": "2 - Rechts-boven (Channel up)"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "3 - Bottom-left (Volume down)",
+            "nl": "3 - Links-onder (Volume down)"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "4 - Bottom-right (Channel down)",
+            "nl": "4 - Rechts-onder (Channel down)"
+          }
+        },
+        {
+          "id": "5",
+          "label": {
+            "en": "5 - Top-left (Play)",
+            "nl": "5 - Links-boven (Play)"
+          }
+        },
+        {
+          "id": "6",
+          "label": {
+            "en": "6 - Top-right (Fast Forward)",
+            "nl": "6 - Rechts-boven (Fast Forward)"
+          }
+        },
+        {
+          "id": "7",
+          "label": {
+            "en": "7 - Bottom-left (Stop)",
+            "nl": "7 - Links-onder (Stop)"
+          }
+        },
+        {
+          "id": "8",
+          "label": {
+            "en": "8 - Bottom-right (Rewind)",
+            "nl": "8 - Rechts-onder (Rewind)"
+          }
+        }
+      ]
+    }
+  ]
+}    

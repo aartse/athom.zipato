@@ -1,0 +1,32 @@
+{
+    "id": "PH.PSR03-1B.EU",
+    "name": {
+        "en": "Remote",
+        "nl": "Afstandsbediening"
+    },
+    "zwave": {
+        "manufacturerId": 316,
+        "productTypeId": 8,
+        "productId": 29,
+        "learnmode": {
+            "instruction": {
+                "en": "Hold down the central key, then press the top-right key 3 times within 1.5 seconds to enter inclusion mode.",
+                "nl": "Houdt de centrale knop ingedrukt, en druk tegelijk 3 keer op de rechter boven knop binnen 1.5 seconden."
+            }
+        },
+        "associationGroups": [
+            1
+        ]
+    },
+    "class": "remote",
+    "capabilities": [
+        "measure_battery"
+    ],
+    "energy": {
+        "batteries": [ "INTERNAL" ]
+    },
+    "images": {
+        "large": "/drivers/PH.PSR03-1B.EU/assets/images/large.png",
+        "small": "/drivers/PH.PSR03-1B.EU/assets/images/small.png"
+    }
+}

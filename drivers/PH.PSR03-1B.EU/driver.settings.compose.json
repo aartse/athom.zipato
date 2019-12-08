@@ -1,0 +1,216 @@
+[
+    {
+        "id": "config_param_2",
+        "type": "number",
+        "label": {
+            "en": "Global basic set level",
+            "nl": "Globale basic set level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light. The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means turn off the light.",
+            "nl": "Bij gebruik van 'Lighting group control', stuur deze waarde mee bij het drukken op een knop. Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. gebruik 0 om het licht uit te zetten."
+        },
+        "value": 255,
+		"signed": false,
+        "zwave": {
+            "index": 2,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_7",
+        "type": "dropdown",
+        "label": {
+            "en": "Customer function",
+            "nl": "Gebruiksmodus"
+        },
+        "hint": {
+          "en": "Use 'AV control', to trigger flows in homey. For direct communication via association groups use 'Lighting group control'",
+          "nl": "Gebruik 'AV control', om triggers in homey te kunnen gebruiken. Om direct te communiceren via association groups, gebruik 'Lighting group control'"
+        },
+        "value": "0",
+		"signed": false,
+        "values": [
+            {
+                "id": "0",
+                "label": {
+                    "en": "AV control",
+                    "nl": "AV control"
+                }
+            },
+            {
+                "id": "1",
+                "label": {
+                    "en": "Lighting group control",
+                    "nl": "Lighting group control"
+                }
+            }
+        ],
+        "zwave": {
+            "index": 7,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_10",
+        "type": "number",
+        "label": {
+            "en": "Auto Report Battery Time",
+            "en": "Interval batterij rapportage"
+        },
+	    "hint": {
+          "en": "The interval time for auto report the battery level. 0 means turn off auto report battery. Each tick means 30 minutes. The default value is 12(6 hours).",
+          "nl": "De interval om het battery niveau te rapporteren. 0 betekend uitschakelen van de rapportage. Elk getal staat voor  30 minuten. De standaard waarde is 12(6 uur)."
+	    },
+        "value": 12,
+		"signed": false,
+        "zwave": {
+            "index": 10,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_82",
+        "type": "number",
+        "label": {
+            "en": "Association Group 2 Basic Set Level",
+            "nl": "Association Group 2 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 1 (Association group 2). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 1 (Association group 2). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 82,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_83",
+        "type": "number",
+        "label": {
+            "en": "Association Group 3 Basic Set Level",
+            "nl": "Association Group 3 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 2 (Association group 3). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 2 (Association group 3). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 83,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_84",
+        "type": "number",
+        "label": {
+            "en": "Association Group 4 Basic Set Level",
+            "nl": "Association Group 4 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 3 (Association group 4). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 3 (Association group 4). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 84,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_85",
+        "type": "number",
+        "label": {
+            "en": "Association Group 5 Basic Set Level",
+            "nl": "Association Group 5 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 4 (Association group 5). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 4 (Association group 5). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 85,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_86",
+        "type": "number",
+        "label": {
+            "en": "Association Group 6 Basic Set Level",
+            "nl": "Association Group 6 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 5 (Association group 6). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 5 (Association group 6). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 86,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_87",
+        "type": "number",
+        "label": {
+            "en": "Association Group 7 Basic Set Level",
+            "nl": "Association Group 7 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 6 (Association group 7). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 6 (Association group 7). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 87,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_88",
+        "type": "number",
+        "label": {
+            "en": "Association Group 8 Basic Set Level",
+            "nl": "Association Group 8 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 7 (Association group 8). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 7 (Association group 8). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 88,
+            "size": 1
+        }        
+    },
+    {
+        "id": "config_param_89",
+        "type": "number",
+        "label": {
+            "en": "Association Group 9 Basic Set Level",
+            "nl": "Association Group 9 Basic Set Level"
+        },
+        "hint": {
+            "en": "Setting the BASIC command value to turn on the light in the lighting group 8 (Association group 9). The 255 means turn on the light. For dimmer equipment 1 to 99 means the light strength. 0 means using the value of 'Global basic set level' to set.",
+            "nl": "Stuur deze waarde naar de lamp in lighting group 8 (Association group 9). Gebruik 255 om een lamp aan te zetten. Gebruik 1 tot 99 voor dimmers. 0 betekend dat de waarde van 'Globaal basic set level' wordt gebruikt."
+        },
+        "value": 0,
+        "signed": false,
+        "zwave": {
+            "index": 89,
+            "size": 1
+        }        
+    }
+]

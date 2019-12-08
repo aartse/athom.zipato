@@ -1,0 +1,37 @@
+{
+  "id": "nl.aartse.zipato",
+  "version": "3.2.1",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Zipato",
+    "nl": "Zipato"
+  },
+  "author": {
+    "name": "Jeroen Aartse",
+    "email": "jeroen@webdesigntilburg.nl"
+  },
+  "category": [
+    "lights",
+    "security"
+  ],
+  "description": {
+    "en": "Support for zipato devices",
+    "nl": "Support for zipato devices"
+  },
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "source": "https://github.com/aartse/athom.zipato",
+  "brandColor": "#000000",
+  "contributors": {
+    "developers": [
+      {
+        "name": "Jeroen Aartse",
+        "website": "http://www.webdesigntilburg.nl",
+        "email": "jeroen@webdesigntilburg.nl"
+      }
+    ]
+  }
+}

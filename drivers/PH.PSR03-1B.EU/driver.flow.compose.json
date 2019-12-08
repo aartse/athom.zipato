@@ -1,0 +1,31 @@
+{
+  "triggers": [
+    {
+      "$extends":"emergency_alarm",
+      "id": "PH.PSR03-1B.EU-emergency_alarm"
+    },
+    {
+      "$extends":"remote_button",
+      "id": "PH.PSR03-1B.EU-pressed",
+      "title": {
+        "en": "Button is pressed"
+      }
+    },
+    {
+      "$extends":"remote_button_long_start",
+      "id": "PH.PSR03-1B.EU-long_started",
+      "title": {
+        "en": "Button is long-press is started"
+      }
+    },
+    {
+      "$extends":"remote_button_long_end",
+      "id": "PH.PSR03-1B.EU-long_ended",
+      "title": {
+        "en": "Button is long-press is ended"
+      }
+    }
+  ],
+  "conditions": [],
+  "actions": []
+}

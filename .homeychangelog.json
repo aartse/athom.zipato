@@ -52,5 +52,8 @@
   },
   "3.2.1": {
     "en": "Added support for new device PH-PSR03-1B.EU (Keyfob 5 remote);"
+  },
+  "3.2.2": {
+    "en": "added device NE-NAS-AB02Z.EU for testing"
   }
 }

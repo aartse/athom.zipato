@@ -733,6 +733,54 @@
       ]
     },
     {
+      "id": "NE-NAS-AB02Z.EU",
+      "name": {
+        "en": "Indoor siren (TEST)",
+        "nl": "Binnen sirene (TEST)",
+        "de": "Alarmsirene (TEST)"
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "onoff",
+        "alarm_tamper"
+      ],
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 4227,
+        "learnmode": {
+          "instruction": {
+            "en": "Pressing tamper key three times within 1.5 seconds to enter the inclusion mode.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+            "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Automatische Anmeldung zu versetzen."
+          }
+        },
+        "unlearnmode": {
+          "instruction": {
+            "en": "Pressing tamper key three times within 1.5 seconds to enter the exclusion mode.",
+            "nl": "Druk de programmeer/netwerk knop 3 keer in binnen 1.5 seconden.",
+            "de": "Drücke den Taster auf der Rückseite der Alarmsirene 3x innerhalb von 1,5 Sekunden, um das Gerät in den Modus Entfernen zu versetzen."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "images": {
+        "large": "/drivers/NE-NAS-AB02Z.EU/assets/images/large.png",
+        "small": "/drivers/NE-NAS-AB02Z.EU/assets/images/small.png"
+      },
+      "defaultConfiguration": [
+        {
+          "id": 7,
+          "size": 1,
+          "value": 128
+        }
+      ],
+      "settings": []
+    },
+    {
       "id": "NE-NAS-PD01Z.EU",
       "name": {
         "en": "PIR motion sensor",
@@ -741,7 +789,7 @@
       "zwave": {
         "manufacturerId": 305,
         "productTypeId": 3,
-        "productId": 4227,
+        "productId": 4233,
         "learnmode": {
           "instruction": {
             "en": "Press include/network button three times within 1.5 seconds.",
@@ -3118,6 +3166,154 @@
   ],
   "flow": {
     "actions": [
+      {
+        "id": "NE-NAS-AB02Z.EU-turn_alarm_off",
+        "title": {
+          "en": "Turn siren off",
+          "nl": "Zet sirene uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=NE-NAS-AB02Z.EU"
+          }
+        ]
+      },
+      {
+        "id": "NE-NAS-AB02Z.EU-turn_alarm_on",
+        "title": {
+          "en": "Turn siren on",
+          "nl": "Zet sirene aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=NE-NAS-AB02Z.EU"
+          }
+        ]
+      },
+      {
+        "id": "NE-NAS-AB02Z.EU-play_sound",
+        "title": {
+          "nl": "Alarm geluid",
+          "en": "Alarm sound",
+          "de": "Alarm ton"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=NE-NAS-AB02Z.EU"
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "nl": "Geen sound",
+                  "en": "No sound"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Emergency sound",
+                  "de": "Notfall"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Fire alert",
+                  "de": "Feueralarm"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Ambulance sound",
+                  "de": "Krankenwagen"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Police car sound",
+                  "de": "Polizeisirene"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Door chime",
+                  "de": "Türklingel"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Beep Beep",
+                  "de": "Beep Beep"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Silent Alarm",
+                  "de": "Stiller Alarm"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Beep",
+                  "de": "Beep"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NE-NAS-AB02Z.EU-disable_siren",
+        "title": {
+          "en": "Disable Siren",
+          "de": "Alarm deaktivieren"
+        },
+        "hint": {
+          "en": "This does not turn off the alarm.",
+          "de": "Dies schaltet nicht den Alarm aus."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=NE-NAS-AB02Z.EU"
+          }
+        ]
+      },
+      {
+        "id": "NE-NAS-AB02Z.EU-enable_siren",
+        "title": {
+          "en": "Enable Siren",
+          "de": "Alarm aktivieren"
+        },
+        "hint": {
+          "en": "This does not trigger the alarm.",
+          "de": "Dies löst nicht den Alarm aus."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=NE-NAS-AB02Z.EU"
+          }
+        ]
+      },
       {
         "id": "PH-PSE02-1B.EU-turn_alarm_off",
         "title": {

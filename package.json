@@ -1,6 +1,6 @@
 {
   "name": "nl.aartse.zipato",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
   "repository": {

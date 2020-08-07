@@ -119,7 +119,7 @@
             "nl": "Deurbel duratie",
             "de": "Türklingel Dauer"
         },
-        "value": "1",
+        "value": 1,
         "hint": {
             "en": "Set the duration of the time the doorbell will sound its music",
             "nl": "Pas de tijd aan dat de deurbell zijn geluid laat horen",

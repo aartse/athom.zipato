@@ -1235,6 +1235,41 @@
       ]
     },
     {
+      "id": "NE-NAS-DS01Z.EU",
+      "name": {
+        "en": "Door/window sensor (NE-NAS-DS01Z.EU)",
+        "nl": "Deur/raam sensor (NE-NAS-DS01Z.EU)"
+      },
+      "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 4226,
+        "learnmode": {
+          "instruction": {
+            "en": "Hold pressed the program switch of Door/Window Sensor for at least 1 second. The LED on the Door/Window Sensor should go solid, if not, please try again.",
+            "nl": "Druk op de programma knop voor minumaal 1 seconde. De LED zal continue gaan branden, zo niet, probeer het opnieuw."
+          }
+        },
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {}
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_contact"
+      ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
+      "images": {
+        "large": "/drivers/NE-NAS-DS01Z.EU/assets/images/large.jpg",
+        "small": "/drivers/NE-NAS-DS01Z.EU/assets/images/small.jpg"
+      }
+    },
+    {
       "id": "NE-NAS-PD01Z.EU",
       "name": {
         "en": "PIR motion sensor",

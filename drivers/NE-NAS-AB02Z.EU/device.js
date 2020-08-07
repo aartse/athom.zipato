@@ -47,39 +47,48 @@ class ZipatoDevice extends ZwaveDevice {
         });
       });
 
-    //play sound
-    let playSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-play_sound');
+    //set alarm sound
+    let playSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-alarm_sound');
     playSoundFlow
       .register()
       .registerRunListener((args, state) => {
-        if (args.device.hasCommandClass('BASIC')) {
-          return args.device.getCommandClass("BASIC").BASIC_SET({
-            'Value': Math.round(args.sound * 1),
-          });
-        }
-        return Promise.reject('Device has no valid command class to play sound');
+        return this.configurationSet({
+          index: 5,
+          size: 1,
+        }, args.sound);
       });
 
-    //disable siren
-    let disableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-disable_siren')
+    //set alarm sound
+    let playSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_sound');
+    playSoundFlow
+      .register()
+      .registerRunListener((args, state) => {
+        return this.configurationSet({
+          index: 6,
+          size: 1,
+        }, args.sound);
+      });
+
+    //alarm_duration
+    let disableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-alarm_duration')
     disableSirenFlow
       .register()
       .registerRunListener((args, state) => {
         return this.configurationSet({
-          index: 29,
+          index: 2,
           size: 1,
-        }, 1);
+        }, args.duration);
       });
 
-    //enable siren
-    let enableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-enable_siren');
+    //doorbell_duration
+    let enableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_duration');
     enableSirenFlow
       .register()
       .registerRunListener((args, state) => {
         return this.configurationSet({
-          index: 29,
+          index: 3,
           size: 1,
-        }, 0);
+        }, args.duration);
       });
   }
 }

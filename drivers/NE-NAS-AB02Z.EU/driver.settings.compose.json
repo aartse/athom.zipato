@@ -113,7 +113,7 @@
             "size": 1,
             "signed": false
         },
-        "type": "dropdown",
+        "type": "number",
         "label": {
             "en": "Doorbell duration time",
             "nl": "Deurbel duratie",
@@ -125,48 +125,10 @@
             "nl": "Pas de tijd aan dat de deurbell zijn geluid laat horen",
             "de": "Stellt die Dauer ein, während Türklingel ihre Musik erklingen lässt."
         },
-        "values": [
-            {
-                "id": "0",
-                "label": {
-                    "en": "Doorbell sound off",
-                    "nl": "Deurbel geluid uit",
-                    "de": "Türklingel aus"
-                }
-            },
-            {
-                "id": "1",
-                "label": {
-                    "en": "30 seconds (default)",
-                    "nl": "30 seconden (standaard)",
-                    "de": "30 Sekunden (Standard)"
-                }
-            },
-            {
-                "id": "2",
-                "label": {
-                    "en": "1 minute",
-                    "nl": "1 minuut",
-                    "de": "1 Minute"
-                }
-            },
-            {
-                "id": "3",
-                "label": {
-                    "en": "5 minutes",
-                    "nl": "5 minuten",
-                    "de": "5 Minuten"
-                }
-            },
-            {
-                "id": "127",
-                "label": {
-                    "en": "Endless until battery drained or doorbell switched off",
-                    "nl": "Oneindig totdat de accu leeg is of deurbell trigger wordt uitgezet",
-                    "de": "Endlos, bis die Batterie leer ist oder die Türklingel ausgeschaltet wurde."
-                }
-            }
-        ]
+        "attr": {
+            "min": 0,
+            "max": 127
+        }
     },
     {
         "id": "config_param_4",

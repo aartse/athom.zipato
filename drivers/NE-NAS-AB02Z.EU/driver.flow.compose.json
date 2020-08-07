@@ -13,32 +13,283 @@
       "id": "NE-NAS-AB02Z.EU-turn_alarm_on"
     },
     {
-      "$extends":"play_sound",
-      "id": "NE-NAS-AB02Z.EU-play_sound"
+      "id": "NE-NAS-AB02Z.EU-alarm_sound",
+      "title": {
+          "nl": "Alarm geluid",
+          "en": "Alarm sound",
+          "de": "Alarm ton"
+      },
+      "args": [
+          {
+              "name": "sound",
+              "type": "dropdown",
+              "values": [
+                {
+                  "id": "1",
+                  "label": {
+                      "en": "Sound 1",
+                      "nl": "Geluid 1",
+                      "de": "Melodie 1"
+                  }
+              },
+              {
+                  "id": "2",
+                  "label": {
+                      "en": "Sound 2",
+                      "nl": "Geluid 2",
+                      "de": "Melodie 2"
+                  }
+              },
+              {
+                  "id": "3",
+                  "label": {
+                      "en": "Sound 3",
+                      "nl": "Geluid 3",
+                      "de": "Melodie 3"
+                  }
+              },
+              {
+                  "id": "4",
+                  "label": {
+                      "en": "Sound 4",
+                      "nl": "Geluid 4",
+                      "de": "Melodie 4"
+                  }
+              },
+              {
+                  "id": "5",
+                  "label": {
+                      "en": "Sound 5",
+                      "nl": "Geluid 5",
+                      "de": "Melodie 5"
+                  }
+              },
+              {
+                  "id": "6",
+                  "label": {
+                      "en": "Sound 6",
+                      "nl": "Geluid 6",
+                      "de": "Melodie 6"
+                  }
+              },
+              {
+                  "id": "7",
+                  "label": {
+                      "en": "Sound 7",
+                      "nl": "Geluid 7",
+                      "de": "Melodie 7"
+                  }
+              },
+              {
+                  "id": "8",
+                  "label": {
+                      "en": "Sound 8",
+                      "nl": "Geluid 8",
+                      "de": "Melodie 8"
+                  }
+              },
+              {
+                  "id": "9",
+                  "label": {
+                      "en": "Sound 9",
+                      "nl": "Geluid 9",
+                      "de": "Melodie 9"
+                  }
+              },
+              {
+                  "id": "10",
+                  "label": {
+                      "en": "Sound 10",
+                      "nl": "Geluid 10",
+                      "de": "Melodie 10"
+                  }
+              }
+              ]
+          }
+      ]
     },
     {
-      "id": "NE-NAS-AB02Z.EU-disable_siren",
+      "id": "NE-NAS-AB02Z.EU-doorbell_sound",
       "title": {
-        "en": "Disable Siren",
-        "de": "Alarm deaktivieren"
+          "nl": "Deurbel geluid",
+          "en": "Doorbell sound",
+          "de": "Türklingel ton"
+      },
+      "args": [
+          {
+              "name": "sound",
+              "type": "dropdown",
+              "values": [
+                {
+                  "id": "1",
+                  "label": {
+                      "en": "Sound 1",
+                      "nl": "Geluid 1",
+                      "de": "Melodie 1"
+                  }
+                },
+                {
+                    "id": "2",
+                    "label": {
+                        "en": "Sound 2",
+                        "nl": "Geluid 2",
+                        "de": "Melodie 2"
+                    }
+                },
+                {
+                    "id": "3",
+                    "label": {
+                        "en": "Sound 3",
+                        "nl": "Geluid 3",
+                        "de": "Melodie 3"
+                    }
+                },
+                {
+                    "id": "4",
+                    "label": {
+                        "en": "Sound 4",
+                        "nl": "Geluid 4",
+                        "de": "Melodie 4"
+                    }
+                },
+                {
+                    "id": "5",
+                    "label": {
+                        "en": "Sound 5",
+                        "nl": "Geluid 5",
+                        "de": "Melodie 5"
+                    }
+                },
+                {
+                    "id": "6",
+                    "label": {
+                        "en": "Sound 6",
+                        "nl": "Geluid 6",
+                        "de": "Melodie 6"
+                    }
+                },
+                {
+                    "id": "7",
+                    "label": {
+                        "en": "Sound 7",
+                        "nl": "Geluid 7",
+                        "de": "Melodie 7"
+                    }
+                },
+                {
+                    "id": "8",
+                    "label": {
+                        "en": "Sound 8",
+                        "nl": "Geluid 8",
+                        "de": "Melodie 8"
+                    }
+                },
+                {
+                    "id": "9",
+                    "label": {
+                        "en": "Sound 9",
+                        "nl": "Geluid 9",
+                        "de": "Melodie 9"
+                    }
+                },
+                {
+                    "id": "10",
+                    "label": {
+                        "en": "Sound 10",
+                        "nl": "Geluid 10",
+                        "de": "Melodie 10"
+                    }
+                }
+              ]
+          }
+      ]
+    },
+    {
+      "id": "NE-NAS-AB02Z.EU-alarm_duration",
+      "title": {
+        "en": "Alarm duration time",
+        "nl": "Alarm duratie",
+        "de": "Alarm Dauer"
       },
       "hint": {
         "en": "This does not turn off the alarm.",
+        "nl": "Dit schakelt niet het alarm uit",
         "de": "Dies schaltet nicht den Alarm aus."
       },
-      "args": []
+      "args": [
+        {
+          "name": "duration",
+          "type": "dropdown",
+          "values": [
+            {
+                "id": "0",
+                "label": {
+                    "en": "Alarm sound off",
+                    "nl": "Alarm geluid uit",
+                    "de": "Alarmton aus"
+                }
+            },
+            {
+                "id": "1",
+                "label": {
+                    "en": "30 seconds",
+                    "nl": "30 seconden",
+                    "de": "30 Sekunden"
+                }
+            },
+            {
+                "id": "2",
+                "label": {
+                    "en": "1 minute (default)",
+                    "nl": "1 minuut (standaard)",
+                    "de": "1 Minute (Standard)"
+                }
+            },
+            {
+                "id": "3",
+                "label": {
+                    "en": "5 minutes",
+                    "nl": "5 minuten",
+                    "de": "5 Minuten"
+                }
+            },
+            {
+                "id": "127",
+                "label": {
+                    "en": "Endless until battery drained or alarm switched off",
+                    "nl": "Oneindig totdat de accu leeg is of alarm wordt uitgezet",
+                    "de": "Endlos, bis die Batterie leer ist oder der Alarm ausgeschaltet wurde."
+                }
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "NE-NAS-AB02Z.EU-enable_siren",
+      "id": "NE-NAS-AB02Z.EU-doorbell_duration",
       "title": {
-        "en": "Enable Siren",
-        "de": "Alarm aktivieren"
+        "en": "Doorbell duration time",
+        "nl": "Deurbel duratie",
+        "de": "Türklingel Dauer"
       },
       "hint": {
-        "en": "This does not trigger the alarm.",
-        "de": "Dies löst nicht den Alarm aus."
+        "en": "This does not turn off the alarm.",
+        "nl": "Dit schakelt niet het alarm uit",
+        "de": "Dies schaltet nicht den Alarm aus."
       },
-      "args": []
+      "args": [
+        {
+          "name": "duration",
+          "type": "number",
+          "min": 0,
+          "max": 127,
+          "placeholder": {
+              "en": "Duration",
+              "nl": "Duratie",
+              "de": "Dauer"
+          }
+        }
+      ]
     }
   ]
 }

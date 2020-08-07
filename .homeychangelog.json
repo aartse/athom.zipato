@@ -55,5 +55,8 @@
   },
   "3.2.2": {
     "en": "added device NE-NAS-AB02Z.EU for testing"
+  },
+  "3.2.3": {
+    "en": "added support for NE-NAS-DS01Z.EU, added extra manufaturerId to multiquad, finished support for  NE-NAS-AB02Z.EU"
   }
 }

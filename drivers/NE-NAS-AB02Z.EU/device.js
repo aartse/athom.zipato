@@ -58,9 +58,9 @@ class ZipatoDevice extends ZwaveDevice {
         }, args.sound);
       });
 
-    //set alarm sound
-    let playSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_sound');
-    playSoundFlow
+    //set doorbell sound
+    let playAlarmSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_sound');
+    playAlarmSoundFlow
       .register()
       .registerRunListener((args, state) => {
         return this.configurationSet({

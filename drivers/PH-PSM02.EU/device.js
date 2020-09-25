@@ -8,12 +8,18 @@ class ZipatoDevice extends ZwaveDevice {
 
 	async onMeshInit() {
 
-		//this.enableDebug();
-		//this.printNode();
+		this.enableDebug();
+		this.printNode();
 
 		this.registerCapability('alarm_motion', 'SENSOR_BINARY');
+		this.registerCapability('alarm_motion', 'NOTIFICATION');
+
 		this.registerCapability('alarm_contact', 'SENSOR_BINARY');
+		this.registerCapability('alarm_contact', 'NOTIFICATION');
+
 		this.registerCapability('alarm_tamper', 'SENSOR_BINARY');
+		this.registerCapability('alarm_tamper', 'NOTIFICATION');
+
 		this.registerCapability('measure_temperature', 'SENSOR_MULTILEVEL');
 		this.registerCapability('measure_luminance', 'SENSOR_MULTILEVEL');
 		this.registerCapability('measure_battery', 'BATTERY');

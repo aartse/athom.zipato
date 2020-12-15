@@ -16,8 +16,8 @@
     "eslint-config-athom": "^2.1.0"
   },
   "scripts": {
-    "run": "homeyConfig compose && athom app run",
-    "install": "homeyConfig compose && athom app install",
+    "run": "homeyConfig compose && homey app run",
+    "install": "homeyConfig compose && homey app install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

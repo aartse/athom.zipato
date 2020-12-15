@@ -7,9 +7,9 @@ See APPSTORE.md for more information about this app.
 - Please file Pull Requests on the *master* branch of this repository.
 
 ### Setup
-- install athom-cli: `npm install -g athom-cli`
+- install athom-cli: `npm install -g homey`
 - install homey-config-composer: `npm install -g node-homey-config-composer`
-- login to your homey: `athom login`
+- login to your homey: `homey login`
 
 ### Run
 - To run this app, use command `npm run-script run`

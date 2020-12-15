@@ -1,12 +1,12 @@
 'use strict';
 
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
+const { ZwaveDevice } = require('homey-zwavedriver');
 
 //https://www.zipato.com/wp-content/uploads/2015/09/ph-psm02-Zipato-Multisensor-Quad-User-Manual-v1.4.pdf
 
 class ZipatoDevice extends ZwaveDevice {
 
-	async onMeshInit() {
+	async onNodeInit() {
 
 		this.enableDebug();
 		this.printNode();

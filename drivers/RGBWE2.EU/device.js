@@ -1,13 +1,13 @@
 "use strict";
 
 //Athom includes
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
-const util = require('homey-meshdriver').Util;
+const { ZwaveDevice, Util } = require('homey-zwavedriver');
+
 const Homey = require('homey');
 
 class ZipatoDevice extends ZwaveDevice {
 
-  onMeshInit() {
+  onNodeInit() {
     
     //this.enableDebug();
     //this.printNode();
@@ -143,7 +143,7 @@ class ZipatoDevice extends ZwaveDevice {
     //set RGB when light_mode is not set or is set to color
     //use convertHSVToRGB to calculate rgb value. Unknown or not used lightcapabilities are also handled by this method
     if (lightCapabilities.hasOwnProperty("light_mode") == false || lightCapabilities.light_mode === "color" || lightCapabilities.light_mode === null) {
-      rgb = util.convertHSVToRGB({
+      rgb = Util.convertHSVToRGB({
         hue: lightCapabilities.light_hue,
         saturation: lightCapabilities.light_saturation,
         value: lightCapabilities.dim

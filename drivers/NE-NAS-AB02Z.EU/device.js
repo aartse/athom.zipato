@@ -2,12 +2,13 @@
 
 const TAMPER_TIMEOUT = 30 * 1000;
 
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
+const { ZwaveDevice } = require('homey-zwavedriver');
+
 const Homey = require('homey');
 
 class ZipatoDevice extends ZwaveDevice {
 
-  async onMeshInit() {
+  async onNodeInit() {
 
     this.enableDebug();
     this.printNode();

@@ -2,11 +2,11 @@
 
 // @TODO: TEST!
 
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
+const { ZwaveDevice } = require('homey-zwavedriver');
 
 class ZipatoDevice extends ZwaveDevice {
 
-	async onMeshInit() {
+	async onNodeInit() {
 
 		this.enableDebug();
 		this.printNode();

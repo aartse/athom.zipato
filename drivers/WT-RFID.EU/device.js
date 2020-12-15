@@ -1,14 +1,14 @@
 'use strict';
 
 const Homey = require('homey');
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
+const { ZwaveDevice } = require('homey-zwavedriver');
 
 // https://www.zipato.com/product/mini-keypad-rfid
 // https://file.m.nu/pdf/wt-rfid-eu_zipato.pdf
 
 class ZipatoDevice extends ZwaveDevice {
 
-	async onMeshInit() {
+	async onNodeInit() {
 
 		//this.enableDebug();
 		//this.printNode();

@@ -1,6 +1,6 @@
 {
   "name": "nl.aartse.zipato",
-  "version": "3.2.4",
+  "version": "5.0.0",
   "description": "This app adds support for Zipato devices in Homey",
   "main": "app.js",
   "repository": {
@@ -8,15 +8,21 @@
     "url": "https://github.com/aartse/athom.zipato.git"
   },
   "dependencies": {
-    "homey-log": "^1.0.6",
-    "homey-meshdriver": "^1.3.24"
+    "homey-log": "^2.0.1",
+    "homey-zwavedriver": "^2.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-athom": "^2.1.0"
+  },
   "scripts": {
     "run": "homeyConfig compose && athom app run",
     "install": "homeyConfig compose && athom app install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=12.16.1"
+  }
 }

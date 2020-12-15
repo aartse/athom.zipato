@@ -2,11 +2,11 @@
 
 // @TODO: TEST!
 
-const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
+const { ZwaveDevice } = require('homey-zwavedriver');
 
 class ZipatoDevice extends ZwaveDevice {
 
-	async onMeshInit() {
+	async onNodeInit() {
 
 		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');

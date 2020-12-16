@@ -29,9 +29,7 @@ class ZipatoDevice extends ZwaveDevice {
 		this.registerCapability('measure_temperature', 'SENSOR_MULTILEVEL', {getOpts: {getOnStart: false}});
 
 		// set motion status
-    	let setMotionFlow = new Homey.FlowCardAction('ZP3102.EU-set_motion');
-    	setMotionFlow
-        	.register()
+    	this.homey.flow.getActionCard('ZP3102.EU-set_motion')
         	.registerRunListener(( args, state ) => {
 				return args.device.setCapabilityValue('alarm_motion', (args.motion == "1"))
         	});

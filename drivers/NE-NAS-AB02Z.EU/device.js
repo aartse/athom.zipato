@@ -4,8 +4,6 @@ const TAMPER_TIMEOUT = 30 * 1000;
 
 const { ZwaveDevice } = require('homey-zwavedriver');
 
-const Homey = require('homey');
-
 class ZipatoDevice extends ZwaveDevice {
 
   async onNodeInit() {
@@ -29,9 +27,7 @@ class ZipatoDevice extends ZwaveDevice {
     });
 
     //turn alarm on
-    let turnAlarmOnFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-turn_alarm_on');
-    turnAlarmOnFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-turn_alarm_on')
       .registerRunListener(( args, state ) => {
         return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
           'Switch Value': 255
@@ -39,9 +35,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //turn alarm off
-    let turnAlarmOffFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-turn_alarm_off');
-    turnAlarmOffFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-turn_alarm_off')
       .registerRunListener(( args, state ) => {
         return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
           'Switch Value': 0
@@ -49,9 +43,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //set alarm sound
-    let playSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-alarm_sound');
-    playSoundFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-alarm_sound')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 5,
@@ -60,9 +52,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //set doorbell sound
-    let playAlarmSoundFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_sound');
-    playAlarmSoundFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-doorbell_sound')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 6,
@@ -71,9 +61,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //alarm_duration
-    let disableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-alarm_duration')
-    disableSirenFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-alarm_duration')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 2,
@@ -82,9 +70,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //doorbell_duration
-    let enableSirenFlow = new Homey.FlowCardAction('NE-NAS-AB02Z.EU-doorbell_duration');
-    enableSirenFlow
-      .register()
+    this.homey.flow.getActionCard('NE-NAS-AB02Z.EU-doorbell_duration')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 3,

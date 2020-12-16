@@ -1,7 +1,5 @@
 "use strict";
 
-const Homey = require('homey');
-
 const { ZwaveDevice } = require('homey-zwavedriver');
 
 class ZipatoDevice extends ZwaveDevice {
@@ -20,12 +18,12 @@ class ZipatoDevice extends ZwaveDevice {
 				this.emergencyAlarmTrigger.trigger(this, {}, {}, (err, result) => {
 					if (err) {
 						this.log(err);
-						return Homey.error(err);
+						return this.homey.error(err);
 					}
 				});
 			};
 		});
-		this.emergencyAlarmTrigger = new Homey.FlowCardTriggerDevice('PH.PSR03-1B.EU-emergency_alarm').register();
+		this.emergencyAlarmTrigger = this.homey.flow.getDeviceTriggerCard('PH.PSR03-1B.EU-emergency_alarm');
 
 		// register simple av controle for handling buttons
 		this.registerReportListener('SIMPLE_AV_CONTROL', 'SIMPLE_AV_CONTROL_SET', (rawReport) => {
@@ -118,7 +116,7 @@ class ZipatoDevice extends ZwaveDevice {
 			this.buttonTriggers[trigger].trigger(this, tokens, state, (err, result) => {
 				if (err) {
 					this.log(err);
-					return Homey.error(err);
+					return this.homey.error(err);
 				}
 			});
 		});
@@ -132,15 +130,10 @@ class ZipatoDevice extends ZwaveDevice {
 
 	createButtonTrigger(name)
 	{
-		let trigger = new Homey.FlowCardTriggerDevice('PH.PSR03-1B.EU-' + name);
-		trigger.registerRunListener(( args, state ) => {
-
-		    // If true, this flow should run
-		    return Promise.resolve( args.button_number === '0' || args.button_number === state.button_number.toString() );
-		})
-		.register();
-
-		return trigger;
+		return this.homey.flow.getDeviceTriggerCard('PH.PSR03-1B.EU-' + name)
+			.registerRunListener(( args, state ) => {
+				return Promise.resolve( args.button_number === '0' || args.button_number === state.button_number.toString() );
+			});
 	}
 }
 

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "homey-log": "^2.0.1",
+    "homey-meshdriver": "^2.0.2",
     "homey-zwavedriver": "^2.0.2"
   },
   "devDependencies": {

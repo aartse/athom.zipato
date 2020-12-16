@@ -1,6 +1,5 @@
 'use strict';
 
-const Homey = require('homey');
 const { ZwaveDevice } = require('homey-zwavedriver');
 
 // https://www.zipato.com/product/mini-keypad-rfid
@@ -27,7 +26,7 @@ class ZipatoDevice extends ZwaveDevice {
 				this.userUnknownTrigger.trigger(this, {deviceId: this.getData().token, userCode: userCode}, {}, (err, result) => {
 					if (err) {
 						this.log(err);
-						return Homey.error(err);
+						return this.homey.error(err);
 					}
 				});
 
@@ -126,9 +125,7 @@ class ZipatoDevice extends ZwaveDevice {
 			}
 		});
 
-		let isAtHome = new Homey.FlowCardCondition('WT-RFID.EU-is_at_home');
-		isAtHome
-		    .register()
+		this.homey.flow.getConditionCard('WT-RFID.EU-is_at_home')
 		    .registerRunListener(( args, state, callback ) => {
 
 				// Get the status of the requested user
@@ -138,52 +135,48 @@ class ZipatoDevice extends ZwaveDevice {
 				}
 
 				return callback(new Error(__('flow.condition.userNotFound'))); // user not found.
-		    });
+			})
+			.registerArgumentAutocompleteListener("person", async (query, args) => {
+				var users = getUserContainer();
+				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
+			});
 
-		let isArmed = new Homey.FlowCardCondition('WT-RFID.EU-system_is_armed');
-		isArmed
-			.register()
+		this.homey.flow.getConditionCard('WT-RFID.EU-system_is_armed')
 			.registerRunListener(( args, state, callback ) => {
 				return callback(null, isSystemArmed());
 			});
 
-		let setPersonHome = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_home');
-		setPersonHome
-			.register()
+		this.homey.flow.getActionCard('WT-RFID.EU-toggle_person_home')
 			.registerRunListener(( args, state, callback ) => {
 
 				// Set status of user to home
 				updateUsersState([args.person], 'home');
 
 				callback(null, true); // we've fired successfully
+			})
+			.registerArgumentAutocompleteListener("person", async (query, args) => {
+				var users = getUserContainer();
+				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
 			});
 
-		let setPersonAway = new Homey.FlowCardAction('WT-RFID.EU-toggle_person_away');
-		setPersonAway
-			.register()
+		this.homey.flow.getActionCard('WT-RFID.EU-toggle_person_away')
 			.registerRunListener(( args, state, callback ) => {
 			
 				// Set status of user to away
 				updateUsersState([args.person], 'away');
 			
 				callback(null, true); // we've fired successfully
+			})
+			.registerArgumentAutocompleteListener("person", async (query, args) => {
+				var users = getUserContainer();
+				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
 			});
-
-		function personAutocompleteListener(query, args, callback)
-		{
-			var users = getUserContainer();
-			callback(null, users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1)));
-		}
-
-		isAtHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
-		setPersonHome.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
-		setPersonAway.getArgument("person").registerAutocompleteListener(personAutocompleteListener)
-
-		this.userSystemAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_away').register();
-		this.userSystemHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_system_home').register();
-		this.userHomeTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_home').register();
-		this.userAwayTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_away').register();
-		this.userUnknownTrigger = new Homey.FlowCardTriggerDevice('WT-RFID.EU-user_unknown').register();
+			
+		this.userSystemAwayTrigger = this.homey.flow.getDeviceTriggerCard('WT-RFID.EU-user_system_away');
+		this.userSystemHomeTrigger = this.homey.flow.getDeviceTriggerCard('WT-RFID.EU-user_system_home');
+		this.userHomeTrigger = this.homey.flow.getDeviceTriggerCard('WT-RFID.EU-user_home');
+		this.userAwayTrigger = this.homey.flow.getDeviceTriggerCard('WT-RFID.EU-user_away');
+		this.userUnknownTrigger = this.homey.flow.getDeviceTriggerCard('WT-RFID.EU-user_unknown');
 	}
 
 	triggerStateChange(alarmState, deviceId, tag, user) {
@@ -200,7 +193,7 @@ class ZipatoDevice extends ZwaveDevice {
 			this.userHomeTrigger.trigger(this, tokens, {}, (err, result) => {
 				if (err) {
 					this.log(err);
-					return Homey.error(err);
+					return this.homey.error(err);
 				}
 			});
 
@@ -209,7 +202,7 @@ class ZipatoDevice extends ZwaveDevice {
 				this.userSystemHomeTrigger.trigger(this, tokens, {}, (err, result) => {
 					if (err) {
 						this.log(err);
-						return Homey.error(err);
+						return this.homey.error(err);
 					}
 				});
 			}
@@ -224,7 +217,7 @@ class ZipatoDevice extends ZwaveDevice {
 			this.userAwayTrigger.trigger(this, tokens, {}, (err, result) => {
 				if (err) {
 					this.log(err);
-					return Homey.error(err);
+					return this.homey.error(err);
 				}
 			});
 
@@ -233,7 +226,7 @@ class ZipatoDevice extends ZwaveDevice {
 				this.userSystemAwayTrigger.trigger(this, tokens, {}, (err, result) => {
 					if (err) {
 						this.log(err);
-						return Homey.error(err);
+						return this.homey.error(err);
 					}
 				});
 			}
@@ -252,7 +245,7 @@ class ZipatoDevice extends ZwaveDevice {
  */
 function getTagContainer()
 {
-	return Homey.ManagerSettings.get('tagContainer');
+	return this.homey.settings.get('tagContainer');
 }
 
 /**
@@ -260,7 +253,7 @@ function getTagContainer()
  */
 function setTagContainer(value)
 {
-	Homey.ManagerSettings.set('tagContainer', value);
+	this.homey.settings.set('tagContainer', value);
 }
 
 /**
@@ -268,7 +261,7 @@ function setTagContainer(value)
  */
 function getUserContainer()
 {
-	return Homey.ManagerSettings.get('userContainer');
+	return this.homey.settings.get('userContainer');
 }
 
 /**
@@ -276,7 +269,7 @@ function getUserContainer()
  */
 function setUserContainer(value)
 {
-	Homey.ManagerSettings.set('userContainer', value);
+	this.homey.settings.set('userContainer', value);
 }
 
 /**
@@ -286,7 +279,7 @@ function setUserContainer(value)
  */
 function isSystemArmed()
 {
-	return (Homey.ManagerSettings.get('systemArmed') === true);
+	return (this.homey.settings.get('systemArmed') === true);
 }
 
 /**
@@ -294,7 +287,7 @@ function isSystemArmed()
  */
 function setSystemArmed(value)
 {
-	Homey.ManagerSettings.set('systemArmed', (value === true));
+	this.homey.settings.set('systemArmed', (value === true));
 }
 
 /**
@@ -305,7 +298,7 @@ function setSystemArmed(value)
 function canAddNewTags() {
 
 	//cannot add new tags when user has not enabled it
-	if (Homey.ManagerSettings.get('tagStatus') !== true) {
+	if (this.homey.settings.get('tagStatus') !== true) {
 		return false;
 	}
 
@@ -467,11 +460,11 @@ function addLog(userId, deviceId, tagId, statusCode, userName)
 		deviceId: deviceId,
 	};
 
-	var log = Homey.ManagerSettings.get('systemEventLog');
+	var log = this.homey.settings.get('systemEventLog');
 	log.push(logEntry);
 	
 	// Only keep last 50 events from event log
-	Homey.ManagerSettings.set('systemEventLog', log.slice(Math.max(log.length - 50, 0)));
+	this.homey.settings.set('systemEventLog', log.slice(Math.max(log.length - 50, 0)));
 }
 
 /**
@@ -480,7 +473,7 @@ function addLog(userId, deviceId, tagId, statusCode, userName)
 function initSettings() {
 
 	//check user container
-	var userContainer = Homey.ManagerSettings.get('userContainer');
+	var userContainer = this.homey.settings.get('userContainer');
 	if (typeof userContainer === 'undefined' || userContainer === null || typeof userContainer.push === 'undefined') {
 		userContainer = new Array();
 	}
@@ -495,10 +488,10 @@ function initSettings() {
 			userContainer[i].statusCode = 1;
 		}
 	}
-	Homey.ManagerSettings.set('userContainer', userContainer);
+	this.homey.settings.set('userContainer', userContainer);
 
 	//check tag container
-	var tagContainer = Homey.ManagerSettings.get('tagContainer');
+	var tagContainer = this.homey.settings.get('tagContainer');
 	if (typeof tagContainer === 'undefined' || tagContainer === null || typeof tagContainer.push === 'undefined') {
 		tagContainer = new Array();
 	}
@@ -516,22 +509,22 @@ function initSettings() {
 		delete tagContainer[i].tagValue;
 		delete tagContainer[i].tagType;
 	}
-	Homey.ManagerSettings.set('tagContainer', tagContainer);
+	this.homey.settings.set('tagContainer', tagContainer);
 
 	//check event log
-	var log = Homey.ManagerSettings.get('systemEventLog');
+	var log = this.homey.settings.get('systemEventLog');
 	if (typeof log === 'undefined' || log === null || typeof log.push === 'undefined') {
-		Homey.ManagerSettings.set('systemEventLog', new Array());
+		this.homey.settings.set('systemEventLog', new Array());
 	}	
 
 	//check tagStatus
-	if (Homey.ManagerSettings.get('tagStatus') !== true && Homey.ManagerSettings.get('tagStatus') !== false) {
-		Homey.ManagerSettings.set('tagStatus', false);
+	if (this.homey.settings.get('tagStatus') !== true && this.homey.settings.get('tagStatus') !== false) {
+		this.homey.settings.set('tagStatus', false);
 	}
 
 	//check systemArmed
-	if (Homey.ManagerSettings.get('systemArmed') !== true && Homey.ManagerSettings.get('systemArmed') !== false) {
-		Homey.ManagerSettings.set('systemArmed', false);
+	if (this.homey.settings.get('systemArmed') !== true && this.homey.settings.get('systemArmed') !== false) {
+		this.homey.settings.set('systemArmed', false);
 	}
 }
 initSettings();

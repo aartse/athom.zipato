@@ -5,7 +5,7 @@ const { ZwaveLightDevice } = require('homey-zwavedriver');
 
 class ZipatoDevice extends ZwaveLightDevice {
 
-  async onNodeInit() {
+  async onNodeInit({ node }) {
 
     //this.enableDebug();
     //this.printNode();

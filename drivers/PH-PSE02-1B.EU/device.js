@@ -3,7 +3,6 @@
 const TAMPER_TIMEOUT = 30 * 1000;
 
 const { ZwaveDevice } = require('homey-zwavedriver');
-const Homey = require('homey');
 
 class ZipatoDevice extends ZwaveDevice {
 
@@ -28,9 +27,7 @@ class ZipatoDevice extends ZwaveDevice {
     });
 
     //turn alarm on
-    let turnAlarmOnFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_on');
-    turnAlarmOnFlow
-      .register()
+    this.homey.flow.getActionCard('PH-PSE02-1B.EU-turn_alarm_on')
       .registerRunListener(( args, state ) => {
         return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
           'Switch Value': 255
@@ -38,9 +35,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //turn alarm off
-    let turnAlarmOffFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-turn_alarm_off');
-    turnAlarmOffFlow
-      .register()
+    this.homey.flow.getActionCard('PH-PSE02-1B.EU-turn_alarm_off')
       .registerRunListener(( args, state ) => {
         return args.device.getCommandClass("SWITCH_BINARY").SWITCH_BINARY_SET({
           'Switch Value': 0
@@ -48,9 +43,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //play sound
-    let playSoundFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-play_sound');
-    playSoundFlow
-      .register()
+    this.homey.flow.getActionCard('PH-PSE02-1B.EU-play_sound')
       .registerRunListener((args, state) => {
         if (args.device.hasCommandClass('BASIC')) {
           return args.device.getCommandClass("BASIC").BASIC_SET({
@@ -61,9 +54,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //disable siren
-    let disableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-disable_siren')
-    disableSirenFlow
-      .register()
+    this.homey.flow.getActionCard('PH-PSE02-1B.EU-disable_siren')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 29,
@@ -72,9 +63,7 @@ class ZipatoDevice extends ZwaveDevice {
       });
 
     //enable siren
-    let enableSirenFlow = new Homey.FlowCardAction('PH-PSE02-1B.EU-enable_siren');
-    enableSirenFlow
-      .register()
+    this.homey.flow.getActionCard('PH-PSE02-1B.EU-enable_siren')
       .registerRunListener((args, state) => {
         return this.configurationSet({
           index: 29,

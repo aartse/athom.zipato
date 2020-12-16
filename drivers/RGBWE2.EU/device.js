@@ -3,8 +3,6 @@
 //Athom includes
 const { ZwaveDevice, Util } = require('homey-zwavedriver');
 
-const Homey = require('homey');
-
 class ZipatoDevice extends ZwaveDevice {
 
   onNodeInit() {
@@ -60,9 +58,7 @@ class ZipatoDevice extends ZwaveDevice {
     Triggers
     ================================================================
     */
-    let strobeOnFlow = new Homey.FlowCardAction('RGBWE2.EU-strobe_on');
-    strobeOnFlow
-        .register()
+    this.homey.flow.getActionCard('RGBWE2.EU-strobe_on')
         .registerRunListener(( args, state ) => {
 
           let oldSettings = {};
@@ -93,9 +89,7 @@ class ZipatoDevice extends ZwaveDevice {
           return args.device.onSettings(oldSettings, newSettings, changedKeysArr);
         });
 
-    let strobeOffFlow = new Homey.FlowCardAction('RGBWE2.EU-strobe_off');
-    strobeOffFlow
-        .register()
+    this.homey.flow.getActionCard('RGBWE2.EU-strobe_off')
         .registerRunListener(( args, state ) => {
           return args.device.onSettings({config_param_3:127},{config_param_3:0},['config_param_3'])
         });

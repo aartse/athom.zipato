@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "homey-log": "^2.0.1",
-    "homey-zwavedriver": "github:aartse/node-homey-zwavedriver#notification-events-bug"
+    "homey-zwavedriver": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "^7.15.0",
+    "eslint": "^7.18.0",
     "eslint-config-athom": "^2.1.0"
   },
   "scripts": {

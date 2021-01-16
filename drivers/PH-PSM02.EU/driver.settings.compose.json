@@ -63,17 +63,18 @@
     "label": {
       "en": "Operation Mode"
     },
-    "value": 4,
+    "value": 0,
     "attr": {
       "min": 0,
       "max": 127
     },
     "hint": {
-      "en": "Bit0. 0 - Home Automation mode 1 - Security Mode,Bit1. Test Mode,Bit2. Disable Door/Window Sensor,Bit3. 0 - Temperature in Fahrenheit; 1 - Temperature in Celsius,Bit4. Disable illumination report after event triggered,Bit5. Disable temperature report after event triggered, Bit6&7 = 0"
+      "en": "Bit0: (0 - Home Automation mode 1 - Security Mode). Bit1: Test Mode. Bit2: Disable Door/Window Sensor. Bit3: 0 - Temperature in Fahrenheit, 1 - Temperature in Celsius. Bit4: Disable illumination report after event triggered. Bit5: Disable temperature report after event triggered (1:Disable, 0:Enable), Bit6: Reserve. Bit7: Disable the back key release into test mode. (1:Disable, 0:Enable)"
     },
 		"zwave": {
 			"index": 5,
-			"size": 1
+			"size": 1,
+			"signed": false
 		}
   },
   {
@@ -82,17 +83,38 @@
     "label": {
       "en": "Multi-Sensor Function Switch"
     },
-    "value": 68,
+    "value": 4,
     "attr": {
       "min": 0,
-      "max": 127
+      "max": 255
     },
     "hint": {
-      "en": "Bit0. Disable magnetic integrate illumination,Bit1. Disable PIR integrate Illumination,Bit2. Disable magnetic integrate PIR,Bit3. When Bit2 is 0 (Enable), the device is install in the same room with the light? 0: In the same room(Default), 1: In the different room,Bit4. Disable delay 5 seconds to turn off the light, when door/window closed,Bit5. Disable auto turn off the light, after door/window opened to turn on the light. If Bit2 = 0, this setting is useless,Bit6. Enable temperature monitoring. When this bit enable, the temperature changed 3 degree Fahrenheit, it will report. And also the temperature over 140 degree Fahrenheit, it will report every 64 second"
+      "en": "Bit0: Disable magnetic integrate illumination. Bit1: Disable PIR integrate Illumination. Bit2: Disable magnetic integrate PIR. Bit3: When Bit2 is 0 (Enable), the device is install in the same room with the light? 0: In the same room(Default), 1: In the different room. Bit4: Disable delay 5 seconds to turn off the light, when door/window closed. Bit5: Disable auto turn off the light, after door/window opened to turn on the light. If Bit2 = 0, this setting is useless. Bit6: Enable temperature monitoring. When this bit enable, the temperature changed 3 degree Fahrenheit, it will report. And also the temperature over 140 degree Fahrenheit, it will report every 64 second"
     },
 		"zwave": {
 			"index": 6,
-			"size": 1
+			"size": 1,
+			"signed": false
+		}
+  },
+  {
+    "id": "operation_mode",
+    "type": "number",
+    "label": {
+      "en": "Customer Function"
+    },
+    "value": 4,
+    "attr": {
+      "min": 0,
+      "max": 255
+    },
+    "hint": {
+      "en": "Bit0: Reserve. Bit1: Enable sending motion OFF report. (0:Disable, 1:Enable). Bit2: Enable PIR super sensitivity mode. (0:Disable, 1:Enable). Bit3: Disable send out BASIC OFF after door closed. (1:Disable, 0:Enable). Bit4: Notification Type (0: Using Notification Report, 1: Using Sensor Binary Report). Bit5: Disable Multi CC in auto report (1:Disable, 0:Enable). Bit6: Disable to report battery state when the device triggered (1:Disable, 0:Enable). Bit7: Reserve."
+    },
+		"zwave": {
+			"index": 7,
+			"size": 1,
+			"signed": false
 		}
   },
   {

@@ -1,8 +1,8 @@
 {
 	"id": "PH-PSM02.EU",
 	"name": {
-		"en": "MULTISENSOR QUAD",
-		"nl": "MULTISENSOR QUAD"
+		"en": "PSM02 & PST02 Multi-Sensor",
+		"nl": "PSM02 & PST02 Multi-Sensor"
 	},
 	"class": "sensor",
 	"capabilities": [
@@ -23,7 +23,7 @@
 	"zwave": {
 		"manufacturerId": [316, 305],
 		"productTypeId": 2,
-		"productId": 12,
+		"productId": [12, 13, 14],
 		"learnmode": {
 			"image": "/drivers/PH-PSM02.EU/assets/learnmode.svg",
 			"instruction": {
@@ -34,18 +34,6 @@
 		},
 		"associationGroups": [
 			1
-		],
-		"defaultConfiguration": [
-			{
-				"id": 5,
-				"size": 1,
-				"value": 4
-			},
-			{
-				"id": 6,
-				"size": 1,
-				"value": 68
-			}
 		]
 	}
 }

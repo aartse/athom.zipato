@@ -31,13 +31,13 @@ class ZipatoDevice extends ZwaveDevice {
 				});
 
 				// Check if tags can be added
-				if (!canAddNewTags()) {
-					addLog(null, this.getData().token, null, 4, null);
+				if (!this.canAddNewTags()) {
+					this.addLog(null, this.getData().token, null, 4, null);
 					return null;
 				}
 
 				// Add new tag
-				var tag = addTag(userCode);
+				var tag = this.addTag(userCode);
 
 				// Send new tag id back to tagreader
 				this.node.CommandClass.COMMAND_CLASS_USER_CODE.USER_CODE_SET({
@@ -53,7 +53,7 @@ class ZipatoDevice extends ZwaveDevice {
 				);
 
 				// Log new tag
-				addLog(null, this.getData().token, tag.id, 2, null, null);
+				this.addLog(null, this.getData().token, tag.id, 2, null, null);
 				return null;
 			}
 		});
@@ -92,26 +92,26 @@ class ZipatoDevice extends ZwaveDevice {
 				}
 
 				// Search for tag
-				var tag = getTagById(parseInt(report['Event Parameter'].toString('hex'), 16));
+				var tag = this.getTagById(parseInt(report['Event Parameter'].toString('hex'), 16));
 				if (tag === null) {
 					// Check if tags can be added
-					if (!canAddNewTags()) {
-						addLog(null, this.getData().token, null, 4, null);
+					if (!this.canAddNewTags()) {
+						this.addLog(null, this.getData().token, null, 4, null);
 						return null;
 					}
 
 					// Add tag when tag was previously removed
-					tag = addTag('(From device)', parseInt(report['Event Parameter'].toString('hex'), 16));
+					tag = this.addTag('(From device)', parseInt(report['Event Parameter'].toString('hex'), 16));
 				}
 
 				// Get all users linked to this tag
-				var users = getUsersByTagId(tag.id);
+				var users = this.getUsersByTagId(tag.id);
 
 				// Send trigger for tag when no users are linked to this tag
 				if (users.length > 0) {
 
 					// Update all user states
-					updateUsersState(users, alarmState);
+					this.updateUsersState(users, alarmState);
 
 					// Send triggers for every user linked to this tag
 					for(var i=0; i<users.length; i++) {
@@ -129,7 +129,7 @@ class ZipatoDevice extends ZwaveDevice {
 		    .registerRunListener(( args, state, callback ) => {
 
 				// Get the status of the requested user
-				var user = getUserById(args.person.id);
+				var user = this.getUserById(args.person.id);
 				if (user !== null) {
 					return callback(null, user.statusCode === 1); // we've fired successfully
 				}
@@ -137,25 +137,25 @@ class ZipatoDevice extends ZwaveDevice {
 				return callback(new Error(__('flow.condition.userNotFound'))); // user not found.
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
-				var users = getUserContainer();
+				var users = this.getUserContainer();
 				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
 			});
 
 		this.homey.flow.getConditionCard('WT-RFID.EU-system_is_armed')
 			.registerRunListener(( args, state, callback ) => {
-				return callback(null, isSystemArmed());
+				return callback(null, this.isSystemArmed());
 			});
 
 		this.homey.flow.getActionCard('WT-RFID.EU-toggle_person_home')
 			.registerRunListener(( args, state, callback ) => {
 
 				// Set status of user to home
-				updateUsersState([args.person], 'home');
+				this.updateUsersState([args.person], 'home');
 
 				callback(null, true); // we've fired successfully
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
-				var users = getUserContainer();
+				var users = this.getUserContainer();
 				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
 			});
 
@@ -163,12 +163,12 @@ class ZipatoDevice extends ZwaveDevice {
 			.registerRunListener(( args, state, callback ) => {
 			
 				// Set status of user to away
-				updateUsersState([args.person], 'away');
+				this.updateUsersState([args.person], 'away');
 			
 				callback(null, true); // we've fired successfully
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
-				var users = getUserContainer();
+				var users = this.getUserContainer();
 				return users.filter((user) => (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1));
 			});
 			
@@ -198,7 +198,7 @@ class ZipatoDevice extends ZwaveDevice {
 			});
 
 			// Trigger event, "System armed"
-			if (isSystemArmed() == true) {
+			if (this.isSystemArmed() == true) {
 				this.userSystemHomeTrigger.trigger(this, tokens, {}, (err, result) => {
 					if (err) {
 						this.log(err);
@@ -206,10 +206,10 @@ class ZipatoDevice extends ZwaveDevice {
 					}
 				});
 			}
-			setSystemArmed(false);
+			this.setSystemArmed(false);
 
 			//log
-			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 1, tokens.userName);
+			this.addLog(tokens.userId, tokens.deviceId, tokens.tagId, 1, tokens.userName);
 		}
 
 		if (alarmState === 'away') {
@@ -222,7 +222,7 @@ class ZipatoDevice extends ZwaveDevice {
 			});
 
 			// Trigger event, "System disarmed"
-			if (isSystemArmed() == false) {
+			if (this.isSystemArmed() == false) {
 				this.userSystemAwayTrigger.trigger(this, tokens, {}, (err, result) => {
 					if (err) {
 						this.log(err);
@@ -230,303 +230,241 @@ class ZipatoDevice extends ZwaveDevice {
 					}
 				});
 			}
-			setSystemArmed(true);
+			this.setSystemArmed(true);
 
 			//log
-			addLog(tokens.userId, tokens.deviceId, tokens.tagId, 0, tokens.userName);
+			this.addLog(tokens.userId, tokens.deviceId, tokens.tagId, 0, tokens.userName);
 		}
 
 		return true;
 	}
-}
 
-/**
- * get tags from settings
- */
-function getTagContainer()
-{
-	return this.homey.settings.get('tagContainer');
-}
-
-/**
- * write tags to settings
- */
-function setTagContainer(value)
-{
-	this.homey.settings.set('tagContainer', value);
-}
-
-/**
- * get users from settings
- */
-function getUserContainer()
-{
-	return this.homey.settings.get('userContainer');
-}
-
-/**
- * write users to settings
- */
-function setUserContainer(value)
-{
-	this.homey.settings.set('userContainer', value);
-}
-
-/**
- * checks if system is armed
- *
- * @return bool
- */
-function isSystemArmed()
-{
-	return (this.homey.settings.get('systemArmed') === true);
-}
-
-/**
- * set system armed to true or false
- */
-function setSystemArmed(value)
-{
-	this.homey.settings.set('systemArmed', (value === true));
-}
-
-/**
- * checks if new tags can be added
- *
- * @return bool
- */
-function canAddNewTags() {
-
-	//cannot add new tags when user has not enabled it
-	if (this.homey.settings.get('tagStatus') !== true) {
-		return false;
+	/**
+	 * get tags from settings
+	 */
+	getTagContainer()
+	{
+		return this.homey.settings.get('tagContainer');
 	}
 
-	//cannot add new tags when system is armed
-	if (isSystemArmed()) {
-		return false;
+	/**
+	 * write tags to settings
+	 */
+	setTagContainer(value)
+	{
+		this.homey.settings.set('tagContainer', value);
 	}
 
-	return true;
-}
-
-/**
- * update user statusCode
- * 
- * @param Object user User object
- * @param string alarmState alarm state code ('away' or 'home')
- */
-function updateUsersState(usersToUpdate, alarmState)
-{
-	var userIdsToUpdate = new Array();
-	for (let i=0; i<usersToUpdate.length; i++) {
-		userIdsToUpdate.push(usersToUpdate[i].id);
+	/**
+	 * get users from settings
+	 */
+	getUserContainer()
+	{
+		return this.homey.settings.get('userContainer');
 	}
 
-	var users = getUserContainer();
-	for (let i=0; i<users.length; i++) {
-		if (userIdsToUpdate.indexOf(users[i].id) > -1) {
-			users[i].statusCode = (alarmState === 'away' ? 0 : 1);
+	/**
+	 * write users to settings
+	 */
+	setUserContainer(value)
+	{
+		this.homey.settings.set('userContainer', value);
+	}
+
+	/**
+	 * checks if system is armed
+	 *
+	 * @return bool
+	 */
+	isSystemArmed()
+	{
+		return (this.homey.settings.get('systemArmed') === true);
+	}
+
+	/**
+	 * set system armed to true or false
+	 */
+	setSystemArmed(value)
+	{
+		this.homey.settings.set('systemArmed', (value === true));
+	}
+
+	/**
+	 * checks if new tags can be added
+	 *
+	 * @return bool
+	 */
+	canAddNewTags() {
+
+		//cannot add new tags when user has not enabled it
+		if (this.homey.settings.get('tagStatus') !== true) {
+			return false;
 		}
-	}
-	setUserContainer(users);
-}
 
-/**
- * search for users linked to given tag
- * 
- * @param int tagId search for users with this tag id
- */
-function getUsersByTagId(tagId)
-{
-	var foundUsers = new Array();
-	var users = getUserContainer();
-	for (var i=0; i<users.length; i++) {
-		if (users[i].tagIds.indexOf(tagId) > -1) {
-			foundUsers.push(users[i]);
+		//cannot add new tags when system is armed
+		if (this.isSystemArmed()) {
+			return false;
 		}
-	}
-	return foundUsers;
-}
 
-/**
- * get tag by id
- */
-function getUserById(id)
-{
-	var users = getUserContainer();
-	for (let i=0; i<users.length; i++) {
-		if (users[i].id === id) {
-			return users[i];
+		return true;
+	}
+
+	/**
+	 * update user statusCode
+	 * 
+	 * @param Object user User object
+	 * @param string alarmState alarm state code ('away' or 'home')
+	 */
+	updateUsersState(usersToUpdate, alarmState)
+	{
+		var userIdsToUpdate = new Array();
+		for (let i=0; i<usersToUpdate.length; i++) {
+			userIdsToUpdate.push(usersToUpdate[i].id);
 		}
+
+		var users = this.getUserContainer();
+		for (let i=0; i<users.length; i++) {
+			if (userIdsToUpdate.indexOf(users[i].id) > -1) {
+				users[i].statusCode = (alarmState === 'away' ? 0 : 1);
+			}
+		}
+		this.setUserContainer(users);
 	}
-	return null;
-}
 
-/**
- * Add new tag to tags container
- * 
- * @param string userCode hex value of user code from tag reader
- * @param int? tagId tag id when tag was removed and must added again
- */
-function addTag(userCode, tagId)
-{
-	//get or add tag
-	var tag = null;
-	if (typeof tagId !== 'undefined') {
-		tag = getTagById(tagId);
-	} else {
-		tag = getTagByUserCode(userCode);
+	/**
+	 * search for users linked to given tag
+	 * 
+	 * @param int tagId search for users with this tag id
+	 */
+	getUsersByTagId(tagId)
+	{
+		var foundUsers = new Array();
+		var users = this.getUserContainer();
+		for (var i=0; i<users.length; i++) {
+			if (users[i].tagIds.indexOf(tagId) > -1) {
+				foundUsers.push(users[i]);
+			}
+		}
+		return foundUsers;
 	}
-	
-	//add tag when not found
-	if (tag === null) {
 
-		//get tags
-		let tags = getTagContainer();
+	/**
+	 * get tag by id
+	 */
+	getUserById(id)
+	{
+		var users = this.getUserContainer();
+		for (let i=0; i<users.length; i++) {
+			if (users[i].id === id) {
+				return users[i];
+			}
+		}
+		return null;
+	}
 
-		//create new tag
-		tag = {
-			id: 0,
-			name: '',
-			userCode: userCode,
-			createdOn: new Date()
+	/**
+	 * Add new tag to tags container
+	 * 
+	 * @param string userCode hex value of user code from tag reader
+	 * @param int? tagId tag id when tag was removed and must added again
+	 */
+	addTag(userCode, tagId)
+	{
+		//get or add tag
+		var tag = null;
+		if (typeof tagId !== 'undefined') {
+			tag = this.getTagById(tagId);
+		} else {
+			tag = this.getTagByUserCode(userCode);
+		}
+		
+		//add tag when not found
+		if (tag === null) {
+
+			//get tags
+			let tags = this.getTagContainer();
+
+			//create new tag
+			tag = {
+				id: 0,
+				name: '',
+				userCode: userCode,
+				createdOn: new Date()
+			};
+
+			//assign new of existing id
+			if (typeof tagId === 'undefined') {
+				for (let i = 0; i < tags.length; i++) {
+					if (tags[i].id > tag.id) {
+						tag.id = tags[i].id;
+					}
+				}
+				tag.id++;
+			} else {
+				tag.id = tagId;
+			}
+
+			//set inital name
+			tag.name = 'ID ' + tag.id;
+
+			//add tag to container and save
+			tags.push(tag);
+			this.setTagContainer(tags);
+		}
+
+		//return (new) tag
+		return tag;
+	}
+
+	/**
+	 * get tag by usercode
+	 */
+	getTagByUserCode(userCode)
+	{
+		var tags = this.getTagContainer();
+		for (let i=0; i<tags.length; i++) {
+			if (tags[i].userCode === userCode) {
+				return tags[i];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * get tag by id
+	 */
+	getTagById(id)
+	{
+		var tags = this.getTagContainer();
+		for (let i=0; i<tags.length; i++) {
+			if (tags[i].id === id) {
+				return tags[i];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Writes entry to log file
+	 * statusCodes: 0 = away, 1 = home, 2 = tag added, 3 = Scene Started
+	 */
+	addLog(userId, deviceId, tagId, statusCode, userName)
+	{
+		const logEntry = {
+			time: new Date(),
+			userId: userId,
+			userName: userName,
+			tagId: tagId,
+			statusCode: statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
+			deviceId: deviceId,
 		};
 
-		//assign new of existing id
-		if (typeof tagId === 'undefined') {
-			for (let i = 0; i < tags.length; i++) {
-				if (tags[i].id > tag.id) {
-					tag.id = tags[i].id;
-				}
-			}
-			tag.id++;
-		} else {
-			tag.id = tagId;
-		}
-
-		//set inital name
-		tag.name = 'ID ' + tag.id;
-
-		//add tag to container and save
-		tags.push(tag);
-		setTagContainer(tags);
-	}
-
-	//return (new) tag
-	return tag;
-}
-
-/**
- * get tag by usercode
- */
-function getTagByUserCode(userCode)
-{
-	var tags = getTagContainer();
-	for (let i=0; i<tags.length; i++) {
-		if (tags[i].userCode === userCode) {
-			return tags[i];
-		}
-	}
-	return null;
-}
-
-/**
- * get tag by id
- */
-function getTagById(id)
-{
-	var tags = getTagContainer();
-	for (let i=0; i<tags.length; i++) {
-		if (tags[i].id === id) {
-			return tags[i];
-		}
-	}
-	return null;
-}
-
-/**
- * Writes entry to log file
- * statusCodes: 0 = away, 1 = home, 2 = tag added, 3 = Scene Started
- */
-function addLog(userId, deviceId, tagId, statusCode, userName)
-{
-	const logEntry = {
-		time: new Date(),
-		userId: userId,
-		userName: userName,
-		tagId: tagId,
-		statusCode: statusCode, // 0 = away, 1 = home, 2 = tag added, 3 = Scene Started, 4 = Unknown Tag, -1 = unknown
-		deviceId: deviceId,
-	};
-
-	var log = this.homey.settings.get('systemEventLog');
-	log.push(logEntry);
-	
-	// Only keep last 50 events from event log
-	this.homey.settings.set('systemEventLog', log.slice(Math.max(log.length - 50, 0)));
-}
-
-/**
- * init/upgrade settings
- */
-function initSettings() {
-
-	//check user container
-	var userContainer = this.homey.settings.get('userContainer');
-	if (typeof userContainer === 'undefined' || userContainer === null || typeof userContainer.push === 'undefined') {
-		userContainer = new Array();
-	}
-	for (let i=0; i<userContainer.length; i++) {
-		if (typeof userContainer[i].tagIds === 'undefined' || userContainer[i].tagIds === null || typeof userContainer[i].tagIds.push === 'undefined') {
-			userContainer[i].tagIds = new Array();
-		}
-		if (typeof userContainer[i].name === 'undefined') {
-			userContainer[i].name = '';
-		}
-		if (typeof userContainer[i].statusCode === 'undefined') {
-			userContainer[i].statusCode = 1;
-		}
-	}
-	this.homey.settings.set('userContainer', userContainer);
-
-	//check tag container
-	var tagContainer = this.homey.settings.get('tagContainer');
-	if (typeof tagContainer === 'undefined' || tagContainer === null || typeof tagContainer.push === 'undefined') {
-		tagContainer = new Array();
-	}
-	for (let i=0; i<tagContainer.length; i++) {
-		if (typeof tagContainer[i].id === 'undefined') {
-			tagContainer[i].id = tagContainer[i].tagId;
-		}
-		if (typeof tagContainer[i].userCode === 'undefined') {
-			tagContainer[i].userCode = tagContainer[i].tagValue;
-		}
-		if (typeof tagContainer[i].name === 'undefined' || tagContainer[i].name === '') {
-			tagContainer[i].name = 'ID ' + tagContainer[i].id;
-		}
-		delete tagContainer[i].tagId;
-		delete tagContainer[i].tagValue;
-		delete tagContainer[i].tagType;
-	}
-	this.homey.settings.set('tagContainer', tagContainer);
-
-	//check event log
-	var log = this.homey.settings.get('systemEventLog');
-	if (typeof log === 'undefined' || log === null || typeof log.push === 'undefined') {
-		this.homey.settings.set('systemEventLog', new Array());
-	}	
-
-	//check tagStatus
-	if (this.homey.settings.get('tagStatus') !== true && this.homey.settings.get('tagStatus') !== false) {
-		this.homey.settings.set('tagStatus', false);
-	}
-
-	//check systemArmed
-	if (this.homey.settings.get('systemArmed') !== true && this.homey.settings.get('systemArmed') !== false) {
-		this.homey.settings.set('systemArmed', false);
+		var log = this.homey.settings.get('systemEventLog');
+		log.push(logEntry);
+		
+		// Only keep last 50 events from event log
+		this.homey.settings.set('systemEventLog', log.slice(Math.max(log.length - 50, 0)));
 	}
 }
-initSettings();
 
 module.exports = ZipatoDevice;

@@ -12,16 +12,28 @@ class ZipatoDevice extends ZwaveDevice {
 		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');
 
-		// register the alarm_motion capability with COMMAND_CLASS_NOTIFICATION
-		this.registerCapability('alarm_motion', 'NOTIFICATION');
+		if (typeof this.node.CommandClass['COMMAND_CLASS_NOTIFICATION'] !== 'undefined') {
+			// register the capabilities with COMMAND_CLASS_NOTIFICATION
+			this.registerCapability('alarm_motion', 'NOTIFICATION');
+			this.registerCapability('alarm_tamper', 'NOTIFICATION');
+		} else {
+			if (typeof this.node.CommandClass['COMMAND_CLASS_SENSOR_BINARY'] !== 'undefined') {
+				// fallback for alarm_motion with SENSOR_BINARY
+				this.registerCapability('alarm_motion', 'SENSOR_BINARY');
+			} else {
+				// fallback for alarm_motion with BASIC
+				this.registerCapability('alarm_motion', 'BASIC', {
+					report: 'BASIC_SET',
+					reportParser: report => {
+						if (report && report.hasOwnProperty('Value')) {
+							return report.Value === 255;
+						}
+						return null;
+					},
+				});
+			}
 
-		// register the alarm_tamper capability with COMMAND_CLASS_NOTIFICATION
-		this.registerCapability('alarm_tamper', 'NOTIFICATION');
-
-		// register alternative commandclass when notification is not avaible
-		if (typeof this.node.CommandClass['COMMAND_CLASS_NOTIFICATION'] === 'undefined') {
-			this.registerCapability('alarm_motion', 'SENSOR_BINARY');
-			this.registerCapability('alarm_tamper', 'ALARM');
+			this.registerCapability('alarm_tamper', 'SENSOR_ALARM');
 		}
 
 		// register the measure_temperature capability with SENSOR_MULTILEVEL

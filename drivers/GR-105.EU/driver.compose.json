@@ -1,0 +1,34 @@
+{
+    "id": "GR-105.EU",
+    "name": {
+        "en": "Valve controller",
+        "nl": "Klep besturing"
+    },
+    "zwave": {
+        "manufacturerId": 305,
+        "productTypeId": 3,
+        "productId": 1298,
+        "learnmode": {
+            "instruction": {
+                "en": "Press the red button 3 times to include it in the Z-Wave network.",
+                "nl": "Druk 3 keer op de rode knop om toe te voegen aan het Z-Wave netwerk."
+            }
+        },
+        "associationGroups": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "associationGroupsOptions": {}
+    },
+    "class": "other",
+    "capabilities": [
+        "onoff"
+    ],
+    "images": {
+        "large": "/drivers/GR-105.EU/assets/images/large.jpg",
+        "small": "/drivers/GR-105.EU/assets/images/small.jpg"
+    }
+}

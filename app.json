@@ -3708,6 +3708,11 @@
           "en": "Alarm sound",
           "de": "Alarm ton"
         },
+        "titleFormatted": {
+          "nl": "Alarm geluid: [[sound]]",
+          "en": "Alarm sound: [[sound]]",
+          "de": "Alarm ton: [[sound]]"
+        },
         "args": [
           {
             "type": "device",
@@ -3808,6 +3813,11 @@
           "nl": "Deurbel geluid",
           "en": "Doorbell sound",
           "de": "Türklingel ton"
+        },
+        "titleFormatted": {
+          "nl": "Deurbel geluid: [[sound]]",
+          "en": "Doorbell sound: [[sound]]",
+          "de": "Türklingel ton: [[sound]]"
         },
         "args": [
           {
@@ -3910,6 +3920,11 @@
           "nl": "Alarm duratie",
           "de": "Alarm Dauer"
         },
+        "titleFormatted": {
+          "en": "Alarm duration time: [[duration]]",
+          "nl": "Alarm duratie: [[duration]]",
+          "de": "Alarm Dauer: [[duration]]"
+        },
         "hint": {
           "en": "This does not turn off the alarm.",
           "nl": "Dit schakelt niet het alarm uit",
@@ -3976,6 +3991,11 @@
           "nl": "Deurbel duratie",
           "de": "Türklingel Dauer"
         },
+        "titleFormatted": {
+          "en": "Doorbell duration time [[duration]]s",
+          "nl": "Deurbel duratie [[duration]]s",
+          "de": "Türklingel Dauer [[duration]]s"
+        },
         "hint": {
           "en": "This does not turn off the alarm.",
           "nl": "Dit schakelt niet het alarm uit",
@@ -4034,6 +4054,11 @@
           "nl": "Alarm geluid",
           "en": "Alarm sound",
           "de": "Alarm ton"
+        },
+        "titleFormatted": {
+          "nl": "Alarm geluid: [[sound]]",
+          "en": "Alarm sound: [[sound]]",
+          "de": "Alarm ton: [[sound]]"
         },
         "args": [
           {
@@ -4154,6 +4179,10 @@
           "en": "Strobe on",
           "nl": "Stroboscoop aan"
         },
+        "titleFormatted": {
+          "en": "Strobe on [[count]] times, with an interval [[speed]] and color setting [[random_color]]",
+          "nl": "Stroboscoop aan [[count]] keer, met een interval van [[speed]] en kleur instelling [[random_color]]"
+        },
         "args": [
           {
             "type": "device",
@@ -4222,6 +4251,10 @@
           "en": "Mark as away",
           "nl": "Is afwezig"
         },
+        "titleFormatted": {
+          "en": "[[person]] marked as away",
+          "nl": "[[person]] instellen als afwezig"
+        },
         "hint": {
           "en": "Select a person to set the status of the person to away.",
           "nl": "Selecteer een persoon om de status van deze persoon op afwezig te zetten."
@@ -4248,6 +4281,10 @@
           "en": "Mark as home",
           "nl": "Is thuis"
         },
+        "titleFormatted": {
+          "en": "[[person]] marked as home",
+          "nl": "[[person]] instellen als thuis"
+        },
         "hint": {
           "en": "Select a person to set the status of the person to home.",
           "nl": "Selecteer een persoon om de status van deze persoon op thuis te zetten."
@@ -4273,6 +4310,10 @@
         "title": {
           "en": "Force motion",
           "nl": "Forceer beweging"
+        },
+        "titleFormatted": {
+          "en": "Force [[motion]]",
+          "nl": "Forceer [[motion]]"
         },
         "args": [
           {
@@ -4327,6 +4368,9 @@
         "title": {
           "en": "Button is pressed"
         },
+        "titleFormatted": {
+          "en": "Button ([[button_number]]) is pressed"
+        },
         "tokens": [
           {
             "name": "button_group",
@@ -4350,7 +4394,8 @@
             "name": "button_location",
             "type": "string",
             "title": {
-              "en": "Knop lokatie"
+              "en": "Button location",
+              "nl": "Knop lokatie"
             },
             "example": "top-left"
           }
@@ -4435,7 +4480,10 @@
       {
         "id": "PH.PSR03-1B.EU-long_started",
         "title": {
-          "en": "Button is long-press is started"
+          "en": "Button long-press is started"
+        },
+        "titleFormatted": {
+          "en": "Button ([[button_number]]) long-press is started"
         },
         "tokens": [
           {
@@ -4460,7 +4508,8 @@
             "name": "button_location",
             "type": "string",
             "title": {
-              "en": "Knop lokatie"
+              "en": "Button location",
+              "nl": "Knop lokatie"
             },
             "example": "top-left"
           }
@@ -4545,7 +4594,10 @@
       {
         "id": "PH.PSR03-1B.EU-long_ended",
         "title": {
-          "en": "Button is long-press is ended"
+          "en": "Button long-press is ended"
+        },
+        "titleFormatted": {
+          "en": "Button ([[button_number]]) long-press is ended"
         },
         "tokens": [
           {
@@ -4570,7 +4622,8 @@
             "name": "button_location",
             "type": "string",
             "title": {
-              "en": "Knop lokatie"
+              "en": "Button location",
+              "nl": "Knop lokatie"
             },
             "example": "top-left"
           }
@@ -4933,6 +4986,10 @@
         "title": {
           "en": "Is !{{|not}} at home",
           "nl": "Is !{{|niet}} thuis"
+        },
+        "titleFormatted": {
+          "en": "[[person]] is !{{|not}} at home",
+          "nl": "[[person]] is !{{|niet}} thuis"
         },
         "hint": {
           "en": "Select a person to check if this person is home or away.",

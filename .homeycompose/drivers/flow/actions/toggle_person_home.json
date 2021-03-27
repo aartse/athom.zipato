@@ -3,6 +3,10 @@
 		"en": "Mark as home",
 		"nl": "Is thuis"
 	},
+	"titleFormatted": {
+		"en": "[[person]] marked as home",
+		"nl": "[[person]] instellen als thuis"
+	},
 	"hint": {
 		"en": "Select a person to set the status of the person to home.",
 		"nl": "Selecteer een persoon om de status van deze persoon op thuis te zetten."

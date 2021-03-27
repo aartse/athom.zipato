@@ -19,6 +19,11 @@
           "en": "Alarm sound",
           "de": "Alarm ton"
       },
+      "titleFormatted": {
+        "nl": "Alarm geluid: [[sound]]",
+        "en": "Alarm sound: [[sound]]",
+        "de": "Alarm ton: [[sound]]"
+      },
       "args": [
           {
               "name": "sound",
@@ -114,6 +119,11 @@
           "nl": "Deurbel geluid",
           "en": "Doorbell sound",
           "de": "Türklingel ton"
+      },
+      "titleFormatted": {
+        "nl": "Deurbel geluid: [[sound]]",
+        "en": "Doorbell sound: [[sound]]",
+        "de": "Türklingel ton: [[sound]]"
       },
       "args": [
           {
@@ -211,6 +221,11 @@
         "nl": "Alarm duratie",
         "de": "Alarm Dauer"
       },
+      "titleFormatted": {
+        "en": "Alarm duration time: [[duration]]",
+        "nl": "Alarm duratie: [[duration]]",
+        "de": "Alarm Dauer: [[duration]]"
+      },
       "hint": {
         "en": "This does not turn off the alarm.",
         "nl": "Dit schakelt niet het alarm uit",
@@ -271,6 +286,11 @@
         "en": "Doorbell duration time",
         "nl": "Deurbel duratie",
         "de": "Türklingel Dauer"
+      },
+      "titleFormatted": {
+        "en": "Doorbell duration time [[duration]]s",
+        "nl": "Deurbel duratie [[duration]]s",
+        "de": "Türklingel Dauer [[duration]]s"
       },
       "hint": {
         "en": "This does not turn off the alarm.",

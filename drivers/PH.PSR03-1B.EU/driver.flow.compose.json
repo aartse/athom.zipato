@@ -9,20 +9,29 @@
       "id": "PH.PSR03-1B.EU-pressed",
       "title": {
         "en": "Button is pressed"
+      },
+      "titleFormatted": {
+        "en": "Button ([[button_number]]) is pressed"
       }
     },
     {
       "$extends":"remote_button_long_start",
       "id": "PH.PSR03-1B.EU-long_started",
       "title": {
-        "en": "Button is long-press is started"
+        "en": "Button long-press is started"
+      },
+      "titleFormatted": {
+        "en": "Button ([[button_number]]) long-press is started"
       }
     },
     {
       "$extends":"remote_button_long_end",
       "id": "PH.PSR03-1B.EU-long_ended",
       "title": {
-        "en": "Button is long-press is ended"
+        "en": "Button long-press is ended"
+      },
+      "titleFormatted": {
+        "en": "Button ([[button_number]]) long-press is ended"
       }
     }
   ],

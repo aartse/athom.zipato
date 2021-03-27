@@ -3,6 +3,10 @@
 	  "en": "Is !{{|not}} at home",
 	  "nl": "Is !{{|niet}} thuis"
 	},
+	"titleFormatted": {
+		"en": "[[person]] is !{{|not}} at home",
+		"nl": "[[person]] is !{{|niet}} thuis"
+	},
 	"hint": {
 	  "en": "Select a person to check if this person is home or away.",
 	  "nl": "Selecteer een persoon om te controleren of deze persoon thuis of afwezig is."

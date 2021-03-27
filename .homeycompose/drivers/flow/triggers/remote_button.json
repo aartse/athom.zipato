@@ -23,7 +23,7 @@
       "type": "string",
       "title": {
         "en": "Button location",
-        "en": "Knop lokatie"
+        "nl": "Knop lokatie"
       },
       "example": "top-left"
     }

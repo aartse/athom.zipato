@@ -3,6 +3,10 @@
 		"en": "Mark as away",
 		"nl": "Is afwezig"
 	},
+	"titleFormatted": {
+		"en": "[[person]] marked as away",
+		"nl": "[[person]] instellen als afwezig"
+	},
 	"hint": {
 		"en": "Select a person to set the status of the person to away.",
 		"nl": "Selecteer een persoon om de status van deze persoon op afwezig te zetten."

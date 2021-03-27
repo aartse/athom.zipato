@@ -4,6 +4,11 @@
         "en": "Alarm sound",
         "de": "Alarm ton"
     },
+    "titleFormatted": {
+        "nl": "Alarm geluid: [[sound]]",
+        "en": "Alarm sound: [[sound]]",
+        "de": "Alarm ton: [[sound]]"
+    },
     "args": [
         {
             "name": "sound",

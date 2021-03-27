@@ -3,6 +3,10 @@
         "en": "Force motion",
         "nl": "Forceer beweging"
     },
+	"titleFormatted": {
+		"en": "Force [[motion]]",
+		"nl": "Forceer [[motion]]"
+	},
 	"args": [
 		{
 			"name": "motion",

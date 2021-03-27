@@ -3,6 +3,10 @@
         "en": "Strobe on",
         "nl": "Stroboscoop aan"
     },
+	"titleFormatted": {
+		"en": "Strobe on [[count]] times, with an interval [[speed]] and color setting [[random_color]]",
+		"nl": "Stroboscoop aan [[count]] keer, met een interval van [[speed]] en kleur instelling [[random_color]]"
+	},
 	"args": [
 		{
 			"name": "count",

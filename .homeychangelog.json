@@ -64,5 +64,8 @@
   },
   "3.3.0": {
     "en": "upgrade to SDK 3"
+  },
+  "3.4.0": {
+    "en": "update npm packages, added titleFormatted for flows, added device GR-105"
   }
 }

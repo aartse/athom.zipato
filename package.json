@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "homey-log": "^2.0.1",
-    "homey-zwavedriver": "^2.0.3"
+    "homey-zwavedriver": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^7.18.0",

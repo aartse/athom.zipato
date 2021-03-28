@@ -1560,6 +1560,262 @@
       ]
     },
     {
+      "id": "NE-NAS-WS02Z.EU",
+      "name": {
+        "en": "Flood Sensor",
+        "nl": "Water Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_water",
+        "measure_battery",
+        "alarm_battery"
+      ],
+      "images": {
+        "large": "/drivers/NE-NAS-WS02Z.EU/assets/images/large.jpg",
+        "small": "/drivers/NE-NAS-WS02Z.EU/assets/images/small.jpg"
+      },
+      "energy": {
+        "batteries": [
+          "CR2"
+        ]
+      },
+      "zwave": {
+        "manufacturerId": 0,
+        "productTypeId": 0,
+        "productId": 0,
+        "learnmode": {
+          "instruction": {
+            "en": "Remove the sensor casing, press the code button inside your Leak sensor three times",
+            "nl": "Verwijder de behuizing, druk driemaal op de code knop binnen in de Leak sensor"
+          }
+        },
+        "associationGroups": [
+          1,
+          2
+        ]
+      },
+      "settings": [
+        {
+          "id": "config_param_1",
+          "zwave": {
+            "index": 1,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 0,
+            "max": 120
+          },
+          "value": 60,
+          "label": {
+            "en": "Alarm Duration Time",
+            "nl": "Alarm Duratie Tijd"
+          },
+          "hint": {
+            "en": "This configuration parameter that can be used to adjust the time in minutes for beep and LED turned on when water leakage is detected. If this parameter is set to ‘0’, the beep and LED will be turn on always until water leakage is not detected. (default: 60, range: 0 - 120)",
+            "nl": "Deze configuratie parameter die kan worden gebruikt om de tijd in minuten aan te passen voor geluidssignaal en LED ingeschakeld wanneer lekwater wordt gedetecteerd. Als deze parameter is ingesteld op '0', zal de pieptoon en LED altijd aan zijn tot lekkage water niet meer wordt gedetecteerd. (Standaard: 60, bereik: 0-120)"
+          }
+        },
+        {
+          "id": "config_param_2",
+          "zwave": {
+            "index": 2,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 5,
+            "max": 120
+          },
+          "value": 60,
+          "label": {
+            "en": "Alarm Interval",
+            "nl": "Alarm Interval"
+          },
+          "hint": {
+            "en": "This Parameter defines beep on /off interval time in minutes when water leakage is detected. (default: 60, range: 5-120)",
+            "nl": "Deze parameter definieert pieptoon aan / uit interval tijd in minuten wanneer lekwater wordt gedetecteerd. (Standaard: 60, bereik: 5-120)"
+          }
+        },
+        {
+          "id": "config_param_3",
+          "zwave": {
+            "index": 3,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 10,
+            "max": 120
+          },
+          "value": 60,
+          "label": {
+            "en": "First Alarm On Time Duration",
+            "nl": "Eerste Alarm On Time tijdsduur"
+          },
+          "hint": {
+            "en": "This parameter defines beep in seconds on duration first time when water leakage is detected. (default: 60, range: 10-120)",
+            "nl": "Deze parameter definieert de pieptoon in seconden van de duur eerste keer toen lekwater wordt gedetecteerd. (Standaard: 60, bereik: 10-120)"
+          }
+        },
+        {
+          "id": "config_param_4",
+          "zwave": {
+            "index": 4,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 5,
+            "max": 120
+          },
+          "value": 5,
+          "label": {
+            "en": "Alarm on time duration",
+            "nl": "Alarm aan tijd duur"
+          },
+          "hint": {
+            "en": "This parameter defines beep on duration in seconds after first beep on when water leakage is detected. (default: 5, range: 5-120)",
+            "nl": "Deze parameter definieert de pieptoon in seconden van de duur in seconden na eerste pieptoon wanneer lekwater wordt gedetecteerd. (Standaard: 5, bereik: 5-120)"
+          }
+        },
+        {
+          "id": "config_param_5",
+          "zwave": {
+            "index": 5,
+            "size": 1
+          },
+          "type": "checkbox",
+          "label": {
+            "en": "Enable or Disable sensor",
+            "nl": "Schakel sensor Aan of Uit"
+          },
+          "hint": {
+            "en": "When unchecked the sensor will not report and is disabled",
+            "nl": "Indien niet aangevinkt, zal de sensor worden uitgeschakeld"
+          },
+          "value": true
+        },
+        {
+          "id": "config_param_6",
+          "zwave": {
+            "index": 6,
+            "size": 1
+          },
+          "type": "checkbox",
+          "label": {
+            "en": "Alarm sound on detection",
+            "nl": "Alarm geluid bij detectie"
+          },
+          "hint": {
+            "en": "When unchecked it will only report to controller no sound",
+            "nl": "Indien niet aangevinkt zal er alleen een notificatie naar de controller worden verzonden, is dan geen geluid"
+          },
+          "value": true
+        },
+        {
+          "id": "config_param_7",
+          "zwave": {
+            "index": 7,
+            "size": 1
+          },
+          "type": "checkbox",
+          "label": {
+            "en": "Enable or Disable led",
+            "nl": "Schakel led Aan of Uit"
+          },
+          "hint": {
+            "en": "When unchecked the sensor will not report and is disabled",
+            "nl": "Indien niet aangevinkt, zal de sensor worden uitgeschakeld"
+          },
+          "value": true
+        },
+        {
+          "id": "config_param_8",
+          "zwave": {
+            "index": 8,
+            "size": 1,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 0,
+            "max": 255
+          },
+          "value": 255,
+          "label": {
+            "en": "Basic Set Level",
+            "nl": "Basic Set Level"
+          },
+          "hint": {
+            "en": "This configuration sets the level for device sending BASIC_SET to nodes that associated in group 2 when device detects a water leakage event.\nBASIC_SET = 0, all nodes associated in group 2 will be off.\nBASIC_SET = [1-99], all nodes associated in group 2 will be on.\nBASIC_SET = 255, all nodes associated in group 2 will be on.",
+            "nl": "This configuration sets the level for device sending BASIC_SET to nodes that associated in group 2 when device detects a water leakage event.\nBASIC_SET = 0, all nodes associated in group 2 will be off.\nBASIC_SET = [1-99], all nodes associated in group 2 will be on.\nBASIC_SET = 255, all nodes associated in group 2 will be on."
+          }
+        },
+        {
+          "id": "config_param_9",
+          "zwave": {
+            "index": 9,
+            "size": 1
+          },
+          "type": "checkbox",
+          "label": {
+            "en": "Enable or Disable Sensor Binary Report",
+            "nl": "Schakel Sensor Binary Report Aan of Uit"
+          },
+          "hint": {
+            "en": "This parameter sets to ‘1’ will enable SENSOR_BINARY_REPORT when device detects a water leakage event. This is for Z-Wave protocol backward compatibility.",
+            "nl": "This parameter sets to ‘1’ will enable SENSOR_BINARY_REPORT when device detects a water leakage event. This is for Z-Wave protocol backward compatibility."
+          },
+          "value": false
+        },
+        {
+          "id": "config_param_10",
+          "zwave": {
+            "index": 10,
+            "size": 1
+          },
+          "type": "checkbox",
+          "label": {
+            "en": "Enable or Disable battery report periodically",
+            "nl": "Schakel periodiek battery report Aan of Uit"
+          },
+          "hint": {
+            "en": "When enabled, the battery level is send periodically using the interval below.",
+            "nl": "Wanneer uitgeschakeld wordt het batterij niveau alleen bij inschakelen, of als de batterij op is, verstuurd.\nWanneer ingeschakeld, wordt het batterij niveau doorgestuurd met het onderstaande interval."
+          },
+          "value": false
+        },
+        {
+          "id": "config_param_11",
+          "zwave": {
+            "index": 11,
+            "size": 2,
+            "signed": false
+          },
+          "type": "number",
+          "attr": {
+            "min": 1,
+            "max": 1080
+          },
+          "value": 480,
+          "label": {
+            "en": "Battery report interval",
+            "nl": "Battery report interval"
+          },
+          "hint": {
+            "en": "This parameter is defined the interval time for battery report. This value is larger, the battery life is longer. Unit: Minute.",
+            "nl": "Deze patameter is om de batterij report interval in te stelen. Bij een lage waarde, zal de batterij ook sneller leeg zijn. Eenheid: minuten"
+          }
+        }
+      ]
+    },
+    {
       "id": "PH-PAN04.EU",
       "name": {
         "en": "Switch double",

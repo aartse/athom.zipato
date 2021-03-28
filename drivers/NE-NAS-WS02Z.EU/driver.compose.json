@@ -1,0 +1,34 @@
+{
+  "id": "NE-NAS-WS02Z.EU",
+  "name": {
+    "en": "Flood Sensor",
+    "nl": "Water Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_water",
+    "measure_battery",
+    "alarm_battery"
+  ],
+  "images": {
+    "large": "/drivers/NE-NAS-WS02Z.EU/assets/images/large.jpg",
+    "small": "/drivers/NE-NAS-WS02Z.EU/assets/images/small.jpg"
+  },
+  "energy": {
+    "batteries": [ "CR2" ]
+  },
+  "zwave": {
+    "manufacturerId": 0,
+    "productTypeId": 0,
+    "productId": 0,
+    "learnmode": {
+      "instruction": {
+        "en": "Remove the sensor casing, press the code button inside your Leak sensor three times",
+        "nl": "Verwijder de behuizing, druk driemaal op de code knop binnen in de Leak sensor"
+      }
+    },
+    "associationGroups": [
+      1, 2
+    ]
+  }
+}

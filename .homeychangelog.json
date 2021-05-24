@@ -70,5 +70,8 @@
   },
   "3.4.1": {
     "en": "fixed: Missing Capability Listener: homealarm_state"
+  },
+  "3.4.2": {
+    "en": "changed app description"
   }
 }

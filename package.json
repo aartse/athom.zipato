@@ -15,10 +15,5 @@
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.1.0",
     "eslint": "^7.18.0",
     "eslint-config-athom": "^2.1.0"
-  },
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": ">=12.16.1"
   }
 }

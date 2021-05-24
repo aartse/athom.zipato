@@ -67,5 +67,8 @@
   },
   "3.4.0": {
     "en": "update npm packages, added titleFormatted for flows, added device GR-105"
+  },
+  "3.4.1": {
+    "en": "fixed: Missing Capability Listener: homealarm_state"
   }
 }

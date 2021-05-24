@@ -1,6 +1,5 @@
 # Zipato
 This app adds support for Zipato devices in Homey. Only z-wave devices are supported for now.
-See APPSTORE.md for more information about this app.
 
 ## Development
 - This app is using [HomeyConfig composer](https://www.npmjs.com/package/node-homey-config-composer).   
@@ -12,10 +11,5 @@ See APPSTORE.md for more information about this app.
 - login to your homey: `homey login`
 
 ### Run
-- To run this app, use command `npm run-script run`
-- To install this app, use command `npm run-script install`
-
-### TODO:
-- registerRunListener nakijken
-- zoeken naar callback
-- WT-RFID.EU driver aanmaken voor init settings
+- To run and debug this app, use command `homey app run`
+- To install this app, use command `homey app install`

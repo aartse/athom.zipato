@@ -73,5 +73,8 @@
   },
   "3.4.2": {
     "en": "changed app description"
+  },
+  "3.5.0": {
+    "en": "fixed PH-PSM02.EU issues"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "triggers": [
+  ],
+  "conditions": [
+  ],
+  "actions": [
+    {
+      "$extends":"turn_alarm_tamper_off",
+      "id": "PH-PSM02.EU-turn_alarm_tamper_off"
+    }
+  ]
+}

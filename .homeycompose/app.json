@@ -1,6 +1,6 @@
 {
   "id": "nl.aartse.zipato",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -16,8 +16,8 @@
     "security"
   ],
   "description": {
-    "en": "Support for zipato devices",
-    "nl": "Support for zipato devices"
+    "en": "Make Your Home Smart",
+    "nl": "Make Your Home Smart"
   },
   "images": {
     "large": "/assets/images/large.jpg",

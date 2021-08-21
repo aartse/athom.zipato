@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.aartse.zipato",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -17,8 +17,8 @@
     "security"
   ],
   "description": {
-    "en": "Support for zipato devices",
-    "nl": "Support for zipato devices"
+    "en": "Make Your Home Smart",
+    "nl": "Make Your Home Smart"
   },
   "images": {
     "large": "/assets/images/large.jpg",
@@ -2747,64 +2747,225 @@
           }
         },
         {
-          "id": "operation_mode",
-          "type": "number",
+          "type": "group",
           "label": {
             "en": "Operation Mode"
           },
-          "value": 0,
-          "attr": {
-            "min": 0,
-            "max": 127
-          },
-          "hint": {
-            "en": "Bit0: (0 - Home Automation mode 1 - Security Mode). Bit1: Test Mode. Bit2: Disable Door/Window Sensor. Bit3: 0 - Temperature in Fahrenheit, 1 - Temperature in Celsius. Bit4: Disable illumination report after event triggered. Bit5: Disable temperature report after event triggered (1:Disable, 0:Enable), Bit6: Reserve. Bit7: Disable the back key release into test mode. (1:Disable, 0:Enable)"
-          },
-          "zwave": {
-            "index": 5,
-            "size": 1,
-            "signed": false
-          }
+          "children": [
+            {
+              "id": "run_mode",
+              "type": "dropdown",
+              "label": {
+                "en": "Run Mode"
+              },
+              "value": "0",
+              "values": [
+                {
+                  "id": "0",
+                  "label": {
+                    "en": "Home Automation mode"
+                  }
+                },
+                {
+                  "id": "1",
+                  "label": {
+                    "en": "Security Mode"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "test_mode",
+              "type": "checkbox",
+              "label": {
+                "en": "Test mode"
+              },
+              "value": false,
+              "hint": {
+                "en": "This has only effect by the DIP Switch setting to 'customer mode', otherwise it decides by DIP Switch setting to Test or Normal mode."
+              }
+            },
+            {
+              "id": "disable_door_function",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable door/window function"
+              },
+              "value": false
+            },
+            {
+              "id": "temperature_scale",
+              "type": "dropdown",
+              "label": {
+                "en": "Temperature Scale"
+              },
+              "value": "0",
+              "values": [
+                {
+                  "id": "0",
+                  "label": {
+                    "en": "Fahrenheit"
+                  }
+                },
+                {
+                  "id": "1",
+                  "label": {
+                    "en": "Celsius"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "disable_illumination_report_after_trigger",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable illumination report after event triggered"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_temperature_report_after_trigger",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable temperature report after event triggered"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_back_key_test_mode",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable the back key release into test mode"
+              },
+              "value": false
+            }
+          ]
         },
         {
-          "id": "multi_sensor_function_switch",
-          "type": "number",
+          "type": "group",
           "label": {
             "en": "Multi-Sensor Function Switch"
           },
-          "value": 4,
-          "attr": {
-            "min": 0,
-            "max": 255
-          },
-          "hint": {
-            "en": "Bit0: Disable magnetic integrate illumination. Bit1: Disable PIR integrate Illumination. Bit2: Disable magnetic integrate PIR. Bit3: When Bit2 is 0 (Enable), the device is install in the same room with the light? 0: In the same room(Default), 1: In the different room. Bit4: Disable delay 5 seconds to turn off the light, when door/window closed. Bit5: Disable auto turn off the light, after door/window opened to turn on the light. If Bit2 = 0, this setting is useless. Bit6: Enable temperature monitoring. When this bit enable, the temperature changed 3 degree Fahrenheit, it will report. And also the temperature over 140 degree Fahrenheit, it will report every 64 second"
-          },
-          "zwave": {
-            "index": 6,
-            "size": 1,
-            "signed": false
-          }
+          "children": [
+            {
+              "id": "disable_magnetic_integrate_illumination",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable magnetic integrate illumination to turn ON the lighting nodes in the association group 2"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_pir_integrate_illumination",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable PIR integrate illumination to turn ON the lighting nodes in the association group 2"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_magnetic_integrate_pir",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable magnetic integrate PIR to turn ON the lighting nodes in the association group 2"
+              },
+              "value": true
+            },
+            {
+              "id": "device_and_lighting_same_room",
+              "type": "checkbox",
+              "label": {
+                "en": "Device and lighting in different room"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_delay_to_turn_off_lights",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable delay of 5 seconds to turn off the light when door/window closed"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_auto_turn_off_the_light",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable auto turn off the light, after door/window opened to turn on the light"
+              },
+              "value": false
+            }
+          ]
         },
         {
-          "id": "operation_mode",
-          "type": "number",
+          "type": "group",
           "label": {
             "en": "Customer Function"
           },
-          "value": 4,
-          "attr": {
-            "min": 0,
-            "max": 255
-          },
-          "hint": {
-            "en": "Bit0: Reserve. Bit1: Enable sending motion OFF report. (0:Disable, 1:Enable). Bit2: Enable PIR super sensitivity mode. (0:Disable, 1:Enable). Bit3: Disable send out BASIC OFF after door closed. (1:Disable, 0:Enable). Bit4: Notification Type (0: Using Notification Report, 1: Using Sensor Binary Report). Bit5: Disable Multi CC in auto report (1:Disable, 0:Enable). Bit6: Disable to report battery state when the device triggered (1:Disable, 0:Enable). Bit7: Reserve."
-          },
-          "zwave": {
-            "index": 7,
-            "size": 1,
-            "signed": false
-          }
+          "children": [
+            {
+              "id": "enable_sending_motion_off_report",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable sending motion OFF report"
+              },
+              "value": false
+            },
+            {
+              "id": "enable_pir_super_sensitivity_mode",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable PIR super sensitivity mode"
+              },
+              "value": true
+            },
+            {
+              "id": "disable_send_basic_off_after_door_closed",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable send basic off after door closed"
+              },
+              "value": false
+            },
+            {
+              "id": "notification_type",
+              "type": "dropdown",
+              "label": {
+                "en": "Notification type"
+              },
+              "value": "0",
+              "values": [
+                {
+                  "id": "0",
+                  "label": {
+                    "en": "Notification Report"
+                  }
+                },
+                {
+                  "id": "1",
+                  "label": {
+                    "en": "Sensor Binary Report"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "disable_multi_cc_in_auto_report",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable multi CC in auto report"
+              },
+              "value": false
+            },
+            {
+              "id": "disable_battery_report_on_trigger",
+              "type": "checkbox",
+              "label": {
+                "en": "Disable to report battery state when the device triggered"
+              },
+              "value": false
+            }
+          ]
         },
         {
           "id": "pir_re_detect_interval_time",
@@ -4460,6 +4621,20 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=PH-PSE02-1B.EU"
+          }
+        ]
+      },
+      {
+        "id": "PH-PSM02.EU-turn_alarm_tamper_off",
+        "title": {
+          "en": "Turn alarm tamper off",
+          "nl": "Zet sabotage alarm uit"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=PH-PSM02.EU"
           }
         ]
       },

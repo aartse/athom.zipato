@@ -14,7 +14,6 @@ class ZipatoDevice extends ZwaveDevice {
 
 		// register the measure_battery capability with COMMAND_CLASS_BATTERY
 		this.registerCapability('measure_battery', 'BATTERY');
-		//this.registerCapability('alarm_battery', 'BATTERY');
 
 		// register user_code_report capabilty for adding new tags
 		this.registerCapability('user_code_report', 'USER_CODE', {
@@ -75,6 +74,13 @@ class ZipatoDevice extends ZwaveDevice {
 
 		// register the alarm_tamper capability with COMMAND_CLASS_ALARM
 		this.registerCapability('homealarm_state', 'ALARM', {
+			// need a set option, otherwise homey throws an error "Missing Capability Listener" when changing the homealarm_state
+			set: 'ALARM_SET',
+			setParser: value => {
+				// this device has no set command class, so return null.
+				// homey will log a warning, but the homealarm_state can be changed
+				return null;
+			},
 			report: 'ALARM_REPORT',
 			reportParser: report => {
 

@@ -1,9 +1,9 @@
 {
     "id": "NE-NAS-AB02Z.EU",
     "name": {
-      "en": "Indoor siren (TEST)",
-      "nl": "Binnen sirene (TEST)",
-      "de": "Alarmsirene (TEST)"
+      "en": "Indoor siren",
+      "nl": "Binnen sirene",
+      "de": "Alarmsirene"
     },
     "class": "homealarm",
     "capabilities": [

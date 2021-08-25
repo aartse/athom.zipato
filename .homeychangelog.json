@@ -79,5 +79,8 @@
   },
   "3.5.1": {
     "en": "enable debug for VS-ZD2102.AU"
+  },
+  "3.5.2": {
+    "en": "added productID for NE-NAS-PD01Z.EU"
   }
 }

@@ -7,7 +7,7 @@
     "zwave": {
         "manufacturerId": 305,
         "productTypeId": 3,
-        "productId": 4233,
+        "productId": [4233, 4227],
         "learnmode": {
             "instruction": {
                 "en": "Press include/network button three times within 1.5 seconds.",

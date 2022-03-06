@@ -27,6 +27,7 @@
         "onoff",
         "dim"
     ],
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/MH-P220.EU/assets/images/large.png",
         "small": "/drivers/MH-P220.EU/assets/images/small.png"

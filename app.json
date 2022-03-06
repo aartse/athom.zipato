@@ -65,6 +65,9 @@
       "capabilities": [
         "onoff"
       ],
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/GR-105.EU/assets/images/large.jpg",
         "small": "/drivers/GR-105.EU/assets/images/small.jpg"
@@ -105,6 +108,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/HM-HS1CA-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1CA-Z.EU/assets/images/small.png"
@@ -145,6 +151,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/HM-HS1SA-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1SA-Z.EU/assets/images/small.png"
@@ -186,6 +195,9 @@
           "AAA"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/HM-HS1WL-Z.EU/assets/images/large.png",
         "small": "/drivers/HM-HS1WL-Z.EU/assets/images/small.png"
@@ -219,6 +231,9 @@
       "capabilities": [
         "onoff",
         "dim"
+      ],
+      "connectivity": [
+        "zwave"
       ],
       "images": {
         "large": "/drivers/MH-P220.EU/assets/images/large.png",
@@ -776,8 +791,8 @@
       },
       "class": "homealarm",
       "capabilities": [
-        "onoff",
-        "alarm_tamper"
+        "alarm_tamper",
+        "onoff"
       ],
       "zwave": {
         "manufacturerId": 305,
@@ -802,6 +817,9 @@
         ],
         "associationGroupsOptions": {}
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/NE-NAS-AB02Z.EU/assets/images/large.png",
         "small": "/drivers/NE-NAS-AB02Z.EU/assets/images/small.png"
@@ -1299,6 +1317,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/NE-NAS-DS01Z.EU/assets/images/large.jpg",
         "small": "/drivers/NE-NAS-DS01Z.EU/assets/images/small.jpg"
@@ -1343,6 +1364,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
         "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"
@@ -1590,6 +1614,9 @@
         "onoff",
         "measure_power",
         "meter_power"
+      ],
+      "connectivity": [
+        "zwave"
       ],
       "images": {
         "large": "/drivers/PH-PAN04.EU/assets/images/large.png",
@@ -1930,6 +1957,9 @@
         "measure_power",
         "meter_power"
       ],
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
         "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"
@@ -2252,8 +2282,8 @@
       },
       "class": "homealarm",
       "capabilities": [
-        "onoff",
-        "alarm_tamper"
+        "alarm_tamper",
+        "onoff"
       ],
       "zwave": {
         "manufacturerId": [
@@ -2281,6 +2311,9 @@
         ],
         "associationGroupsOptions": {}
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
         "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"
@@ -2412,6 +2445,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "zwave": {
         "manufacturerId": [
           316,
@@ -2859,6 +2895,9 @@
           "INTERNAL"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/PH.PSR03-1B.EU/assets/images/large.png",
         "small": "/drivers/PH.PSR03-1B.EU/assets/images/small.png"
@@ -3109,6 +3148,9 @@
         "light_temperature",
         "light_mode"
       ],
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/RGBWE2.EU/assets/images/large.png",
         "small": "/drivers/RGBWE2.EU/assets/images/small.png"
@@ -3232,6 +3274,9 @@
         "light_temperature",
         "light_mode"
       ],
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
         "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"
@@ -3265,6 +3310,9 @@
       "capabilities": [
         "alarm_contact",
         "alarm_tamper"
+      ],
+      "connectivity": [
+        "zwave"
       ],
       "energy": {
         "batteries": [
@@ -3314,6 +3362,9 @@
           "AAA"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/VS-ZD2201.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2201.EU/assets/images/small.jpg"
@@ -3437,6 +3488,9 @@
           "CR14250"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"
@@ -3588,6 +3642,9 @@
           "AA"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/WT-RFID.EU/assets/images/large.png",
         "small": "/drivers/WT-RFID.EU/assets/images/small.png"
@@ -3764,6 +3821,9 @@
           "CR123A"
         ]
       },
+      "connectivity": [
+        "zwave"
+      ],
       "images": {
         "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
         "small": "/drivers/ZP3102.EU/assets/images/small.jpg"

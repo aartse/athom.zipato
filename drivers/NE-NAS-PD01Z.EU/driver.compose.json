@@ -32,6 +32,7 @@
     "energy": {
         "batteries": [ "CR123A" ]
     },
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/NE-NAS-PD01Z.EU/assets/images/large.jpg",
         "small": "/drivers/NE-NAS-PD01Z.EU/assets/images/small.jpg"

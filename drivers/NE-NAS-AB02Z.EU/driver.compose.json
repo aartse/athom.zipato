@@ -33,11 +33,7 @@
         ],
         "associationGroupsOptions": {}
     },
-    "class": "homealarm",
-    "capabilities": [
-      "onoff",
-      "alarm_tamper"
-    ],
+    "connectivity": ["zwave"],
     "images": {
       "large": "/drivers/NE-NAS-AB02Z.EU/assets/images/large.png",
       "small": "/drivers/NE-NAS-AB02Z.EU/assets/images/small.png"

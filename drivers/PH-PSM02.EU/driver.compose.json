@@ -20,6 +20,7 @@
     "energy": {
         "batteries": [ "CR123A" ]
     },
+    "connectivity": ["zwave"],
 	"zwave": {
 		"manufacturerId": [316, 305],
 		"productTypeId": 2,

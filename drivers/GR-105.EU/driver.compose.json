@@ -27,6 +27,7 @@
     "capabilities": [
         "onoff"
     ],
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/GR-105.EU/assets/images/large.jpg",
         "small": "/drivers/GR-105.EU/assets/images/small.jpg"

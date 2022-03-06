@@ -82,5 +82,8 @@
   },
   "3.5.2": {
     "en": "added productID for NE-NAS-PD01Z.EU"
+  },
+  "3.5.3": {
+    "en": "update for new appstore"
   }
 }

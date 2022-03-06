@@ -10,6 +10,7 @@
 	"tokens": [
 	  {
 		"name": "userCode",
+		"type": "string",
 		"title": {
 		  "en": "Code/Tag",
 		  "nl": "Code/Tag"

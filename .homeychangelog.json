@@ -88,5 +88,8 @@
   },
   "3.6.0": {
     "en": "fixed ph-psr03 added as basic device"
+  },
+  "3.6.1": {
+    "en": "FIX: app crash when no users are defined for device WT-RFID.EU"
   }
 }

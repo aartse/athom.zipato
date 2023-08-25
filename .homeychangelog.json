@@ -85,5 +85,8 @@
   },
   "3.5.3": {
     "en": "update for new appstore"
+  },
+  "3.6.0": {
+    "en": "fixed ph-psr03 added as basic device"
   }
 }

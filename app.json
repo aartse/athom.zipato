@@ -2873,7 +2873,10 @@
         "nl": "Afstandsbediening"
       },
       "zwave": {
-        "manufacturerId": 316,
+        "manufacturerId": [
+          316,
+          305
+        ],
         "productTypeId": 8,
         "productId": 29,
         "learnmode": {

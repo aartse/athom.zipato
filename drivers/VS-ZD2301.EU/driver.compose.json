@@ -31,6 +31,7 @@
     "energy": {
         "batteries": [ "CR14250", "CR14250" ]
     },
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/VS-ZD2301.EU/assets/images/large.jpg",
         "small": "/drivers/VS-ZD2301.EU/assets/images/small.jpg"

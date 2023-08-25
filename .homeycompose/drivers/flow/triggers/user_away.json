@@ -19,6 +19,7 @@
 	  },
 	  {
 		"name": "userName",
+		"type": "string",
 		"title": {
 		  "en": "Username",
 		  "nl": "Gebruikersnaam"

@@ -1,9 +1,9 @@
 {
     "id": "NE-NAS-AB02Z.EU",
     "name": {
-      "en": "Indoor siren (TEST)",
-      "nl": "Binnen sirene (TEST)",
-      "de": "Alarmsirene (TEST)"
+      "en": "Indoor siren",
+      "nl": "Binnen sirene",
+      "de": "Alarmsirene"
     },
     "class": "homealarm",
     "capabilities": [
@@ -33,11 +33,7 @@
         ],
         "associationGroupsOptions": {}
     },
-    "class": "homealarm",
-    "capabilities": [
-      "onoff",
-      "alarm_tamper"
-    ],
+    "connectivity": ["zwave"],
     "images": {
       "large": "/drivers/NE-NAS-AB02Z.EU/assets/images/large.png",
       "small": "/drivers/NE-NAS-AB02Z.EU/assets/images/small.png"

@@ -24,6 +24,7 @@
         "alarm_contact",
         "alarm_tamper"
     ],
+    "connectivity": ["zwave"],
     "energy": {
         "batteries": [ "CR123A" ]
     },

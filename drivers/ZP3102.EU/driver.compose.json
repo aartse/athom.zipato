@@ -30,6 +30,7 @@
     "energy": {
         "batteries": [ "CR123A" ]
     },
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/ZP3102.EU/assets/images/large.jpg",
         "small": "/drivers/ZP3102.EU/assets/images/small.jpg"

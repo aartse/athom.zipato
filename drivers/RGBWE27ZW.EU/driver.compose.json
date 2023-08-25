@@ -29,6 +29,7 @@
         "light_temperature",
         "light_mode"
     ],
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/RGBWE27ZW.EU/assets/images/large.png",
         "small": "/drivers/RGBWE27ZW.EU/assets/images/small.png"

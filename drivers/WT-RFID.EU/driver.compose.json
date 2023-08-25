@@ -52,6 +52,7 @@
     "energy": {
         "batteries": [ "AA", "AA" ]
     },
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/WT-RFID.EU/assets/images/large.png",
         "small": "/drivers/WT-RFID.EU/assets/images/small.png"

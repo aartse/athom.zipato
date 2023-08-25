@@ -25,6 +25,7 @@
     "energy": {
         "batteries": [ "INTERNAL" ]
     },
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/PH.PSR03-1B.EU/assets/images/large.png",
         "small": "/drivers/PH.PSR03-1B.EU/assets/images/small.png"

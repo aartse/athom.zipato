@@ -25,6 +25,7 @@
         "measure_power",
         "meter_power"
     ],
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/PH-PAN16.EU.G/assets/images/large.png",
         "small": "/drivers/PH-PAN16.EU.G/assets/images/small.png"

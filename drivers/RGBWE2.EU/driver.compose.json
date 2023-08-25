@@ -28,6 +28,7 @@
         "light_temperature",
         "light_mode"
     ],
+    "connectivity": ["zwave"],
     "images": {
         "large": "/drivers/RGBWE2.EU/assets/images/large.png",
         "small": "/drivers/RGBWE2.EU/assets/images/small.png"

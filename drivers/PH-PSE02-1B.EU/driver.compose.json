@@ -33,11 +33,7 @@
         ],
         "associationGroupsOptions": {}
     },
-    "class": "homealarm",
-    "capabilities": [
-      "onoff",
-      "alarm_tamper"
-    ],
+    "connectivity": ["zwave"],
     "images": {
       "large": "/drivers/PH-PSE02-1B.EU/assets/images/large.png",
       "small": "/drivers/PH-PSE02-1B.EU/assets/images/small.png"

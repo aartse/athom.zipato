@@ -775,7 +775,7 @@
             "nl": "Gebruik 0 om scane activatie uit te schakelen"
           },
           "zwave": {
-            "index": 20,
+            "index": 21,
             "size": 1,
             "signed": false
           }

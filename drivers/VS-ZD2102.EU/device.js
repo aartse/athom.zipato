@@ -16,25 +16,26 @@ class ZipatoDevice extends ZwaveDevice {
 
 		// register the alarm_contact capability with COMMAND_CLASS_ALARM or COMMAND_CLASS_SENSOR_BINARY
 		this.registerCapability('alarm_contact', 'SENSOR_BINARY');
+		this.registerCapability('alarm_contact', 'BASIC');
 		this.registerCapability('alarm_contact', 'ALARM', {
-			get: 'ALARM_GET',
-			report: 'ALARM_REPORT',
+			report: "ALARM_REPORT",
 			reportParser: report => {
-				this.log(report);
-			    return null;
+			  if (
+				report
+				&& report.hasOwnProperty('ZWave Alarm Type')
+				&& report['ZWave Alarm Type'] === 'Burglar'
+				&& report.hasOwnProperty('ZWave Alarm Event')
+				&& report['ZWave Alarm Event'] === 254
+				&& report.hasOwnProperty('Alarm Level')
+			  ) {
+				return (report['Alarm Level'] === 255);
+			  }
+			  return null;
 			}
-		  });
+		});
 
-		// register the alarm_tamper capability with COMMAND_CLASS_ALARM or COMMAND_CLASS_SENSOR_BINARY
+		this.registerCapability('alarm_tamper', 'NOTIFICATION');
 		this.registerCapability('alarm_tamper', 'SENSOR_BINARY');
-		this.registerCapability('alarm_tamper', 'ALARM', {
-			get: 'ALARM_GET',
-			report: 'ALARM_REPORT',
-			reportParser: report => {
-				this.log(report);
-			    return null;
-			}
-		  });
 	}
 }
 

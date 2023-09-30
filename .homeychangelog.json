@@ -91,5 +91,8 @@
   },
   "3.6.1": {
     "en": "FIX: app crash when no users are defined for device WT-RFID.EU"
+  },
+  "3.7.0": {
+    "en": "Fixes for devices MH-P220.EU, VS-ZD2102.EU and WT-RFID.EU"
   }
 }

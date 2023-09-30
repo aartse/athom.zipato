@@ -188,17 +188,11 @@ class ZipatoDevice extends ZwaveDevice {
 	triggerStateChange(alarmState, deviceId, tag, user) {
 
 		var tokens = {
+			userId: (user !== null ? user.id : 0),
+			userName: (user !== null ? user.name : ''),
+			tagId: (tag !== null ? tag.id : 0),
 			deviceId: deviceId
 		};
-
-		if (tag !== null) {
-			tokens.tagId = tag.id;
-		}
-
-		if (user !== null) {
-			tokens.userId = user.id;
-			tokens.userName = user.name;
-		}
 
 		if (alarmState === 'home') {
 			// Trigger event, "User X came home"

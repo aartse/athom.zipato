@@ -23,8 +23,8 @@
     "connectivity": ["zwave"],
 	"zwave": {
 		"manufacturerId": [316, 305],
-		"productTypeId": 2,
-		"productId": [12, 13, 14],
+		"productTypeId": [2, 8],
+		"productId": [12, 13, 14, 29],
 		"learnmode": {
 			"image": "/drivers/PH-PSM02.EU/assets/learnmode.svg",
 			"instruction": {

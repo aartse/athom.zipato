@@ -132,15 +132,15 @@ class ZipatoDevice extends ZwaveDevice {
 		});
 
 		this.homey.flow.getConditionCard('WT-RFID.EU-is_at_home')
-		    .registerRunListener(( args, state, callback ) => {
+		    .registerRunListener(( args, state ) => {
 
 				// Get the status of the requested user
 				var user = this.getUserById(args.person.id);
 				if (user !== null) {
-					return callback(null, user.statusCode === 1); // we've fired successfully
+					return Promise.resolve(user.statusCode === 1); // we've fired successfully
 				}
 
-				return callback(new Error(__('flow.condition.userNotFound'))); // user not found.
+				return Promise.reject(new Error(this.homey.i18n.__('flow.condition.userNotFound'))); // user not found.
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
 				var users = this.getUserContainer();
@@ -148,17 +148,17 @@ class ZipatoDevice extends ZwaveDevice {
 			});
 
 		this.homey.flow.getConditionCard('WT-RFID.EU-system_is_armed')
-			.registerRunListener(( args, state, callback ) => {
-				return callback(null, this.isSystemArmed());
+			.registerRunListener(( args, state ) => {
+				return Promise.resolve(this.isSystemArmed());
 			});
 
 		this.homey.flow.getActionCard('WT-RFID.EU-toggle_person_home')
-			.registerRunListener(( args, state, callback ) => {
+			.registerRunListener(( args, state ) => {
 
 				// Set status of user to home
 				this.updateUsersState([args.person], 'home');
 
-				callback(null, true); // we've fired successfully
+				return Promise.resolve(true);
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
 				var users = this.getUserContainer();
@@ -166,12 +166,12 @@ class ZipatoDevice extends ZwaveDevice {
 			});
 
 		this.homey.flow.getActionCard('WT-RFID.EU-toggle_person_away')
-			.registerRunListener(( args, state, callback ) => {
+			.registerRunListener(( args, state ) => {
 			
 				// Set status of user to away
 				this.updateUsersState([args.person], 'away');
-			
-				callback(null, true); // we've fired successfully
+
+				return Promise.resolve(true);
 			})
 			.registerArgumentAutocompleteListener("person", async (query, args) => {
 				var users = this.getUserContainer();

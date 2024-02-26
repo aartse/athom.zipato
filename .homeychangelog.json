@@ -94,5 +94,8 @@
   },
   "3.7.0": {
     "en": "Fixes for devices MH-P220.EU, VS-ZD2102.EU and WT-RFID.EU"
+  },
+  "3.8.0": {
+    "en": "FIX: #81 - RFID Conditional card not working. \nFIX: #85 - Multisensor Quad is added as a generic device. \nFIX: #86 - Zipato Mini RFID Keypad returns App not found when joining to Homey."
   }
 }

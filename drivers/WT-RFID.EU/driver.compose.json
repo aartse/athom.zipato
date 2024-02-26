@@ -7,7 +7,7 @@
     "zwave": {
         "manufacturerId": 151,
         "productTypeId": 24881,
-        "productId": 17665,
+        "productId": [17665, 21761],
         "learnmode": {
             "image": "/drivers/WT-RFID.EU/assets/learnmode.svg",
             "instruction": {
